@@ -190,12 +190,10 @@ values ('Nhã Nam', '59 Đỗ Quang, Cầu Giấy, Hà Nội', 'bookstore@nhanam
        ('1980 Books', 'Nhà 20H2, Ngõ 6, Trần Kim Xuyến, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội', 'info.1980books@gmail.com'),
        ('AZ Việt Nam', 'Số 50 đường 5, TTF361 An Dương, P. Yên Phụ, Q. Tây Hồ, Tp. Hà Nội', 'bophanbanle@azbooks.vn'),
        ('NXB Trẻ', '161B Lý Chính Thắng, Phường Võ Thị Sáu, Quận 3 , TP. Hồ Chí Minh', 'hopthubandoc@nxbtre.com.vn'),
-       ('Đinh Tỵ', 'NV22 khu 12 ngõ 13 đường Lĩnh Nam, phường Mai Động, quận Hoàng Mai, Thành Phố Hà Nội', 'contacts@dinhtibooks.vn');
-       
-insert into NCC (TenNCC, DcNCC, EmailNCC)       
-values ('Walts comic shop', 'Wilhelm-von-Siemens-Straße 12, 12277 Berlin', 'info@waltscomicshop.com');
-		('Kinokuniya Book Stores', 'Shinjuku, Tokyo, Japan', null),
-	   ('Nhà Sách Minh Thắng', '808 Đường Láng, Láng Thượng, Đống Đa, TP.Hà Nội', 'nhasachminhthang@yahoo.com.vn');
+       ('Đinh Tỵ', 'NV22 khu 12 ngõ 13 đường Lĩnh Nam, phường Mai Động, quận Hoàng Mai, Thành Phố Hà Nội', 'contacts@dinhtibooks.vn'),
+       ('Kinokuniya Book Stores', 'Shinjuku, Tokyo, Japan', null),
+       ('Nhà Sách Minh Thắng', '808 Đường Láng, Láng Thượng, Đống Đa, TP.Hà Nội', 'nhasachminhthang@yahoo.com.vn'),
+       ('Walts comic shop', 'Wilhelm-von-Siemens-Straße 12, 12277 Berlin', 'info@waltscomicshop.com');
        
        
 insert into NXB (TenNXB, DcNXB, EmailNXB)
@@ -216,13 +214,10 @@ values ('NXB Trẻ', '161B Lý Chính Thắng, Phường Võ Thị Sáu, Quận 
        ('Hồng Đức', '65 Tràng Thi, P.Hàng Bông, Q.Hoàn Kiếm, Hà Nội', 'nhaxuatbanhongduc65@gmail.com'),
 	   ('Shueisha/Tsai Fong Books', null, null),
        ('‎Marvel Comics', '135 W. 50th Street, Manhattan, New York City', 'Ms-comms@marvelstudios.com'),
-       ('Dc Comics', '4000 Warner Boulevard, Burbank, California', 'privacy@wb.com');
-    
-
-
-insert into NXB (TenNXB, DcNXB, EmailNXB)
-values ('Harper Collins', '195 Broadway, New York City, New York, USA', 'consumercare@harpercollins.com'),
-	   ('Bloomsbury Publishing', '50 Bedford Square, London', 'contact@bloomsbury.com');	   
+       ('Dc Comics', '4000 Warner Boulevard, Burbank, California', 'privacy@wb.com'),
+       ('NXB Đại Học Quốc Gia Hà Nội', '16 Hàng Chuối, Phạm Đình Hổ, Hai Bà Trưng, Hà Nội, Vietnam', 'nxb@vnu.edu.vn'),
+	   ('Harper Collins', '195 Broadway, New York City, New York, USA', 'consumercare@harpercollins.com'),
+       ('Bloomsbury Publishing', '50 Bedford Square, London', 'contact@bloomsbury.com');
        
 insert into TacGia (TenTG, NgSinhTG, GioiTinhTG)
 values ('Gosho Aoyama', '1963-06-21', 0),
@@ -256,10 +251,8 @@ values ('Gosho Aoyama', '1963-06-21', 0),
        ('Hajime Isayama', '1986-08-29', 0),
        ('Judd Winick', '1970-02-12', 0),
        ('Stan Lee', '1922-12-28', 0),
-       ('Jack Kirby', '1917-08-28', 0);
-       
-insert into TacGia (TenTG, NgSinhTG, GioiTinhTG)
-values ('Oshioshio', null, 1);
+       ('Jack Kirby', '1917-08-28', 0),
+       ('Oshioshio', null, 1);
        
 insert into TheLoai (TenLoai)
 values ('Tiểu thuyết'),
@@ -650,6 +643,6 @@ Năm năm sau, hoàn cảnh của hai người hoàn toàn đảo ngưo
 số phận dẫn dắt cả hai quay lại với nhau, một lần nữa chữa lành những tổn thương và giải tỏa hiểu lầm trước kia.
 "Nơi có anh sẽ là phương hướng của em.
 Anh ở đâu, em sẽ đặt chân đến đấy."'
-, 215000, 35, '24 x 16 cm', 6, 25, 15),
+, 215000, 35, '24 x 16 cm', 6, 25, 15);
 
 
