@@ -98,10 +98,7 @@ create table `CTHD` (
     `MaHD` int not null,
     `MaSach` int not null
 );
-<<<<<<< HEAD
-=======
 alter table `cthd` add column `PhThucVC` int(11);
->>>>>>> e79a9e4 (insert data)
 
 create table `PhNhap` (
 	`MaPhNhap` int primary key not null auto_increment,
