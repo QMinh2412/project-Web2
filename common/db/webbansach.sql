@@ -98,6 +98,7 @@ create table `CTHD` (
     `MaHD` int not null,
     `MaSach` int not null
 );
+alter table `cthd` add column `PhThucVC` int(11);
 
 create table `PhNhap` (
 	`MaPhNhap` int primary key not null auto_increment,
@@ -645,4 +646,131 @@ số phận dẫn dắt cả hai quay lại với nhau, một lầ
 Anh ở đâu, em sẽ đặt chân đến đấy."'
 , 215000, 35, '24 x 16 cm', 6, 25, 15);
 
+INSERT INTO ngdung (TenND, DcND, EmailND, GioiTinhND, SDT, NgSinhND)
+VALUES
+('Nguyễn Văn A', '123 Đường ABC, TP.HCM', 'nguyenvana@gmail.com', 1, '0901234567', '1995-05-20'),
+('Trần Thị B', '456 Đường XYZ, Hà Nội', 'tranthib@gmail.com', 0, '0912345678', '1998-10-15'),
+('Lê Hoàng C', '789 Đường DEF, Đà Nẵng', 'lehoangc@gmail.com', 1, '0923456789', '2000-03-08'),
+('Phạm Thị D', '111 Đường GHI, Cần Thơ', 'phamthid@gmail.com', 0, '0934567890', '1992-07-22'),
+('Hoàng Minh E', '222 Đường JKL, Hải Phòng', 'hoangminhe@gmail.com', 1, '0945678901', '1997-09-30'),
+('Đỗ Thị F', '333 Đường MNO, Nha Trang', 'dothif@gmail.com', 0, '0956789012', '1993-12-05'),
+('Vũ Quốc G', '444 Đường PQR, Huế', 'vuquocg@gmail.com', 1, '0967890123', '1999-06-18'),
+('Ngô Thanh H', '555 Đường STU, Bình Dương', 'ngothanhh@gmail.com', 1, '0978901234', '2001-01-25'),
+('Lý Hồng I', '666 Đường VWX, Vũng Tàu', 'lyhongi@gmail.com', 0, '0989012345', '1996-04-14'),
+('Bùi Văn J', '777 Đường YZ, Đồng Nai', 'buivanj@gmail.com', 1, '0990123456', '1994-08-07');
 
+INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) VALUES
+('user1', 0, '2025-03-21', 1, SHA2('pass1', 256), 1),
+('user2', 2, '2025-03-21', 1, SHA2('pass2', 256), 2),
+('user3', 0, '2025-03-21', 1, SHA2('pass3', 256), 3),
+('user4', 3, '2025-03-21', 1, SHA2('pass4', 256), 4),
+('user5', 2, '2025-03-21', 1, SHA2('pass5', 256), 5),
+('user6', 0, '2025-03-21', 1, SHA2('pass6', 256), 6),
+('user7', 0, '2025-03-21', 1, SHA2('pass7', 256), 7),
+('user8', 0, '2025-03-21', 1, SHA2('pass8', 256), 8),
+('user9', 1, '2025-03-21', 1, SHA2('pass9', 256), 9),  -- Admin
+('user10', 4, '2025-03-21', 1, SHA2('pass10', 256), 10); -- Chủ doanh nghiệp
+
+delete from TaiKhoan where matk > 0;
+ALTER TABLE TaiKhoan AUTO_INCREMENT = 1;
+
+DELETE FROM GioHang WHERE MaGH > 0;
+ALTER TABLE GioHang AUTO_INCREMENT = 1;
+
+delete from hinhanh where maha > 0;
+ALTER TABLE HinhAnh AUTO_INCREMENT = 1;
+
+INSERT INTO QuanLy (MaTKQL, MaTKBQL) VALUES
+(9, 1),
+(9, 2),
+(9, 3),
+(9, 4),
+(9, 5),
+(9, 6),
+(9, 7),
+(9, 8),
+(9, 9),
+(10, 1),
+(10, 2),
+(10, 3),
+(10, 4),
+(10, 5),
+(10, 6),
+(10, 7),
+(10, 8),
+(10, 9);
+
+INSERT INTO DanhGia (NoiDung, PhanHoi, NgayViet, MaKH, MaAdmin, MaSach) VALUES
+('Sách rất hay, nội dung hấp dẫn!', 'Cảm ơn bạn đã ủng hộ, chúc bạn đọc sách vui vẻ!', '2025-03-20 14:30:00', 1, 9, 5),
+('Chất lượng giấy in tốt, giao hàng nhanh.', 'Cảm ơn phản hồi của bạn, mong bạn tiếp tục ủng hộ!', '2025-03-19 09:15:00', 2, 10, 10),
+('Cốt truyện lôi cuốn, đáng để đọc.', null, '2025-03-18 16:45:00', 3, 9, 2),
+('Hình ảnh minh họa đẹp, bé nhà mình rất thích.', null, '2025-03-17 20:10:00', 4, 10, 17),
+('Sách hơi nhàu khi giao nhưng nội dung rất hay.', 'Xin lỗi về vấn đề giao hàng, chúng tôi sẽ cải thiện dịch vụ tốt hơn!', '2025-03-16 12:00:00', 5, 9, 24);
+
+INSERT INTO PhNhap (MaNCC, MaTK) VALUES
+(1, 3),
+(2, 3),
+(3, 4),
+(4, 3),
+(5, 4),
+(6, 3),
+(7, 4),
+(8, 3);
+
+INSERT INTO CTPN (SoLgNhap, GiaNhap, NgNhap, MaSach, MaPhNhap) VALUES
+(50, 352000, CURDATE(), 1, 1),
+(25, 400000, CURDATE(), 2, 1),
+(10, 230000, CURDATE(), 3, 2),
+(20, 150000, CURDATE(), 4, 2),
+(12, 700000, CURDATE(), 5, 3),
+(18, 950000, CURDATE(), 6, 3),
+(15, 110000, CURDATE(), 7, 4),
+(5, 95000, CURDATE(), 8, 4),
+(20, 75000, CURDATE(), 9, 5),
+(40, 88000, CURDATE(), 10, 5),
+(130, 120000, CURDATE(), 11, 6),
+(50, 220000, CURDATE(), 12, 6),
+(130, 150000, CURDATE(), 13, 7),
+(5, 120000, CURDATE(), 14, 7),
+(30, 89000, CURDATE(), 15, 8),
+(50, 105000, CURDATE(), 16, 8);
+
+DELETE FROM ctpn WHERE MaSach > 0;
+
+INSERT INTO HoaDon (MaNV, MaKH) VALUES
+(2, 1),   
+(5, 3),   
+(2, 6),   
+(5, 7),   
+(9, 8),   
+(10, 9),  
+(2, 10),  
+(5, 1),   
+(9, 3),   
+(10, 6);
+
+INSERT INTO CTHD (NgLap, TrangThaiDH, SoLg, GiaBan, GhiChu, DiaChiGiaoHang, PhThucTT, PhThucVC, MaHD, MaSach) VALUES
+('2025-03-21', 1, 2, '120000', 'Giao hàng nhanh', '123 Nguyễn Văn Cừ, Quận 5, TP.HCM', 0, 1, 1, 5),
+('2025-03-21', 2, 1, '248400', NULL, '45 Lê Lợi, Quận 1, TP.HCM', 1, 0, 2, 8),
+('2025-03-21', 0, 3, '130000', 'Kiểm tra hàng trước khi nhận', '98 Đinh Tiên Hoàng, Q.Bình Thạnh', 0, 1, 3, 12),
+('2025-03-21', 3, 2, '88000', 'Giao buổi chiều', '789 Trần Phú, Quận 7', 2, 0, 4, 3),
+('2025-03-21', 1, 4, '101600', NULL, '159 Pasteur, Quận 3', 1, 1, 5, 9),
+('2025-03-21', 2, 2, '112000', 'Ưu tiên giao sáng', '88 Lý Tự Trọng, Quận 1', 2, 0, 6, 14),
+('2025-03-21', 3, 1, '126000', NULL, '67 Bạch Đằng, Quận Tân Bình', 0, 1, 7, 18),
+('2025-03-21', 0, 5, '68000', 'Chuyển khoản trước', '23 Võ Văn Tần, Quận 10', 1, 0, 8, 22),
+('2025-03-21', 1, 2, '330000', 'Giao trong tuần', '56 Nguyễn Trãi, Quận 5', 0, 1, 9, 26),
+('2025-03-21', 2, 3, '56000', NULL, '12 An Dương Vương, Quận 6', 1, 0, 10, 30);
+
+delete from cthd where masach > 0;
+
+INSERT INTO ctgh (MaSach, MaGH, SoLg, GiaBan) VALUES
+(1, 1, 2, 76000),  
+(3, 2, 1, 88000),  
+(5, 3, 3, 120000),  
+(7, 4, 1, 67500),  
+(10, 5, 2, 23000),  
+(12, 6, 1, 130000), 
+(15, 7, 4, 127000), 
+(20, 8, 2, 27000),  
+(25, 9, 1, 250000), 
+(30, 10, 2, 56000);
