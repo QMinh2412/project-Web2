@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php
-        include "views/layouts/header.php";
+        include "./views/layouts/header.php";
     ?>
 </body>
 </html>
