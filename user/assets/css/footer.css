@@ -5,10 +5,10 @@
 .footer {
   /* border: 2px solid #c89bff; */
   padding: 20px 50px;
-  background-color: #fff;
+  background-color: #f1f1f1;
   /* width: 90%; */
   /* margin: 20px auto; */
-  border-radius: 8px;
+  /* border-radius: 8px; */
   position: relative;
   font-family: Arial, sans-serif;
 }
