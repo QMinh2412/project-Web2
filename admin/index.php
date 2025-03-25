@@ -13,7 +13,7 @@
     <div class="wrapper">
         <?php
             include "./views/layouts/header.php";
-            include "./views/layouts/container.php"
+            include "./views/layouts/container.php";
         ?>
     </div>
 </body>

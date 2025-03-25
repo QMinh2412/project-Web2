@@ -1,8 +1,10 @@
 <link rel="stylesheet" href="../../assets/css/left.css">
 <div id="left-menu">
-    <div class="menuitems">
-        <i class='bx bx-stats'></i>    
+    <a href="index.php?page=thongke">
+        <div class="menuitems">
+        <i class='bx bx-stats'></i>
         Thống kê doanh thu</div>
+    </a>
     <div class="menuitems">
         <i class='bx bx-category' ></i>    
         Danh mục sách</div>
