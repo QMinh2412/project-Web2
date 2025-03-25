@@ -13,13 +13,8 @@
     <div class="wrapper">
         <?php
             include "./views/layouts/header.php";
+            include "./views/layouts/container.php"
         ?>
-        <div class="container">
-            <?php
-                include "./views/layouts/leftmenu.php";
-            ?>
-        </div>
     </div>
-    
 </body>
 </html>
