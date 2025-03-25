@@ -1,10 +1,28 @@
 <link rel="stylesheet" href="../../assets/css/left.css">
 <div id="left-menu">
-    <div class="menuitems">Thống kê doanh thu</div>
-    <div class="menuitems">Danh mục sách</div>
-    <div class="menuitems">Sản phẩm</div>
-    <div class="menuitems">Tài khoản</div>
-    <div class="menuitems">Quản lý kho</div>
-    <div class="menuitems">Đơn hàng</div>
-    <div class="menuitems">Đánh giá</div>
+    <a href="index.php?page=thongke">
+        <div class="menuitems">
+        <i class='bx bx-stats'></i>
+        Thống kê doanh thu</div>
+    </a>
+    <div class="menuitems">
+        <i class='bx bx-category' ></i>    
+        Danh mục sách</div>
+    <div class="menuitems">
+        <i class='bx bx-book'></i>    
+        Sản phẩm</div>
+    <div class="menuitems">
+        <i class='bx bxs-user-account' ></i>    
+        Tài khoản</div>
+    <div class="menuitems">
+        <i class='bx bx-sushi' ></i>    
+        Quản lý kho
+        <i class='bx bxs-chevron-down' id="down-arrow"></i>
+    </div>
+    <div class="menuitems">   
+        <i class='bx bx-cart' ></i>
+        Đơn hàng</div>
+    <div class="menuitems">
+        <i class='bx bx-comment' ></i>    
+        Đánh giá</div>
 </div>
