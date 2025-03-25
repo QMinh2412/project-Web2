@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./assets/css/admin.css">
     <link rel="stylesheet" href="./assets/css/header.css">
-    <link rel="stylesheet" href="./assets/css/left.css">
+    <link rel="stylesheet" href="./assets/css/leftmenu.css">
 </head>
 <body>
     <div class="wrapper">
