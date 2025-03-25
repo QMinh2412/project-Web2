@@ -1,0 +1,25 @@
+.header {
+    background-color: white;
+    height: 125px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo_header {
+    display: flex;
+    position: absolute;
+    height: 125px;
+    left: 30px;
+}
+
+#admin-logo {
+    display: flex;
+    position: absolute;
+    height: 50px;
+    right: 150px;
+    line-height: 50px;
+}

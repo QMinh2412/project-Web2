@@ -1,0 +1,22 @@
+#left-menu {
+    width: 20%;
+    background-color: #283339;
+    
+    /* height: 100%; */
+}
+
+#left-menu div {
+    color: white;
+    height: 50px;
+    padding-left: 50px;
+    line-height: 50px;
+}
+
+#left-menu div + div{
+    margin-top: px;
+}
+
+#left-menu div:hover {
+    cursor: pointer;
+    background-color: black;
+}

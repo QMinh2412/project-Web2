@@ -1,5 +1,3 @@
-create database webbookstore;
-drop database webbookstore;
 use webbookstore;
 
 create table `NCC` (
@@ -843,4 +841,5 @@ values ('project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - Tậ
        ('project-Web2/common/images/Lãng mạn/Cô Gái Năm Ấy Chúng Ta Cùng Theo Đuổi (Tái Bản 2019)/1.jpg', null, 31),
        ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/1.jpg', null, 32),
        ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/2.jpg', null, 32),
-       ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32);
+       ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32),
+       

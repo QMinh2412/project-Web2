@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/admin.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/left.css">
 </head>
 <body>
-    <?php
-        include "./views/layouts/header.php";
-    ?>
+    <div class="wrapper">
+        <?php
+            include "./views/layouts/header.php";
+        ?>
+        <div class="container" style="background-color: pink;">
+            <?php
+                include "./views/layouts/leftmenu.php";
+            ?>
+        </div>
+    </div>
+    
 </body>
 </html>
