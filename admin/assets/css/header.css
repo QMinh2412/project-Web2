@@ -1,0 +1,13 @@
+.header {
+    /* background-color: rgb(213, 213, 213); */
+    height: 100px;
+    position: relative;
+    margin: 0;
+}
+
+#logo_header {
+    display: flex;
+    position: absolute;
+    height: 100px;
+    left: 50px;
+}
