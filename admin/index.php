@@ -13,7 +13,7 @@
         <?php
             include "./views/layouts/header.php";
         ?>
-        <div class="container" style="background-color: pink;">
+        <div class="container">
             <?php
                 include "./views/layouts/leftmenu.php";
             ?>
