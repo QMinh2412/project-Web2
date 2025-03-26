@@ -34,7 +34,7 @@
                 </div>
             <?php else: ?>
                 <div class="avatar">
-                    <img src="../../assets/images/avatar_default.png" alt="avatar">
+                    <img src="../../../common/images/defaultuser.png" alt="avatar">
                 </div>
                 <span>Tài khoản</span>
                 <div class="sub_menu" style="display: none;">
