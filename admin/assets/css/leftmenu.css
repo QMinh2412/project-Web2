@@ -1,0 +1,23 @@
+#left-menu {
+    width: 300px;
+    background-color: #283339;
+    
+    /* height: 100%; */
+}
+
+#left-menu div {
+    color: white;
+    height: 60px;
+    padding-left: 70px;
+    line-height: 60px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#left-menu div + div{
+    margin-top: px;
+}
+
+#left-menu div:hover {
+    cursor: pointer;
+    background-color: black;
+}
