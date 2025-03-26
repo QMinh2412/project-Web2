@@ -7,10 +7,12 @@
           <div class="form-column">
             <label for="fullname">Họ tên *</label>
             <input type="text" name="fullname" id="fullname" required />
+            <div class="err err_fname"></div>
           </div>
           <div class="form-column">
             <label for="username">Tên tài khoản *</label>
             <input type="text" name="username" id="username" required />
+            <div class="err err_uname"></div>
           </div>
         </div>
 
@@ -18,10 +20,12 @@
           <div class="form-column">
             <label for="email">Email *</label>
             <input type="email" name="email" id="email" required />
+            <div class="err err_email"></div>
           </div>
           <div class="form-column">
             <label for="password">Mật khẩu *</label>
             <input type="password" name="password" id="password" required />
+            <div class="err err_password"></div>
           </div>
         </div>
 
@@ -29,10 +33,12 @@
           <div class="form-column">
             <label for="phone">Số điện thoại</label>
             <input type="text" name="phone" id="phone" />
+            <div class="err err_phone"></div>
           </div>
           <div class="form-column">
-            <label for="dob">Ngày sinh *</label>
+            <label for="dob">Ngày sinh</label>
             <input type="date" name="dob" id="dob" required />
+            <div class="err err_dob"></div>
           </div>
         </div>
 
@@ -52,6 +58,7 @@
               Nữ</label
             >
           </div>
+          <div class="err err_gender"></div>
         </div>
         <div class="form-group">
           <label for="city">Địa chỉ</label>

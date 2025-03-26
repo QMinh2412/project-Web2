@@ -43,11 +43,25 @@ body {
   border-radius: 4px;
   font-size: 14px;
 }
+.form-group .err {
+  height: 12px;
+  font-size: 12px;
+  color: red;
+  margin-top: 3px;
+  padding-left: 5px;
+  text-align: left;
+}
+.form-group .err:empty {
+  height: 12px;
+}
 .form-column {
   width: 48%;
 }
 .form-group:nth-child(4) {
   justify-content: flex-start !important;
+}
+.form-group:nth-child(4) .err {
+  margin-left: 50px;
 }
 .gender-group {
   display: flex;

@@ -286,4 +286,96 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById(`commund`).style.color = `gray`;
     }
   });
+
+  document.querySelector("button").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // lấy dữ liệu để kiểm tra
+    const fname = document.getElementById("fullname");
+    const uname = document.getElementById("username");
+    const email = document.getElementById("email");
+    const pwd = document.getElementById("password");
+    const phone = document.getElementById("phone");
+    const dob = document.getElementById("dob");
+    const gender = document.getElementsByName("gender");
+
+    const city = document.getElementById("city");
+    const district = document.getElementById("district");
+    const commund = document.getElementById("commund");
+    const house = document.getElementById("house");
+
+    let address;
+    if (city.selectedIndex != 0)
+      address = address + city.options[city.selectedIndex].text + ", ";
+    if (district.selectedIndex != 0)
+      address = address + district.option[district.selectedIndex].text + ", ";
+    if (commund.selectedIndex != 0)
+      address = address + commund.option[commund.selectedIndex].text + ", ";
+    if (house.value) address = address + house.value;
+
+    // Kiểm tra dữ liệu nhập vào
+    const regEmail = /@gmail.com$/;
+    const regPhone = /^0\d{9}$/;
+
+    if (!fname.value) {
+      document.querySelector(".err_fname").innerHTML =
+        "Họ tên không được để trống";
+      fname.focus();
+      return;
+    } else {
+      document.querySelector(".err_fname").innerHTML = "";
+    }
+    if (!uname.value) {
+      document.querySelector(".err_uname").innerHTML =
+        "Tên đăng nhập không được bỏ trống";
+      uname.focus();
+      return;
+    } else {
+      document.querySelector(".err_uname").innerHTML = "";
+    }
+    if (!email.value) {
+      document.querySelector(".err_email").innerHTML =
+        "Email không được bỏ trống";
+      email.focus();
+      return;
+    } else if (!regEmail.test(email.value)) {
+      document.querySelector(".err_email").innerHTML =
+        "Email không đúng định dạng";
+      email.select();
+      email.focus();
+      return;
+    } else {
+      document.querySelector(".err_email").innerHTML = "";
+    }
+    if (!pwd.value) {
+      document.querySelector(".err_password").innerHTML =
+        "Mật khẩu không được trống";
+      pwd.focus();
+      return;
+    } else if (pwd.value.length < 6) {
+      document.querySelector(".err_password").innerHTML =
+        "Mật khẩu ít nhất 6 ký tự";
+      pwd.select();
+      pwd.focus();
+      return;
+    } else {
+      document.querySelector(".err_password").innerHTML = "";
+    }
+    if (!regPhone.test(phone.value)) {
+      document.querySelector(".err_phone").innerHTML =
+        "Số điện thoại không đúng định dạng";
+      phone.select();
+      phone.focus();
+      return;
+    } else {
+      document.querySelector(".err_phone").innerHTML = "";
+    }
+    if (!gender[0].checked && !gender[1].checked) {
+      document.querySelector(".err_gender").innerHTML =
+        "Giới tính không được bỏ trống";
+      return;
+    } else {
+      document.querySelector(".err_gender").innerHTML = "";
+    }
+  });
 });
