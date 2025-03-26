@@ -259,7 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
     option.value = cities[i].value;
     option.textContent = cities[i].name;
     citylist.appendChild(option);
-    // console.log(i);
   }
 
   document.getElementById(`city`).addEventListener("change", () => {

@@ -21,5 +21,28 @@ class Account {
         $result = $this->db->query($query);
         return $result;
     }
+
+    public function emailExist($email) {
+        $sql = "SELECT COUNT(*) as count FROM NgDung WHERE email = ?";
+        $stmt = $this->db->prepare($sql);
+        
+        if ($stmt) {
+            $stmt->bind_param("s", $email);            
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $stmt->close();            
+            return $row['count'] == 0;
+        }
+        return false;
+    }
+
+    public function createAccount($username, $role, $created_at, $status, $password, $user_id) {
+        $sql = "INSERT INTO accounts (username, role, created_at, status, password, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("sisiis", $username, $role, $created_at, $status, $password, $user_id);
+        $stmt->execute();
+        $stmt->close();
+    }
 }
 ?>
