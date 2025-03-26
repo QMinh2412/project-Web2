@@ -49,12 +49,12 @@
               ><input
                 type="radio"
                 name="gender"
-                value="0"
+                value="1"
                 required
               />Nam</label
             >
             <label
-              ><input type="radio" name="gender" value="1" required />
+              ><input type="radio" name="gender" value="0" required />
               Nữ</label
             >
           </div>

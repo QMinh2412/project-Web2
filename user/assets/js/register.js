@@ -290,6 +290,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector("button").addEventListener("click", (e) => {
     e.preventDefault();
 
+    // console.log("đang bấm nút đăng ký");
+
     // lấy dữ liệu để kiểm tra
     const fname = document.getElementById("fullname");
     const uname = document.getElementById("username");
@@ -304,14 +306,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const commund = document.getElementById("commund");
     const house = document.getElementById("house");
 
+    let radioSelected;
+    if (gender[0].checked) {
+      radioSelected = gender[0].value;
+    } else {
+      radioSelected = gender[1].value;
+    }
+
     let address;
-    if (city.selectedIndex != 0)
+    if (city.selectedIndex != 0) {
+      console.log(`city: ${city.options[city.selectedIndex].text}`);
       address = address + city.options[city.selectedIndex].text + ", ";
-    if (district.selectedIndex != 0)
-      address = address + district.option[district.selectedIndex].text + ", ";
-    if (commund.selectedIndex != 0)
-      address = address + commund.option[commund.selectedIndex].text + ", ";
-    if (house.value) address = address + house.value;
+    }
+    if (district.selectedIndex != 0) {
+      console.log(`district: ${district.options[district.selectedIndex].text}`);
+      address = address + district.options[district.selectedIndex].text + ", ";
+    }
+    if (commund.selectedIndex != 0) {
+      console.log(`commund: ${commund.options[commund.selectedIndex].text}`);
+      address = address + commund.options[commund.selectedIndex].text + ", ";
+    }
+    if (house.value) {
+      console.log(`house: ${house.value}`);
+      address = address + house.value;
+    }
 
     // Kiểm tra dữ liệu nhập vào
     const regEmail = /@gmail.com$/;
@@ -377,5 +395,37 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       document.querySelector(".err_gender").innerHTML = "";
     }
+
+    // Gửi dữ liệu bằng AJAX xmlhttprequest
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "../../controllers/xulyajax.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.responseText); // Kiểm tra dữ liệu nhận về
+        let response = JSON.parse(xhr.responseText);
+
+        if (response.status === "error") {
+          if (response.field === "email") {
+            document.querySelector(".err_email").innerHTML = response.message;
+          }
+        } else if (response.status === "success") {
+          window.location.href = "../../views/layouts/main_layout.php";
+        }
+      }
+    };
+
+    let data = `fullname=${encodeURIComponent(
+      fname.value
+    )}&username=${encodeURIComponent(
+      username.value
+    )}&email=${encodeURIComponent(email.value)}&password=${encodeURIComponent(
+      pwd.value
+    )}&phone=${encodeURIComponent(phone.value)}&dob=${encodeURIComponent(
+      dob.value
+    )}&gender=${radioSelected}&address=${encodeURIComponent(address)}`;
+
+    xhr.send(data);
   });
 });

@@ -8,12 +8,38 @@
         }
 
         public function createUser($fullname, $address, $email, $gender, $phone, $dob) {
-            $sql = "INSERT INTO users (fullname, address, email, gender, phone, dob) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO NgDung (TenND, DcND, EmailND, GioiTinhND, SDT, NgSinhND) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->db->prepare($sql);
-            $stmt->bind_param("ssssss", $fullname, $address, $email, $gender, $phone, $dob);
-            $stmt->execute();
+        
+            if (!$stmt) {
+                // Lỗi khi prepare statement
+                die(json_encode([
+                    "status" => "error",
+                    "message" => "Lỗi SQL: " . $this->db->error
+                ]));
+            }
+        
+            // Ràng buộc tham số và kiểm tra lỗi
+            if (!$stmt->bind_param("ssssss", $fullname, $address, $email, $gender, $phone, $dob)) {
+                die(json_encode([
+                    "status" => "error",
+                    "message" => "Lỗi khi bind_param: " . $stmt->error
+                ]));
+            }
+        
+            // Thực thi truy vấn và kiểm tra lỗi
+            if (!$stmt->execute()) {
+                die(json_encode([
+                    "status" => "error",
+                    "message" => "Lỗi khi execute: " . $stmt->error
+                ]));
+            }
+        
+            $insertId = $this->db->insert_id;
             $stmt->close();
-            return $this->db->insert_id;
+        
+            return $insertId;
         }
+        
     }
 ?>

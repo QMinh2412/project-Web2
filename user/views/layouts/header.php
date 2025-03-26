@@ -23,7 +23,7 @@
                 <div class="avatar">
                     <img src="<?php echo $userData[1]; ?>" alt="avatar">
                 </div>
-                <span><?php echo $userData[0]["TenTK"]; ?></span>
+                <span><?php echo $userData[0]; ?></span>
                 <div class="sub_menu" style="display: none;">
                     <ul>
                         <a href="#"><li>Cập nhật tài khoản</li></a>
