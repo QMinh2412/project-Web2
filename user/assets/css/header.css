@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  /* background-color: black; */
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  padding: 5px 50px;
+}
+
+#logo_header {
+  width: 200px;
+  /* height: 80px; */
+}
+
+#logo_header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.search_box {
+  margin-left: 42px;
+  width: 500px;
+  height: 40px;
+}
+
+.search_box form {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#search_box {
+  height: 40px;
+  width: 460px;
+  padding: 0 10px;
+  border: none;
+}
+
+#search_box:focus {
+  outline: none;
+}
+
+.search_box button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  width: 40px;
+  background-color: #fff;
+}
+
+.search_box i {
+  color: #a75026;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart_box {
+  margin-left: auto;
+  margin-right: 30px;
+  padding: 0 10px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.cart_box:hover {
+  background-color: #fff;
+}
+
+.cart_box i {
+  color: #a75026;
+  margin-right: 10px;
+}
+
+.account_box {
+  height: 40px;
+  padding: 0 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.account_box:hover {
+  background-color: #fff;
+}
+
+.account_box .avatar {
+  /* border: 1px solid #a75026; */
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+  display: inline-block;
+  float: left;
+}
+
+.account_box .avatar img {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; */
+}
+
+.account_box span {
+  float: left;
+  white-space: nowrap;
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+}
+
+.account_box .sub_menu {
+  margin-top: 5px;
+  clear: both;
+  width: 170px;
+  background-color: #fff;
+  box-shadow: 1px 1px 5px black;
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
+
+.account_box .sub_menu li {
+  height: 30px;
+  line-height: 30px;
+  /* text-align: right; */
+  padding: 0 10px;
+  border-bottom: 1px solid #000;
+  transition: 0.3s;
+}
+
+.account_box .sub_menu li:hover {
+  background-color: #f2f2f2;
+}

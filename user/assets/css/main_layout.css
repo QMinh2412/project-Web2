@@ -1,0 +1,12 @@
+* {
+  font-family: Arial, sans-serif;
+}
+header {
+  margin-bottom: 10px;
+  border: 1px solid blue;
+}
+
+footer {
+  margin-top: 10px;
+  border: 1px solid red;
+}
