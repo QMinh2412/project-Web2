@@ -1,6 +1,6 @@
 <?php
-    require_once '../../common/models/Account.php';
-    require_once '../../common/models/User.php';
+    require_once __DIR__ . '/../../common/models/Account.php';
+    require_once __DIR__ . '/../../common/models/User.php';
 
     class AccountController{
         public function registerAjax(){

@@ -10,7 +10,9 @@
     <?php
         require "./header.php";
     ?>
-    <div style="height: 500px; border: 1px solid black;"></div>
+    <div style="height: 500px; border: 1px solid black;">
+        <?php echo $main_content; ?>
+    </div>
     <?php
         require "./footer.php"
     ?>
