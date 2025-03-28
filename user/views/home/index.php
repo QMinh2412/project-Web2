@@ -1,5 +1,5 @@
 <!-- views/home/index.php -->
 <div>
-    <!-- <?php echo $content; ?> -->
-     fedfasdfasfas
+    <?php echo $content; ?>
+     <!-- fedfasdfasfas -->
 </div>

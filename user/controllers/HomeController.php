@@ -15,7 +15,7 @@
 
         public function index() {
             // Định nghĩa biến $content
-            // $content = 'hello world'; 
+            $content = 'hello world'; 
         
             // Bắt đầu buffering để lấy nội dung từ index.php
             ob_start();
