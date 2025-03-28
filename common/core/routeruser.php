@@ -6,19 +6,19 @@ require_once __DIR__ . '/../models/Account.php';
 class Route {
     public function router($url) {
         // Phân tách URL thành các phần
-        $urlParts = explode('/', trim($url, '/'));
+        // $urlParts = explode('/', trim($url, '/'));
 
-        var_dump($urlParts);
+        // var_dump($urlParts);
 
         // Xác định page và action
         $page = isset($_GET['page']) ? $_GET['page'] : 'home';
-        $action = isset($_GET['action']) ? $_GET['page'] : 'index';
+        $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-        print_r($page);
-        print_r($action);
+        // print_r($page);
+        // print_r($action);
 
         switch ($page) {
-            case 'user':
+            case 'account':
                 $controller = new AccountController();
                 break;
 
@@ -28,9 +28,12 @@ class Route {
         }
 
         switch ($action) {
-            case 'profile':
-                // $controller->profile();
-                // break;
+            case 'register':   
+                $controller->registerAjax();
+                break;
+            case 'logout':
+                $controller->logout();
+                break;
             default:
                 $controller->index();
                 break;

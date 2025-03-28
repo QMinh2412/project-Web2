@@ -57,6 +57,13 @@
                 ]);
             }
         }
+
+        public function logout(){
+            session_start();
+            session_destroy();
+            header('Location: /project-Web2/user/index.php');
+            exit();
+        }
         
     }
 ?>

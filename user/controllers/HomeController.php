@@ -19,7 +19,7 @@
         
             // Bắt đầu buffering để lấy nội dung từ index.php
             ob_start();
-            include '../views/home/index.php'; 
+            include __DIR__ . '/../views/home/index.php'; // Đảm bảo đường dẫn chính xác
             $main_content = ob_get_clean(); 
         
             // Gọi file main_layout.php với $main_content đã được định nghĩa
