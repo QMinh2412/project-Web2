@@ -396,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".err_gender").innerHTML = "";
     }
 
-    // Gửi dữ liệu bằng AJAX xmlhttprequest
+    //
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../../controllers/xulyajax.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

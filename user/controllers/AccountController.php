@@ -1,4 +1,8 @@
 <?php
+    // Prevent any output before our JSON response
+    error_reporting(E_ALL);
+    ini_set('display_errors', 0);
+    
     require_once '../../common/models/Account.php';
     require_once '../../common/models/User.php';
 
@@ -33,11 +37,13 @@
                 $userModel = new User();
                 $idNewUser = $userModel->createUser($fname, $address, $email, $gender, $phone, $dob);
                 $currentCreate = date("Y-m-d");
-                $accountModel->createAccount($uname, 0, $currentCreate, 1, $hashedPassword, $idNewUser);
+                $accountId = $accountModel->createAccount($uname, 0, $currentCreate, 1, $hashedPassword, $idNewUser);
         
                 if ($idNewUser) {        
                     session_start();
-                    $_SESSION['account_id'] = $idNewUser;
+                    $_SESSION['user_id'] = $idNewUser;
+                    $_SESSION['account_id'] = $accountId;
+                    $_SESSION['user_email'] = $email;
 
                     echo json_encode([
                         'status' => 'success',
@@ -58,5 +64,73 @@
             }
         }
         
+        // xử lý Đăng nhập
+        public function loginAjax() {
+            header('Content-Type: application/json');
+        
+            if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+                echo json_encode(["status" => "error", "message" => "Yêu cầu không hợp lệ"]);
+                exit;
+            }
+        
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+        
+            if (empty($email) || empty($password)) {
+                echo json_encode(["status" => "error", "message" => "Thiếu thông tin đăng nhập"]);
+                exit;
+            }
+        
+            require_once __DIR__ . "/../../config/db.php";
+        
+            $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+            if ($conn->connect_error) {
+                echo json_encode(["status" => "error", "message" => "Lỗi kết nối database"]);
+                exit;
+            }
+        
+            // Tìm email trong bảng nguoidung
+            $stmt = $conn->prepare("SELECT id FROM nguoidung WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows === 0) {
+                echo json_encode(["status" => "error", "message" => "Email không tồn tại"]);
+                exit;
+            }
+            
+            $user = $result->fetch_assoc();
+            $user_id = $user["id"];
+        
+            // Tìm mật khẩu trong bảng taikhoan
+            $stmt = $conn->prepare("SELECT password FROM taikhoan WHERE user_id = ?");
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows === 0) {
+                echo json_encode(["status" => "error", "message" => "Không tìm thấy tài khoản"]);
+                exit;
+            }
+        
+            $account = $result->fetch_assoc();
+        
+            // Kiểm tra mật khẩu (Giả sử mật khẩu được lưu bằng SHA-256)
+            if (hash('sha256', $password) !== $account["password"]) {
+                echo json_encode(["status" => "error", "message" => "Sai mật khẩu"]);
+                exit;
+            }
+        
+            // Đăng nhập thành công
+            session_start();
+            $_SESSION["user_id"] = $user_id;
+            $_SESSION["email"] = $email;
+        
+            echo json_encode(["status" => "success", "message" => "Đăng nhập thành công"]);
+            exit;
+        }
+
     }
 ?>
+

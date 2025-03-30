@@ -73,6 +73,13 @@ class Account {
         $stmt->close();
         return true; // Trả về true nếu thành công
     }
+
+    public function getAccountByEmail($email) {
+        $sql = "SELECT * FROM accounts WHERE email = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     
 }
 ?>
