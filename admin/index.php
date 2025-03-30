@@ -15,7 +15,7 @@ require_once __DIR__ . '/../common/core/routeradmin.php';
 
 // Lấy đường dẫn hiện tại
 $currentUrl = $_SERVER['REQUEST_URI'];
-echo $currentUrl;
+// echo $currentUrl;
 
 // Khởi tạo router và điều hướng
 $route = new RouteAdmin();
