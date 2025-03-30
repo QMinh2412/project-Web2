@@ -13,6 +13,16 @@ class Account {
         $result = $this->db->query("SELECT * FROM taikhoan WHERE MaND = $id");
         return $result->fetch_assoc();
     }
+    public function getAccountIdByEmail($email) {
+        $query = "SELECT MaTK FROM TaiKhoan WHERE MaND = (SELECT MaND FROM NgDung WHERE EmailND = '$email')";
+        $result = $this->db->query($query);
+
+        if ($result && $row = $result->fetch_assoc()) {
+            return $row['MaTK']; // Trả về mã tài khoản
+        }
+
+        return null; // Trả về null nếu không tìm thấy
+    }
 
     public function getNameById($id) {
         $result = $this->db->query("SELECT TenTK FROM taikhoan WHERE MaND = $id");
@@ -74,12 +84,56 @@ class Account {
         return true; // Trả về true nếu thành công
     }
 
-    public function getAccountByEmail($email) {
-        $sql = "SELECT * FROM accounts WHERE email = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+    public function isAccountLocked($email) {
+        $sql = "SELECT TinhTrang FROM TaiKhoan WHERE MaND = (SELECT MaND FROM NgDung WHERE EmailND = ?)";
+        $stmt = $this->db->prepare($sql);
+
+        if (!$stmt) {
+            die("Lỗi SQL (prepare): " . $this->db->error); // Debug lỗi prepare
+        }
+
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            $stmt->close();
+            return $row['TinhTrang'] == 1; // Trả về true nếu tài khoản bị khóa
+        }
+
+        $stmt->close();
+        return false; // Trả về false nếu không tìm thấy tài khoản
     }
+
+    public function isPasswordCorrect($email, $password) {
+        $sql = "SELECT MKTK FROM TaiKhoan 
+                WHERE MaND = (SELECT MaND FROM NgDung WHERE EmailND = ?)";
+        $stmt = $this->db->prepare($sql);
+
+        if (!$stmt) {
+            die("Lỗi SQL (prepare): " . $this->db->error); // Debug lỗi prepare
+        }
+
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            $hashedPassword = $row['MKTK'];
+            $stmt->close();
+            return password_verify($password, $hashedPassword); // So sánh mật khẩu với hash
+        }
+
+        $stmt->close();
+        return false; // Trả về false nếu không tìm thấy tài khoản
+    }
+
+    // public function getAccountByEmail($email) {
+    //     $sql = "SELECT * FROM accounts WHERE email = ?";
+    //     $stmt = $this->conn->prepare($sql);
+    //     $stmt->execute([$email]);
+    //     return $stmt->fetch(PDO::FETCH_ASSOC);
+    // }
     
 }
 ?>

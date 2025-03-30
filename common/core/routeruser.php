@@ -31,6 +31,9 @@ class Route {
             case 'register':   
                 $controller->registerAjax();
                 break;
+            case 'login':
+                $controller->loginAjax();
+                break;
             case 'logout':
                 $controller->logout();
                 break;

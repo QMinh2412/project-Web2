@@ -22,16 +22,15 @@ if (isset($_SESSION['user_id'])) {
         <form id="loginForm">
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" autocomplete="email" required />
+                <input type="email" name="email" id="email" autocomplete="email" />
             </div>
+            <div class="err err_email"></div>
             <div class="form-group">
                 <label for="password">Mật khẩu:</label>
-                <input type="password" name="password" id="password" autocomplete="current-password" required />
+                <input type="password" name="password" id="password" autocomplete="current-password"/>
             </div>
-            <p class="err_message" style="color: red;"></p>
+            <div class="err err_password"></div>
             <button type="submit">Đăng nhập</button>
-            <span class="err_email" style="color: red;"></span>
-            <span class="err_password" style="color: red;"></span>
         </form>
         <div class="register-link">
             Chưa có tài khoản? <a href="register.php">Đăng ký</a>

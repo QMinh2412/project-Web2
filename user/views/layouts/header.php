@@ -39,7 +39,7 @@
                 <span>Tài khoản</span>
                 <div class="sub_menu" style="display: none;">
                     <ul>
-                        <a href="./login.php"><li>Đăng nhập</li></a>
+                        <a href="/project-Web2/user/views/layouts/login.php"><li>Đăng nhập</li></a>
                         <a href="/project-Web2/user/views/layouts/register.php"><li>Đăng ký</li></a>
                     </ul>
                 </div>
