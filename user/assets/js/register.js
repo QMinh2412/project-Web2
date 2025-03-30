@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector("button").addEventListener("click", (e) => {
     e.preventDefault();
 
-    // console.log("đang bấm nút đăng ký");
+    console.log("đang bấm nút đăng ký");
 
     // lấy dữ liệu để kiểm tra
     const fname = document.getElementById("fullname");
@@ -396,9 +396,13 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".err_gender").innerHTML = "";
     }
 
-    // Gửi dữ liệu bằng AJAX xmlhttprequest
+    //
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../controllers/xulyajax.php", true);
+    xhr.open(
+      "POST",
+      "/project-Web2/user/index.php?page=account&action=register",
+      true
+    );
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -411,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".err_email").innerHTML = response.message;
           }
         } else if (response.status === "success") {
-          window.location.href = "../../views/layouts/main_layout.php";
+          window.location.href = "/project-Web2/user/index.php";
         }
       }
     };
