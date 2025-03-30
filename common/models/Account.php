@@ -65,22 +65,14 @@ class Account {
     
 
     public function createAccount($username, $role, $created_at, $status, $password, $user_id) {
-        $sql = "INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->db->prepare($sql);
-    
-        if (!$stmt) {
-            die("Lỗi SQL (prepare): " . $this->db->error); // Debug lỗi prepare
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Mã hóa mật khẩu
+        $sql = "INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) 
+                VALUES ('$username', $role, '$created_at', $status, '$hashedPassword', $user_id)";
+        
+        if (!$this->db->query($sql)) {
+            die("Lỗi SQL (query): " . $this->db->error); // Debug lỗi query
         }
-    
-        if (!$stmt->bind_param("sisiis", $username, $role, $created_at, $status, $password, $user_id)) {
-            die("Lỗi bind_param: " . $stmt->error); // Debug lỗi bind_param
-        }
-    
-        if (!$stmt->execute()) {
-            die("Lỗi execute: " . $stmt->error); // Debug lỗi execute
-        }
-    
-        $stmt->close();
+        
         return true; // Trả về true nếu thành công
     }
 
@@ -121,19 +113,12 @@ class Account {
         if ($row = $result->fetch_assoc()) {
             $hashedPassword = $row['MKTK'];
             $stmt->close();
-            return password_verify($password, $hashedPassword); // So sánh mật khẩu với hash
+            // Kiểm tra mật khẩu đã mã hóa bằng password_hash
+            return password_verify($password, $hashedPassword);
         }
 
         $stmt->close();
         return false; // Trả về false nếu không tìm thấy tài khoản
     }
-
-    // public function getAccountByEmail($email) {
-    //     $sql = "SELECT * FROM accounts WHERE email = ?";
-    //     $stmt = $this->conn->prepare($sql);
-    //     $stmt->execute([$email]);
-    //     return $stmt->fetch(PDO::FETCH_ASSOC);
-    // }
-    
 }
 ?>

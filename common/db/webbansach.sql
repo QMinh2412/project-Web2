@@ -172,7 +172,7 @@ FOR EACH ROW
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM HinhAnh WHERE MaND = NEW.MaND) THEN
         INSERT INTO HinhAnh (DgDanAnh, MaND)
-        VALUES ('default_profile_pic.jpg', NEW.MaND);
+        VALUES ('/project-Web2/common/images/defaultuser.png', NEW.MaND);
     END IF;
     INSERT INTO GioHang (MaTK)
     VALUES (NEW.MaTK);
@@ -669,15 +669,6 @@ INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) VALUES
 ('user9', 1, '2025-03-21', 1, SHA2('pass9', 256), 9),  -- Admin
 ('user10', 4, '2025-03-21', 1, SHA2('pass10', 256), 10); -- Chủ doanh nghiệp
 
-delete from TaiKhoan where matk > 0;
-ALTER TABLE TaiKhoan AUTO_INCREMENT = 1;
-
-DELETE FROM GioHang WHERE MaGH > 0;
-ALTER TABLE GioHang AUTO_INCREMENT = 1;
-
-delete from hinhanh where maha > 0;
-ALTER TABLE HinhAnh AUTO_INCREMENT = 1;
-
 INSERT INTO QuanLy (MaTKQL, MaTKBQL) VALUES
 (9, 1),
 (9, 2),
@@ -733,8 +724,6 @@ INSERT INTO CTPN (SoLgNhap, GiaNhap, NgNhap, MaSach, MaPhNhap) VALUES
 (30, 89000, CURDATE(), 15, 8),
 (50, 105000, CURDATE(), 16, 8);
 
-DELETE FROM ctpn WHERE MaSach > 0;
-
 INSERT INTO HoaDon (MaNV, MaKH) VALUES
 (2, 1),   
 (5, 3),   
@@ -758,8 +747,6 @@ INSERT INTO CTHD (NgLap, TrangThaiDH, SoLg, GiaBan, GhiChu, DiaChiGiaoHang, PhTh
 ('2025-03-21', 0, 5, '68000', 'Chuyển khoản trước', '23 Võ Văn Tần, Quận 10', 1, 0, 8, 22),
 ('2025-03-21', 1, 2, '330000', 'Giao trong tuần', '56 Nguyễn Trãi, Quận 5', 0, 1, 9, 26),
 ('2025-03-21', 2, 3, '56000', NULL, '12 An Dương Vương, Quận 6', 1, 0, 10, 30);
-
-delete from cthd where masach > 0;
 
 INSERT INTO ctgh (MaSach, MaGH, SoLg, GiaBan) VALUES
 (1, 1, 2, 76000),  
@@ -842,5 +829,7 @@ values ('project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - Tậ
        ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/1.jpg', null, 32),
        ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/2.jpg', null, 32),
        ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32);
-       ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32),
        
+update `hinhanh`
+set `dgdananh` = '/project-Web2/common/images/defaultuser.png'
+where `mand` > 0 and `masach` is null;
