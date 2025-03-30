@@ -27,19 +27,17 @@
                 }
         
                 // Mã hóa mật khẩu
-                $hashedPassword = password_hash($pass, PASSWORD_BCRYPT);
+                // $hashedPassword = password_hash($pass, PASSWORD_BCRYPT);
         
                 // Lưu thông tin người dùng mới
                 $userModel = new User();
                 $idNewUser = $userModel->createUser($fname, $address, $email, $gender, $phone, $dob);
                 $currentCreate = date("Y-m-d");
-                $accountId = $accountModel->createAccount($uname, 0, $currentCreate, 1, $hashedPassword, $idNewUser);
+                $accountModel->createAccount($uname, 0, $currentCreate, 1, $pass, $idNewUser);
         
                 if ($idNewUser) {        
                     session_start();
-                    $_SESSION['user_id'] = $idNewUser;
-                    $_SESSION['account_id'] = $accountId;
-                    $_SESSION['user_email'] = $email;
+                    $_SESSION['account_id'] = $idNewUser;
 
                     echo json_encode([
                         'status' => 'success',
