@@ -14,15 +14,18 @@
         }
 
         public function index() {
-            // $accountData = $this->getAccountData();
-            // if ($accountData) {
-            //     $name  = $accountData[0];
-            //     $image = $accountData[1];
-            //     require_once __DIR__ . '/../views/home.php';
-            // } else {
-            //     header('Location: /user/account/login');
-            // }
+            // Định nghĩa biến $content
+            $content = 'hello world'; 
+        
+            // Bắt đầu buffering để lấy nội dung từ index.php
+            ob_start();
+            include __DIR__ . '/../views/home/index.php'; // Đảm bảo đường dẫn chính xác
+            $main_content = ob_get_clean(); 
+        
+            // Gọi file main_layout.php với $main_content đã được định nghĩa
+            include __DIR__ . '/../views/layouts/main_layout.php'; // Đảm bảo đường dẫn chính xác
         }
+        
     }
     
 ?>
