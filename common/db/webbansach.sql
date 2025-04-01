@@ -172,7 +172,7 @@ FOR EACH ROW
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM HinhAnh WHERE MaND = NEW.MaND) THEN
         INSERT INTO HinhAnh (DgDanAnh, MaND)
-        VALUES ('default_profile_pic.jpg', NEW.MaND);
+        VALUES ('/project-Web2/common/images/defaultuser.png', NEW.MaND);
     END IF;
     INSERT INTO GioHang (MaTK)
     VALUES (NEW.MaTK);
@@ -669,15 +669,6 @@ INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) VALUES
 ('user9', 1, '2025-03-21', 1, SHA2('pass9', 256), 9),  -- Admin
 ('user10', 4, '2025-03-21', 1, SHA2('pass10', 256), 10); -- Chủ doanh nghiệp
 
-delete from TaiKhoan where matk > 0;
-ALTER TABLE TaiKhoan AUTO_INCREMENT = 1;
-
-DELETE FROM GioHang WHERE MaGH > 0;
-ALTER TABLE GioHang AUTO_INCREMENT = 1;
-
-delete from hinhanh where maha > 0;
-ALTER TABLE HinhAnh AUTO_INCREMENT = 1;
-
 INSERT INTO QuanLy (MaTKQL, MaTKBQL) VALUES
 (9, 1),
 (9, 2),
@@ -733,8 +724,6 @@ INSERT INTO CTPN (SoLgNhap, GiaNhap, NgNhap, MaSach, MaPhNhap) VALUES
 (30, 89000, CURDATE(), 15, 8),
 (50, 105000, CURDATE(), 16, 8);
 
-DELETE FROM ctpn WHERE MaSach > 0;
-
 INSERT INTO HoaDon (MaNV, MaKH) VALUES
 (2, 1),   
 (5, 3),   
@@ -759,8 +748,6 @@ INSERT INTO CTHD (NgLap, TrangThaiDH, SoLg, GiaBan, GhiChu, DiaChiGiaoHang, PhTh
 ('2025-03-21', 1, 2, '330000', 'Giao trong tuần', '56 Nguyễn Trãi, Quận 5', 0, 1, 9, 26),
 ('2025-03-21', 2, 3, '56000', NULL, '12 An Dương Vương, Quận 6', 1, 0, 10, 30);
 
-delete from cthd where masach > 0;
-
 INSERT INTO ctgh (MaSach, MaGH, SoLg, GiaBan) VALUES
 (1, 1, 2, 76000),  
 (3, 2, 1, 88000),  
@@ -774,73 +761,75 @@ INSERT INTO ctgh (MaSach, MaGH, SoLg, GiaBan) VALUES
 (30, 10, 2, 56000);
 
 insert into HinhAnh (DgDanAnh, MaND, MaSach)
-values ('project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - Tập 1/1.jpg', NULL, 1),
-	   ('project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - Tập 1/2.jpg', null, 1),
-       ('project-Web2/common/images/Tiểu thuyết/Chúa tể bóng tối - Tập 1/1.png', null, 2),
-       ('project-Web2/common/images/Tiểu thuyết/Dược Sư Tự Sự - Tập 1/1.jpg', null, 3),
-       ('project-Web2/common/images/Tiểu thuyết/Dược Sư Tự Sự - Tập 1/2.jpg', null, 3),
-       ('project-Web2/common/images/Tiểu thuyết/Mùa Hè Thứ Hai, Mất Em Mãi Mãi/1.jpg', null, 4),
-       ('project-Web2/common/images/Tiểu thuyết/Mùa Hè Thứ Hai, Mất Em Mãi Mãi/2.jpg', null, 4),
-       ('project-Web2/common/images/Tiểu thuyết/Mùa Hè Thứ Hai, Mất Em Mãi Mãi/3.jpg', null, 4),
-       ('project-Web2/common/images/Tiểu thuyết/Harry Potter  and the Sorcerers Stone/1.jpg', null, 5),
-       ('project-Web2/common/images/Tiểu thuyết/the Lords of the Ring/1.jpg', null, 6),
-       ('project-Web2/common/images/Tiểu thuyết/the Lords of the Ring/2.jpg', null, 6),
-       ('project-Web2/common/images/Tiểu thuyết/the Lords of the Ring/3.jpg', null, 6),
-       ('project-Web2/common/images/Manga/Dragon Ball SD - 7 Viên Ngọc Rồng Nhí - Tập 2 - Khuynh Đảo Đại Hội Võ Thuật/1.jpg', null, 7),
-       ('project-Web2/common/images/Manga/Dragon Ball SD - 7 Viên Ngọc Rồng Nhí - Tập 2 - Khuynh Đảo Đại Hội Võ Thuật/2.jpg', null, 7),
-       ('project-Web2/common/images/Manga/Demon Slayer Kimetsu No Yaiba - Yellow/1.jpg', null, 8),
-       ('project-Web2/common/images/Manga/Demon Slayer Kimetsu No Yaiba - Yellow/2.jpg', null, 8),
-       ('project-Web2/common/images/Manga/Demon Slayer Kimetsu No Yaiba - Yellow/3.jpg', null, 8),
-       ('project-Web2/common/images/Manga/One Piece 48/1.jpg', null, 9),
-       ('project-Web2/common/images/Manga/One Piece 48/2.jpg', null, 9),
-       ('project-Web2/common/images/Manga/One Piece 48/3.jpg', null, 9),
-       ('project-Web2/common/images/Manga/Detective Conan - Tập 1 - Tái Bản 2023/1.jpg', null, 10),
-       ('project-Web2/common/images/Manga/Detective Conan - Tập 1 - Tái Bản 2023/2.jpg', null, 10),
-       ('project-Web2/common/images/Manga/Detective Conan - Tập 1 - Tái Bản 2023/3.jpg', null, 10),
-       ('project-Web2/common/images/Manga/Nai Tơ Ngơ Ngác Nokotan - Tập 1 - Tặng Kèm Bookmark/1.jpg', null, 11),
-       ('project-Web2/common/images/Manga/Nai Tơ Ngơ Ngác Nokotan - Tập 1 - Tặng Kèm Bookmark/2.png', null, 11),
-       ('project-Web2/common/images/Manga/Bộ Manga - Attack On Titan Tập 1 - 3 (Bộ 3 Tập) - Tặng Kèm Card PVC + Card Shikishi/1.jpg', null, 12),
-       ('project-Web2/common/images/Manga/Bộ Manga - Attack On Titan Tập 1 - 3 (Bộ 3 Tập) - Tặng Kèm Card PVC + Card Shikishi/2.jpg', null, 12),
-       ('project-Web2/common/images/Manga/Bộ Manga - Attack On Titan Tập 1 - 3 (Bộ 3 Tập) - Tặng Kèm Card PVC + Card Shikishi/3.jpg', null, 12),
-       ('project-Web2/common/images/Manga/Bộ Manga - Attack On Titan Tập 1 - 3 (Bộ 3 Tập) - Tặng Kèm Card PVC + Card Shikishi/4.jpg', null, 12),
-       ('project-Web2/common/images/Kinh dị/Những Án Mạng Ở Phố Nhà Xác Rue/1.jpg', null, 13),
-       ('project-Web2/common/images/Kinh dị/Những Án Mạng Ở Phố Nhà Xác Rue/2.png', null, 13),
-       ('project-Web2/common/images/Giáo dục/50 Đề Thực Chiến Luyện Thi Tiếng Anh Vào Lớp 10 (Có Đáp Án)/1.jpg', null, 14),
-       ('project-Web2/common/images/Giáo dục/50 Đề Thực Chiến Luyện Thi Tiếng Anh Vào Lớp 10 (Có Đáp Án)/2.png', null, 14),
-       ('project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/1.jpg', null, 15),
-       ('project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/2.jpg', null, 15),
-       ('project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/3.jpg', null, 15),
-       ('project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/1.jpg', null, 16),
-       ('project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/2.jpg', null, 16),
-       ('project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/3.jpg', null, 16),
-       ('project-Web2/common/images/Thiếu nhi/200 Miếng Bóc Dán Thông Minh - Bé Học Toán/1.jpg', null, 17),
-       ('project-Web2/common/images/Thiếu nhi/200 Miếng Bóc Dán Thông Minh - Bé Học Toán/2.jpg', null, 17),
-       ('project-Web2/common/images/Thiếu nhi/Big Book - Cuốn Sách Khổng Lồ Về Các Loài Động Vật Biển (Tái Bản)/1.jpg', null, 18),
-       ('project-Web2/common/images/Thiếu nhi/Big Book - Cuốn Sách Khổng Lồ Về Các Loài Động Vật Biển (Tái Bản)/2.jpg', null, 18),
-       ('project-Web2/common/images/Thiếu nhi/Big Book - Cuốn Sách Khổng Lồ Về Các Loài Động Vật Biển (Tái Bản)/3.jpg', null, 18),
-       ('project-Web2/common/images/Thiếu nhi/Sách Chuyển Động Thông Minh Đa Ngữ Việt - Anh - Pháp Động Vật Nuôi - Domestic Animals - Les Animaux De Compagnie/1.jpg', null, 19),
-       ('project-Web2/common/images/Thiếu nhi/Sách Chuyển Động Thông Minh Đa Ngữ Việt - Anh - Pháp Động Vật Nuôi - Domestic Animals - Les Animaux De Compagnie/2.jpg', null, 19),
-       ('project-Web2/common/images/Thiếu nhi/Sách Chuyển Động Thông Minh Đa Ngữ Việt - Anh - Pháp Động Vật Nuôi - Domestic Animals - Les Animaux De Compagnie/3.jpg', null, 19),
-	   ('project-Web2/common/images/Thiếu nhi/Giáo Dục Đầu Đời Cho Trẻ - Những Bài Học Tự Bảo Vệ Bản Thân - Không Được Chạm Vào Vùng Riêng Tư Của Tớ/1.jpg', null, 20),
-       ('project-Web2/common/images/Thiếu nhi/Gieo Mầm Tính Cách - Tự Tin (Tái Bản 2019)/1.jpg', null, 21),
-       ('project-Web2/common/images/Thiếu nhi/Gieo Mầm Tính Cách - Tự Tin (Tái Bản 2019)/2.jpg', null, 21),
-       ('project-Web2/common/images/Manga/Cô Bạn Tôi Thầm Thích Lại Quên Mang Kính Rồi - Tập 12 - Bản Đặc Biệt/1.jpg', null, 22),
-       ('project-Web2/common/images/Manga/Cô Bạn Tôi Thầm Thích Lại Quên Mang Kính Rồi - Tập 12 - Bản Đặc Biệt/2.jpg', null, 22),
-       ('project-Web2/common/images/Kinh dị/Sĩ Số Lớp Vắng 0/1.jpg', null, 23),
-       ('project-Web2/common/images/Kinh dị/Sĩ Số Lớp Vắng 0/2.jpeg', null, 23),
-       ('project-Web2/common/images/Kinh dị/Sĩ Số Lớp Vắng 0/3.jpg', null, 23),
-       ('project-Web2/common/images/Kinh dị/Tam Thể 1 (Tái Bản 2021)/1.jpg', null, 24),
-       ('project-Web2/common/images/Kinh dị/Tam Thể 1 (Tái Bản 2021)/2.jpg', null, 24),
-       ('project-Web2/common/images/Truyện tranh/Fantastic Four issue 1/1.webp', null, 25),
-       ('project-Web2/common/images/Truyện tranh/Invincible issue 1/1.webp', null, 26),
-       ('project-Web2/common/images/Truyện tranh/Batman Under the Red Hood/1.jpg', null, 27),
-       ('project-Web2/common/images/Truyện tranh/Amazing Fantasy #15/1.jpg', null, 28),
-       ('project-Web2/common/images/Truyện tranh/Amazing Fantasy #15/2.jpg', null, 28),
-       ('project-Web2/common/images/Lãng mạn/Sau Khi Tôi Chết, Anh Ấy Không Cưới Thêm Ai Nữa/1.jpg', null, 29),
-       ('project-Web2/common/images/Lãng mạn/Sự Dịu Dàng Khó Cưỡng (Tái Bản 2019)/1.jpg', null, 30),
-       ('project-Web2/common/images/Lãng mạn/Cô Gái Năm Ấy Chúng Ta Cùng Theo Đuổi (Tái Bản 2019)/1.jpg', null, 31),
-       ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/1.jpg', null, 32),
-       ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/2.jpg', null, 32),
-       ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32);
-       ('project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32),
+values ('/project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - Tập 1/1.jpg', NULL, 1),
+	   ('/project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - Tập 1/2.jpg', null, 1),
+       ('/project-Web2/common/images/Tiểu thuyết/Chúa tể bóng tối - Tập 1/1.png', null, 2),
+       ('/project-Web2/common/images/Tiểu thuyết/Dược Sư Tự Sự - Tập 1/1.jpg', null, 3),
+       ('/project-Web2/common/images/Tiểu thuyết/Dược Sư Tự Sự - Tập 1/2.jpg', null, 3),
+       ('/project-Web2/common/images/Tiểu thuyết/Mùa Hè Thứ Hai, Mất Em Mãi Mãi/1.jpg', null, 4),
+       ('/project-Web2/common/images/Tiểu thuyết/Mùa Hè Thứ Hai, Mất Em Mãi Mãi/2.jpg', null, 4),
+       ('/project-Web2/common/images/Tiểu thuyết/Mùa Hè Thứ Hai, Mất Em Mãi Mãi/3.jpg', null, 4),
+       ('/project-Web2/common/images/Tiểu thuyết/Harry Potter  and the Sorcerers Stone/1.jpg', null, 5),
+       ('/project-Web2/common/images/Tiểu thuyết/the Lords of the Ring/1.jpg', null, 6),
+       ('/project-Web2/common/images/Tiểu thuyết/the Lords of the Ring/2.jpg', null, 6),
+       ('/project-Web2/common/images/Tiểu thuyết/the Lords of the Ring/3.jpg', null, 6),
+       ('/project-Web2/common/images/Manga/Dragon Ball SD - 7 Viên Ngọc Rồng Nhí - Tập 2 - Khuynh Đảo Đại Hội Võ Thuật/1.jpg', null, 7),
+       ('/project-Web2/common/images/Manga/Dragon Ball SD - 7 Viên Ngọc Rồng Nhí - Tập 2 - Khuynh Đảo Đại Hội Võ Thuật/2.jpg', null, 7),
+       ('/project-Web2/common/images/Manga/Demon Slayer Kimetsu No Yaiba - Yellow/1.jpg', null, 8),
+       ('/project-Web2/common/images/Manga/Demon Slayer Kimetsu No Yaiba - Yellow/2.jpg', null, 8),
+       ('/project-Web2/common/images/Manga/Demon Slayer Kimetsu No Yaiba - Yellow/3.jpg', null, 8),
+       ('/project-Web2/common/images/Manga/One Piece 48/1.jpg', null, 9),
+       ('/project-Web2/common/images/Manga/One Piece 48/2.jpg', null, 9),
+       ('/project-Web2/common/images/Manga/One Piece 48/3.jpg', null, 9),
+       ('/project-Web2/common/images/Manga/Detective Conan - Tập 1 - Tái Bản 2023/1.jpg', null, 10),
+       ('/project-Web2/common/images/Manga/Detective Conan - Tập 1 - Tái Bản 2023/2.jpg', null, 10),
+       ('/project-Web2/common/images/Manga/Detective Conan - Tập 1 - Tái Bản 2023/3.jpg', null, 10),
+       ('/project-Web2/common/images/Manga/Nai Tơ Ngơ Ngác Nokotan - Tập 1 - Tặng Kèm Bookmark/1.jpg', null, 11),
+       ('/project-Web2/common/images/Manga/Nai Tơ Ngơ Ngác Nokotan - Tập 1 - Tặng Kèm Bookmark/2.png', null, 11),
+       ('/project-Web2/common/images/Manga/Bộ Manga - Attack On Titan Tập 1 - 3 (Bộ 3 Tập) - Tặng Kèm Card PVC + Card Shikishi/1.jpg', null, 12),
+       ('/project-Web2/common/images/Manga/Bộ Manga - Attack On Titan Tập 1 - 3 (Bộ 3 Tập) - Tặng Kèm Card PVC + Card Shikishi/2.jpg', null, 12),
+       ('/project-Web2/common/images/Manga/Bộ Manga - Attack On Titan Tập 1 - 3 (Bộ 3 Tập) - Tặng Kèm Card PVC + Card Shikishi/3.jpg', null, 12),
+       ('/project-Web2/common/images/Manga/Bộ Manga - Attack On Titan Tập 1 - 3 (Bộ 3 Tập) - Tặng Kèm Card PVC + Card Shikishi/4.jpg', null, 12),
+       ('/project-Web2/common/images/Kinh dị/Những Án Mạng Ở Phố Nhà Xác Rue/1.jpg', null, 13),
+       ('/project-Web2/common/images/Kinh dị/Những Án Mạng Ở Phố Nhà Xác Rue/2.png', null, 13),
+       ('/project-Web2/common/images/Giáo dục/50 Đề Thực Chiến Luyện Thi Tiếng Anh Vào Lớp 10 (Có Đáp Án)/1.jpg', null, 14),
+       ('/project-Web2/common/images/Giáo dục/50 Đề Thực Chiến Luyện Thi Tiếng Anh Vào Lớp 10 (Có Đáp Án)/2.png', null, 14),
+       ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/1.jpg', null, 15),
+       ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/2.jpg', null, 15),
+       ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/3.jpg', null, 15),
+       ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/1.jpg', null, 16),
+       ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/2.jpg', null, 16),
+       ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/3.jpg', null, 16),
+       ('/project-Web2/common/images/Thiếu nhi/200 Miếng Bóc Dán Thông Minh - Bé Học Toán/1.jpg', null, 17),
+       ('/project-Web2/common/images/Thiếu nhi/200 Miếng Bóc Dán Thông Minh - Bé Học Toán/2.jpg', null, 17),
+       ('/project-Web2/common/images/Thiếu nhi/Big Book - Cuốn Sách Khổng Lồ Về Các Loài Động Vật Biển (Tái Bản)/1.jpg', null, 18),
+       ('/project-Web2/common/images/Thiếu nhi/Big Book - Cuốn Sách Khổng Lồ Về Các Loài Động Vật Biển (Tái Bản)/2.jpg', null, 18),
+       ('/project-Web2/common/images/Thiếu nhi/Big Book - Cuốn Sách Khổng Lồ Về Các Loài Động Vật Biển (Tái Bản)/3.jpg', null, 18),
+       ('/project-Web2/common/images/Thiếu nhi/Sách Chuyển Động Thông Minh Đa Ngữ Việt - Anh - Pháp Động Vật Nuôi - Domestic Animals - Les Animaux De Compagnie/1.jpg', null, 19),
+       ('/project-Web2/common/images/Thiếu nhi/Sách Chuyển Động Thông Minh Đa Ngữ Việt - Anh - Pháp Động Vật Nuôi - Domestic Animals - Les Animaux De Compagnie/2.jpg', null, 19),
+       ('/project-Web2/common/images/Thiếu nhi/Sách Chuyển Động Thông Minh Đa Ngữ Việt - Anh - Pháp Động Vật Nuôi - Domestic Animals - Les Animaux De Compagnie/3.jpg', null, 19),
+	   ('/project-Web2/common/images/Thiếu nhi/Giáo Dục Đầu Đời Cho Trẻ - Những Bài Học Tự Bảo Vệ Bản Thân - Không Được Chạm Vào Vùng Riêng Tư Của Tớ/1.jpg', null, 20),
+       ('/project-Web2/common/images/Thiếu nhi/Gieo Mầm Tính Cách - Tự Tin (Tái Bản 2019)/1.jpg', null, 21),
+       ('/project-Web2/common/images/Thiếu nhi/Gieo Mầm Tính Cách - Tự Tin (Tái Bản 2019)/2.jpg', null, 21),
+       ('/project-Web2/common/images/Manga/Cô Bạn Tôi Thầm Thích Lại Quên Mang Kính Rồi - Tập 12 - Bản Đặc Biệt/1.jpg', null, 22),
+       ('/project-Web2/common/images/Manga/Cô Bạn Tôi Thầm Thích Lại Quên Mang Kính Rồi - Tập 12 - Bản Đặc Biệt/2.jpg', null, 22),
+       ('/project-Web2/common/images/Kinh dị/Sĩ Số Lớp Vắng 0/1.jpg', null, 23),
+       ('/project-Web2/common/images/Kinh dị/Sĩ Số Lớp Vắng 0/2.jpeg', null, 23),
+       ('/project-Web2/common/images/Kinh dị/Sĩ Số Lớp Vắng 0/3.jpg', null, 23),
+       ('/project-Web2/common/images/Kinh dị/Tam Thể 1 (Tái Bản 2021)/1.jpg', null, 24),
+       ('/project-Web2/common/images/Kinh dị/Tam Thể 1 (Tái Bản 2021)/2.jpg', null, 24),
+       ('/project-Web2/common/images/Truyện tranh/Fantastic Four issue 1/1.webp', null, 25),
+       ('/project-Web2/common/images/Truyện tranh/Invincible issue 1/1.webp', null, 26),
+       ('/project-Web2/common/images/Truyện tranh/Batman Under the Red Hood/1.jpg', null, 27),
+       ('/project-Web2/common/images/Truyện tranh/Amazing Fantasy #15/1.jpg', null, 28),
+       ('/project-Web2/common/images/Truyện tranh/Amazing Fantasy #15/2.jpg', null, 28),
+       ('/project-Web2/common/images/Lãng mạn/Sau Khi Tôi Chết, Anh Ấy Không Cưới Thêm Ai Nữa/1.jpg', null, 29),
+       ('/project-Web2/common/images/Lãng mạn/Sự Dịu Dàng Khó Cưỡng (Tái Bản 2019)/1.jpg', null, 30),
+       ('/project-Web2/common/images/Lãng mạn/Cô Gái Năm Ấy Chúng Ta Cùng Theo Đuổi (Tái Bản 2019)/1.jpg', null, 31),
+       ('/project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/1.jpg', null, 32),
+       ('/project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/2.jpg', null, 32),
+       ('/project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32);
        
+update `hinhanh`
+set `dgdananh` = '/project-Web2/common/images/defaultuser.png'
+where `mand` > 0 and `masach` is null;
