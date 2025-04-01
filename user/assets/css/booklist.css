@@ -1,0 +1,89 @@
+.container {
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.book_list .book_item {
+  float: left;
+  max-width: calc(25% - 10px);
+  margin: 0 5px 10px 5px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.book_list .book_item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.book_list a {
+  text-decoration: none;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.book_list .book_item .img_book {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.book_list .book_item .img_book img {
+  width: 100%;
+  border-radius: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.book_list .book_item .info_book {
+  padding: 10px 10px 5px 10px;
+}
+
+.book_item .info_book .title_book {
+  text-align: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 30px;
+  height: 30px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book_item .info_book .price_book {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(238, 81, 34);
+  text-align: left;
+}
+
+.book_item .btns {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.book_item .btn {
+  display: inline-block !important;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(238, 81, 34);
+  color: white;
+  padding: 8px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.book_item .btn + .btn {
+  margin-left: 5px;
+}
+
+.book_item .btn:hover {
+  background-color: rgb(187, 44, 0);
+}
