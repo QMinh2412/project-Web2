@@ -833,3 +833,7 @@ values ('project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - Tậ
 update `hinhanh`
 set `dgdananh` = '/project-Web2/common/images/defaultuser.png'
 where `mand` > 0 and `masach` is null;
+
+update `hinhanh`
+set `dgdananh` = concat('/', `dgdananh`)
+where `masach` > 0 and `mand` is null
