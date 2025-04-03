@@ -1,0 +1,35 @@
+#category-header {
+    position: relative;
+}
+
+#addCategoryBtn {
+    position: absolute;
+    background-color: #4CAF50; /* Green */
+    padding: 15px;
+    border-radius: 10px;
+    right: 20px;
+    top: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out; 
+}
+
+#addCategoryBtn:hover {
+    background-color: #45a049; 
+}
+
+#addCategoryBtn:active {
+    background-color: #3e8e41; 
+}
+
+#category-order {
+    width: 40px;
+}
+
+#category-quantity {
+    width: 100px;
+}
+
+#category-features {
+    width: 200px;
+}

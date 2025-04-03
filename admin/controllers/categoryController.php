@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__ . '/../../common/core/BaseController.php';
+    require_once __DIR__ . '/../../common/models/Category.php';
 
     class CategoryController extends BaseController {
         public function index() {
