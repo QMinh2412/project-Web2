@@ -1,3 +1,5 @@
+create database webbookstore;
+drop database webbookstore;
 use webbookstore;
 
 create table `NCC` (
@@ -836,4 +838,4 @@ where `mand` > 0 and `masach` is null;
 
 update `hinhanh`
 set `dgdananh` = concat('/', `dgdananh`)
-where `masach` > 0 and `mand` is null
+where `masach` > 0 and `mand` is null;

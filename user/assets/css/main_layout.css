@@ -3,10 +3,10 @@
 }
 header {
   margin-bottom: 10px;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 footer {
   margin-top: 10px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
