@@ -12,8 +12,8 @@
     ?>
     <div style="background-color: #f1f1f1;">
         <?php 
-            // echo $main_content; 
-            include __DIR__ . '/../product/product.php'; // Include the main content dynamically
+            echo $main_content; 
+            // include __DIR__ . '/../product/product.php'; // Include the main content dynamically
         ?>
     </div>
     <?php
