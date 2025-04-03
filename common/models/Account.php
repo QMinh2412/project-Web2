@@ -13,6 +13,16 @@ class Account {
         $result = $this->db->query("SELECT * FROM taikhoan WHERE MaND = $id");
         return $result->fetch_assoc();
     }
+    public function getAccountIdByEmail($email) {
+        $query = "SELECT MaTK FROM TaiKhoan WHERE MaND = (SELECT MaND FROM NgDung WHERE EmailND = '$email')";
+        $result = $this->db->query($query);
+
+        if ($result && $row = $result->fetch_assoc()) {
+            return $row['MaTK']; // Trả về mã tài khoản
+        }
+
+        return null; // Trả về null nếu không tìm thấy
+    }
 
     public function getNameById($id) {
         $result = $this->db->query("SELECT TenTK FROM taikhoan WHERE MaND = $id");
@@ -55,31 +65,60 @@ class Account {
     
 
     public function createAccount($username, $role, $created_at, $status, $password, $user_id) {
-        $sql = "INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->db->prepare($sql);
-    
-        if (!$stmt) {
-            die("Lỗi SQL (prepare): " . $this->db->error); // Debug lỗi prepare
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Mã hóa mật khẩu
+        $sql = "INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) 
+                VALUES ('$username', $role, '$created_at', $status, '$hashedPassword', $user_id)";
+        
+        if (!$this->db->query($sql)) {
+            die("Lỗi SQL (query): " . $this->db->error); // Debug lỗi query
         }
-    
-        if (!$stmt->bind_param("sisiis", $username, $role, $created_at, $status, $password, $user_id)) {
-            die("Lỗi bind_param: " . $stmt->error); // Debug lỗi bind_param
-        }
-    
-        if (!$stmt->execute()) {
-            die("Lỗi execute: " . $stmt->error); // Debug lỗi execute
-        }
-    
-        $stmt->close();
+        
         return true; // Trả về true nếu thành công
     }
 
-    public function getAccountByEmail($email) {
-        $sql = "SELECT * FROM accounts WHERE email = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+    public function isAccountLocked($email) {
+        $sql = "SELECT TinhTrang FROM TaiKhoan WHERE MaND = (SELECT MaND FROM NgDung WHERE EmailND = ?)";
+        $stmt = $this->db->prepare($sql);
+
+        if (!$stmt) {
+            die("Lỗi SQL (prepare): " . $this->db->error); // Debug lỗi prepare
+        }
+
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            $stmt->close();
+            return $row['TinhTrang'] == 1; // Trả về true nếu tài khoản bị khóa
+        }
+
+        $stmt->close();
+        return false; // Trả về false nếu không tìm thấy tài khoản
     }
-    
+
+    public function isPasswordCorrect($email, $password) {
+        $sql = "SELECT MKTK FROM TaiKhoan 
+                WHERE MaND = (SELECT MaND FROM NgDung WHERE EmailND = ?)";
+        $stmt = $this->db->prepare($sql);
+
+        if (!$stmt) {
+            die("Lỗi SQL (prepare): " . $this->db->error); // Debug lỗi prepare
+        }
+
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            $hashedPassword = $row['MKTK'];
+            $stmt->close();
+            // Kiểm tra mật khẩu đã mã hóa bằng password_hash
+            return password_verify($password, $hashedPassword);
+        }
+
+        $stmt->close();
+        return false; // Trả về false nếu không tìm thấy tài khoản
+    }
 }
 ?>

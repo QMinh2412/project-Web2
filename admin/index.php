@@ -1,20 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./assets/css/admin.css">
-    <link rel="stylesheet" href="./assets/css/header.css">
-    <link rel="stylesheet" href="./assets/css/leftmenu.css">
-</head>
-<body>
-    <div class="wrapper">
-        <?php
-            include "./views/layouts/header.php";
-            include "./views/layouts/container.php";
-        ?>
-    </div>
-</body>
-</html>
+<?php
+// admin/index.php
+// Entry point for the Admin section of the website
+
+session_start(); // Nếu muốn dùng session để quản lý đăng nhập admin
+
+// (Optional) Kiểm tra xem user có quyền truy cập admin hay không
+// if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+//     header('Location: /user/account/login');
+//     exit;
+// }
+
+// Nạp file RouteAdmin (điều hướng cho admin)
+require_once __DIR__ . '/../common/core/routeradmin.php';
+
+// Lấy đường dẫn hiện tại
+$currentUrl = $_SERVER['REQUEST_URI'];
+// echo $currentUrl;
+
+// Khởi tạo router và điều hướng
+$route = new RouteAdmin();
+$route->router($currentUrl);
+?>
