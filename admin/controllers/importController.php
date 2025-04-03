@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__ . '/../../common/core/BaseController.php';
 
-    class ProductController extends BaseController {
+    class ImportController extends BaseController {
         public function index() {
             // Gọi view tương ứng với action index
             $this->render('import/index', [
