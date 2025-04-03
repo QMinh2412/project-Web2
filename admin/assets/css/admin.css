@@ -50,9 +50,20 @@ body {
     padding: 20px;
 }
 
+.admin-list-container {
+    table-layout: fixed; /* Ensures fixed column widths */
+    margin: 0px auto 20px auto;
+    display: table;
+    border-collapse: collapse;
+    background-color: #f1f1f1;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+}
+
 .admin-list-container th, td {
     padding: 10px;
     border: 1px solid #ddd;
+    word-wrap: break-word;
 }
 
 .admin-list-body-content-num {
@@ -61,13 +72,4 @@ body {
 
 .admin-list-body-content-other {
     text-align: left;
-}
-
-.admin-list-container {
-    display: table;
-    border-collapse: collapse;
-    background-color: #f1f1f1;
-    margin: 20px auto;
-    width: calc(100% - 40px);
-    box-sizing: border-box;
 }
