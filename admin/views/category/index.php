@@ -17,8 +17,14 @@
                 <tr>
                     <td class="admin-list-body-content-num" id="category-order"><?= htmlspecialchars($category['MaLoai']) ?></td>
                     <td class="admin-list-body-content-other" id="category-name"><?= htmlspecialchars($category['TenLoai']) ?></td>
-                    <!-- <td class="admin-list-body-content-num">N/A</td> -->
-                    <td class="admin-list-body-content-num">N/A</td>
+                    <td class="admin-list-body-content-num" id="category-feature">
+                        <button class="btn btn-primary" id="editCategoryBtn" onclick="location.href='?page=category&action=edit&id=<?= htmlspecialchars($category['MaLoai']) ?>'">
+                            <i class='bx bx-edit'></i>
+                            Sửa</button>
+                        <button class="btn btn-danger" id="deleteCategoryBtn" onclick="if(confirm('Bạn có chắc chắn muốn xóa danh mục này?')) location.href='?page=category&action=delete&id=<?= htmlspecialchars($category['MaLoai']) ?>'">
+                            <i class='bx bx-trash' ></i>
+                            Xóa</button>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

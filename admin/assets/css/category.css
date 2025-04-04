@@ -36,7 +36,7 @@
 }
 
 #category-features {
-    width: 200px;
+    width: 150px;
 }
 
 /* Create new category */
@@ -70,6 +70,26 @@
 #cancelCategoryBtn {
     background-color: red; /* Green */
     color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Edit category */
+#editCategoryBtn {
+    background-color: #3ea2e1; /* Green */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Delete category */
+#deleteCategoryBtn {
+    background-color: red; /* Green */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
 }

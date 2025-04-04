@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./assets/css/leftmenu.css">
     <link rel="stylesheet" href="./assets/css/user.css">
     <link rel="stylesheet" href="./assets/css/category.css">
+    <link rel="stylesheet" href="./assets/css/product.css">
 </head>
 <body>
     <div class="wrapper">
