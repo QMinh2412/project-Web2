@@ -12,6 +12,7 @@
     color: white;
     text-decoration: none;
     transition: background-color 0.3s ease-in-out; 
+    cursor: pointer;
 }
 
 #addCategoryBtn:hover {
@@ -23,13 +24,52 @@
 }
 
 #category-order {
-    width: 40px;
+    width: 150px;
+}
+
+#category-name {
+    text-align: center;
 }
 
 #category-quantity {
-    width: 100px;
+    width: 200px;
 }
 
 #category-features {
     width: 200px;
+}
+
+/* Create new category */
+#category-name-input {
+    width: calc(100% - 50px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.category-create-Btn-div {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.category-create-Btns {
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#createCategoryBtn {
+    background-color: #3ea2e1; /* Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#cancelCategoryBtn {
+    background-color: red; /* Green */
+    color: white;
+    border: none;
+    cursor: pointer;
 }
