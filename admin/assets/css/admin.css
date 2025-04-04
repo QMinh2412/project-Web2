@@ -51,7 +51,7 @@ body {
 }
 
 .admin-list-container {
-    table-layout: fixed; /* Ensures fixed column widths */
+    table-layout: fixed; 
     margin: 0px auto 20px auto;
     display: table;
     border-collapse: collapse;

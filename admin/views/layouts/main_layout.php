@@ -25,7 +25,7 @@
                 <?php
                     echo $content;
                 ?>
-            </div>
+            </div>     
         </div>
     </div>
 </body>

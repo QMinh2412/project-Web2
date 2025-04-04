@@ -10,8 +10,11 @@
     <?php
         require __DIR__ . '/header.php';
     ?>
-    <div style="height: 500px; border: 1px solid black;">
-        <?php echo $main_content; ?>
+    <div style="background-color: #f1f1f1;">
+        <?php 
+            echo $main_content; 
+            // include __DIR__ . '/../product/product.php'; // Include the main content dynamically
+        ?>
     </div>
     <?php
         require __DIR__ . '/footer.php';
