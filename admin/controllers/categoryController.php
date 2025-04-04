@@ -9,5 +9,7 @@
                 'message' => 'Welcome to the User Management page!'
             ]);
         }
+
+        public function create() {}
     }
 ?>

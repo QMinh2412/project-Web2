@@ -1,5 +1,112 @@
+/***************************** User Management CSS *************************/
+
+/****************** WRAPPER ****************/
 .user-wrapper {
     border: solid 3px white;
     background-color: white;
-    /* width: 100%; */
+}
+
+/****************** TABLE ALIGNING **********/
+#user-stt {
+    width: 5%;
+}
+
+#user-name {
+    width: 15%;
+}
+
+#user-email {
+    width: 20%;
+}
+
+#user-role {
+    width: 12%;
+}
+
+#user-status {
+    width: 12%;
+}
+
+#user-name {
+    text-align: left;
+}
+
+#user-email {
+    text-align: left;
+}
+
+#user-role {
+    text-align: left;
+}
+
+#user-status {
+    text-align: left;
+}
+
+#user-action {
+    text-align: center;
+}
+
+/************************** BUTTON **************************/
+.btn-user {
+    text-decoration: none;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+/*********** ADD **************/
+.btn-user.btn-add {
+    background-color: #ffd230;
+    padding: 5px 30px;
+}
+
+.btn-add:hover {
+    background-color: #f0c200;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+/*********** DETAIL **************/
+.btn-user.btn-detail {
+    background-color: yellow;
+    padding: 5px 30px;
+    color: black;
+}
+
+.btn-detail:hover {
+    background-color: yellow;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+/*********** EDIT **************/
+.btn-user.btn-edit {
+    background-color: #0ab2d4;
+    padding: 5px 30px;
+}
+
+.btn-edit:hover {
+    background-color: #0099b3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+/*********** DELETE **************/
+.btn-user.btn-ban {
+    background-color: #ff3131;
+    padding: 5px 30px;
+}
+
+.btn-ban:hover {
+    background-color: #ff0000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
 }

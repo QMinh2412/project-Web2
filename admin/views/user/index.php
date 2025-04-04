@@ -1,24 +1,38 @@
 <div class="admin-wrapper">
     <div class="admin-header">
-        <h2>Danh mục sách</h2>
-        <a href="?page=category&action=create" class="btn btn-primary">Thêm danh mục</a>
+        <h2>Tài khoản</h2>
+        
     </div>
     <table class="admin-list-container">
         <thead class="admin-list-header">
             <tr class="admin-list-header-content">
-                <th>STT</th>
-                <th>Tên danh mục</th>
-                <th>Số lượng</th>
-                <th>Chức năng</th>
+                <th id="user-stt">STT</th>
+                <th id="user-name">Họ tên</th>
+                <th id="user-email">Email</th>
+                <th id="user-role">Loại tài khoản</th>
+                <th id="user-status">Tình trạng</th>
+                <th id="user-action"><button class="btn-user btn-add" onclick="location.href='?page=user&action=create'">Thêm tài khoản</button></th>
             </tr>
         </thead>
         <tbody class="admin-list-body">
-            <tr class="admin-list-body-content">
-                <td class="admin-list-body-content-num">1</td>
-                <td class="admin-list-body-content-other">Danh mục 1</td>
-                <td class="admin-list-body-content-num">10</td>
-                <td class="admin-list-body-content-other">N/A</td>
-            </tr>
+            <?php foreach ($users as $user): ?>
+                <tr class="admin-list-body-content">
+                    <td class="admin-list-body-content-num" id="user-stt"><?= htmlspecialchars($user['MaND']) ?></td>
+                    <td class="admin-list-body-content-other" id="user-name"><?= htmlspecialchars($user['TenND']) ?></td>
+                    <td class="admin-list-body-content-other" id="user-role"><?= htmlspecialchars($user['EmailND']) ?></td>
+                    <td class="admin-list-body-content-other" id="user-status">
+                        <?= ($user['LoaiTK'] == 1) ? 'Admin' : (($user['LoaiTK'] == 2) ? 'Editor' : 'User') ?>
+                    </td>
+                    <td class="admin-list-body-content-other" id="user-status">
+                        <?= ($user['TinhTrang'] == 1) ? 'Active' : 'Disabled' ?>
+                    </td>
+                    <td class="admin-list-body-content-other" id="user-action">
+                        <button class="btn-user btn-detail" onclick="location.href='?page=user&action=view&id=<?= $user['MaND'] ?>'">Detail</button>
+                        <button class="btn-user btn-edit" onclick="location.href='?page=user&action=edit&id=<?= $user['MaND'] ?>'">Edit</button>
+                        <button class="btn-user btn-ban" onclick="location.href='?page=user&action=delete&id=<?= $user['MaND'] ?>'">Delete</button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
