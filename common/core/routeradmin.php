@@ -18,6 +18,7 @@ class RouteAdmin {
 
         $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
         $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
 
         switch($page) {
             case 'dashboard':
@@ -53,6 +54,9 @@ class RouteAdmin {
                 break;
             case 'create':
                 $controller->create();
+                break;
+            case 'edit':
+                $controller->edit($id);
                 break;
             default:
                 // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định

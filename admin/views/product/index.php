@@ -1,7 +1,7 @@
 <div class="admin-wrapper">
     <div class="admin-header" id="product-header">
         <h2>Sản phẩm</h2>
-        <!-- <a href="?page=category&action=create" class="btn btn-primary" id="addCategoryBtn">Thêm danh mục</a> -->
+        <a href="?page=product&action=create" class="btn btn-primary" id="addProductBtn">Thêm sách</a>
     </div>
     <table class="admin-list-container">
         <thead class="admin-list-header">
@@ -60,9 +60,21 @@
                     <td class="admin-list-body-content-num" id="product-price"><?= htmlspecialchars($product['GiaBan']) ?></td>
                     <td class="admin-list-body-content-num" id="product-status"><?= htmlspecialchars($status)?></td>
                     <td class="admin-list-body-content-num" id="product-features">
-                        <button class="btn btn-primary" id="editCategoryBtn" onclick="location.href='?page=category&action=edit&id=<?= htmlspecialchars($category['MaLoai']) ?>'">
+                        <button class="btn btn-primary" id="editProductBtn" onclick="location.href='?page=product&action=edit&id=<?= $product['MaSach'] ?>'">
                             <i class='bx bx-edit'></i>
-                            Sửa</button>
+                            Sửa
+                        </button>
+                        <?php if ($product['TinhTrang'] == 0): ?>
+                            <button class="btn btn-success" id="allowOnSaleBtn" onclick="location.href='?page=product&action=allow&id=<?= $product['MaSach'] ?>'">
+                                <i class='bx bx-check'></i>
+                                Cho phép bán
+                            </button>
+                        <?php else: ?>
+                            <button class="btn btn-danger" id="stopSellingBtn" onclick="location.href='?page=product&action=stop&id=<?= $product['MaSach'] ?>'">
+                                <i class='bx bx-block'></i>
+                                Ngừng bán
+                            </button>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

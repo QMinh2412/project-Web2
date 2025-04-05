@@ -14,5 +14,11 @@
             ]);
         }
 
+        public function create() {
+            $productModel = new Product();
+            $imageModel = new Image();
+
+            $this->render('product/create', []);
+        }
     }
 ?>
