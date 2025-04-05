@@ -110,3 +110,50 @@
     transition: all 0.3s ease;
     transform: scale(1.05);
 }
+
+/*********** ICON **************/
+.btn-user .bx {
+    font-size: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.btn-user:hover .bx {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/************************** FORM ***********************/
+
+/************ FORM ADD **************/
+.user-add-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.form-group-user-add {
+    margin-left: 20px ;
+}
+
+.user-add-form div {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px; 
+}
+
+.user-add-form div label {
+    font-weight: 500;
+    color: #333;
+}
+
+.user-add-form div input {
+    padding: 10px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}

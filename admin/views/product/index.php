@@ -60,7 +60,7 @@
                     <td class="admin-list-body-content-num" id="product-price"><?= htmlspecialchars($product['GiaBan']) ?></td>
                     <td class="admin-list-body-content-num" id="product-status"><?= htmlspecialchars($status)?></td>
                     <td class="admin-list-body-content-num" id="product-features">
-                        <button class="btn btn-primary" id="editCategoryBtn" onclick="location.href='?page=category&action=edit&id=<?= htmlspecialchars($category['MaLoai']) ?>'">
+                        <button class="btn btn-primary" id="editProductBtn" onclick="location.href='?page=product&action=edit&id=<?= $category['MaSach'] ?>'">
                             <i class='bx bx-edit'></i>
                             Sửa</button>
                     </td>
