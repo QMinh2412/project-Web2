@@ -53,4 +53,4 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     }
 });
 
-//check nếu loại tài khoản là 0, 1 nếu 1 thì chuyển hướng về trang admin dựa vào 
+ 
