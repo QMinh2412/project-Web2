@@ -1,4 +1,6 @@
 <?php
+    require_once __DIR__ . '/../config/Database.php';
+
     class Author {
         protected $db;
 
@@ -16,8 +18,28 @@
                     $authors[] = $row;
                 }
             }
-
             return $authors;
+        }
+
+        public function getAuthorsByName($authorName) {
+            $query = "SELECT * FROM TacGia WHERE TenTacGia LIKE ?";
+            $stmt = $this->db->prepare($query);
+        
+            if ($stmt) {
+                $searchTerm = "%$authorName%";
+                $stmt->bind_param("s", $searchTerm);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $authors = [];
+
+                while ($row = $result->fetch_assoc()) {
+                    $authors[] = $row;
+                }
+                $stmt->close();
+                return $authors;
+            }
+        
+            return []; // Return an empty array if the statement couldn't be prepared
         }
     }
 ?>
