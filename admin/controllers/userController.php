@@ -1,6 +1,7 @@
 <?php
     require_once __DIR__ . '/../../common/core/BaseController.php';
     require_once __DIR__ . '/../../common/models/User.php';
+    require_once __DIR__ . '/../../common/models/Account.php';
 
     class UserController extends BaseController {
         public function index() {
@@ -15,7 +16,28 @@
         }
 
         public function create() {
-            // Gọi view tương ứng với action create
+            $userModel = new User();
+            $accountModel = new Account();
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $fullname = $_POST['name'];
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $address = $_POST['address'];
+                $phone = $_POST['phone'];
+                $birthdate = $_POST['birthdate'];
+                $role = $_POST['role'];
+                $created_at = date('Y-m-d H:i:s');
+                $gender = isset($_POST['gender']) ? $_POST['gender'] : 0;
+                $status = 1;
+
+                $user_id = $userModel->createUser($fullname, $address, $email, $gender, $phone, $birthdate);
+                $accountModel->createAccount($username, $role, $created_at, $status, $password, $user_id);
+                header('Location: ?page=user&action=index');
+                exit;
+            }
+
             $this->render('user/create', [
                 'title' => 'Create User'
             ]);

@@ -835,6 +835,10 @@ values ('/project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - T�
        ('/project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/2.jpg', null, 32),
        ('/project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32);
        
-update `hinhanh`
-set `dgdananh` = '/project-Web2/common/images/defaultuser.png'
-where `mand` > 0 and `masach` is null;
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE HinhAnh
+SET DgDanAnh = '/project-Web2/common/images/defaultuser.png'
+WHERE MaND IS NOT NULL;
+
+SET SQL_SAFE_UPDATES = 1;
