@@ -42,6 +42,18 @@ class Route {
             case 'logout':
                 $controller->logout();
                 break;
+            case 'show_page':
+                $controller->pagingHandleAjax();
+                break;
+            case 'render_by_category':
+                $controller->showCategoryAjax();
+                break;
+            case 'render_by_author':
+                $controller->showAuthorAjax();
+                break;
+            case 'filter':
+                $controller->filterPriceRangeAjax();
+                break;
             default:
                 $controller->index();
                 break;
