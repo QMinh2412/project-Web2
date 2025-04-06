@@ -51,7 +51,7 @@ body {
 }
 
 .admin-list-container {
-    table-layout: fixed; /* Ensures fixed column widths */
+    table-layout: fixed; 
     margin: 0px auto 20px auto;
     display: table;
     border-collapse: collapse;
@@ -62,7 +62,7 @@ body {
 
 .admin-list-container th, td {
     padding: 5px 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #cacaca;
     word-wrap: break-word;
 }
 

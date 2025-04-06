@@ -1,3 +1,5 @@
+create database webbookstore;
+drop database webbookstore;
 use webbookstore;
 
 create table `NCC` (
@@ -37,7 +39,8 @@ create table `DauSach` (
 );
 ALTER TABLE `DauSach`
 MODIFY COLUMN `NamXB` INT;
-
+ALTER TABLE `DauSach`
+MODIFY COLUMN `MoTaChiTiet` LONGTEXT;
 
 create table `TheLoai` (
 	`MaLoai` int primary key not null auto_increment,
@@ -131,7 +134,9 @@ create table `HinhAnh` (
     `MaND` int,
     `MaSach` int
 );
-
+ALTER TABLE `HinhAnh`
+MODIFY COLUMN `DgDanAnh` LONGTEXT;
+drop table HinhAnh;
 
 -- KHOAI CHINH --
 alter table `CTPN` add constraint PK_DS_PN PRIMARY KEY(MaSach, MaPhNhap);
@@ -833,7 +838,3 @@ values ('/project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - T�
 update `hinhanh`
 set `dgdananh` = '/project-Web2/common/images/defaultuser.png'
 where `mand` > 0 and `masach` is null;
-
-update `hinhanh`
-set `dgdananh` = concat('/', `dgdananh`)
-where `masach` > 0 and `mand` is null

@@ -18,10 +18,10 @@
     <div id="logo_header">
       <img src="../common/images/logo3.png" alt="logo">
     </div>
-    <div id="admin-logo" onclick="toggleMenu()">
+    <div id="admin-logo">
       <img src="../common/images/defaultuser.png">
     </div>
-    <div class="menu-down" id="menu-down" style="display: none;">
+    <div class="menu-down" id="menu-down">
       <ul>
         <li><button onclick="location.href='/project-Web2/admin/views/layouts/login.php'">Đổi tài khoản</button></li>
         <li><button onclick="location.href='/project-Web2/admin/views/layouts/login.php'">Đăng xuất</button></li>

@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../../user/controllers/HomeController.php';
 require_once __DIR__ . '/../../user/controllers/AccountController.php';
+require_once __DIR__ . '/../../user/controllers/ProductController.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Account.php';
 class Route {
@@ -20,6 +21,10 @@ class Route {
         switch ($page) {
             case 'account':
                 $controller = new AccountController();
+                break;
+
+            case 'product':
+                $controller = new ProductController();
                 break;
 
             default:

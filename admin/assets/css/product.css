@@ -1,0 +1,23 @@
+#product-order {
+    width: 40px;
+}
+
+#product-category {
+    width: 90px;
+}
+
+#product-quantity {
+    width: 65px;
+}
+
+#product-price {
+    width: 70px;
+}
+
+#product-status {
+    width: 80px;
+}
+
+#product-features {
+    width: 200px;
+}
