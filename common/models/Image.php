@@ -27,14 +27,14 @@
             $stmt->bind_param("i", $id);
             $stmt->execute();
             $result = $stmt->get_result();
-            $image = null;
+            $images = [];
 
-            if ($result && $row = $result->fetch_assoc()) {
-                $image = $row['DgDanAnh'];
+            while ($row = $result->fetch_assoc()) {
+                $images[] = $row['DgDanAnh']; // Thêm từng ảnh vào mảng
             }
 
             $stmt->close();
-            return $image;
+            return $images;
         }
     }
 ?>
