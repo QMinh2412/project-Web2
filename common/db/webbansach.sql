@@ -39,7 +39,8 @@ create table `DauSach` (
 );
 ALTER TABLE `DauSach`
 MODIFY COLUMN `NamXB` INT;
-
+ALTER TABLE `DauSach`
+MODIFY COLUMN `MoTaChiTiet` LONGTEXT;
 
 create table `TheLoai` (
 	`MaLoai` int primary key not null auto_increment,
@@ -133,7 +134,9 @@ create table `HinhAnh` (
     `MaND` int,
     `MaSach` int
 );
-
+ALTER TABLE `HinhAnh`
+MODIFY COLUMN `DgDanAnh` LONGTEXT;
+drop table HinhAnh;
 
 -- KHOAI CHINH --
 alter table `CTPN` add constraint PK_DS_PN PRIMARY KEY(MaSach, MaPhNhap);
