@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="./assets/css/admin.css">
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/leftmenu.css">
+    <link rel="stylesheet" href="./assets/css/user.css">
+    <link rel="stylesheet" href="./assets/css/category.css">
+    <link rel="stylesheet" href="./assets/css/product.css">
 </head>
 <body>
     <div class="wrapper">
@@ -18,9 +21,11 @@
             <?php
                 include "./views/layouts/leftmenu.php";
             ?>
-            <?php
-                echo $content;
-            ?>
+            <div class="content">
+                <?php
+                    echo $content;
+                ?>
+            </div>     
         </div>
     </div>
 </body>

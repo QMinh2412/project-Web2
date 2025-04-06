@@ -1,0 +1,96 @@
+#product-order {
+    width: 40px;
+}
+
+#product-category {
+    width: 90px;
+}
+
+#product-quantity {
+    width: 65px;
+}
+
+#product-price {
+    width: 70px;
+}
+
+#product-status {
+    width: 80px;
+}
+
+#product-features {
+    width: 200px;
+}
+
+/*Add product button*/
+#product-header {
+    position: relative;
+}
+#addProductBtn {
+    position: absolute;
+    background-color: #4CAF50; /* Green */
+    padding: 15px;
+    border-radius: 10px;
+    right: 20px;
+    top: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out; 
+    cursor: pointer;
+}
+
+#addProductBtn:hover {
+    background-color: #45a049; 
+}
+
+#addProductBtn:active {
+    background-color: #3e8e41; 
+}
+
+/*Edit Button*/
+#editProductBtn {
+    background-color: #3ea2e1; 
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+#editProductBtn:hover {
+    background-color: #2f8bb0; 
+}
+#editProductBtn:active {
+    background-color: #2a7a9b;
+}
+
+/*On sale allow*/
+#allowOnSaleBtn {
+    background-color: tomato; 
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+#allowOnSaleBtn:hover {
+    background-color: #e67e22; 
+}
+#allowOnSaleBtn:active {
+    background-color: #d35400; 
+}
+
+/*Stop selling button*/
+#stopSellingBtn {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+#stopSellingBtn:hover {
+    background-color: #c0392b; 
+}
+#stopSellingBtn:active {
+    background-color: #a93226; 
+}

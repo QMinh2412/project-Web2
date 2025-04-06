@@ -40,6 +40,26 @@
         
             return $insertId;
         }
+
+        public function getAllUsers() {
+            $query = "
+                SELECT 
+                    NgDung.MaND, NgDung.TenND, NgDung.DcND, NgDung.EmailND, NgDung.GioiTinhND,
+                    NgDung.SDT, NgDung.NgSinhND, 
+                    TaiKhoan.MaTK, TaiKhoan.TenTK, TaiKhoan.LoaiTK, TaiKhoan.NgLap, TaiKhoan.TinhTrang
+                FROM NgDung
+                LEFT JOIN TaiKhoan ON NgDung.MaND = TaiKhoan.MaND
+            ";
+    
+            $result = $this->db->query($query);
+            $users = [];
+    
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+    
+            return $users;
+        }
         
     }
 ?>
