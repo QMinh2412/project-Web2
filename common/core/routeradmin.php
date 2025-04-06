@@ -58,6 +58,18 @@ class RouteAdmin {
             case 'edit':
                 $controller->edit($id);
                 break;
+            case 'delete':
+                $controller->delete($id);
+                break;
+            // case 'authorSuggestion':
+            //     if ($page == 'product') {
+            //         $controller->authorSuggestion();
+            //     } else {
+            //         // Nếu không phải là trang sản phẩm, có thể chuyển hướng về trang 404 hoặc trang mặc định
+            //         header('HTTP/1.0 404 Not Found');
+            //         exit('Action not found');   
+            //     }
+            //     break;
             default:
                 // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                 header('HTTP/1.0 404 Not Found');

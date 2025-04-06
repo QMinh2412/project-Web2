@@ -26,6 +26,13 @@
 #product-header {
     position: relative;
 }
+
+#product-header-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px;
+}
+
 #addProductBtn {
     position: absolute;
     background-color: #4CAF50; /* Green */
@@ -93,4 +100,97 @@
 }
 #stopSellingBtn:active {
     background-color: #a93226; 
+}
+
+/*Create new product form*/
+#create-product-form {
+    /* display: flex;
+    flex-direction: column; */
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.product-create-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.product-create-text {
+    width: calc(100% - 50px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.product-create-dropdown {
+    width: calc(100% - 28px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.product-create-numeric {
+    width: calc(100% - 50px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 10px;
+    font-size: 16px;
+}
+
+#product-description-input {
+    width: calc(100% - 50px);
+    height: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 10px;
+    resize: none;
+    font-size: 1.1em;
+}
+
+.product-create-Btns {
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#createProductBtn {
+    margin: 10px;
+    background-color: #3ea2e1; 
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#cancelProductBtn {
+    background-color: red; 
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.product-suggestion-wrapper {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: calc(100% - 50px);
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+.product-suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+.product-suggestion-item:hover {
+    background-color: #f0f0f0;
 }
