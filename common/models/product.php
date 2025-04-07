@@ -58,5 +58,29 @@
             
             return $result->fetch_assoc();
         }
+
+        public function getProductsByCategory($categoryId) {
+            $query = "SELECT * FROM DauSach WHERE MaLoai = ?";
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) {
+                die("Prepare failed: " . $this->db->error);
+            }
+    
+            $stmt->bind_param("i", $categoryId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $products = [];
+    
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $image = new Image();
+                    $row['DgDanAnh'] = $image->getImgProduct($row['MaSach']);
+                    $products[] = $row;
+                }
+            }
+    
+            return $products;
+        }
+
     }
 ?>
