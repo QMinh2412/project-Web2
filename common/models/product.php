@@ -3,7 +3,7 @@
     require_once __DIR__ . '/../models/Image.php';
     class Product{
         protected $db;
-        protected $bookperpage = 5;
+        protected $bookperpage = 10; 
 
         public function __construct() {
             $this->db = Database::getInstance();
