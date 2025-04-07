@@ -148,6 +148,7 @@ a {
   position: absolute;
   top: 100%;
   right: 0;
+  z-index: 10;
 }
 
 .account_box .sub_menu li {
