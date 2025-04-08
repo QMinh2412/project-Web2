@@ -194,27 +194,33 @@
             return $result->fetch_assoc();
         }
 
-        public function getProductsByCategory($categoryId) {
-            $query = "SELECT * FROM DauSach WHERE MaLoai = ?";
-            $stmt = $this->db->prepare($query);
-            if (!$stmt) {
-                die("Prepare failed: " . $this->db->error);
-            }
-    
-            $stmt->bind_param("i", $categoryId);
-            $stmt->execute();
-            $result = $stmt->get_result();
+        public function search($search){
+            $query = "SELECT * FROM DauSach WHERE TenSach LIKE '%$search%'";
+            $result = $this->db->query($query);
             $products = [];
-    
+
             if ($result) {
                 while ($row = $result->fetch_assoc()) {
                     $image = new Image();
-                    $row['DgDanAnh'] = $image->getImgProduct($row['MaSach']);
+                    $row['DgDanAnh'] = $image->getImgProduct($row['MaSach'])[0];
                     $products[] = $row;
                 }
             }
-    
+
             return $products;
+        }
+
+        public function getPaginationBySearch($search, $currentpage = 1, $bookperpage = 5){
+            $query = "SELECT COUNT(*) AS total FROM DauSach WHERE TenSach LIKE '%$search%'";
+            $result = $this->db->query($query);
+            $row = $result->fetch_assoc();
+            $totalBook = $row['total'];
+            $totalPages = ceil($totalBook / $bookperpage);
+
+            return [
+                'totalPages' => $totalPages,
+                'currentPage' => $currentpage
+            ];
         }
 
     }

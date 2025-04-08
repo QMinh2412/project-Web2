@@ -66,5 +66,17 @@
                 'totalPage' => $totalPage['totalPages']
             ]);
         }
+
+        public function search(){
+            $search = $_GET['search'];
+            $productModel = new Product();
+            $productsAfterSearch = $productModel->search($search);
+            $totalPageAfterSearch = $productModel->getPaginationBySearch($search);
+            ob_start();
+            include __DIR__ . '/../views/product/product.php'; // Đảm bảo đường dẫn chính xác
+            $main_content = ob_get_clean();
+
+            include __DIR__ . '/../views/layouts/main_layout.php'; // Đảm bảo đường dẫn chính xác
+        }
     }
 ?>

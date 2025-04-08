@@ -83,6 +83,20 @@
     
     <div class ="box_product">
         <div class="book_list container">
+            <?php
+                if ( isset($productsAfterSearch) && !empty($productsAfterSearch) ) {
+                    $products = $productsAfterSearch;
+                } else {
+                    $products = $products;
+                }
+
+                if( isset($totalPageAfterSearch) && !empty($totalPageAfterSearch) ) {
+                    $totalPage = $totalPageAfterSearch;
+                } else {
+                    $totalPage = $totalPage;
+                }
+
+            ?>
             <?php foreach ($products as $product): ?>
                 <div class="book_item">
                     <a href="/project-Web2/user/index.php?page=product&action=detail&id_book=<?php echo $product['MaSach']?>">

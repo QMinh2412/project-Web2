@@ -157,6 +157,7 @@ function loadBookByCategory(current_page, category_id = null) {
       attachPaginationEvents(function (current_page) {
         loadBookByCategory(current_page, currentCategoryId);
       });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
   xhr.send();
@@ -201,6 +202,7 @@ function loadBookByAuthor(current_page, author_id = null) {
       attachPaginationEvents(function (current_page) {
         loadBookByAuthor(current_page, currentAuthorId);
       });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
   xhr.send();
@@ -244,6 +246,7 @@ function loadBookPriceRange(selectChecked, current_page) {
       attachPaginationEvents(function (current_page) {
         loadBookPriceRange(selectChecked, current_page);
       });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
   xhr.send();

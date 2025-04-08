@@ -54,6 +54,9 @@ class Route {
             case 'filter':
                 $controller->filterPriceRangeAjax();
                 break;
+            case 'search':
+                $controller->search();
+                break;
             default:
                 $controller->index();
                 break;
