@@ -8,7 +8,7 @@
             $this->db = Database::getInstance();
         }
 
-        public function getAllProducts($currentpage = 1, $bookperpage = 5) {
+        public function getAllProducts($currentpage = 1, $bookperpage = 10) {
             $offset = ($currentpage - 1) * $bookperpage;
             $limit = $bookperpage;
             
@@ -35,7 +35,7 @@
             return $products;
         }
 
-        public function getProductByCategory($category_id, $currentpage = 1, $bookperpage = 5) {
+        public function getProductByCategory($category_id, $currentpage = 1, $bookperpage = 10) {
             $offset = ($currentpage - 1) * $bookperpage;
 
             $query = "SELECT * FROM DauSach WHERE MaLoai = $category_id LIMIT $offset, $bookperpage";
@@ -53,7 +53,7 @@
             return $products;
         }
 
-        public function getProductByAuthor($author_id, $currentpage = 1, $bookperpage = 5) {
+        public function getProductByAuthor($author_id, $currentpage = 1, $bookperpage = 10) {
             $offset = ($currentpage - 1) * $bookperpage;
 
             $query = "SELECT * FROM DauSach WHERE MaTG = $author_id LIMIT $offset, $bookperpage";
@@ -71,7 +71,7 @@
             return $products;
         }
 
-        public function getPagination($currentpage = 1, $bookperpage = 5) {
+        public function getPagination($currentpage = 1, $bookperpage = 10) {
             $query = "SELECT COUNT(*) AS total FROM DauSach";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
@@ -84,7 +84,7 @@
             ];
         }
 
-        public function getPaginationByCategory($category_id, $currentpage = 1, $bookperpage = 5) {
+        public function getPaginationByCategory($category_id, $currentpage = 1, $bookperpage = 10) {
             $query = "SELECT COUNT(*) AS total FROM DauSach WHERE MaLoai = $category_id";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
@@ -97,7 +97,7 @@
             ];
         }
 
-        public function getPaginationByAuthor($author_id, $currentpage = 1, $bookperpage = 5) {
+        public function getPaginationByAuthor($author_id, $currentpage = 1, $bookperpage = 10) {
             $query = "SELECT COUNT(*) AS total FROM DauSach WHERE MaTG = $author_id";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
@@ -110,7 +110,7 @@
             ];
         }
 
-        public function filterPriceRange($price_ranges = [], $currentpage = 1, $bookperpage = 5){
+        public function filterPriceRange($price_ranges = [], $currentpage = 1, $bookperpage = 10){
             $offset = ($currentpage - 1) * $bookperpage;
             if(empty($price_ranges)){
                 $query = "SELECT * FROM DauSach LIMIT $offset, $bookperpage";
@@ -151,7 +151,7 @@
             return $products;
         }
 
-        public function getPaginationByPriceRange($price_ranges = [], $currentpage = 1, $bookperpage = 5){
+        public function getPaginationByPriceRange($price_ranges = [], $currentpage = 1, $bookperpage = 10){
             if(empty($price_ranges)){
                 $query = "SELECT COUNT(*) AS total FROM DauSach";
             } else {
@@ -185,13 +185,58 @@
         }
 
         public function getProductById($id) {
-            $query = "SELECT * FROM SanPham WHERE idSanPham = ?";
+            $query = "SELECT * FROM DauSach WHERE MaSach = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            $result = $stmt->get_result();
+
+            if ($stmt) {
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $product = $result->fetch_assoc();
+                $stmt->close();
+                return $product;
+            }
+        
+            return null;
+        }
+
+        public function createProduct($productData) {
+            $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, SoLgTon, GiaBan, NamXB, SoTrang, KichThuoc, MoTaChiTiet) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("siiiiiiiss", 
+                                $productData['TenSach'], 
+                                $productData['MaLoai'], 
+                                $productData['MaTG'], 
+                                $productData['MaNXB'], 
+                                $productData['SoLgTon'], 
+                                $productData['GiaBan'], 
+                                $productData['NamXB'], 
+                                $productData['SoTrang'], 
+                                $productData['KichThuoc'], 
+                                $productData['MoTaChiTiet']
+            );
             
-            return $result->fetch_assoc();
+            return $stmt->execute();
+        }
+
+        public function updateProduct($productId, $productData) {
+            $query = "UPDATE DauSach SET TenSach = ?, MaLoai = ?, MaTG = ?, MaNXB = ?, SoLgTon = ?, GiaBan = ?, NamXB = ?, SoTrang = ?, KichThuoc = ?, MoTaChiTiet = ? WHERE MaSach = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("siiiiiiissi", 
+                                $productData['TenSach'], 
+                                $productData['MaLoai'], 
+                                $productData['MaTG'], 
+                                $productData['MaNXB'], 
+                                $productData['SoLgTon'], 
+                                $productData['GiaBan'], 
+                                $productData['NamXB'], 
+                                $productData['SoTrang'], 
+                                $productData['KichThuoc'], 
+                                $productData['MoTaChiTiet'],
+                                $productId
+            );
+            
+            return $stmt->execute();
         }
 
         public function search($search){

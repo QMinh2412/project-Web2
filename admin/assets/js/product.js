@@ -1,47 +1,60 @@
-const product_author_input = document.querySelector('#product_author-input');
-let product_author_input_value = product_author_input.value;
+document.addEventListener('DOMContentLoaded', function () {
+    const authorSelect = document.getElementById('product-author-input');
+    const authorNameInput = document.getElementById('product-author-name-input');
+    const authorBirthdayInput = document.getElementById('product-author-birthday-input');
+    const authorGenderInput = document.getElementById('product-author-gender-input');
 
-const product_author_container = document.querySelector('#product_author_container');
-
-const product_author_suggestion_wrapper = document.querySelector('#product_author_suggestion_wrapper');
-
-async function filterAuthors() {
-    const query = product_author_input.value.trim();
-
-    if (query.length > 0) {
-        try {
-            // Fetch suggestions from the server
-            const response = await fetch(`?page=product&action=authorSuggestion&name=${encodeURIComponent(query)}`);
-            const authors = await response.json();
-
-            let suggestionList = [];
-            suggestionList = authors.filter(author => author.name.toLowerCase().includes(query.toLowerCase()));
-            showAuthors(suggestionList);
-        } catch (error) {
-            console.error('Error fetching author suggestions:', error);
+    authorSelect.addEventListener('change', function () {
+        if (this.value === '0') {
+            authorNameInput.style.display = 'block';
+            authorBirthdayInput.style.display = 'block';
+            authorGenderInput.style.display = 'block';
+        } else {
+            authorNameInput.style.display = 'none';
+            authorNameInput.value = '';
+            authorBirthdayInput.style.display = 'none';
+            authorBirthdayInput.value = '';
+            authorGenderInput.style.display = 'none';
         }
-    } else {
-        // Clear suggestions if input is empty
-        product_author_suggestion_wrapper.innerHTML = '';
-    }
-}
-
-function showAuthors(suggestionList) {
-    product_author_suggestion_wrapper.innerHTML = ''; // Clear previous suggestions
-
-    suggestionList.forEach((suggestionItem) => {
-        const li = document.createElement('div');
-        li.classList.add('suggestion-item');
-        li.textContent = suggestionItem;
-
-        // Add click event to auto-fill the input
-        li.addEventListener('click', () => {
-            product_author_input.value = suggestionItem;
-            product_author_suggestion_wrapper.innerHTML = ''; // Clear suggestions
-        });
-
-        product_author_suggestion_wrapper.appendChild(li);
     });
-}
 
-product_author_input.addEventListener('keyup', filterAuthors);
+    const publisherSelect = document.getElementById('product-publisher-input');
+    const publisherNameInput = document.getElementById('product-publisher-name-input');
+    const publisherAddressInput = document.getElementById('product-publisher-address-input');
+    const publisherEmailInput = document.getElementById('product-publisher-email-input');
+
+    publisherSelect.addEventListener('change', function () {
+        if (this.value === '0') {
+            publisherNameInput.style.display = 'block';
+            publisherAddressInput.style.display = 'block';
+            publisherEmailInput.style.display = 'block';
+        } else {
+            publisherNameInput.style.display = 'none';
+            publisherNameInput.value = '';
+            publisherAddressInput.style.display = 'none';
+            publisherAddressInput.value = '';
+            publisherEmailInput.style.display = 'none';
+            publisherEmailInput.value = '';
+        }
+    });
+
+    const providerSelect = document.getElementById('product-provider-input');
+    const providerNameInput = document.getElementById('product-provider-name-input');
+    const providerAddressInput = document.getElementById('product-provider-address-input');
+    const providerEmailInput = document.getElementById('product-provider-email-input');
+
+    providerSelect.addEventListener('change', function () {
+        if (this.value === '0') {
+            providerNameInput.style.display = 'block';
+            providerAddressInput.style.display = 'block';
+            providerEmailInput.style.display = 'block';
+        } else {
+            providerNameInput.style.display = 'none';
+            providerNameInput.value = '';
+            providerAddressInput.style.display = 'none';
+            providerAddressInput.value = '';
+            providerEmailInput.style.display = 'none';
+            providerEmailInput.value = '';
+        }
+    });
+});
