@@ -3,15 +3,14 @@
     require_once __DIR__ . '/../models/Image.php';
     class Product{
         protected $db;
-        protected $bookperpage = 10; 
 
         public function __construct() {
             $this->db = Database::getInstance();
         }
 
-        public function getAllProducts($currentpage = 1) {
-            $offset = ($currentpage - 1) * $this->bookperpage;
-            $limit = $this->bookperpage;
+        public function getAllProducts($currentpage = 1, $bookperpage = 10) {
+            $offset = ($currentpage - 1) * $bookperpage;
+            $limit = $bookperpage;
             
             // Gán giá trị trực tiếp vào truy vấn (vì LIMIT không dùng bind_param)
             $query = "SELECT * FROM DauSach LIMIT $offset, $limit";
@@ -36,10 +35,10 @@
             return $products;
         }
 
-        public function getProductByCategory($category_id, $currentpage = 1) {
-            $offset = ($currentpage - 1) * $this->bookperpage;
+        public function getProductByCategory($category_id, $currentpage = 1, $bookperpage = 10) {
+            $offset = ($currentpage - 1) * $bookperpage;
 
-            $query = "SELECT * FROM DauSach WHERE MaLoai = $category_id LIMIT $offset, $this->bookperpage";
+            $query = "SELECT * FROM DauSach WHERE MaLoai = $category_id LIMIT $offset, $bookperpage";
             $result = $this->db->query($query);
             $products = [];
 
@@ -54,10 +53,10 @@
             return $products;
         }
 
-        public function getProductByAuthor($author_id, $currentpage = 1) {
-            $offset = ($currentpage - 1) * $this->bookperpage;
+        public function getProductByAuthor($author_id, $currentpage = 1, $bookperpage = 10) {
+            $offset = ($currentpage - 1) * $bookperpage;
 
-            $query = "SELECT * FROM DauSach WHERE MaTG = $author_id LIMIT $offset, $this->bookperpage";
+            $query = "SELECT * FROM DauSach WHERE MaTG = $author_id LIMIT $offset, $bookperpage";
             $result = $this->db->query($query);
             $products = [];
 
@@ -72,12 +71,12 @@
             return $products;
         }
 
-        public function getPagination($currentpage = 1) {
+        public function getPagination($currentpage = 1, $bookperpage = 10) {
             $query = "SELECT COUNT(*) AS total FROM DauSach";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
             $totalBook = $row['total'];
-            $totalPages = ceil($totalBook / $this->bookperpage);
+            $totalPages = ceil($totalBook / $bookperpage);
             
             return [
             'totalPages' => $totalPages,
@@ -85,12 +84,12 @@
             ];
         }
 
-        public function getPaginationByCategory($category_id, $currentpage = 1) {
+        public function getPaginationByCategory($category_id, $currentpage = 1, $bookperpage = 10) {
             $query = "SELECT COUNT(*) AS total FROM DauSach WHERE MaLoai = $category_id";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
             $totalBook = $row['total'];
-            $totalPages = ceil($totalBook / $this->bookperpage);
+            $totalPages = ceil($totalBook / $bookperpage);
 
             return [
             'totalPages' => $totalPages,
@@ -98,12 +97,12 @@
             ];
         }
 
-        public function getPaginationByAuthor($author_id, $currentpage = 1) {
+        public function getPaginationByAuthor($author_id, $currentpage = 1, $bookperpage = 10) {
             $query = "SELECT COUNT(*) AS total FROM DauSach WHERE MaTG = $author_id";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
             $totalBook = $row['total'];
-            $totalPages = ceil($totalBook / $this->bookperpage);
+            $totalPages = ceil($totalBook / $bookperpage);
 
             return [
             'totalPages' => $totalPages,
@@ -111,10 +110,10 @@
             ];
         }
 
-        public function filterPriceRange($price_ranges = [], $currentpage = 1){
-            $offset = ($currentpage - 1) * $this->bookperpage;
+        public function filterPriceRange($price_ranges = [], $currentpage = 1, $bookperpage = 10){
+            $offset = ($currentpage - 1) * $bookperpage;
             if(empty($price_ranges)){
-                $query = "SELECT * FROM DauSach LIMIT $offset, $this->bookperpage";
+                $query = "SELECT * FROM DauSach LIMIT $offset, $bookperpage";
             } else {
                 $condition = [];
                 foreach ($price_ranges as $range){
@@ -132,7 +131,7 @@
                     $condition[] = "(GiaBan >= $min AND GiaBan <= $max)";
                 }
                 $where_claude = implode(' OR ', $condition); 
-                $query = "SELECT * FROM DauSach WHERE $where_claude LIMIT $offset, $this->bookperpage";
+                $query = "SELECT * FROM DauSach WHERE $where_claude LIMIT $offset, $bookperpage";
             }
             $result = $this->db->query($query);
             $products = [];
@@ -152,7 +151,7 @@
             return $products;
         }
 
-        public function getPaginationByPriceRange($price_ranges = [], $currentpage = 1){
+        public function getPaginationByPriceRange($price_ranges = [], $currentpage = 1, $bookperpage = 10){
             if(empty($price_ranges)){
                 $query = "SELECT COUNT(*) AS total FROM DauSach";
             } else {
@@ -177,7 +176,7 @@
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
             $totalBook = $row['total'];
-            $totalPages = ceil($totalBook / $this->bookperpage);
+            $totalPages = ceil($totalBook / $bookperpage);
 
             return [
                 'totalPages' => $totalPages,
@@ -186,13 +185,58 @@
         }
 
         public function getProductById($id) {
-            $query = "SELECT * FROM SanPham WHERE idSanPham = ?";
+            $query = "SELECT * FROM DauSach WHERE MaSach = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            $result = $stmt->get_result();
+
+            if ($stmt) {
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $product = $result->fetch_assoc();
+                $stmt->close();
+                return $product;
+            }
+        
+            return null;
+        }
+
+        public function createProduct($productData) {
+            $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, SoLgTon, GiaBan, NamXB, SoTrang, KichThuoc, MoTaChiTiet) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("siiiiiiiss", 
+                                $productData['TenSach'], 
+                                $productData['MaLoai'], 
+                                $productData['MaTG'], 
+                                $productData['MaNXB'], 
+                                $productData['SoLgTon'], 
+                                $productData['GiaBan'], 
+                                $productData['NamXB'], 
+                                $productData['SoTrang'], 
+                                $productData['KichThuoc'], 
+                                $productData['MoTaChiTiet']
+            );
             
-            return $result->fetch_assoc();
+            return $stmt->execute();
+        }
+
+        public function updateProduct($productId, $productData) {
+            $query = "UPDATE DauSach SET TenSach = ?, MaLoai = ?, MaTG = ?, MaNXB = ?, SoLgTon = ?, GiaBan = ?, NamXB = ?, SoTrang = ?, KichThuoc = ?, MoTaChiTiet = ? WHERE MaSach = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("siiiiiiissi", 
+                                $productData['TenSach'], 
+                                $productData['MaLoai'], 
+                                $productData['MaTG'], 
+                                $productData['MaNXB'], 
+                                $productData['SoLgTon'], 
+                                $productData['GiaBan'], 
+                                $productData['NamXB'], 
+                                $productData['SoTrang'], 
+                                $productData['KichThuoc'], 
+                                $productData['MoTaChiTiet'],
+                                $productId
+            );
+            
+            return $stmt->execute();
         }
     }
 ?>

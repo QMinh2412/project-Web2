@@ -10,7 +10,7 @@
         <div id="logo_header"><img src="/project-Web2/common/images/logo3.png" alt="Logo"></div>
         <div class="search_box">
             <form>
-                <input type="text" name="search_box" id="search_box" placeholder="TÌm kiếm" autocomplete="off">
+                <input type="text" name="search" id="search_box" placeholder="Nhập tên sách bạn cần tìm" autocomplete="off">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

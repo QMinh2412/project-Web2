@@ -41,5 +41,19 @@
         
             return []; // Return an empty array if the statement couldn't be prepared
         }
+
+        public function createAuthor($authorData) {
+            $query = "INSERT INTO TacGia (TenTG, NgSinhTG, GioiTinhTG) VALUES (?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+        
+            if ($stmt) {
+                $stmt->bind_param("sdi", $authorData['TenTG'], $authorData['NgSinhTG'], $authorData['GioiTinhTG']);
+                if ($stmt->execute()) {
+                    return $this->db->insert_id; 
+                }
+            }
+        
+            return false; 
+        }
     }
 ?>

@@ -1,4 +1,4 @@
-theloaicreate database webbookstore;
+create database webbookstore;
 drop database webbookstore;
 use webbookstore;
 
@@ -133,6 +133,9 @@ create table `HinhAnh` (
     `MaND` int,
     `MaSach` int
 );
+ALTER TABLE `HinhAnh`
+MODIFY COLUMN `DgDanAnh` LONGTEXT;
+drop table HinhAnh;
 
 
 -- KHOAI CHINH --
@@ -833,5 +836,5 @@ values ('/project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - T�
        ('/project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32);
        
 update `hinhanh`
-set `dgdananh` = 'project-Web2/common/images/defaultuser.png'
+set `dgdananh` = '/project-Web2/common/images/defaultuser.png'
 where `mand` > 0 and `masach` is null;

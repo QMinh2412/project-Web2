@@ -3,6 +3,7 @@
     require_once __DIR__ . '/../../common/models/Product.php'; 
     require_once __DIR__ . '/../../common/models/Author.php'; 
     class productController {
+        protected $bookperpage = 10;
         public function index() {
             // lấy thử loại sản phẩm từ database
             $categoryModel = new Category();
@@ -22,8 +23,8 @@
         public function pagingHandleAjax(){
             $current_page = $_GET['current_page'];
             $productModel = new Product();
-            $products = $productModel->getAllProducts($current_page);
-            $totalPage = $productModel->getPagination($current_page);
+            $products = $productModel->getAllProducts($current_page, $this->bookperpage);
+            $totalPage = $productModel->getPagination($current_page, $this->bookperpage);
             echo json_encode([
                 'products' => $products,
                 'totalPage' => $totalPage['totalPages']
@@ -34,8 +35,8 @@
             $category_id = $_GET['category_id'];
             $current_page = $_GET['current_page'];
             $productModel = new Product();
-            $products = $productModel->getProductByCategory($category_id, $current_page);
-            $totalPage = $productModel->getPaginationByCategory($category_id, $current_page);
+            $products = $productModel->getProductByCategory($category_id, $current_page, $this->bookperpage);
+            $totalPage = $productModel->getPaginationByCategory($category_id, $current_page, $this->bookperpage);
             echo json_encode([
             'products' => $products,
             'totalPage' => $totalPage['totalPages']
@@ -46,8 +47,8 @@
             $author_id = $_GET['author_id'];
             $current_page = $_GET['current_page'];
             $productModel = new Product();
-            $products = $productModel->getProductByAuthor($author_id, $current_page);
-            $totalPage = $productModel->getPaginationByAuthor($author_id, $current_page);
+            $products = $productModel->getProductByAuthor($author_id, $current_page, $this->bookperpage);
+            $totalPage = $productModel->getPaginationByAuthor($author_id, $current_page, $this->bookperpage);
             echo json_encode([
             'products' => $products,
             'totalPage' => $totalPage['totalPages']
@@ -58,8 +59,8 @@
             $priceRange = isset($_GET['price_range']) && $_GET['price_range'] !== "" ? explode(',', $_GET['price_range']) : [];
             $current_page = $_GET['current_page'];
             $productModel = new Product();
-            $products = $productModel->filterPriceRange($priceRange, $current_page);
-            $totalPage = $productModel->getPaginationByPriceRange($priceRange, $current_page);
+            $products = $productModel->filterPriceRange($priceRange, $current_page, $this->bookperpage);
+            $totalPage = $productModel->getPaginationByPriceRange($priceRange, $current_page, $this->bookperpage);
             echo json_encode([
                 'products' => $products,
                 'totalPage' => $totalPage['totalPages']
