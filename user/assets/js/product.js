@@ -34,7 +34,7 @@ function handleData(data) {
   for (let i = 0; i < data.length; i++) {
     html += `
       <div class="book_item">
-        <a href="/project-Web2/user/index.php?page=detail&id_book=${data[i]["MaSach"]}">
+        <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=${data[i]["MaSach"]}">
           <div class="img_book">
             <img src="${data[i]["DgDanAnh"]}" alt="${data[i]["TenSach"]}">
           </div>

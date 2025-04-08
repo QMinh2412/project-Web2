@@ -57,6 +57,9 @@ class Route {
             case 'search':
                 $controller->search();
                 break;
+            // case 'show_detail':
+            //     $controller->showDetail();
+            //     break;
             default:
                 $controller->index();
                 break;

@@ -78,5 +78,16 @@
 
             include __DIR__ . '/../views/layouts/main_layout.php'; // Đảm bảo đường dẫn chính xác
         }
+
+        // public function showDetail(){
+        //     $id_book = $_GET['product_id'];
+        //     $productModel = new Product();
+        //     $product = $productModel->getProductById($id_book);
+        //     ob_start();
+        //     include __DIR__ . '/../views/product/product_detail.php'; // Đảm bảo đường dẫn chính xác
+        //     $main_content = ob_get_clean();
+
+        //     include __DIR__ . '/../views/layouts/main_layout.php'; // Đảm bảo đường dẫn chính xác
+        // }
     }
 ?>
