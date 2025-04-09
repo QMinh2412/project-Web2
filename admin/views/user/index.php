@@ -21,7 +21,9 @@
                     <td class="admin-list-body-content-other" id="user-name"><?= htmlspecialchars($user['TenND']) ?></td>
                     <td class="admin-list-body-content-other" id="user-role"><?= htmlspecialchars($user['EmailND']) ?></td>
                     <td class="admin-list-body-content-other" id="user-status">
-                        <?= ($user['LoaiTK'] == 1) ? 'Admin' : (($user['LoaiTK'] == 2) ? 'Editor' : 'User') ?>
+                    <?= ($user['LoaiTK'] == 1) ? 'Quản lý' : 
+                        (($user['LoaiTK'] == 2) ? 'Nhân viên' : 
+                        (($user['LoaiTK'] == 3) ? 'Admin' : 'Người dùng')) ?>
                     </td>
                     <td class="admin-list-body-content-other" id="user-status">
                         <?= ($user['TinhTrang'] == 1) ? 'Active' : 'Disabled' ?>
@@ -29,7 +31,15 @@
                     <td class="admin-list-body-content-other" id="user-action">
                         <button class="btn-user btn-detail" onclick="location.href='?page=user&action=view&id=<?= $user['MaND'] ?>'"><i class='bx bxs-detail'></i>Detail</button>
                         <button class="btn-user btn-edit" onclick="location.href='?page=user&action=edit&id=<?= $user['MaND'] ?>'"><i class='bx bx-edit'></i>Edit</button>
-                        <button class="btn-user btn-ban" onclick="location.href='?page=user&action=delete&id=<?= $user['MaND'] ?>'"><i class='bx bxs-lock-alt' ></i>Ban</button>
+                        <?php if ($user['TinhTrang'] == 0): ?>
+                        <button class="btn-user btn-unban" onclick="if(confirm('Are you sure you want to unban this user?')) location.href='?page=user&action=lock&id=<?= $user['MaND'] ?>'">
+                            <i class='bx bxs-lock-open-alt'></i>Unban
+                        </button>
+                    <?php else: ?>
+                        <button class="btn-user btn-ban" onclick="if(confirm('Are you sure you want to ban this user?')) location.href='?page=user&action=lock&id=<?= $user['MaND'] ?>'">
+                            <i class='bx bxs-lock-alt'></i>Ban
+                        </button>
+                    <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
