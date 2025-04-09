@@ -57,4 +57,29 @@ document.addEventListener('DOMContentLoaded', function () {
             providerEmailInput.value = '';
         }
     });
+
+    const ImageInput = document.getElementById('product-image-input');
+    const ImagePreview = document.getElementById('product-image-preview');
+
+    ImageInput.addEventListener('change', function (event) {
+        ImagePreview.innerHTML = '';
+
+        const files = event.target.files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '200px';
+                    img.style.maxHeight = '200px';
+                    img.style.margin = '5px';
+                    ImagePreview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+    
 });

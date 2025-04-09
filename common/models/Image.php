@@ -36,5 +36,13 @@
             $stmt->close();
             return $images;
         }
+
+        public function addImageToProduct($productId, $imagePath) {
+            $query = "INSERT INTO HinhAnh (MaSach, DgDanAnh) VALUES (?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("is", $productId, $imagePath);
+            $stmt->execute();
+            $stmt->close();
+        }
     }
 ?>

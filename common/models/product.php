@@ -8,7 +8,7 @@
             $this->db = Database::getInstance();
         }
 
-        public function getAllProducts($currentpage = 1, $bookperpage = 10) {
+        public function getAllProducts($currentpage, $bookperpage) {
             $offset = ($currentpage - 1) * $bookperpage;
             $limit = $bookperpage;
             
@@ -71,7 +71,7 @@
             return $products;
         }
 
-        public function getPagination($currentpage = 1, $bookperpage = 10) {
+        public function getPagination($currentpage, $bookperpage) {
             $query = "SELECT COUNT(*) AS total FROM DauSach";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
@@ -216,7 +216,7 @@
                                 $productData['MoTaChiTiet']
             );
             
-            return $stmt->execute();
+            return array($stmt->execute(), $this->db->insert_id);
         }
 
         public function updateProduct($productId, $productData) {
@@ -235,6 +235,14 @@
                                 $productData['MoTaChiTiet'],
                                 $productId
             );
+            
+            return $stmt->execute();
+        }
+
+        public function updateProductStatus($productId, $productStatus) {
+            $query = "UPDATE DauSach SET TinhTrang = ? WHERE MaSach = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("ii", $productStatus, $productId);
             
             return $stmt->execute();
         }

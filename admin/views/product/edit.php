@@ -1,12 +1,14 @@
+<script src="/project_Web2/admin/assets/js/product.js"></script>
+
 <div class="admin-wrapper">
     <div class="admin-header" id="product-header">
         <h2>Sửa sản phẩm</h2>
         <form id="create-product-form" method="POST" action="?page=product&action=edit&id=<?= htmlspecialchars($product['MaSach']) ?>">
-        <label class="product-create-label" for="product-name">Tên sản phẩm:</label><br>
+            <label class="product-create-label" for="product-name">Tên sản phẩm:</label><br>
             <input class="product-create-text" type="text" name="product_name" id="product-name-input" placeholder="Tên sản phẩm" value="<?= htmlspecialchars($product['TenSach']) ?>" required>
 
             <label class="product-create-label" for="product-category">Thể loại:</label><br>
-            <select class="product-create-dropdown" name="product_category" id="product-categorbr>y-input">
+            <select class="product-create-dropdown" name="product_category" id="product-category-input">
                 <?php
                     foreach ($categories as $category): 
                         $selected = ($category['MaLoai'] == $product['MaLoai']) ? 'selected' : '';
@@ -92,7 +94,7 @@
             <input class="product-create-text" type="file" name="product_image" id="product-image-input" accept="image/*">
         
             <button type="submit" class="product-create-Btns" id="acceptEditProductBtn">Áp dụng thay đổi</button>
-            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index'">Hủy</button>
+            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">Hủy</button>
 
         </form>
     </div>
