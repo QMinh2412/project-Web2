@@ -19,7 +19,15 @@
       <img src="../common/images/logo3.png" alt="logo">
     </div>
     <div id="admin-logo">
-      <img src="../common/images/defaultuser.png">
+      <img src="../common/images/defaultuser.png" alt="Admin Logo">
+    </div>
+    <div id="admin-name-container">
+      <span id="admin-name">
+        <?php 
+        // Kiểm tra nếu TenTK tồn tại trong session
+        echo isset($_SESSION['TenTK']) ? htmlspecialchars($_SESSION['TenTK']) : 'Tên không xác định'; 
+        ?>
+      </span>
     </div>
     <div class="menu-down" id="menu-down">
       <ul>

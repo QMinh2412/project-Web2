@@ -21,7 +21,7 @@
                         <button class="btn btn-primary" id="editCategoryBtn" onclick="location.href='?page=category&action=edit&id=<?= htmlspecialchars($category['MaLoai']) ?>'">
                             <i class='bx bx-edit'></i>
                             Sửa</button>
-                        <button class="btn btn-danger" id="deleteCategoryBtn" onclick="if(confirm('Bạn có chắc chắn muốn xóa danh mục này?')) location.href='?page=category&action=delete&id=<?= htmlspecialchars($category['MaLoai']) ?>'">
+                        <button class="btn btn-danger" id="deleteCategoryBtn" onclick="if(confirm('Bạn có chắc chắn muốn xóa thể loại <?= htmlspecialchars($category['TenLoai'])?>?')) location.href='?page=category&action=delete&id=<?= htmlspecialchars($category['MaLoai']) ?>'">
                             <i class='bx bx-trash' ></i>
                             Xóa</button>
                     </td>

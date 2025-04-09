@@ -30,10 +30,26 @@
     transform: scale(1.1);
 }
 
+#admin-name-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 100px; 
+    height: 50px;
+    line-height: 50px;
+}
+
+#admin-name {
+    font-size: 20px;
+    color: black;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
 #menu-down {
     border: solid 1px black;
     border-radius: 10%;
-    background-color: gray;
+    background-color: rgb(179, 179, 179);
     display: none;
     position: absolute;
     width: 15%;
@@ -72,4 +88,5 @@
 
 #menu-down ul, li{
     list-style-type: none;
+    margin-right: 10px;
 }

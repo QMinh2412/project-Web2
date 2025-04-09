@@ -1,56 +1,29 @@
-document.getElementById('loginForm').addEventListener('submit', async function (event) {
-    event.preventDefault();
+$(document).ready(function () {
+    $('#loginForm').on('submit', function (e) {
+        e.preventDefault(); // Ngăn form gửi yêu cầu tải lại trang
 
-    // Lấy giá trị từ các trường input
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+        // Lấy dữ liệu từ form
+        const TenTK = $('#TenTK').val();
+        const MKTK = $('#MKTK').val();
 
-    // Xóa thông báo lỗi cũ
-    document.querySelector('.err_email').textContent = '';
-    document.querySelector('.err_password').textContent = '';
-
-    // Kiểm tra dữ liệu đầu vào
-    let hasError = false;
-    if (!email) {
-        document.querySelector('.err_email').textContent = 'Vui lòng nhập email.';
-        hasError = true;
-    }
-    if (!password) {
-        document.querySelector('.err_password').textContent = 'Vui lòng nhập mật khẩu.';
-        hasError = true;
-    }
-
-    if (hasError) return;
-
-    try {
-        // Gửi yêu cầu đăng nhập đến server
-        const response = await fetch('../../api/login.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
+        // Gửi yêu cầu AJAX
+        $.ajax({
+            url: '/project-Web2/admin/controllers/loginController.php?action=login',
+            type: 'POST',
+            data: { TenTK: TenTK, MKTK: MKTK },
+            dataType: 'json',
+            success: function (response) {
+                if (response.status === 'success') {
+                    // Đăng nhập thành công, chuyển hướng đến dashboard
+                    window.location.href = '/project-Web2/admin/index.php?page=dashboard&action=index';
+                } else {
+                    // Hiển thị thông báo lỗi
+                    $('#message').text(response.message);
+                }
             },
-            body: JSON.stringify({ email, password }),
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-            // Đăng nhập thành công, chuyển hướng đến trang chính
-            window.location.href = '../views/layouts/main_layout.php';
-        } else {
-            // Hiển thị lỗi từ server
-            if (result.errorField === 'email') {
-                document.querySelector('.err_email').textContent = result.message;
-            } else if (result.errorField === 'password') {
-                document.querySelector('.err_password').textContent = result.message;
-            } else {
-                alert(result.message || 'Đã xảy ra lỗi, vui lòng thử lại.');
+            error: function () {
+                $('#message').text('Đã xảy ra lỗi, vui lòng thử lại!');
             }
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Không thể kết nối đến server. Vui lòng thử lại sau.');
-    }
+        });
+    });
 });
-
- 
