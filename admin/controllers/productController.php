@@ -155,13 +155,16 @@
                 $array = $productModel->createProduct($productData);
                 $isAdded = $array[0];
                 $createdProductId = $array[1];
-
+                
                 $categoryName = $categoryMap[$categoryId];
-                $targetDir = __DIR__ 
-                            . '/project-Web2/common/images/' 
-                            . $categoryName 
-                            . '/' 
-                            . $productName;
+                $categoryName = preg_replace('/[^a-zA-Z0-9_-]/', '', $categoryName);
+                $productName = preg_replace('/[^a-zA-Z0-9_-]/', '', $productName);
+                // $targetDir = __DIR__ 
+                //             . '/project-Web2/common/images/' 
+                //             . $categoryName 
+                //             . '/' 
+                //             . $productName;
+                $targetDir = __DIR__ . DIRECTORY_SEPARATOR . 'project-Web2' . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $categoryName . DIRECTORY_SEPARATOR . $productName;
                 if (!is_dir($targetDir)) {
                     mkdir($targetDir, 0777, true);
                 }

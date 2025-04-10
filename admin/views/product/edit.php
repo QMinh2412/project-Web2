@@ -1,4 +1,4 @@
-<script src="/project_Web2/admin/assets/js/product.js"></script>
+<script src="/project-Web2/admin/assets/js/product.js"></script>
 
 <div class="admin-wrapper">
     <div class="admin-header" id="product-header">
