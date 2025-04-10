@@ -32,11 +32,11 @@
                         <button class="btn-user btn-detail" onclick="location.href='?page=user&action=view&id=<?= $user['MaND'] ?>'"><i class='bx bxs-detail'></i>Detail</button>
                         <button class="btn-user btn-edit" onclick="location.href='?page=user&action=edit&id=<?= $user['MaND'] ?>'"><i class='bx bx-edit'></i>Edit</button>
                         <?php if ($user['TinhTrang'] == 0): ?>
-                        <button class="btn-user btn-unban" onclick="if(confirm('Are you sure you want to unban this user?')) location.href='?page=user&action=lock&id=<?= $user['MaND'] ?>'">
+                        <button class="btn-user btn-unban" onclick="if(confirm('Mở khóa người dùng này?')) location.href='?page=user&action=lock&id=<?= $user['MaND'] ?>'">
                             <i class='bx bxs-lock-open-alt'></i>Unban
                         </button>
                     <?php else: ?>
-                        <button class="btn-user btn-ban" onclick="if(confirm('Are you sure you want to ban this user?')) location.href='?page=user&action=lock&id=<?= $user['MaND'] ?>'">
+                        <button class="btn-user btn-ban" onclick="if(confirm('Khóa người dùng này?')) location.href='?page=user&action=lock&id=<?= $user['MaND'] ?>'">
                             <i class='bx bxs-lock-alt'></i>Ban
                         </button>
                     <?php endif; ?>
