@@ -60,11 +60,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const ImageInput = document.getElementById('product-image-input');
     const ImagePreview = document.getElementById('product-image-preview');
+    const limitImages = 5;
 
     ImageInput.addEventListener('change', function (event) {
+        
         ImagePreview.innerHTML = '';
 
         const files = event.target.files;
+
+        if (files.length > limitImages) {
+            alert("Bạn chỉ được phép tải lên tối đa 5 ảnh!");
+            ImageInput.value = '';
+            return;
+        }
+
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             if (file && file.type.startsWith('image/')) {

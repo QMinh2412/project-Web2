@@ -3,7 +3,7 @@
 <div class="admin-wrapper">
     <div class="admin-header" id="product-header">
         <h2>Sửa sản phẩm</h2>
-        <form id="create-product-form" method="POST" action="?page=product&action=edit&id=<?= htmlspecialchars($product['MaSach']) ?>">
+        <form id="create-product-form" method="POST" action="?page=product&action=edit&id=<?= htmlspecialchars($product['MaSach']) ?>" enctype="multipart/form-data">
             <label class="product-create-label" for="product-name">Tên sản phẩm:</label><br>
             <input class="product-create-text" type="text" name="product_name" id="product-name-input" placeholder="Tên sản phẩm" value="<?= htmlspecialchars($product['TenSach']) ?>" required>
 
@@ -91,7 +91,17 @@
             <textarea name="product_description" id="product-description-input" placeholder="Mô tả sản phẩm"><?= htmlspecialchars($product['MoTaChiTiet']) ?></textarea>
 
             <label class="product-create-label" for="product-image">Hình ảnh:</label><br>
-            <input class="product-create-text" type="file" name="product_image" id="product-image-input" accept="image/*">
+            <input class="product-create-text" type="file" name="product_image[]" id="product-image-input" accept="image/*" multiple>
+            <div id="edit-product-image-preview">
+                <?php foreach ($oldImages as $img): ?>
+                    <div class="edit-product-image-wrapper">
+                        <input type="checkbox" name="delete_images[]" value="<?= $img['MaHA'] ?>" class="edit-product-deleteBtn">Xóa 
+                        <img src="<?= $img['DgDanAnh'] ?>" class="product-preview-img">
+                        <div class="product-image-url-edit"><?= $img['DgDanAnh'] ?></div>
+                    </div>
+                <?php endforeach; ?>
+                <div id="product-image-preview" style="margin-top: 5px;"></div>
+            </div>
         
             <button type="submit" class="product-create-Btns" id="acceptEditProductBtn">Áp dụng thay đổi</button>
             <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">Hủy</button>

@@ -303,6 +303,36 @@
     background-color: #2a7a9b;
 }
 
+#edit-product-image-preview {
+    margin: 10px;
+}
+
+.edit-product-deleteBtn {
+    transform: scale(1.2);
+}
+
+.edit-product-image-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.product-preview-img {
+    max-width: 100px;
+    max-height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.product-image-url-edit {
+    flex-grow: 1;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+    color: #333;
+}
+
+
 /* Product detail */
 #product-header {
     position: relative;

@@ -52,7 +52,7 @@ $publisher = $publisherMap[$product['MaNXB']] ?? 'N/A';
             <label class="product-create-label" for="product-image">Hình ảnh:</label><br>
             <div id="product-image-preview">
                 <?php foreach ($images as $src): ?>
-                    <img src="<?= htmlspecialchars($src, ENT_QUOTES, 'UTF-8') ?>" class="product-image-img">
+                    <img src="<?= htmlspecialchars($src['DgDanAnh'], ENT_QUOTES, 'UTF-8') ?>" class="product-image-img">
                 <?php endforeach; ?>
             </div>
 

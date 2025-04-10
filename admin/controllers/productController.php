@@ -157,14 +157,8 @@
                 $createdProductId = $array[1];
                 
                 $categoryName = $categoryMap[$categoryId];
-                $categoryName = preg_replace('/[^a-zA-Z0-9_-]/', '', $categoryName);
-                $productName = preg_replace('/[^a-zA-Z0-9_-]/', '', $productName);
-                // $targetDir = __DIR__ 
-                //             . '/project-Web2/common/images/' 
-                //             . $categoryName 
-                //             . '/' 
-                //             . $productName;
-                $targetDir = __DIR__ . DIRECTORY_SEPARATOR . 'project-Web2' . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $categoryName . DIRECTORY_SEPARATOR . $productName;
+                $projectRoot = realpath(__DIR__ . '/../../'); 
+                $targetDir   = $projectRoot . '/common/images/' . $categoryName . '/' . $productName;
                 if (!is_dir($targetDir)) {
                     mkdir($targetDir, 0777, true);
                 }
@@ -175,7 +169,7 @@
                         $fileName = $productName . '_' . $counter . '.' . $ext;
                         $targetFile = $targetDir . '/' . $fileName;
                         if (move_uploaded_file($tmpName, $targetFile)) {
-                            $relativePath = "/project-Web2/common/assets/images/$categoryName/$productName/$fileName";
+                            $relativePath = "/project-Web2/common/images/$categoryName/$productName/$fileName";
                             $imageModel->addImageToProduct($createdProductId, $relativePath);
                             $counter++;
                         }
@@ -212,6 +206,10 @@
 
             $categoryModel = new Category();
             $categories = $categoryModel->getAllCategories(); 
+            $categoryMap = [];
+            foreach ($categories as $cat) {
+                $categoryMap[$cat['MaLoai']] = $cat['TenLoai'];
+            } 
 
             $authorModel = new Author();
             $authors = $authorModel->getAllAuthors(); 
@@ -221,6 +219,9 @@
 
             $providerModel = new Provider();
             $providers = $providerModel->getAllProviders();
+
+            $imageModel = new Image();
+            $oldImages = $imageModel->getImgProduct($productId);
 
             if ($productId) {
                 $product = $productModel->getProductById($productId);
@@ -236,7 +237,8 @@
                     'authors' => $authors,
                     'publishers' => $publishers,
                     'providers' => $providers,
-                    'currentPage' => $currentPage
+                    'currentPage' => $currentPage,
+                    'oldImages' => $oldImages
                 ]);
 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -314,6 +316,41 @@
                         ];
     
                         $providerId = $providerModel->createProvider($providerData);
+                    }
+
+                    if (!empty($_POST['delete_images'])) {
+                        foreach ($_POST['delete_images'] as $deleteImageId) {
+                            $img = $imageModel->getImageById($deleteImageId);
+                            $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $img['DgDanAnh'];
+                            if (file_exists($absolutePath)) {
+                                unlink($absolutePath);
+                            }
+                            $imageModel->deleteImageById($deleteImageId);
+                        }
+                    }
+
+                    $categoryName = $categoryMap[$categoryId];
+                    $projectRoot = realpath(__DIR__ . '/../../'); 
+                    $targetDir   = $projectRoot . '/common/images/' . $categoryName . '/' . $productName;
+                    if (!is_dir($targetDir)) {
+                        mkdir($targetDir, 0777, true);
+                    }
+                    foreach ($_FILES['product_image']['tmp_name'] as $index => $tmpName) {
+                        if ($_FILES['product_image']['error'][$index] === UPLOAD_ERR_OK) {
+                            $uniqueId = uniqid();
+                            $ext = pathinfo($_FILES['product_image']['name'][$index], PATHINFO_EXTENSION);
+                            $fileName = $productName . '_' . $uniqueId . '.' . $ext;
+                            $targetFile = $targetDir . '/' . $fileName;
+                            if (move_uploaded_file($tmpName, $targetFile)) {
+                                $relativePath = "/project-Web2/common/images/$categoryName/$productName/$fileName";
+                                $imageModel->addImageToProduct($productId, $relativePath);
+                            }
+                            else {
+                                echo "<script>
+                                    alert('Lỗi khi tải lên hình ảnh!');
+                                </script>";
+                            }
+                        }
                     }
 
                     $productData = [
