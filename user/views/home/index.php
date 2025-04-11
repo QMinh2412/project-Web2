@@ -43,7 +43,7 @@
         <!-- Danh sách sách -->
         <div class="books-list">
             <?php foreach ($products1 as $product): ?>
-                <a href="/project-Web2/user/index.php?page=detail&action=detail_product&product_id=<?php echo htmlspecialchars($product['MaSach']); ?>">
+                <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo htmlspecialchars($product['MaSach']); ?>">
                     <div class="book-item">
                         <!-- Hình ảnh sách -->
                         <img src="<?php echo htmlspecialchars($product['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
@@ -66,7 +66,7 @@
         <!-- Danh sách sách -->
         <div class="books-list">
             <?php foreach ($products2 as $product): ?>
-                <a href="/project-Web2/user/index.php?page=detail&action=detail_product&product_id=<?php echo htmlspecialchars($product['MaSach']); ?>">
+                <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo htmlspecialchars($product['MaSach']); ?>">
                     <div class="book-item">
                         <!-- Hình ảnh sách -->
                         <img src="<?php echo htmlspecialchars($product['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />

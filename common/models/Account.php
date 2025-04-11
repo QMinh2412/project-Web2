@@ -10,9 +10,10 @@ class Account {
     }
 
     public function getById($id) {
-        $result = $this->db->query("SELECT * FROM taikhoan WHERE MaND = $id");
+        $result = $this->db->query("SELECT * FROM taikhoan WHERE MaTK = $id");
         return $result->fetch_assoc();
     }
+
     public function getAccountIdByEmail($email) {
         $query = "SELECT MaTK FROM TaiKhoan WHERE MaND = (SELECT MaND FROM NgDung WHERE EmailND = '$email')";
         $result = $this->db->query($query);
@@ -25,7 +26,7 @@ class Account {
     }
 
     public function getNameById($id) {
-        $result = $this->db->query("SELECT TenTK FROM taikhoan WHERE MaND = $id");
+        $result = $this->db->query("SELECT TenTK FROM taikhoan WHERE MaTK = $id");
         if ($result && $row = $result->fetch_assoc()) {
             return $row['TenTK'];
         }

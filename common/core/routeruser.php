@@ -27,6 +27,10 @@ class Route {
                 $controller = new ProductController();
                 break;
 
+            case 'detail':
+                $controller = new ProductController();
+                break;
+
             default:
                 $controller = new HomeController();
                 break;
@@ -57,9 +61,15 @@ class Route {
             case 'search':
                 $controller->search();
                 break;
-            // case 'show_detail':
-            //     $controller->showDetail();
-            //     break;
+            case 'show_detail':
+                $controller->showDetail();
+                break;
+            case 'writeComment':
+                $controller->writeComment();
+                break;
+            case 'replyComment':
+                $controller->replyComment();
+                break;
             default:
                 $controller->index();
                 break;

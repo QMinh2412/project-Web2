@@ -21,6 +21,7 @@
   width: 25%;
   background-color: #fff;
   padding: 5px;
+  overflow: hidden;
 }
 
 .box_detail .book_image .main_image {
@@ -46,6 +47,11 @@
   height: 70px;
   width: calc(100% - 20px);
   overflow: hidden;
+  transition: transform 1s;
+}
+
+.book_image .detail_image.animate {
+  transition: transform 0.5s ease-in-out;
 }
 
 .book_image .detail_image div {
@@ -58,8 +64,9 @@
   align-items: center;
   cursor: pointer;
 }
+
 .book_image .detail_image div:hover {
-  box-shadow: 1px 1px 15px #c1430c;
+  box-shadow: 1px 1px 5px #c1430c;
 }
 
 .book_image .detail_image div img {
@@ -68,7 +75,7 @@
 }
 
 .box_detail .main_detail {
-  width: calc(50% - 20px);
+  width: calc(45% - 20px);
   background-color: white;
   margin-left: 20px;
   padding: 20px 10px;
@@ -165,7 +172,7 @@
 
 .box_detail .more_detail {
   margin-left: 20px;
-  width: calc(25% - 20px);
+  width: calc(30% - 20px);
   background-color: #fff;
   padding: 20px 10px;
 }
@@ -257,11 +264,15 @@
 
 .box_orther_book .orther_books a {
   min-width: calc(20% - 20px);
+  max-width: calc(20% - 20px);
+  min-height: 330px;
+  max-height: 330px;
   margin: 10px;
   border-radius: 5px;
   text-decoration: none;
   color: black;
   box-shadow: 1px 1px 10px black;
+  transition: transform 0.5s ease-in-out;
 }
 
 .orther_books a .book_item {

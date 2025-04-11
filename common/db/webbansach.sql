@@ -1,5 +1,5 @@
 create database webbookstore;
-drop database webbookstore;
+
 use webbookstore;
 
 create table `NCC` (
@@ -77,9 +77,10 @@ create table `DanhGia` (
 	`NoiDung` varchar(1000),
 	`NgayViet` datetime,
     `MaKH` int not null,
-    `MaAdmin` int not null,
+    `MaAdmin` int,
     `MaSach` int not null
 );
+drop table `danhgia`;
 
 create table `HoaDon` (
 	`MaHD` int primary key not null auto_increment,
@@ -135,7 +136,7 @@ create table `HinhAnh` (
 );
 ALTER TABLE `HinhAnh`
 MODIFY COLUMN `DgDanAnh` LONGTEXT;
-drop table HinhAnh;
+
 
 
 -- KHOAI CHINH --
@@ -697,8 +698,8 @@ INSERT INTO QuanLy (MaTKQL, MaTKBQL) VALUES
 INSERT INTO DanhGia (NoiDung, PhanHoi, NgayViet, MaKH, MaAdmin, MaSach) VALUES
 ('Sách rất hay, nội dung hấp dẫn!', 'Cảm ơn bạn đã ủng hộ, chúc bạn đọc sách vui vẻ!', '2025-03-20 14:30:00', 1, 9, 5),
 ('Chất lượng giấy in tốt, giao hàng nhanh.', 'Cảm ơn phản hồi của bạn, mong bạn tiếp tục ủng hộ!', '2025-03-19 09:15:00', 2, 10, 10),
-('Cốt truyện lôi cuốn, đáng để đọc.', null, '2025-03-18 16:45:00', 3, 9, 2),
-('Hình ảnh minh họa đẹp, bé nhà mình rất thích.', null, '2025-03-17 20:10:00', 4, 10, 17),
+('Cốt truyện lôi cuốn, đáng để đọc.', null, '2025-03-18 16:45:00', 3, null, 2),
+('Hình ảnh minh họa đẹp, bé nhà mình rất thích.', null, '2025-03-17 20:10:00', 4, null, 17),
 ('Sách hơi nhàu khi giao nhưng nội dung rất hay.', 'Xin lỗi về vấn đề giao hàng, chúng tôi sẽ cải thiện dịch vụ tốt hơn!', '2025-03-16 12:00:00', 5, 9, 24);
 
 INSERT INTO PhNhap (MaNCC, MaTK) VALUES

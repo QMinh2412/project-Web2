@@ -36,5 +36,19 @@
             $stmt->close();
             return $images;
         }
+
+        public function getImageAccount($id_account){
+            $query = "SELECT * FROM HinhAnh WHERE MaND = (SELECT MaND FROM TaiKhoan WHERE MaTK = $id_account )";
+            $result = $this->db->query($query);
+            $image = [];
+
+            if($result){
+                while($row = $result->fetch_assoc()){
+                    $image = $row['DgDanAnh'];
+                }
+            }
+
+            return $image;
+        }
     }
 ?>
