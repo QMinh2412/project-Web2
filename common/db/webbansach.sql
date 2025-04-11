@@ -138,6 +138,7 @@ create table `HinhAnh` (
 ALTER TABLE `HinhAnh`
 MODIFY COLUMN `DgDanAnh` LONGTEXT;
 
+
 -- KHOAI CHINH --
 alter table `CTPN` add constraint PK_DS_PN PRIMARY KEY(MaSach, MaPhNhap);
 alter table `CTHD` add constraint PK_DS_HD PRIMARY KEY (MaSach, MaHD);
