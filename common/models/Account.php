@@ -121,5 +121,33 @@ class Account {
         $stmt->close();
         return false; // Trả về false nếu không tìm thấy tài khoản
     }
+
+    public function updateAccount($username, $role, $password, $user_id) {
+        if (!empty($password)) {
+            // Hash the new password
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+    
+            // Update all fields including the password
+            $query = "UPDATE TaiKhoan SET TenTK = ?, LoaiTK = ?, MKTK = ? WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("sisi", $username, $role, $hashedPassword, $user_id);
+        } else {
+            // If password is empty, update everything except password
+            $query = "UPDATE TaiKhoan SET TenTK = ?, LoaiTK = ? WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("sii", $username, $role, $user_id);
+        }
+
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function lockAccount($id) {
+        $query = "UPDATE TaiKhoan SET TinhTrang = 0 WHERE MaND = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+    }
 }
 ?>

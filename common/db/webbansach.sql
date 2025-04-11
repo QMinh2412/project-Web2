@@ -39,7 +39,8 @@ create table `DauSach` (
 );
 ALTER TABLE `DauSach`
 MODIFY COLUMN `NamXB` INT;
-
+ALTER TABLE `DauSach`
+MODIFY COLUMN `MoTaChiTiet` LONGTEXT;
 
 create table `TheLoai` (
 	`MaLoai` int primary key not null auto_increment,
@@ -136,7 +137,6 @@ create table `HinhAnh` (
 );
 ALTER TABLE `HinhAnh`
 MODIFY COLUMN `DgDanAnh` LONGTEXT;
-
 
 
 -- KHOAI CHINH --
@@ -800,9 +800,9 @@ values ('/project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - T�
        ('/project-Web2/common/images/Kinh dị/Những Án Mạng Ở Phố Nhà Xác Rue/2.png', null, 13),
        ('/project-Web2/common/images/Giáo dục/50 Đề Thực Chiến Luyện Thi Tiếng Anh Vào Lớp 10 (Có Đáp Án)/1.jpg', null, 14),
        ('/project-Web2/common/images/Giáo dục/50 Đề Thực Chiến Luyện Thi Tiếng Anh Vào Lớp 10 (Có Đáp Án)/2.png', null, 14),
-       ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/1.jpg', null, 15),
-       ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/2.jpg', null, 15),
-       ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/3.jpg', null, 15),
+       ('/project-Web2/common/images/Giáo dục/chinh Phục Luyện Thi Vào 10 Môn Tiếng Anh Theo Chủ Đề/1.jpg', null, 15),
+       ('/project-Web2/common/images/Giáo dục/chinh Phục Luyện Thi Vào 10 Môn Tiếng Anh Theo Chủ Đề/2.jpg', null, 15),
+       ('/project-Web2/common/images/Giáo dục/chinh Phục Luyện Thi Vào 10 Môn Tiếng Anh Theo Chủ Đề/3.jpg', null, 15),
        ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/1.jpg', null, 16),
        ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/2.jpg', null, 16),
        ('/project-Web2/common/images/Giáo dục/100 Đề Minh Họa Thi Vào 10 - Môn Toán/3.jpg', null, 16),
@@ -836,6 +836,18 @@ values ('/project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - T�
        ('/project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/2.jpg', null, 32),
        ('/project-Web2/common/images/Lãng mạn/Lạc Trì (Bộ 2 Tập) - Tái Bản/3.jpg', null, 32);
        
-update `hinhanh`
-set `dgdananh` = '/project-Web2/common/images/defaultuser.png'
-where `mand` > 0 and `masach` is null;
+-- SET SQL_SAFE_UPDATES = 0;
+
+-- UPDATE HinhAnh
+-- SET DgDanAnh = '/project-Web2/common/images/defaultuser.png'
+-- WHERE MaND IS NOT NULL;
+
+-- SET SQL_SAFE_UPDATES = 1;
+-- use webbookstore;
+-- SELECT MaND FROM TaiKhoan ORDER BY MaTK DESC LIMIT 1;
+
+
+-- INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) 
+-- VALUES ('test', 0, '2025-04-07', 1, 'hashedpassword', 12);
+
+-- SELECT * FROM HinhAnh WHERE MaND = 12;
