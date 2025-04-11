@@ -36,7 +36,7 @@ function handleData(data) {
       <div class="book_item">
         <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=${data[i]["MaSach"]}">
           <div class="img_book">
-            <img src="${data[i]["DgDanAnh"]}" alt="${data[i]["TenSach"]}">
+            <img src="${data[i]["DgDanAnh"]["DgDanAnh"]}" alt="${data[i]["TenSach"]}">
           </div>
           <div class="info_book">
             <div class="title_book">${data[i]["TenSach"]}</div>

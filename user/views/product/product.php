@@ -101,7 +101,7 @@
                 <div class="book_item">
                     <a href="/project-Web2/user/index.php?page=product&action=detail&id_book=<?php echo $product['MaSach']?>">
                         <div class="img_book">
-                            <img src="<?php echo $product['DgDanAnh']?>" alt="<?php echo $product['TenSach']?>">
+                            <img src="<?php echo $product['DgDanAnh']['DgDanAnh']?>" alt="<?php echo $product['TenSach']?>">
                         </div>
                         <div class="info_book">
                             <div class="title_book"><?php echo $product['TenSach']?></div>

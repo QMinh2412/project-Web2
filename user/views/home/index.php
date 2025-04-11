@@ -46,7 +46,7 @@
                 <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo htmlspecialchars($product['MaSach']); ?>">
                     <div class="book-item">
                         <!-- Hình ảnh sách -->
-                        <img src="<?php echo htmlspecialchars($product['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
+                        <img src="<?php echo htmlspecialchars($product['DgDanAnh']['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
                         <!-- Tên sách -->
                         <div class="book-title"><?php echo htmlspecialchars($product['TenSach']); ?></div>
                         <!-- Giá sách -->
@@ -69,7 +69,7 @@
                 <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo htmlspecialchars($product['MaSach']); ?>">
                     <div class="book-item">
                         <!-- Hình ảnh sách -->
-                        <img src="<?php echo htmlspecialchars($product['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
+                        <img src="<?php echo htmlspecialchars($product['DgDanAnh']['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
                         <!-- Tên sách -->
                         <div class="book-title"><?php echo htmlspecialchars($product['TenSach']); ?></div>
                         <!-- Giá sách -->

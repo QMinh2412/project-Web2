@@ -12,7 +12,7 @@
             $this->db = Database::getInstance();
         }
 
-        public function getAllProducts($currentpage, $bookperpage) {
+        public function getAllProducts($currentpage, $bookperpage = 10) {
             $offset = ($currentpage - 1) * $bookperpage;
             $limit = $bookperpage;
             
@@ -76,7 +76,7 @@
             return $products;
         }
 
-        public function getPagination($currentpage, $bookperpage) {
+        public function getPagination($currentpage, $bookperpage = 10) {
             $query = "SELECT COUNT(*) AS total FROM DauSach";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
@@ -289,7 +289,7 @@
                 if($r){
                     while($row = $r->fetch_assoc()){
                         $image = new Image();
-                        $row['DgDanAnh'] = $image->getImgProduct($row['MaSach'])[0];
+                        $row['DgDanAnh'] = $image->getImgProduct($row['MaSach']);
                         $orther_books[] = $row;
                     }   
                 }

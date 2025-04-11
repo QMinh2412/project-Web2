@@ -6,12 +6,12 @@
     <div class="box_detail">
         <div class="book_image">
             <div class="main_image">
-                <img src="<?php echo $book_data['DgDanAnh'][0];?>" alt="<?php echo $book_data['TenSach']?>" class="main_image">
+                <img src="<?php echo $book_data['DgDanAnh'][0]['DgDanAnh'];?>" alt="<?php echo $book_data['TenSach']?>" class="main_image">
             </div>
             <div class="detail_image">
                 <?php foreach($book_data['DgDanAnh'] as $img):?>
                     <div>
-                        <img src="<?php echo $img; ?>" alt="<?php echo $book_data['TenSach']?>" class="detail_image">
+                        <img src="<?php echo $img['DgDanAnh']; ?>" alt="<?php echo $book_data['TenSach']?>" class="detail_image">
                     </div>
                 <?php endforeach ?>
             </div>
@@ -68,7 +68,7 @@
                 <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo $book["MaSach"]; ?>">
                     <div class="book_item">
                         <div class="book_image">
-                            <img src="<?php echo $book['DgDanAnh']; ?>" alt="<?php echo $book['TenSach']; ?>">
+                            <img src="<?php echo $book['DgDanAnh'][0]['DgDanAnh']; ?>" alt="<?php echo $book['TenSach']; ?>">
                         </div>
                         <div class="book_title"><?php echo $book['TenSach']; ?></div>
                         <div class="book_price"><?php echo $book['GiaBan']; ?> vnđ</div>
