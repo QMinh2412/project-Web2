@@ -1,5 +1,202 @@
+/***************************** User Management CSS *************************/
+
+/****************** WRAPPER ****************/
 .user-wrapper {
     border: solid 3px white;
     background-color: white;
-    /* width: 100%; */
+}
+
+/****************** TABLE ALIGNING **********/
+#user-stt {
+    width: 5%;
+}
+
+#user-name {
+    width: 15%;
+}
+
+#user-email {
+    width: 20%;
+}
+
+#user-role {
+    width: 12%;
+}
+
+#user-status {
+    width: 12%;
+}
+
+#user-name {
+    text-align: left;
+}
+
+#user-email {
+    text-align: left;
+}
+
+#user-role {
+    text-align: left;
+}
+
+#user-status {
+    text-align: left;
+}
+
+#user-action {
+    text-align: center;
+}
+
+/************************** BUTTON **************************/
+.btn-user {
+    text-decoration: none;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+/*********** ADD **************/
+.btn-user.btn-add {
+    background-color: #ffd230;
+    padding: 5px 30px;
+}
+
+.btn-add:hover {
+    background-color: #f0c200;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+/*********** DETAIL **************/
+.btn-user.btn-detail {
+    background-color: yellow;
+    padding: 5px 30px;
+    color: black;
+}
+
+.btn-detail:hover {
+    background-color: yellow;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+/*********** EDIT **************/
+.btn-user.btn-edit {
+    background-color: #0ab2d4;
+    padding: 5px 30px;
+}
+
+.btn-edit:hover {
+    background-color: #0099b3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+/*********** DELETE **************/
+.btn-user.btn-ban {
+    background-color: #ff3131;
+    padding: 5px 30px;
+}
+
+.btn-ban:hover {
+    background-color: #ff0000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+/*********** ICON **************/
+.btn-user .bx {
+    font-size: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.btn-user:hover .bx {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/************************** FORM ***********************/
+
+/************ FORM ADD **************/
+.user-add-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.form-group-user-add {
+    margin-left: 20px ;
+}
+
+.user-add-form div {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px; 
+}
+
+.user-add-form div label {
+    font-size: larger;
+    font-weight: 500;
+    color: #333;
+}
+
+.user-add-form div input {
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.user-add-form .form-group-user-add .form-user-image button{
+    width: 10%;
+    padding: 10px;
+}
+
+.form-user-type select {
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.form-user-confirm {
+    display: flex;
+    gap: 20px;
+}
+.form-user-confirm button {
+    min-width: 150px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-user-confirm #btnuserconfirm {
+    background-color: #0ab2d4;
+    color: white;
+}
+
+.form-user-confirm #btnusercancel {
+    background-color: #ff3131;
+    color: white;
+}
+
+.form-user-confirm button:hover {
+    transition: all 0.3s ease;
+    transform: scale(1.05);
 }

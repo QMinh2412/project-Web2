@@ -39,7 +39,8 @@ create table `DauSach` (
 );
 ALTER TABLE `DauSach`
 MODIFY COLUMN `NamXB` INT;
-
+ALTER TABLE `DauSach`
+MODIFY COLUMN `MoTaChiTiet` LONGTEXT;
 
 create table `TheLoai` (
 	`MaLoai` int primary key not null auto_increment,
