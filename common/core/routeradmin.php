@@ -18,19 +18,20 @@ class RouteAdmin {
         switch ($page) {
             case 'dashboard':
                 $controller = new DashboardController();
-                switch ($action) {
+                switch($action) {
                     case 'index':
                         $controller->index();
                         break;
                     default:
+                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');
+                        exit('Action not found');   
                 }
                 break;
 
             case 'category':
                 $controller = new CategoryController();
-                switch ($action) {
+                switch($action) {
                     case 'index':
                         $controller->index();
                         break;
@@ -44,28 +45,17 @@ class RouteAdmin {
                         $controller->delete($id);
                         break;
                     default:
+                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');
+                        exit('Action not found');   
                 }
                 break;
 
             case 'user':
                 $controller = new UserController();
-                switch ($action) {
+                switch($action) {
                     case 'index':
                         $controller->index();
-                        break;
-                    default:
-                        header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');
-                }
-                break;
-
-            case 'product':
-                $controller = new ProductController();
-                switch ($action) {
-                    case 'index':
-                        $controller->index($current_page);
                         break;
                     case 'create':
                         $controller->create();
@@ -73,45 +63,74 @@ class RouteAdmin {
                     case 'edit':
                         $controller->edit($id);
                         break;
+                    case 'view':    
+                        $controller->view($id);
+                        break;
+                    case 'lock':
+                        $controller->lock($id);
+                        break;
                     default:
+                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');
+                        exit('Action not found');   
+                }
+                break;
+
+            case 'product':
+                $controller = new ProductController();
+                switch($action) {
+                    case 'index':
+                        $controller->index($current_page);
+                        break;
+                    case 'create':
+                        $controller->create();
+                        break;
+                    // case 'edit':
+                    //     $controller->edit($id);
+                    //     break;
+                    default:
+                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
+                        header('HTTP/1.0 404 Not Found');
+                        exit('Action not found');   
                 }
                 break;
 
             case 'import':
                 $controller = new ImportController();
-                switch ($action) {
+                switch($action) {
                     case 'index':
                         $controller->index();
                         break;
                     default:
+                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');
+                        exit('Action not found');   
                 }
                 break;
 
             case 'order':
                 $controller = new OrderController();
-                switch ($action) {
+                switch($action) {
                     case 'index':
                         $controller->index();
                         break;
                     default:
+                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');
+                        exit('Action not found');   
                 }
                 break;
 
             case 'review':
                 $controller = new ReviewController();
-                switch ($action) {
+                switch($action) {
                     case 'index':
                         $controller->index();
                         break;
                     default:
+                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');
+                        exit('Action not found');   
                 }
                 break;
 

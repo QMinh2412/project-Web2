@@ -61,7 +61,7 @@
 /*********** ADD **************/
 .btn-user.btn-add {
     background-color: #ffd230;
-    padding: 5px 30px;
+    padding: 5px 10px;
 }
 
 .btn-add:hover {
@@ -74,7 +74,7 @@
 /*********** DETAIL **************/
 .btn-user.btn-detail {
     background-color: yellow;
-    padding: 5px 30px;
+    padding: 10px;
     color: black;
 }
 
@@ -88,7 +88,7 @@
 /*********** EDIT **************/
 .btn-user.btn-edit {
     background-color: #0ab2d4;
-    padding: 5px 30px;
+    padding: 10px;
 }
 
 .btn-edit:hover {
@@ -101,7 +101,12 @@
 /*********** DELETE **************/
 .btn-user.btn-ban {
     background-color: #ff3131;
-    padding: 5px 30px;
+    padding: 10px;
+}
+
+.btn-user.btn-unban {
+    background-color: #0ab2d4;
+    padding: 10px;
 }
 
 .btn-ban:hover {
@@ -111,6 +116,12 @@
     transform: scale(1.05);
 }
 
+.btn-user.btn-unban:hover {
+    background-color: #0099b3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
 /*********** ICON **************/
 .btn-user .bx {
     font-size: 16px;
@@ -124,9 +135,7 @@
 }
 
 /************************** FORM ***********************/
-
-/************ FORM ADD **************/
-.user-add-form {
+.user-form {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -134,37 +143,24 @@
     box-sizing: border-box;
 }
 
-.form-group-user-add {
+.form-group-user {
     margin-left: 20px ;
 }
 
-.user-add-form div {
+.user-form div {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     gap: 1px; 
 }
 
-.user-add-form div label {
+.user-form div label {
     font-size: larger;
     font-weight: 500;
     color: #333;
 }
 
-.user-add-form div input {
-    padding: 10px;
-    border: solid 1px black;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
-}
-
-.user-add-form .form-group-user-add .form-user-image button{
-    width: 10%;
-    padding: 10px;
-}
-
-.form-user-type select {
+.user-form div input {
     padding: 10px;
     border: solid 1px black;
     border-radius: 5px;
@@ -176,6 +172,7 @@
     display: flex;
     gap: 20px;
 }
+
 .form-user-confirm button {
     min-width: 150px;
     padding: 10px 20px;
@@ -196,7 +193,47 @@
     color: white;
 }
 
+.form-user-role select {
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
 .form-user-confirm button:hover {
     transition: all 0.3s ease;
     transform: scale(1.05);
 }
+/************ FORM-ADD **************/
+.user-form .form-group-user-add .form-user-image button{
+    width: 10%;
+    padding: 10px;
+}
+
+.user-form #user-add-birthdate input{
+    padding: 10px;
+    width: 10%;
+    border: solid 1px black;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+/************* FORM-VIEW *****************/
+#user-view-form div input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/************* FORM-EDIT *******************/
+.user-form #user-edit-birthdate input{
+    padding: 10px;
+    width: 10%;
+    border: solid 1px black;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+/************ RESPONSIVE **************/
