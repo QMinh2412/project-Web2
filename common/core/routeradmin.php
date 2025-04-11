@@ -57,18 +57,6 @@ class RouteAdmin {
                     case 'index':
                         $controller->index();
                         break;
-                    case 'create':
-                        $controller->create();
-                        break;
-                    case 'edit':
-                        $controller->edit($id);
-                        break;
-                    case 'view':    
-                        $controller->view($id);
-                        break;
-                    case 'lock':
-                        $controller->lock($id);
-                        break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
@@ -85,9 +73,15 @@ class RouteAdmin {
                     case 'create':
                         $controller->create();
                         break;
-                    // case 'edit':
-                    //     $controller->edit($id);
-                    //     break;
+                    case 'edit':
+                        $controller->edit($id);
+                        break;
+                    case 'allow':
+                        $controller->allow();
+                        break;
+                    case 'detail':
+                        $controller->detail($id);
+                        break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
