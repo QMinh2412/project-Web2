@@ -13,7 +13,7 @@
             $productModel  = new Product();
             $categoryModel = new Category();
 
-            $booksPerPage = 15;
+            $booksPerPage = 10;
 
             $products   = $productModel->getAllProducts($currentPage, $booksPerPage);
             $pagination = $productModel->getPagination($currentPage, $booksPerPage);
@@ -197,12 +197,12 @@
         }
         
 
-        public function edit () {
+        public function edit ($productId) {
 
             $currentPage = $_GET['current_page'] ?? 1;
 
             $productModel = new Product();
-            $productId = $_GET['id'] ?? null;
+            // $productId = $_GET['id'] ?? null;
 
             $categoryModel = new Category();
             $categories = $categoryModel->getAllCategories(); 
@@ -336,6 +336,7 @@
                         mkdir($targetDir, 0777, true);
                     }
                     foreach ($_FILES['product_image']['tmp_name'] as $index => $tmpName) {
+
                         if ($_FILES['product_image']['error'][$index] === UPLOAD_ERR_OK) {
                             $uniqueId = uniqid();
                             $ext = pathinfo($_FILES['product_image']['name'][$index], PATHINFO_EXTENSION);
@@ -372,8 +373,9 @@
                     if ($isUpdated) {
                         echo "<script>
                             alert('Cập nhật sản phẩm thành công!');
-                            window.location.href = '?page=product&action=index&current_page=$currentPage';
+                            window.location.href = '?page=product&action=index&current_page=$currentPage'
                         </script>";
+                        exit;
                     }
                     else {
                         echo "<script>
@@ -386,7 +388,7 @@
             else {
                 echo "<script>
                     alert('ID sản phẩm không hợp lệ!');
-                    window.location.href = '?page=category&action=index&current_page=$currentPage';
+                    window.location.href = '?page=product&action=index&current_page=$currentPage';
                 </script>";
             }
         }

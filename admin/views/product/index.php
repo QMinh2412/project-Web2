@@ -54,12 +54,18 @@
     </table>
 
     <!-- Phân trang -->
-    <div class="pagination">
+    <div class="product-pagination">
+        <a href="?page=product&current_page=<?= $pagination['currentPage'] - 1 ?>" 
+            class="<?= $pagination['currentPage'] == 1 ? 'disabled' : '' ?>">&lt;</a>
+        
         <?php for ($i = 1; $i <= $pagination['totalPages']; $i++): ?>
             <a href="?page=product&current_page=<?= $i ?>"
                class="<?= $i == $pagination['currentPage'] ? 'active' : '' ?>">
                <?= $i ?>
             </a>
         <?php endfor; ?>
+
+        <a href="?page=product&current_page=<?= $pagination['currentPage'] + 1 ?>" 
+            class="<?= $pagination['currentPage'] == $pagination['totalPages'] ? 'disabled' : '' ?>">&gt;</a>
     </div>
 </div>

@@ -27,7 +27,8 @@
             if ($result) {
                 while ($row = $result->fetch_assoc()) {
                     $image = new Image();
-                    $row['DgDanAnh'] = $image->getImgProduct($row['MaSach'])[0];
+                    $imgs = $image->getImgProduct($row['MaSach']);
+                    $row['DgDanAnh'] = !empty($imgs) ? $imgs[0] : null;
                     $products[] = $row;
                 }
             }

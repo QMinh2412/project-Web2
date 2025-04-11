@@ -82,7 +82,7 @@
             </select>
             
             <label class="product-create-label" for="product-page">Số trang:</label><br>
-            <input class="product-create-numeric" type="number" name="product_page" id="product-page-input" placeholder="Số trang" value="<?= htmlspecialchars($product['SoTrang']) ?>" min="5">
+            <input class="product-create-numeric" type="number" name="product_page" id="product-page-input" placeholder="Số trang" value="<?= htmlspecialchars($product['SoTrang']) ?>" min="0">
 
             <label class="product-create-label" for="product-size">Kích thước:</label><br>
             <input class="product-create-text" type="text" name="product_size" id="product-size-input" value="<?= htmlspecialchars($product['KichThuoc']) ?>" placeholder="Kích thước">
@@ -91,16 +91,17 @@
             <textarea name="product_description" id="product-description-input" placeholder="Mô tả sản phẩm"><?= htmlspecialchars($product['MoTaChiTiet']) ?></textarea>
 
             <label class="product-create-label" for="product-image">Hình ảnh:</label><br>
+            <input type="hidden" id="existing-image-count" value="<?= count($oldImages ?? []) ?>">
             <input class="product-create-text" type="file" name="product_image[]" id="product-image-input" accept="image/*" multiple>
             <div id="edit-product-image-preview">
+                <div id="product-image-preview" style="margin-top: 5px;"></div>
                 <?php foreach ($oldImages as $img): ?>
                     <div class="edit-product-image-wrapper">
-                        <input type="checkbox" name="delete_images[]" value="<?= $img['MaHA'] ?>" class="edit-product-deleteBtn">Xóa 
+                        <input type="checkbox" name="delete_images[]" value="<?= $img['MaHA'] ?>" class="edit-product-deleteBtn">Xóa
                         <img src="<?= $img['DgDanAnh'] ?>" class="product-preview-img">
                         <div class="product-image-url-edit"><?= $img['DgDanAnh'] ?></div>
                     </div>
                 <?php endforeach; ?>
-                <div id="product-image-preview" style="margin-top: 5px;"></div>
             </div>
         
             <button type="submit" class="product-create-Btns" id="acceptEditProductBtn">Áp dụng thay đổi</button>
@@ -108,4 +109,10 @@
 
         </form>
     </div>
+</div>
+
+<!-- Modal hiển thị ảnh -->
+<div id="imageModal" class="image-modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
 </div>
