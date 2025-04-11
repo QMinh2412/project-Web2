@@ -1,9 +1,9 @@
-<script src="/WebProject/admin/assets/js/product.js"></script>
+<script src="/project-Web2/admin/assets/js/product.js"></script>
 
 <div class="admin-wrapper">
     <div class="admin-header" id="product-header">
         <h2 id="product-header-title">Thêm sản phẩm</h2>
-        <form id="create-product-form" method="POST" action="?page=product&action=create">
+        <form id="create-product-form" method="POST" action="?page=product&action=create" enctype="multipart/form-data">
             <label class="product-create-label" for="product-name">Tên sản phẩm:</label><br>
             <input class="product-create-text" type="text" name="product_name" id="product-name-input" placeholder="Tên sản phẩm" required>
 
@@ -88,10 +88,17 @@
             <textarea name="product_description" id="product-description-input" placeholder="Mô tả sản phẩm"></textarea>
 
             <label class="product-create-label" for="product-image">Hình ảnh:</label><br>
-            <input class="product-create-text" type="file" name="product_image" id="product-image-input" accept="image/*">
+            <input class="product-create-text" type="file" name="product_image[]" id="product-image-input" accept="image/*" multiple>
+            <div id="product-image-preview" style="margin-top: 5px;"></div>
         
             <button type="submit" class="product-create-Btns" id="createProductBtn">Áp dụng thay đổi</button>
             <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index'">Hủy</button>
         </form>
     </div>
+</div>
+
+<!-- Modal hiển thị ảnh -->
+<div id="imageModal" class="image-modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
 </div>

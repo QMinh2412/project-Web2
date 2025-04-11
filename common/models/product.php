@@ -12,7 +12,7 @@
             $this->db = Database::getInstance();
         }
 
-        public function getAllProducts($currentpage = 1, $bookperpage = 10) {
+        public function getAllProducts($currentpage, $bookperpage) {
             $offset = ($currentpage - 1) * $bookperpage;
             $limit = $bookperpage;
             
@@ -31,7 +31,8 @@
             if ($result) {
                 while ($row = $result->fetch_assoc()) {
                     $image = new Image();
-                    $row['DgDanAnh'] = $image->getImgProduct($row['MaSach'])[0];
+                    $imgs = $image->getImgProduct($row['MaSach']);
+                    $row['DgDanAnh'] = !empty($imgs) ? $imgs[0] : null;
                     $products[] = $row;
                 }
             }
@@ -75,7 +76,7 @@
             return $products;
         }
 
-        public function getPagination($currentpage = 1, $bookperpage = 10) {
+        public function getPagination($currentpage, $bookperpage) {
             $query = "SELECT COUNT(*) AS total FROM DauSach";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
@@ -223,7 +224,7 @@
                                 $productData['MoTaChiTiet']
             );
             
-            return $stmt->execute();
+            return array($stmt->execute(), $this->db->insert_id);
         }
 
         public function updateProduct($productId, $productData) {
@@ -298,5 +299,12 @@
         }
 
         
+        public function updateProductStatus($productId, $productStatus) {
+            $query = "UPDATE DauSach SET TinhTrang = ? WHERE MaSach = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("ii", $productStatus, $productId);
+            
+            return $stmt->execute();
+        }
     }
 ?>
