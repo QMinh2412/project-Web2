@@ -1,0 +1,132 @@
+/* Container chính */
+.order-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.order-header {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Form tìm kiếm */
+.order-search-form {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.order-form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.order-form-group:last-child {
+    align-self: flex-end;
+}
+
+.order-search-form label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.order-search-form input[type="text"],
+.order-search-form input[type="date"],
+.order-search-form select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+.order-search-btn {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 42px;
+}
+
+.order-search-btn:hover {
+    background-color: #218838;
+}
+
+/* Bảng hiển thị đơn hàng */
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-table th, .order-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.order-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.order-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.order-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Nút hành động */
+.order-detail-btn {
+    background-color: blue;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.order-detail-btn:hover {
+    background-color: #0056b3;
+}
+
+.order-confirm-btn {
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.order-confirm-btn:hover {
+    background-color: #218838;
+}
+
+.order-cancel-btn {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.order-cancel-btn:hover {
+    background-color: #c82333;
+}

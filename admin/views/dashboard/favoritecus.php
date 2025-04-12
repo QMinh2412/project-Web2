@@ -14,7 +14,7 @@
             </form>
         </div>
         </div>
-    <table>
+    <table class="favoritecus-table">
         <thead>
             <tr>
                 <th>STT</th>

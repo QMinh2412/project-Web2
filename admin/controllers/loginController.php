@@ -27,7 +27,7 @@ class LoginController {
                         session_start();
                         $_SESSION['user_id'] = $user['MaTK'];
                         $_SESSION['role'] = $user['LoaiTK'];
-                        $_SESSION['TenTK'] = $user['TenTK']; // Lưu tên người dùng vào session
+                        $_SESSION['TenTK'] = $user['TenTK'];
 
                         // Trả về phản hồi JSON thành công
                         echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công!']);
@@ -49,9 +49,6 @@ class LoginController {
             }
         }
     }
-
-    // Hiển thị tên tài khoản
-    
 
     // Xử lý đăng xuất
     public function logout() {

@@ -14,7 +14,7 @@
             </form>
         </div>
     </div>
-    <table>
+    <table class="bestseller-table">
         <thead>
             <tr>
                 <th>STT</th>
