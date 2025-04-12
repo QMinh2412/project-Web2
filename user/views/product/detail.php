@@ -63,7 +63,7 @@
         <div class="title">Sách cùng thể loại
             <a href=""><span>Xem tất cả</span></a>
         </div>
-        <div class="orther_books">
+        <div class="orther_books owl-carousel owl-theme">
             <?php foreach($orther_books as $book):?>
                 <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo $book["MaSach"]; ?>">
                     <div class="book_item">
@@ -130,3 +130,7 @@
     </div>
 </div>
 <script src="/project-Web2/user/assets/js/detail.js"></script>
+<!-- Thêm jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Thêm Owl Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>

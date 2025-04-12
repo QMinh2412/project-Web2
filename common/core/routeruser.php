@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../user/controllers/HomeController.php';
 require_once __DIR__ . '/../../user/controllers/AccountController.php';
 require_once __DIR__ . '/../../user/controllers/ProductController.php';
+require_once __DIR__ . '/../../user/controllers/CartController.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Account.php';
 class Route {
@@ -29,6 +30,10 @@ class Route {
 
             case 'detail':
                 $controller = new ProductController();
+                break;
+
+            case 'cart':
+                $controller = new CartController();
                 break;
 
             default:
@@ -69,6 +74,9 @@ class Route {
                 break;
             case 'replyComment':
                 $controller->replyComment();
+                break;
+            case 'addToCart':
+                $controller->addToCart();
                 break;
             default:
                 $controller->index();

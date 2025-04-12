@@ -157,10 +157,80 @@ function writeReply() {
   });
 }
 
+function addToCart() {
+  document.getElementById("addToCart").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const url = new URLSearchParams(window.location.search);
+    const id_book = url.get("id_book");
+    const qty = parseInt(document.getElementById("quantity").innerText);
+    console.log(`ma sach: ${id_book}`);
+    console.log(`so lg: ${qty}`);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+      "POST",
+      "/project-Web2/user/index.php?page=cart&action=addToCart",
+      true
+    );
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // console.log(xhr.responseText);
+        // console.log(typeof xhr.responseText);
+
+        const response = JSON.parse(xhr.responseText);
+        console.log(response);
+        alert(response.message);
+      }
+    };
+
+    let data = `id_book=${encodeURIComponent(
+      id_book
+    )}&quantity=${encodeURIComponent(qty)}`;
+    xhr.send(data);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   plusItem();
   minusItem();
   showTextarea();
   writeComment();
   writeReply();
+  addToCart();
+
+  $(document).ready(function () {
+    const $carousel = $(".orther_books").owlCarousel({
+      loop: true, // Bật chế độ vòng lặp
+      margin: 20, // Khoảng cách giữa các item (20px như trong CSS)
+      autoplay: true, // Tự động trượt
+      autoplayTimeout: 3000, // Thời gian chờ giữa các lần trượt (3 giây)
+      autoplayHoverPause: true, // Tạm dừng khi hover
+      nav: false, // Ẩn nút điều hướng mặc định của Owl Carousel
+      dots: false, // Ẩn chấm điều hướng
+      items: 5, // Hiển thị 5 item cùng lúc
+      responsive: {
+        0: {
+          items: 2, // Hiển thị 2 item trên màn hình nhỏ
+        },
+        600: {
+          items: 3, // Hiển thị 3 item trên màn hình trung bình
+        },
+        1000: {
+          items: 5, // Hiển thị 5 item trên màn hình lớn
+        },
+      },
+    });
+
+    // Xử lý nút điều hướng tùy chỉnh
+    $("#next").on("click", function () {
+      $carousel.trigger("next.owl.carousel");
+    });
+
+    $("#prev").on("click", function () {
+      $carousel.trigger("prev.owl.carousel");
+    });
+  });
 });
