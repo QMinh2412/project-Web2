@@ -4,40 +4,44 @@ document.addEventListener('DOMContentLoaded', function () {
     const authorBirthdayInput = document.getElementById('product-author-birthday-input');
     const authorGenderInput = document.getElementById('product-author-gender-input');
 
-    authorSelect.addEventListener('change', function () {
-        if (this.value === '0') {
-            authorNameInput.style.display = 'block';
-            authorBirthdayInput.style.display = 'block';
-            authorGenderInput.style.display = 'block';
-        } else {
-            authorNameInput.style.display = 'none';
-            authorNameInput.value = '';
-            authorBirthdayInput.style.display = 'none';
-            authorBirthdayInput.value = '';
-            authorGenderInput.style.display = 'none';
-        }
-    });
+    if (authorSelect && authorNameInput && authorBirthdayInput && authorGenderInput) {
+        authorSelect.addEventListener('change', function () {
+            if (this.value === '0') {
+                authorNameInput.style.display = 'block';
+                authorBirthdayInput.style.display = 'block';
+                authorGenderInput.style.display = 'block';
+            } else {
+                authorNameInput.style.display = 'none';
+                authorNameInput.value = '';
+                authorBirthdayInput.style.display = 'none';
+                authorBirthdayInput.value = '';
+                authorGenderInput.style.display = 'none';
+            }
+        });
+    }
 
     const publisherSelect = document.getElementById('product-publisher-input');
     const publisherNameInput = document.getElementById('product-publisher-name-input');
     const publisherAddressInput = document.getElementById('product-publisher-address-input');
     const publisherEmailInput = document.getElementById('product-publisher-email-input');
 
-    publisherSelect.addEventListener('change', function () {
-        if (this.value === '0') {
-            publisherNameInput.style.display = 'block';
-            publisherAddressInput.style.display = 'block';
-            publisherEmailInput.style.display = 'block';
-        } else {
-            publisherNameInput.style.display = 'none';
-            publisherNameInput.value = '';
-            publisherAddressInput.style.display = 'none';
-            publisherAddressInput.value = '';
-            publisherEmailInput.style.display = 'none';
-            publisherEmailInput.value = '';
-        }
-    });
-
+    if (publisherSelect && publisherNameInput && publisherAddressInput && publisherEmailInput) {
+        publisherSelect.addEventListener('change', function () { 
+            if (this.value === '0') {
+                publisherNameInput.style.display = 'block';
+                publisherAddressInput.style.display = 'block';
+                publisherEmailInput.style.display = 'block';
+            } else {
+                publisherNameInput.style.display = 'none';
+                publisherNameInput.value = '';
+                publisherAddressInput.style.display = 'none';
+                publisherAddressInput.value = '';
+                publisherEmailInput.style.display = 'none';
+                publisherEmailInput.value = '';
+            }
+        });
+    }
+    
     const providerSelect = document.getElementById('providerSelect');
     const providerNameInput = document.getElementById('providerNameInput');
     const providerAddressInput = document.getElementById('providerAddressInput');

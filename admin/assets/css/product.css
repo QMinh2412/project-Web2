@@ -19,7 +19,7 @@
 }
 
 #product-features {
-    width: 260px;
+    width: 150px;
 }
 
 /*Add product button*/
@@ -117,6 +117,50 @@
 }
 #allowOnSaleBtn:active {
     background-color: #d35400; 
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 34px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #28a745;
+}
+
+input:checked + .slider::before {
+    transform: translateX(22px);
 }
 
 /*Stop selling button*/
@@ -462,4 +506,44 @@
 .image-modal .prev:hover,
 .image-modal .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media only screen and (max-width: 600px) {
+    #product-order {
+        width: 32px;
+        font-size: 0.8em;
+    }
+
+    #product-name {
+        font-size: 0.8em;
+    }
+
+    #product-category {
+        width: 50px;
+        font-size: 0.8em;
+    }
+
+    #product-quantity {
+        width: 40px;
+        font-size: 0.8em;
+    }
+
+    #product-status {
+        width: 50px;
+        font-size: 0.8em;
+    }
+
+    #product-price {
+        display: none;
+    }
+
+    #product-features {
+        width: 80px;
+        font-size: 0.8em;
+    }
+
+    #detailProductBtn {
+        margin-bottom: 5px;
+    }
+
 }

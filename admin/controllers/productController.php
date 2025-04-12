@@ -413,13 +413,11 @@
 
                     if ($isUpdated) {
                         echo "<script>
-                            alert('Đã tiến hành ngừng bán sản phẩm!');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
                     else {
                         echo "<script>
-                            alert('Không thể ngừng bán sản phẩm!');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
@@ -430,13 +428,11 @@
 
                     if ($isUpdated) {
                         echo "<script>
-                            alert('Đã tiến hành mở bán sản phẩm!');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
                     else {
                         echo "<script>
-                            alert('Không thể tiến hành mở bán sản phẩm!');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }

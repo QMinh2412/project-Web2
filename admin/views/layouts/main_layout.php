@@ -30,3 +30,5 @@
     </div>
 </body>
 </html>
+
+<script src="/project-Web2/admin/assets/js/script.js"></script>

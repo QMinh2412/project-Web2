@@ -8,7 +8,6 @@
             <tr class="admin-list-header-content">
                 <th id="category-order">STT</th>
                 <th id="category-name">Tên thể loại</th>
-                <!-- <th id="category-quantity">Số lượng</th> -->
                 <th id="category-features">Chức năng</th>
             </tr>
         </thead>

@@ -23,3 +23,36 @@
     right: 150px;
     line-height: 50px;
 }
+
+#mobile-menu-toggle {
+    display: none; /* Ẩn mặc định trên desktop */
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    #logo_header {
+        left: 5px;
+    }
+    #admin-logo {
+        right: 15px;
+    }
+    #mobile-menu-toggle {
+        display: block; /* Hiện khi mobile */
+        position: absolute;
+        top: 30px;
+        left: 26px;
+        z-index: 1000;
+        color: #333;   
+    }
+    #logo_header {
+        left: 40px;
+        height: 75px;
+    }
+    #mobile-menu-toggle.active i {
+        color: white;
+    }
+}
