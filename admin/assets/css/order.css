@@ -4,7 +4,11 @@
     margin: 0 auto;
 }
 
+<<<<<<< HEAD
 h2 {
+=======
+.order-header {
+>>>>>>> 04d2a43862ad724dff10dd74a866837c58f6bfcf
     text-align: left;
     margin-bottom: 20px;
     font-size: 24px;
@@ -15,6 +19,7 @@ h2 {
 .order-search-form {
     margin-top: 10px;
     display: flex;
+<<<<<<< HEAD
     align-items: center; /* Căn giữa các phần tử theo chiều dọc */
     gap: 20px; /* Khoảng cách giữa các phần tử */
     flex-wrap: wrap; /* Đảm bảo các phần tử xuống dòng khi không đủ không gian */
@@ -29,6 +34,22 @@ h2 {
 
 .order-search-form .form-group:last-child {
     align-self: flex-end; /* Đẩy nút tìm kiếm xuống cuối hàng */
+=======
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.order-form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.order-form-group:last-child {
+    align-self: flex-end;
+>>>>>>> 04d2a43862ad724dff10dd74a866837c58f6bfcf
 }
 
 .order-search-form label {
@@ -43,11 +64,11 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
-    width: 200px; /* Đặt chiều rộng cố định */
+    width: 200px;
     box-sizing: border-box;
 }
 
-.order-search-form button {
+.order-search-btn {
     padding: 8px 16px;
     background-color: #28a745;
     color: white;
@@ -56,40 +77,40 @@ h2 {
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    height: 42px; /* Đảm bảo chiều cao bằng với các input */
+    height: 42px;
 }
 
-.order-search-form button:hover {
+.order-search-btn:hover {
     background-color: #218838;
 }
 
 /* Bảng hiển thị đơn hàng */
-/* table {
+.order-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-table th, table td {
+.order-table th, .order-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
 }
 
-table th {
+.order-table th {
     background-color: #f4f4f4;
     font-weight: bold;
 }
 
-table tbody tr:nth-child(even) {
+.order-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-table tbody tr:hover {
+.order-table tbody tr:hover {
     background-color: #f1f1f1;
-} */
+}
 
 /* Nút hành động */
-.detail-btn {
+.order-detail-btn {
     background-color: blue;
     color: white;
     padding: 5px 10px;
@@ -99,11 +120,11 @@ table tbody tr:hover {
     font-size: 12px;
 }
 
-.detail-btn:hover {
+.order-detail-btn:hover {
     background-color: #0056b3;
 }
 
-.confirm-btn {
+.order-confirm-btn {
     background-color: green;
     color: white;
     padding: 5px 10px;
@@ -113,11 +134,11 @@ table tbody tr:hover {
     font-size: 12px;
 }
 
-.confirm-btn:hover {
+.order-confirm-btn:hover {
     background-color: #218838;
 }
 
-.cancel-btn {
+.order-cancel-btn {
     background-color: red;
     color: white;
     padding: 5px 10px;
@@ -127,6 +148,6 @@ table tbody tr:hover {
     font-size: 12px;
 }
 
-.cancel-btn:hover {
+.order-cancel-btn:hover {
     background-color: #c82333;
 }
