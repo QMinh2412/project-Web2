@@ -86,5 +86,53 @@
             $stmt->close();
         }
         
+        public function getUserPagination($currentPage, $usersPerPage) {
+            $offset = ($currentPage - 1) * $usersPerPage;
+        
+            $query = "
+                SELECT 
+                    NgDung.MaND, NgDung.TenND, NgDung.DcND, NgDung.EmailND, NgDung.GioiTinhND,
+                    NgDung.SDT, NgDung.NgSinhND, 
+                    TaiKhoan.MaTK, TaiKhoan.TenTK, TaiKhoan.LoaiTK, TaiKhoan.NgLap, TaiKhoan.TinhTrang
+                FROM NgDung
+                LEFT JOIN TaiKhoan ON NgDung.MaND = TaiKhoan.MaND
+                WHERE TaiKhoan.LoaiTK != 4
+                LIMIT $offset, $usersPerPage
+            ";
+        
+            $result = $this->db->query($query);
+            $users = [];
+        
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+        
+            return $users;
+        }
+
+        public function getPagination($currentPage, $usersPerPage) {
+            $query = "
+                SELECT COUNT(*) AS total 
+                FROM NgDung 
+                LEFT JOIN TaiKhoan ON NgDung.MaND = TaiKhoan.MaND
+                WHERE TaiKhoan.LoaiTK != 4
+            ";
+            $result = $this->db->query($query);
+            $row = $result->fetch_assoc();
+            $totalUsers = $row['total'];
+            $totalPages = ceil($totalUsers / $usersPerPage);
+        
+            return [
+                'totalPages' => $totalPages,
+                'currentPage' => $currentPage
+            ];
+        }
+        
+        public function getTotalUserCount() {
+            $query = "SELECT COUNT(*) AS total FROM NgDung";
+            $result = $this->db->query($query);
+            $row = $result->fetch_assoc();
+            return $row['total'];
+        }
     }
 ?>

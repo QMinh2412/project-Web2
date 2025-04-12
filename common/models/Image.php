@@ -27,14 +27,56 @@
             $stmt->bind_param("i", $id);
             $stmt->execute();
             $result = $stmt->get_result();
-            $image = null;
+            $images = [];
 
-            if ($result && $row = $result->fetch_assoc()) {
-                $image = $row['DgDanAnh'];
+            while ($row = $result->fetch_assoc()) {
+                $images[] = $row['DgDanAnh']; // Thêm từng ảnh vào mảng
             }
 
             $stmt->close();
-            return $image;
+            return $images;
         }
+
+        public function addImageToProduct($productId, $imagePath) {
+            $query = "INSERT INTO HinhAnh (MaSach, DgDanAnh) VALUES (?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("is", $productId, $imagePath);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        public function addImageToAccount($accountId, $imagePath) {
+            $query = "INSERT INTO HinhAnh (MaND, DgDanAnh) VALUES (?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("is", $accountId, $imagePath);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        public function deleteDefaultImage($user_id) {
+            $query = "DELETE FROM HinhAnh WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        public function updateUserImage($user_id, $imagePath) {
+            $query = "UPDATE HinhAnh SET DgDanAnh = ? WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("si", $imagePath, $user_id);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        public function getUserImage($id) {
+            $query = "SELECT DgDanAnh FROM hinhanh WHERE MaND = $id";
+            $result = $this->db->query($query);
+            if ($result && $row = $result->fetch_assoc()) {
+                return $row['DgDanAnh'];
+            }
+            return null;
+        }
+        
     }
 ?>

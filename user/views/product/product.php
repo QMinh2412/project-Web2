@@ -72,7 +72,7 @@
                     </label>
                 </div>
                 <div>
-                    <input type="checkbox" name="checkbox_price" class="checkbox_price" id="price_7" value="above_500000">
+                    <input type="checkbox" name="checkbox_price" class="checkbox_price" id="price_7" value="500000_over">
                     <label for="price_7">
                         <div class="item">Trên 500000 vnđ</div>
                     </label>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="info_book">
                             <div class="title_book"><?php echo $product['TenSach']?></div>
-                            <div class="price_book"><?php echo number_format($product['GiaBan'], 0, "", ".");?> vnđ</div>
+                            <div class="price_book"><?php echo $product['GiaBan'];?> vnđ</div>
                         </div>
                     </a>
                 </div>
@@ -99,17 +99,22 @@
         </div>
 
         <div class="pagination">
-            <?php if($totalPage['currentPage'] != 1): ?>
-                <a href="#" id="pre_page"><i class="fa-solid fa-angles-left"></i></a>
-            <?php endif ?>
-            <?php for($i=1; $i<=$totalPage['totalPages']; $i++): ?>
-            <a href="?page=<?php echo $i; ?>" class="page <?php echo ($i == $totalPage['currentPage']) ? 'active' : ''; ?>">
-                <?php echo $i; ?>
-            </a>
+            <!-- Nút lùi về trang trước -->
+            <?php if ($totalPage['currentPage'] != 1): ?>
+                <span class="page prev">&laquo;</span>
+            <?php endif; ?>
+            
+            <!-- Các trang -->
+            <?php for ($i = 1; $i <= $totalPage['totalPages']; $i++): ?>
+                <span class="page <?php echo ($i == $totalPage['currentPage']) ? 'active' : ''; ?>">
+                    <?php echo $i; ?>
+                </span>
             <?php endfor; ?>
-            <?php if($totalPage['currentPage'] != $totalPage['totalPages']): ?>
-                <a href="#" id="next_page"><i class="fa-solid fa-angles-right"></i></a>
-            <?php endif ?>
+
+            <!-- Nút tiến tới trang sau -->
+            <?php if ($totalPage['currentPage'] != $totalPage['totalPages']): ?>
+                <span class="page next">&raquo;</span>
+            <?php endif; ?>
         </div>
     </div>
 </div>

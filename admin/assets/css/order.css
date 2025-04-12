@@ -1,0 +1,132 @@
+/* Container chính */
+.order-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Form tìm kiếm */
+.order-search-form {
+    margin-top: 10px;
+    display: flex;
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+    flex-wrap: wrap; /* Đảm bảo các phần tử xuống dòng khi không đủ không gian */
+}
+
+.order-search-form .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px; /* Khoảng cách giữa label và input/select */
+}
+
+.order-search-form .form-group:last-child {
+    align-self: flex-end; /* Đẩy nút tìm kiếm xuống cuối hàng */
+}
+
+.order-search-form label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.order-search-form input[type="text"],
+.order-search-form input[type="date"],
+.order-search-form select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px; /* Đặt chiều rộng cố định */
+    box-sizing: border-box;
+}
+
+.order-search-form button {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 42px; /* Đảm bảo chiều cao bằng với các input */
+}
+
+.order-search-form button:hover {
+    background-color: #218838;
+}
+
+/* Bảng hiển thị đơn hàng */
+/* table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+} */
+
+/* Nút hành động */
+.detail-btn {
+    background-color: blue;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.detail-btn:hover {
+    background-color: #0056b3;
+}
+
+.confirm-btn {
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.confirm-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+}

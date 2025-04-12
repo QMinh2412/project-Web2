@@ -12,7 +12,7 @@
                 Danh mục sách</div>
         </a>
 
-        <a href="?page=product&action=index">
+        <a href="?page=product&action=index&current_page=1">
             <div class="menuitems">
                 <i class='bx bx-book'></i>    
                 Sản phẩm</div>

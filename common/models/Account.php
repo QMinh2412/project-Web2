@@ -31,16 +31,6 @@ class Account {
         }
         return null;
     }
-    
-    public function getImage($id) {
-        $query = "SELECT DgDanAnh FROM hinhanh WHERE MaND = $id";
-        $result = $this->db->query($query);
-        if ($result && $row = $result->fetch_assoc()) {
-            return $row['DgDanAnh'];
-        }
-        return null;
-    }
-    
 
     public function emailExist($email) {
         $sql = "SELECT COUNT(*) as count FROM NgDung WHERE EmailND = ?";
@@ -57,6 +47,48 @@ class Account {
         if ($row = $result->fetch_assoc()) {
             $stmt->close();
             return $row['count'] > 0; // Trả về true nếu email tồn tại
+        }
+    
+        $stmt->close();
+        return false;
+    }
+
+    public function phoneExist($phone) {
+        $sql = "SELECT COUNT(*) as count FROM NgDung WHERE SDT = ?";
+        $stmt = $this->db->prepare($sql);
+    
+        if (!$stmt) {
+            die("Lỗi truy vấn: " . $this->db->error); // Debug nếu truy vấn lỗi
+        }
+    
+        $stmt->bind_param("s", $phone);            
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($row = $result->fetch_assoc()) {
+            $stmt->close();
+            return $row['count'] > 0; // Trả về true nếu số điện thoại tồn tại
+        }
+    
+        $stmt->close();
+        return false;
+    }
+
+    public function usernameExist($username) {
+        $sql = "SELECT COUNT(*) as count FROM TaiKhoan WHERE TenTK = ?";
+        $stmt = $this->db->prepare($sql);
+    
+        if (!$stmt) {
+            die("Lỗi truy vấn: " . $this->db->error); // Debug nếu truy vấn lỗi
+        }
+    
+        $stmt->bind_param("s", $username);            
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($row = $result->fetch_assoc()) {
+            $stmt->close();
+            return $row['count'] > 0; // Trả về true nếu tên tài khoản tồn tại
         }
     
         $stmt->close();
@@ -141,10 +173,10 @@ class Account {
         $stmt->close();
     }
 
-    public function lockAccount($id) {
-        $query = "UPDATE TaiKhoan SET TinhTrang = 0 WHERE MaND = ?";
+    public function lockAccount($id, $status) {
+        $query = "UPDATE TaiKhoan SET TinhTrang = ? WHERE MaND = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $id);
+        $stmt->bind_param("ii",$status, $id);
         $stmt->execute();
         $stmt->close();
     }

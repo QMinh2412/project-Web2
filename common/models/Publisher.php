@@ -22,6 +22,18 @@
             return $publishers;
         }
 
-        
+        public function createPublisher($publisherData) {
+            $query = "INSERT INTO NXB (TenNXB, DcNXB, EmailNXB) VALUES (?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+
+            if ($stmt) {
+                $stmt->bind_param("sss", $publisherData['TenNXB'], $publisherData['DcNXB'], $publisherData['EmailNXB']);
+                if ($stmt->execute()) {
+                    return $this->db->insert_id; 
+                }
+            }
+
+            return false; 
+        } 
     }
 ?>

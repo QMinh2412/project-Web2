@@ -1,3 +1,5 @@
+<script src="/project-Web2/admin/assets/js/user.js"></script>
+
 <div class="admin-wrapper">
     <div class="user-form">
         <form id="usereditform" method="POST" action="?page=user&action=edit&id=<?= $user['MaND'] ?>" enctype="multipart/form-data">
@@ -66,7 +68,10 @@
                     <?php endif; ?>
 
                     <label for="image">Chọn hình ảnh mới</label>
-                    <input type="file" id="image" name="image" accept="image/*">
+                    <input type="file" id="user-preview-input" name="image" accept="image/*" onchange="previewImage(event)">
+                    <div class="form-user-image-preview" id="user-add-image-preview">
+                        <div id="user-image-preview"></div>
+                    </div>
                 </div>      
 
                 <?php

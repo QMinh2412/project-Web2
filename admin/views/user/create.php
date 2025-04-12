@@ -1,3 +1,5 @@
+<script src="/project-Web2/admin/assets/js/user.js"></script>
+
 <div class="admin-wrapper">
     <div class="user-form">
         <form id="useraddform" method="POST" action="?page=user&action=create" enctype="multipart/form-data">
@@ -54,7 +56,10 @@
 
                 <div class="form-user-image" id="user-add-image">
                     <label for="image">Hình ảnh</label>
-                    <input type="file" id="image" name="image" accept="image/*">
+                    <input type="file" id="user-preview-input" name="image" accept="image/*" onchange="previewImage(event)">
+                </div>
+                <div class="form-user-image-preview" id="user-add-image-preview">
+                    <div id="user-image-preview"></div>
                 </div>
 
                 <div class="form-user-role" id="user-add-role">

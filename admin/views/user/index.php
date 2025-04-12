@@ -15,9 +15,10 @@
             </tr>
         </thead>
         <tbody class="admin-list-body">
+            <?php $stt = 1; ?>
             <?php foreach ($users as $user): ?>
                 <tr class="admin-list-body-content">
-                    <td class="admin-list-body-content-num" id="user-stt"><?= htmlspecialchars($user['MaND']) ?></td>
+                    <td class="admin-list-body-content-num" id="user-stt"><?= $stt++ ?></td>
                     <td class="admin-list-body-content-other" id="user-name"><?= htmlspecialchars($user['TenND']) ?></td>
                     <td class="admin-list-body-content-other" id="user-role"><?= htmlspecialchars($user['EmailND']) ?></td>
                     <td class="admin-list-body-content-other" id="user-status">
@@ -45,4 +46,19 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <div class="user-pagination">
+        <a href="?page=user&current_page=<?= $pagination['currentPage'] - 1 ?>" 
+            class="<?= $pagination['currentPage'] == 1 ? 'disabled' : '' ?>">&lt;</a>
+        
+        <?php for ($i = 1; $i <= $pagination['totalPages']; $i++): ?>
+            <a href="?page=user&current_page=<?= $i ?>"
+               class="<?= $i == $pagination['currentPage'] ? 'active' : '' ?>">
+               <?= $i ?>
+            </a>
+        <?php endfor; ?>
+
+        <a href="?page=user&current_page=<?= $pagination['currentPage'] + 1 ?>" 
+            class="<?= $pagination['currentPage'] == $pagination['totalPages'] ? 'disabled' : '' ?>">&gt;</a>
+    </div>
 </div>

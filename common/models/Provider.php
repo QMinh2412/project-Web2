@@ -37,6 +37,20 @@
         
             return null; // Return null if the statement couldn't be prepared
         }
+
+        public function createProvider($providerData) {
+            $query = "INSERT INTO NCC (TenNCC, DcNCC, EmailNCC) VALUES (?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+        
+            if ($stmt) {
+                $stmt->bind_param("sss", $providerData['TenNCC'], $providerData['DcNCC'], $providerData['EmailNCC']);
+                if ($stmt->execute()) {
+                    return $this->db->insert_id;
+                }
+            }
+        
+            return false; 
+        }
     }
         
 ?>
