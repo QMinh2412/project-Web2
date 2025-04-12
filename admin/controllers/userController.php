@@ -29,7 +29,7 @@
                 $fullname = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $username = filter_var($_POST['username'],  FILTER_SANITIZE_SPECIAL_CHARS);
                 $email = filter_var(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
-                $password = hash('sha256', $_POST['password']);
+                $password = $_POST['password'];
                 $address = filter_var($_POST['address'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $phone = $_POST['phone'];
                 $birthdate = $_POST['birthdate'];
@@ -124,22 +124,22 @@
                 $fullname = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $username = filter_var($_POST['username'],  FILTER_SANITIZE_SPECIAL_CHARS);
                 $email = filter_var(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
-                $password = hash('sha256', trim($_POST['password']));
+                $password = trim($_POST['password']);
                 $address = filter_var($_POST['address'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $phone = $_POST['phone'];
                 $birthdate = $_POST['birthdate'];
                 $role = $_POST['role'];
                 $gender = isset($_POST['gender']) ? $_POST['gender'] : 0;
 
-                if ($accountModel->usernameExist($username)) {
+                if ($accountModel->usernameExist($username, $id)) {
                     echo "<script>alert('Tên tài khoản đã tồn tại!'); window.history.back();</script>";
                     exit;
                 }
-                if ($accountModel->emailExist($email)) {
+                if ($accountModel->emailExist($email, $id)) {
                     echo "<script>alert('Email đã tồn tại!'); window.history.back();</script>";
                     exit;
                 }
-                if ($accountModel->phoneExist($phone)) {
+                if ($accountModel->phoneExist($phone, $id)) {
                     echo "<script>alert('Số điện thoại đã tồn tại!'); window.history.back();</script>";
                     exit;
                 }
