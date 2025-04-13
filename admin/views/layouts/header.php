@@ -31,7 +31,6 @@
     </div>
     <div class="menu-down" id="menu-down">
       <ul>
-        <li><button onclick="location.href='/project-Web2/admin/views/layouts/login.php'">Đổi tài khoản</button></li>
         <li><button onclick="location.href='/project-Web2/admin/views/layouts/login.php'">Đăng xuất</button></li>
       </ul>
     </div>
