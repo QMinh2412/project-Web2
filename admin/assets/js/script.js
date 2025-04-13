@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('admin-menu-icon');
     const mobileBtn = document.getElementById('mobile-menu-toggle');
     const mobileBtnIcon = document.getElementById('mobile-menu-toggle-i');
-    const KEY       = 'sidebarCollapsed';
+    const KEY       = 'sidebarState';
   
     if (!menu) return;
   
     // 1) Load trạng thái từ localStorage
-    if (localStorage.getItem(KEY) === 'true') {
+    if (localStorage.getItem(KEY) === '1') {
       menu.classList.add('collapsed');
     }
   
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => {
         const isCollapsed = menu.classList.toggle('collapsed');
-        localStorage.setItem(KEY, isCollapsed);
+        localStorage.setItem(KEY, isCollapsed ? '1' : '0');
       });
     }
   
@@ -45,9 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const onResize = () => {
         if (window.innerWidth <= 600) {
             menu.classList.remove('collapsed');
-        } else {
+        }
+        if (window.innerWidth > 600 && window.innerWidth <= 950) {
+            const isCollapsed = menu.classList.toggle('collapsed');
+            localStorage.setItem(KEY, isCollapsed, 0);
+            menu.classList.add('collapsed');
+            toggleBtn.style.display = 'none';
+        }
+        else {
             // restore desktop collapsed từ localStorage
-            if (localStorage.getItem(KEY) === 'true') {
+            if (localStorage.getItem(KEY) === '1') {
                 menu.classList.add('collapsed');
             }
         }

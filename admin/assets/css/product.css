@@ -545,5 +545,42 @@ input:checked + .slider::before {
     #detailProductBtn {
         margin-bottom: 5px;
     }
+}
 
+@media only screen and (max-width: 950px) {
+    #product-order {
+        width: 32px;
+        font-size: 0.9em;
+    }
+
+    #product-name {
+        font-size: 0.9em;
+    }
+
+    #product-category {
+        width: 50px;
+        font-size: 0.9em;
+    }
+
+    #product-quantity {
+        display: none;
+    }
+
+    #product-status {
+        width: 50px;
+        font-size: 0.9em;
+    }
+
+    #product-price {
+        display: none;
+    }
+
+    #product-features {
+        width: 80px;
+        font-size: 0.9em;
+    }
+
+    #detailProductBtn {
+        margin-bottom: 5px;
+    }
 }

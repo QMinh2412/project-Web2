@@ -77,3 +77,9 @@
         display: none;
     }
 }
+
+@media only screen and (max-width: 950px) {
+    #admin-menu-icon {
+        display: none;
+    }
+}
