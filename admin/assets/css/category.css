@@ -31,10 +31,6 @@
     text-align: center;
 }
 
-#category-quantity {
-    width: 200px;
-}
-
 #category-features {
     width: 150px;
 }
@@ -90,7 +86,7 @@
 
 /* Edit category */
 #editCategoryBtn {
-    background-color: #3ea2e1; /* Green */
+    background-color: #3ea2e1;
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -120,4 +116,18 @@
 }
 #deleteCategoryBtn:active {
     background-color: #800000; 
+}
+
+@media only screen and (max-width: 600px) {
+    #category-order {
+        max-width: 45px;
+    }
+
+    #category-features {
+        max-width: 100px;
+    }
+
+    #editCategoryBtn {
+        margin-bottom: 5px;
+    }
 }

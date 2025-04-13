@@ -1,3 +1,5 @@
+<script src="/project-Web2/admin/assets/js/product.js"></script>
+
 <div class="admin-wrapper">
     <div class="admin-header" id="product-header">
         <h2>Sản phẩm</h2>
@@ -26,7 +28,12 @@
                     <td class="admin-list-body-content-num" id="product-category"><?= htmlspecialchars($category) ?></td>
                     <td class="admin-list-body-content-num" id="product-quantity"><?= htmlspecialchars(number_format($product['SoLgTon'])) ?></td>
                     <td class="admin-list-body-content-num" id="product-price"><?= htmlspecialchars(number_format($product['GiaBan'])) ?></td>
-                    <td class="admin-list-body-content-num" id="product-status"><?= htmlspecialchars($status)?></td>
+                    <td class="admin-list-body-content-num" id="product-status">
+                        <label class="switch">
+                            <input type="checkbox" class="status-toggle" data-id="<?= $product['MaSach'] ?>" <?= $product['TinhTrang'] == 1 ? 'checked' : '' ?> onchange="location.href='?page=product&action=allow&id=<?= $product['MaSach'] ?>&current_page=<?= $pagination['currentPage'] ?>'">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
                     <td class="admin-list-body-content-num" id="product-features">
                         <button class="btn btn-primary" id="detailProductBtn" onclick="location.href='?page=product&action=detail&id=<?= number_format($product['MaSach']) ?>&current_page=<?= $pagination['currentPage'] ?>'">
                             <i class='bx bx-info-circle'></i>
@@ -36,17 +43,7 @@
                             <i class='bx bx-edit'></i>
                             Sửa
                         </button>
-                        <?php if ($product['TinhTrang'] == 0): ?>
-                            <button class="btn btn-success" id="allowOnSaleBtn" onclick="location.href='?page=product&action=allow&id=<?= $product['MaSach'] ?>'">
-                                <i class='bx bx-check'></i>
-                                Mở bán
-                            </button>
-                        <?php else: ?>
-                            <button class="btn btn-danger" id="stopSellingBtn" onclick="location.href='?page=product&action=allow&id=<?= $product['MaSach'] ?>'">
-                                <i class='bx bx-block'></i>
-                                Ngừng bán
-                            </button>
-                        <?php endif; ?>
+                        
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -54,12 +51,18 @@
     </table>
 
     <!-- Phân trang -->
-    <div class="pagination">
+    <div class="product-pagination">
+        <a href="?page=product&current_page=<?= $pagination['currentPage'] - 1 ?>" 
+            class="<?= $pagination['currentPage'] == 1 ? 'disabled' : '' ?>">&lt;</a>
+        
         <?php for ($i = 1; $i <= $pagination['totalPages']; $i++): ?>
             <a href="?page=product&current_page=<?= $i ?>"
                class="<?= $i == $pagination['currentPage'] ? 'active' : '' ?>">
                <?= $i ?>
             </a>
         <?php endfor; ?>
+
+        <a href="?page=product&current_page=<?= $pagination['currentPage'] + 1 ?>" 
+            class="<?= $pagination['currentPage'] == $pagination['totalPages'] ? 'disabled' : '' ?>">&gt;</a>
     </div>
 </div>

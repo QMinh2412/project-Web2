@@ -22,7 +22,7 @@
         }
 
         public function getImgProduct($id) {
-            $query = "SELECT DgDanAnh FROM HinhAnh WHERE MaSach = ?";
+            $query = "SELECT MaHA, DgDanAnh FROM HinhAnh WHERE MaSach = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param("i", $id);
             $stmt->execute();
@@ -30,11 +30,25 @@
             $images = [];
 
             while ($row = $result->fetch_assoc()) {
-                $images[] = $row['DgDanAnh']; // Thêm từng ảnh vào mảng
+                $images[] = [
+                    'MaHA' => $row['MaHA'],
+                    'DgDanAnh' => $row['DgDanAnh']
+                ]; 
             }
 
             $stmt->close();
             return $images;
+        }
+        
+        public function getImageById($imageId) {
+            $query = "SELECT * FROM HinhAnh WHERE MaHA = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $imageId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $image = $result->fetch_assoc();
+            $stmt->close();
+            return $image;
         }
 
         public function addImageToProduct($productId, $imagePath) {
@@ -78,5 +92,12 @@
             return null;
         }
         
+        public function deleteImageById($imageId) {
+            $query = "DELETE FROM HinhAnh WHERE MaHA = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $imageId);
+            $stmt->execute();
+            $stmt->close();
+        }  
     }
 ?>

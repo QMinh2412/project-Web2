@@ -19,7 +19,7 @@
 }
 
 #product-features {
-    width: 260px;
+    width: 150px;
 }
 
 /*Add product button*/
@@ -103,20 +103,49 @@
 }
 
 /*On sale allow*/
-#allowOnSaleBtn {
-    background-color: tomato; 
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out; 
+    background-color: #ccc;
+    border-radius: 34px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
 }
-#allowOnSaleBtn:hover {
-    background-color: #e67e22; 
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
 }
-#allowOnSaleBtn:active {
-    background-color: #d35400; 
+
+input:checked + .slider {
+    background-color: #28a745;
+}
+
+input:checked + .slider::before {
+    transform: translateX(22px);
 }
 
 /*Stop selling button*/
@@ -189,7 +218,7 @@
     border-radius: 5px;
     border: 1px solid black;
     margin: 10px;
-    resize: none;
+    resize: vertical;
     font-size: 1.1em;
 }
 #product-description-input:focus {
@@ -303,6 +332,36 @@
     background-color: #2a7a9b;
 }
 
+#edit-product-image-preview {
+    margin: 10px;
+}
+
+.edit-product-deleteBtn {
+    transform: scale(1.2);
+}
+
+.edit-product-image-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.product-preview-img {
+    max-width: 100px;
+    max-height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.product-image-url-edit {
+    flex-grow: 1;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+    color: #333;
+}
+
+
 /* Product detail */
 #product-header {
     position: relative;
@@ -327,4 +386,149 @@
     margin: 5px;
     max-width: 200px;
     max-height: 200px;
+    /* cursor: pointer; */
+}
+
+#emptyImageinDetail {
+    color: gray; 
+    font-style: italic;
+    margin: 10px;
+}
+
+/* Pagination */
+.product-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 8px;
+}
+
+.product-pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-decoration: none;  
+    color: #333;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+}
+
+.product-pagination a:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.product-pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    pointer-events: none;
+    border-color: #007bff;
+}
+
+.product-pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Modal showing images */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    text-align: center;
+}
+
+.image-modal .modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #fff;
+}
+
+.image-modal .close {
+    position: absolute;
+    top: 15px; right: 25px;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.image-modal .prev,
+.image-modal .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.3s;
+    user-select: none;
+    z-index: 10000;
+}
+
+.image-modal .prev {
+    left: 0;
+}
+
+.image-modal .next {
+    right: 0;
+}
+
+.image-modal .prev:hover,
+.image-modal .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media only screen and (max-width: 600px) {
+    #product-order {
+        width: 32px;
+        font-size: 0.8em;
+    }
+
+    #product-name {
+        font-size: 0.8em;
+    }
+
+    #product-category {
+        width: 50px;
+        font-size: 0.8em;
+    }
+
+    #product-quantity {
+        width: 40px;
+        font-size: 0.8em;
+    }
+
+    #product-status {
+        width: 50px;
+        font-size: 0.8em;
+    }
+
+    #product-price {
+        display: none;
+    }
+
+    #product-features {
+        width: 80px;
+        font-size: 0.8em;
+    }
+
+    #detailProductBtn {
+        margin-bottom: 5px;
+    }
+
 }

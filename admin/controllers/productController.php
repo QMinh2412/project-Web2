@@ -13,7 +13,7 @@
             $productModel  = new Product();
             $categoryModel = new Category();
 
-            $booksPerPage = 15;
+            $booksPerPage = 10;
 
             $products   = $productModel->getAllProducts($currentPage, $booksPerPage);
             $pagination = $productModel->getPagination($currentPage, $booksPerPage);
@@ -197,15 +197,19 @@
         }
         
 
-        public function edit () {
+        public function edit ($productId) {
 
             $currentPage = $_GET['current_page'] ?? 1;
 
             $productModel = new Product();
-            $productId = $_GET['id'] ?? null;
+            // $productId = $_GET['id'] ?? null;
 
             $categoryModel = new Category();
             $categories = $categoryModel->getAllCategories(); 
+            $categoryMap = [];
+            foreach ($categories as $cat) {
+                $categoryMap[$cat['MaLoai']] = $cat['TenLoai'];
+            } 
 
             $authorModel = new Author();
             $authors = $authorModel->getAllAuthors(); 
@@ -217,7 +221,7 @@
             $providers = $providerModel->getAllProviders();
 
             $imageModel = new Image();
-            $images = $imageModel->getImgProduct($productId);
+            $oldImages = $imageModel->getImgProduct($productId);
 
             if ($productId) {
                 $product = $productModel->getProductById($productId);
@@ -234,7 +238,7 @@
                     'publishers' => $publishers,
                     'providers' => $providers,
                     'currentPage' => $currentPage,
-                    'images' => $images
+                    'oldImages' => $oldImages
                 ]);
 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -314,6 +318,42 @@
                         $providerId = $providerModel->createProvider($providerData);
                     }
 
+                    if (!empty($_POST['delete_images'])) {
+                        foreach ($_POST['delete_images'] as $deleteImageId) {
+                            $img = $imageModel->getImageById($deleteImageId);
+                            $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $img['DgDanAnh'];
+                            if (file_exists($absolutePath)) {
+                                unlink($absolutePath);
+                            }
+                            $imageModel->deleteImageById($deleteImageId);
+                        }
+                    }
+
+                    $categoryName = $categoryMap[$categoryId];
+                    $projectRoot = realpath(__DIR__ . '/../../'); 
+                    $targetDir   = $projectRoot . '/common/images/' . $categoryName . '/' . $productName;
+                    if (!is_dir($targetDir)) {
+                        mkdir($targetDir, 0777, true);
+                    }
+                    foreach ($_FILES['product_image']['tmp_name'] as $index => $tmpName) {
+
+                        if ($_FILES['product_image']['error'][$index] === UPLOAD_ERR_OK) {
+                            $uniqueId = uniqid();
+                            $ext = pathinfo($_FILES['product_image']['name'][$index], PATHINFO_EXTENSION);
+                            $fileName = $productName . '_' . $uniqueId . '.' . $ext;
+                            $targetFile = $targetDir . '/' . $fileName;
+                            if (move_uploaded_file($tmpName, $targetFile)) {
+                                $relativePath = "/project-Web2/common/images/$categoryName/$productName/$fileName";
+                                $imageModel->addImageToProduct($productId, $relativePath);
+                            }
+                            else {
+                                echo "<script>
+                                    alert('Lỗi khi tải lên hình ảnh!');
+                                </script>";
+                            }
+                        }
+                    }
+
                     $productData = [
                         'TenSach' => $productName,
                         'MaLoai' => $categoryId,
@@ -333,8 +373,9 @@
                     if ($isUpdated) {
                         echo "<script>
                             alert('Cập nhật sản phẩm thành công!');
-                            window.location.href = '?page=product&action=index&current_page=$currentPage';
+                            window.location.href = '?page=product&action=index&current_page=$currentPage'
                         </script>";
+                        exit;
                     }
                     else {
                         echo "<script>
@@ -347,7 +388,7 @@
             else {
                 echo "<script>
                     alert('ID sản phẩm không hợp lệ!');
-                    window.location.href = '?page=category&action=index&current_page=$currentPage';
+                    window.location.href = '?page=product&action=index&current_page=$currentPage';
                 </script>";
             }
         }
@@ -372,13 +413,11 @@
 
                     if ($isUpdated) {
                         echo "<script>
-                            alert('Đã tiến hành ngừng bán sản phẩm!');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
                     else {
                         echo "<script>
-                            alert('Không thể ngừng bán sản phẩm!');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
@@ -389,13 +428,11 @@
 
                     if ($isUpdated) {
                         echo "<script>
-                            alert('Đã tiến hành mở bán sản phẩm!');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
                     else {
                         echo "<script>
-                            alert('Không thể tiến hành mở bán sản phẩm!');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }

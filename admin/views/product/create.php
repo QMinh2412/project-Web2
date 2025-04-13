@@ -96,3 +96,9 @@
         </form>
     </div>
 </div>
+
+<!-- Modal hiển thị ảnh -->
+<div id="imageModal" class="image-modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>

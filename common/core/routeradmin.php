@@ -39,10 +39,10 @@ class RouteAdmin {
                         $controller->create();
                         break;
                     case 'edit':
-                        $controller->edit($id);
+                        $controller->edit();
                         break;
                     case 'delete':
-                        $controller->delete($id);
+                        $controller->delete();
                         break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
