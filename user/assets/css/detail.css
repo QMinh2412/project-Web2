@@ -12,9 +12,9 @@
 /* Box detail ====================================================================================================== */
 .container .box_detail {
   display: flex;
-  width: calc(100% - 20px);
+  width: calc(100% - 40px);
   background-color: white;
-  padding: 10px;
+  padding: 10px 20px;
 }
 
 .box_detail .book_image {
@@ -36,7 +36,7 @@
 
 .box_detail .book_image .main_image img {
   width: auto;
-  /* max-width: 90%; */
+  max-width: 90%;
   /* height: 100%; */
   max-height: 100%;
   margin: 0;
@@ -55,9 +55,9 @@
   transition: transform 1s;
 }
 
-.book_image .detail_image.animate {
+/* .book_image .detail_image.animate {
   transition: transform 0.5s ease-in-out;
-}
+} */
 
 .book_image .detail_image div {
   width: 60px;
@@ -68,6 +68,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  user-select: none;
 }
 
 .book_image .detail_image div:hover {
@@ -77,6 +78,7 @@
 .book_image .detail_image div img {
   width: 54px;
   height: 64px;
+  user-select: none;
 }
 
 .box_detail .main_detail {

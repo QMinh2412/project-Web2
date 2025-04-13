@@ -193,14 +193,94 @@ function addToCart() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  plusItem();
-  minusItem();
-  showTextarea();
-  writeComment();
-  writeReply();
-  addToCart();
+function dragDropDetailImage() {
+  const detailImageContainer = document.querySelector(
+    ".book_image .detail_image"
+  );
+  const mainImage = document.querySelector(".book_image .main_image img");
+  let isDragging = false;
+  let startX;
+  let scrollLeft;
 
+  // Xử lý click vào ảnh trong detail_image
+  detailImageContainer.addEventListener("click", (e) => {
+    const clickedImage = e.target.closest("img");
+    if (!clickedImage) return; // Nếu không click vào ảnh, bỏ qua
+
+    // Cập nhật src của main_image
+    mainImage.src = clickedImage.src;
+    mainImage.alt = clickedImage.alt; // Giữ alt giống ảnh detail
+  });
+
+  // Xử lý kéo bằng chuột
+  detailImageContainer.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.pageX - detailImageContainer.offsetLeft;
+    scrollLeft = detailImageContainer.scrollLeft;
+    detailImageContainer.style.cursor = "grabbing";
+    // detailImageContainer.classList.remove("animate"); // Tắt transition khi kéo
+  });
+
+  detailImageContainer.addEventListener("mouseleave", () => {
+    isDragging = false;
+    detailImageContainer.style.cursor = "grab";
+    // detailImageContainer.classList.add("animate"); // Bật lại transition
+  });
+
+  detailImageContainer.addEventListener("mouseup", () => {
+    isDragging = false;
+    detailImageContainer.style.cursor = "grab";
+    // detailImageContainer.classList.add("animate"); // Bật lại transition
+  });
+
+  detailImageContainer.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - detailImageContainer.offsetLeft;
+    const walk = (x - startX) * 1.5; // Tốc độ kéo
+    detailImageContainer.scrollLeft = scrollLeft - walk;
+
+    // Giới hạn kéo
+    const maxScrollLeft =
+      detailImageContainer.scrollWidth - detailImageContainer.clientWidth;
+    if (detailImageContainer.scrollLeft <= 0) {
+      detailImageContainer.scrollLeft = 0; // Ngăn kéo quá bên phải (ảnh đầu)
+    } else if (detailImageContainer.scrollLeft >= maxScrollLeft) {
+      detailImageContainer.scrollLeft = maxScrollLeft; // Ngăn kéo quá bên trái (ảnh cuối)
+    }
+  });
+
+  // Xử lý kéo trên thiết bị cảm ứng
+  detailImageContainer.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    startX = e.touches[0].pageX - detailImageContainer.offsetLeft;
+    scrollLeft = detailImageContainer.scrollLeft;
+    // detailImageContainer.classList.remove("animate"); // Tắt transition khi kéo
+  });
+
+  detailImageContainer.addEventListener("touchend", () => {
+    isDragging = false;
+    // detailImageContainer.classList.add("animate"); // Bật lại transition
+  });
+
+  detailImageContainer.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - detailImageContainer.offsetLeft;
+    const walk = (x - startX) * 1.5; // Tốc độ kéo
+    detailImageContainer.scrollLeft = scrollLeft - walk;
+
+    // Giới hạn kéo
+    const maxScrollLeft =
+      detailImageContainer.scrollWidth - detailImageContainer.clientWidth;
+    if (detailImageContainer.scrollLeft <= 0) {
+      detailImageContainer.scrollLeft = 0;
+    } else if (detailImageContainer.scrollLeft >= maxScrollLeft) {
+      detailImageContainer.scrollLeft = maxScrollLeft;
+    }
+  });
+}
+
+function effectForOrtherBooks() {
   $(document).ready(function () {
     const $carousel = $(".orther_books").owlCarousel({
       loop: true, // Bật chế độ vòng lặp
@@ -233,4 +313,15 @@ document.addEventListener("DOMContentLoaded", function () {
       $carousel.trigger("prev.owl.carousel");
     });
   });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  plusItem();
+  minusItem();
+  showTextarea();
+  writeComment();
+  writeReply();
+  addToCart();
+  dragDropDetailImage();
+  effectForOrtherBooks();
 });
