@@ -35,7 +35,7 @@ class Route {
         switch ($action) {
             case 'register':   
                 $controller->registerAjax();
-                break;
+                break;  
             case 'login':
                 $controller->loginAjax();
                 break;
@@ -54,11 +54,21 @@ class Route {
             case 'filter':
                 $controller->filterPriceRangeAjax();
                 break;
-            case 'search':
-                $controller->search();
+            case 'changepassword':
+                $controller->changepassword();
+                break;
+            case 'changepasswordAjax':
+                $controller->changepasswordAjax();
+                break;
+            case 'updateAccount':
+                $controller->updateAccount();
                 break;
             default:
-                $controller->index();
+            if (method_exists($controller, $action)) {
+                $controller->{$action}(); // gọi action theo tên
+            } else {
+                echo "404 Not Found: Action '$action' không tồn tại trong controller " . get_class($controller);
+            }
                 break;
         }
     }

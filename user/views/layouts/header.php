@@ -26,8 +26,8 @@
                 <span><?php echo $userData[0]; ?></span>
                 <div class="sub_menu" style="display: none;">
                     <ul>
-                        <a href="#"><li>Cập nhật tài khoản</li></a>
-                        <a href="#"><li>Thay đổi mật khẩu</li></a>
+                        <a href="/project-Web2/user/index.php?page=account&action=updateAccount"><li>Cập nhật tài khoản</li></a>
+                        <a href="/project-Web2/user/index.php?page=account&action=changepassword"><li>Thay đổi mật khẩu</li></a>
                         <a href="#"><li>Lịch sử giao dịch</li></a>
                         <a href="/project-Web2/user/index.php?page=account&action=logout"><li style="color: red;">Đăng xuất</li></a>
                     </ul>
