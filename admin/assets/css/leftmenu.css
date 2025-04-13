@@ -61,25 +61,14 @@
 }
 
 @media only screen and (max-width: 600px) {
-    /* #left-menu { 
-        transform: translateX(-100%); 
-        transition: transform .3s; 
-    }
-    #left-menu.open { 
-        transform: translateX(0); 
-    } */
 
-    #menuitems-for-statistics {
-        margin-top: 60px;
-    }
-
-    #admin-menu-icon {
+    /* #admin-menu-icon {
         display: none;
-    }
+    } */
 }
 
-@media only screen and (max-width: 950px) {
-    #admin-menu-icon {
+@media only screen and (max-width: 1050px) {
+    /* #admin-menu-icon {
         display: none;
-    }
+    } */
 }
