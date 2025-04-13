@@ -9,7 +9,7 @@
             </div>
             <div class="menu-list">
                 <?php foreach ($categories as $category): ?>
-                    <a href="/project-Web2/user/index.php?page=product&action=render_by_category&category_id=<?php echo urlencode($category['MaLoai']); ?>&current_page=1">
+                    <a href="/project-Web2/user/index.php?page=product&category_id=<?php echo urlencode($category['MaLoai']); ?>&current_page=1">
                         <?php echo htmlspecialchars($category['TenLoai'], ENT_QUOTES, 'UTF-8'); ?>
                     </a>
                 <?php endforeach; ?>

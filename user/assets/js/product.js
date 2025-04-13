@@ -273,18 +273,27 @@ function attachFilterEvents() {
   });
 }
 
+function getParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-  // Ẩn hiện sub_box_item khi click vào main_item
+  console.log("product.js đã được tải");
   hideShowSubbox();
-  // Thay đổi màu page_item khi nó được chọn
   changeColorForPageItem();
 
-  // Gắn sự kiện click cho các nút phân trang và hiện danh sách sách đầu tiên
-  attachPaginationEvents();
-  loadPageData(1);
-
-  // Gắn sự kiện cho các mục bên box_filter
   attachCategoryEvents();
   attachAuthorEvents();
   attachFilterEvents();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  console.log(`url: ${urlParams}`);
+  const caterogy_id = urlParams.get("category_id");
+  const current_page = urlParams.get("current_page");
+
+  console.log(`ma the loai: ${caterogy_id}`);
+  console.log(`trang hien tai: ${current_page}`);
+
+  loadPageData(1);
 });

@@ -1,5 +1,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="/project-Web2/user/assets/css/product.css">
+<!-- <?php 
+    echo $category_id; 
+    echo $current_page;
+    echo "\n";
+    print_r($products);
+    echo "\n";
+    print_r($totalPage);
+?> -->
 
 <div class="outer_container">
     <div class="box_filter">
@@ -83,20 +91,6 @@
     
     <div class ="box_product">
         <div class="book_list container">
-            <?php
-                if ( isset($productsAfterSearch) && !empty($productsAfterSearch) ) {
-                    $products = $productsAfterSearch;
-                } else {
-                    $products = $products;
-                }
-
-                if( isset($totalPageAfterSearch) && !empty($totalPageAfterSearch) ) {
-                    $totalPage = $totalPageAfterSearch;
-                } else {
-                    $totalPage = $totalPage;
-                }
-
-            ?>
             <?php foreach ($products as $product): ?>
                 <div class="book_item">
                     <a href="/project-Web2/user/index.php?page=product&action=detail&id_book=<?php echo $product['MaSach']?>">

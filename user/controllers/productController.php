@@ -10,14 +10,24 @@ use LDAP\Result;
         protected $bookperpage = 10;
 
         public function index() {
+            $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : "";
+            $current_page = isset($_GET['current_page']) ? $_GET['current_page'] : 1;
+
             // lấy thử loại sản phẩm từ database
             $categoryModel = new Category();
             $authorModel = new Author();
             $productModel = new Product();
             $categories = $categoryModel->getAllCategories();
             $authors = $authorModel->getAllAuthors();
-            $products = $productModel->getAllProducts(1);
-            $totalPage = $productModel->getPagination(1);
+            
+            if(empty($category_id)){
+                $products = $productModel->getAllProducts(1);
+                $totalPage = $productModel->getPagination(1);
+            } else {
+                $products = $productModel->getProductByCategory($category_id, $current_page, $this->bookperpage);
+                $totalPage = $productModel->getPaginationByCategory($category_id, $current_page, $this->bookperpage);
+            }
+
             ob_start();
             include __DIR__ . '/../views/product/product.php'; // Đảm bảo đường dẫn chính xác
             $main_content = ob_get_clean();
