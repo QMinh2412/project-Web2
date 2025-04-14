@@ -61,7 +61,7 @@
 
     <div class="box_orther_book">
         <div class="title">Sách cùng thể loại
-            <a href=""><span>Xem tất cả</span></a>
+            <a href="/project-Web2/user/index.php?page=product&category_id=<?php echo urlencode($orther_books[0]['MaLoai']); ?>&current_page=1"><span>Xem tất cả</span></a>
         </div>
         <div class="orther_books owl-carousel owl-theme">
             <?php foreach($orther_books as $book):?>

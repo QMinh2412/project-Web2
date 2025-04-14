@@ -10,7 +10,7 @@
             <div class="menu-list">
                 <?php foreach ($categories as $category): ?>
                     <a href="/project-Web2/user/index.php?page=product&category_id=<?php echo urlencode($category['MaLoai']); ?>&current_page=1">
-                        <?php echo htmlspecialchars($category['TenLoai'], ENT_QUOTES, 'UTF-8'); ?>
+                        <?php echo $category['TenLoai']; ?>
                     </a>
                 <?php endforeach; ?>
                 <a class="menu-more" href="/project-Web2/user/index.php?page=product">Xem thêm</a>
@@ -38,7 +38,7 @@
         <!-- Tiêu đề thể loại -->
         <div class="category-header">
             <span><?php echo htmlspecialchars($category1['TenLoai']); ?></span>
-            <a href="#">Xem thêm</a>
+            <a href="/project-Web2/user/index.php?page=product&category_id=<?php echo urlencode($category1['MaLoai']); ?>&current_page=1">Xem thêm</a>
         </div>
         <!-- Danh sách sách -->
         <div class="books-list">
@@ -61,7 +61,7 @@
         <!-- Tiêu đề thể loại -->
         <div class="category-header">
             <span><?php echo htmlspecialchars($category2['TenLoai']); ?></span>
-            <a href="#">Xem thêm</a>
+            <a href="/project-Web2/user/index.php?page=product&category_id=<?php echo urlencode($category2['MaLoai']); ?>&current_page=1">Xem thêm</a>
         </div>
         <!-- Danh sách sách -->
         <div class="books-list">

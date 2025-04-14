@@ -91,7 +91,7 @@
     
     <div class ="box_product">
         <div class="book_list container">
-            <?php foreach ($products as $product): ?>
+            <!-- <?php foreach ($products as $product): ?>
                 <div class="book_item">
                     <a href="/project-Web2/user/index.php?page=product&action=detail&id_book=<?php echo $product['MaSach']?>">
                         <div class="img_book">
@@ -103,7 +103,7 @@
                         </div>
                     </a>
                 </div>
-            <?php endforeach; ?>
+            <?php endforeach; ?> -->
         </div>
 
         <div class="pagination">
@@ -127,3 +127,5 @@
     </div>
 </div>
 <script src="/project-Web2/user/assets/js/product.js"></script>
+
+<!-- C:\xampp\htdocs\project-Web2\user\assets\js\product.js -->
