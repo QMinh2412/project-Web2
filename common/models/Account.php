@@ -63,7 +63,6 @@ class Account {
         return false;
     }
     
-
     public function createAccount($username, $role, $created_at, $status, $password, $user_id) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Mã hóa mật khẩu
         $sql = "INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) 
@@ -119,6 +118,62 @@ class Account {
 
         $stmt->close();
         return false; // Trả về false nếu không tìm thấy tài khoản
+    }
+
+    public function updateAccount($username, $role, $password, $user_id) {
+        if (!empty($password)) {
+            // Hash the new password
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+    
+            // Update all fields including the password
+            $query = "UPDATE TaiKhoan SET TenTK = ?, LoaiTK = ?, MKTK = ? WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("sisi", $username, $role, $hashedPassword, $user_id);
+        } else {
+            // If password is empty, update everything except password
+            $query = "UPDATE TaiKhoan SET TenTK = ?, LoaiTK = ? WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("sii", $username, $role, $user_id);
+        }
+
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function lockAccount($id) {
+        $query = "UPDATE TaiKhoan SET TinhTrang = 0 WHERE MaND = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+     // Lấy thông tin tài khoản dựa trên tên tài khoản
+     public function getUserByUsername($TenTK) {
+        $query = "SELECT * FROM TaiKhoan WHERE TenTK = ?";
+        $stmt = $this->db->prepare($query);
+
+        if ($stmt) {
+            $stmt->bind_param("s", $TenTK);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc();
+            $stmt->close();
+            return $user; // Trả về thông tin tài khoản nếu tìm thấy
+        }
+
+        return null; // Trả về null nếu không tìm thấy tài khoản
+    }
+
+    // Kiểm tra mật khẩu
+    public function verifyPassword($inputPassword, $hashedPassword) {
+        // Nếu password được mã hóa bằng bcrypt (password_hash)
+        if (strpos($hashedPassword, '$2y$') === 0) {
+            return password_verify($inputPassword, $hashedPassword);
+        } else {
+            // Nếu là hash dạng SHA-256 cũ
+            return hash('sha256', $inputPassword) === $hashedPassword;
+        }
     }
 }
 ?>

@@ -49,6 +49,7 @@
                     TaiKhoan.MaTK, TaiKhoan.TenTK, TaiKhoan.LoaiTK, TaiKhoan.NgLap, TaiKhoan.TinhTrang
                 FROM NgDung
                 LEFT JOIN TaiKhoan ON NgDung.MaND = TaiKhoan.MaND
+                WHERE TaiKhoan.LoaiTK != 4
             ";
     
             $result = $this->db->query($query);
@@ -59,6 +60,30 @@
             }
     
             return $users;
+        }
+
+        public function getById($id) {
+            $query = "SELECT * FROM NgDung WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user = null;
+    
+            if ($result && $row = $result->fetch_assoc()) {
+                $user = $row;
+            }
+    
+            $stmt->close();
+            return $user;
+        }
+
+        public function updateUser($user_id, $fullname, $address, $email, $gender, $phone, $dob) {
+            $query = "UPDATE NgDung SET TenND = ?, DcND = ?, EmailND = ?, GioiTinhND = ?, SDT = ?, NgSinhND = ? WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("ssssssi", $fullname, $address, $email, $gender, $phone, $dob, $user_id);
+            $stmt->execute();
+            $stmt->close();
         }
         
     }

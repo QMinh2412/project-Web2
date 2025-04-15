@@ -1,30 +1,35 @@
-<!-- filepath: d:\xampp\htdocs\project-Web2\admin\views\order\index.php -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh sách đơn hàng</title>
-    <link rel="stylesheet" href="../../assets/css/order.css">
-</head>
-<body>
+<link rel="stylesheet" href="../../assets/css/order.css">
+<div class="admin-wrapper">
     <div class="order-container">
-        <h2>Đơn hàng</h2>
-        <form method="GET" action="">
-            <input type="text" name="order_id" placeholder="Mã hóa đơn">
-            <select name="status">
-                <option value="">Trạng thái</option>
-                <option value="pending">Chờ xác nhận</option>
-                <option value="confirmed">Xác nhận</option>
-                <option value="shipping">Vận chuyển</option>
-                <option value="completed">Hoàn thành</option>
-                <option value="cancelled">Đã hủy</option>
-            </select>
-            <input type="date" name="start_date" placeholder="Từ ngày">
-            <input type="date" name="end_date" placeholder="Đến ngày">
-            <button type="submit">Tìm kiếm</button>
+        <h2 class="order-header">Đơn hàng</h2>
+        <form class="order-search-form" method="GET" action="">
+            <div class="order-form-group">
+                <label for="order-id">Mã hóa đơn</label>
+                <input type="text" id="order-id" name="order_id" placeholder="Nhập mã hóa đơn">
+            </div>
+            <div class="order-form-group">
+                <label for="status">Trạng thái</label>
+                <select id="status" name="status">
+                    <option value="">Tất cả</option>
+                    <option value="pending">Chờ xác nhận</option>
+                    <option value="confirmed">Xác nhận</option>
+                    <option value="shipping">Vận chuyển</option>
+                    <option value="completed">Hoàn thành</option>
+                    <option value="cancelled">Đã hủy</option>
+                </select>
+            </div>
+            <div class="order-form-group">
+                <label for="from-date">Từ ngày</label>
+                <input type="date" id="from-date" name="from_date">
+            </div>
+            <div class="order-form-group">
+                <label for="to-date">Đến ngày</label>
+                <input type="date" id="to-date" name="to_date">
+            </div>
+            <div class="order-form-group">
+                <button type="submit" class="order-search-btn">Tìm kiếm</button>
+            </div>
         </form>
-
         <table>
             <thead>
                 <tr>
@@ -62,5 +67,5 @@
             </tbody>
         </table>
     </div>
-</body>
-</html>
+</div>
+    
