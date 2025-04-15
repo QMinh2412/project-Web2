@@ -42,10 +42,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-    const providerSelect = document.getElementById('providerSelect');
-    const providerNameInput = document.getElementById('providerNameInput');
-    const providerAddressInput = document.getElementById('providerAddressInput');
-    const providerEmailInput = document.getElementById('providerEmailInput');
+    const providerSelect = document.getElementById('product-provider-input');
+    const providerNameInput = document.getElementById('product-provider-name-input');
+    const providerAddressInput = document.getElementById('product-provider-address-input');
+    const providerEmailInput = document.getElementById('product-provider-email-input');
 
     if (providerSelect && providerNameInput && providerAddressInput && providerEmailInput) {
         providerSelect.addEventListener('change', function () {

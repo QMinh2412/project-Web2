@@ -30,7 +30,7 @@
                     <td class="admin-list-body-content-num" id="product-price"><?= htmlspecialchars(number_format($product['GiaBan'])) ?></td>
                     <td class="admin-list-body-content-num" id="product-status">
                         <label class="switch">
-                            <input type="checkbox" class="status-toggle" data-id="<?= $product['MaSach'] ?>" <?= $product['TinhTrang'] == 1 ? 'checked' : '' ?> onchange="location.href='?page=product&action=allow&id=<?= $product['MaSach'] ?>&current_page=<?= $pagination['currentPage'] ?>'">
+                            <input type="checkbox" class="status-toggle" <?= $product['TinhTrang'] == 1 ? 'checked' : '' ?> onchange="location.href='?page=product&action=allow&id=<?= $product['MaSach'] ?>&current_page=<?= $pagination['currentPage'] ?>'">
                             <span class="slider"></span>
                         </label>
                     </td>

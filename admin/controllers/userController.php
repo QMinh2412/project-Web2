@@ -210,5 +210,11 @@
                 echo "Không tìm thấy người dùng.";
             }
         }
+
+        public function delete($id) {
+            $userModel = new User();
+            $accountModel = new Account();
+            $imageModel = new Image();
+        }
     }
 ?>

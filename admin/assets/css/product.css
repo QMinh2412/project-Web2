@@ -148,22 +148,6 @@ input:checked + .slider::before {
     transform: translateX(22px);
 }
 
-/*Stop selling button*/
-#stopSellingBtn {
-    background-color: red;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-#stopSellingBtn:hover {
-    background-color: #c0392b; 
-}
-#stopSellingBtn:active {
-    background-color: #a93226; 
-}
-
 /*Create new product form*/
 #create-product-form {
     margin-top: 20px;
@@ -530,5 +514,42 @@ input:checked + .slider::before {
     #detailProductBtn {
         margin-bottom: 5px;
     }
+}
 
+@media only screen and (max-width: 1050px) {
+    #product-order {
+        width: 32px;
+        font-size: 0.9em;
+    }
+
+    #product-name {
+        font-size: 0.9em;
+    }
+
+    #product-category {
+        width: 50px;
+        font-size: 0.9em;
+    }
+
+    #product-quantity {
+        display: none;
+    }
+
+    #product-status {
+        width: 50px;
+        font-size: 0.9em;
+    }
+
+    #product-price {
+        display: none;
+    }
+
+    #product-features {
+        width: 80px;
+        font-size: 0.9em;
+    }
+
+    #detailProductBtn {
+        margin-bottom: 5px;
+    }
 }
