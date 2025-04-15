@@ -8,12 +8,14 @@ $status = $product['TinhTrang'] == 1 ? 'Đang bán' : 'Ngừng bán';
 $author = $authorMap[$product['MaTG']] ?? 'N/A';
 
 $publisher = $publisherMap[$product['MaNXB']] ?? 'N/A';
+
+$provider = $providerMap[$product['MaNCC']] ?? 'N/A';
 ?>
-<div class="admin-wrapper">
+<div class="admin-wrapper" id="admin-wrapper-product-detail">
     <div class="admin-header" id="product-header">
         <h2>Chi tiết sản phẩm</h2>
         <div id="create-product-form">
-        <label class="product-create-label" for="product-id">ID sản phẩm:</label><br>
+            <label class="product-create-label" for="product-id">ID sản phẩm:</label><br>
             <input class="product-create-text" type="text" name="product_id" id="product-id-input" value="<?= htmlspecialchars(number_format($product['MaSach'])) ?>" readonly>
         
             <label class="product-create-label" for="product-name">Tên sản phẩm:</label><br>
@@ -28,7 +30,10 @@ $publisher = $publisherMap[$product['MaNXB']] ?? 'N/A';
             <label class="product-create-label" for="product-publisher">Nhà xuất bản:</label><br>
             <input class="product-create-text" type="text" name="product_publisher" id="product-publisher-input" value="<?= htmlspecialchars($publisher) ?>" readonly>
 
-            <label class="product-create-label" for="product-quantity">Số lượng:</label><br>
+            <label class="product-create-label" for="product-provider">Nhà cung cấp:</label><br>
+            <input class="product-create-text" type="text" name="product_provider" id="product-provider-input" value="<?= htmlspecialchars($provider) ?>" readonly>
+
+            <label class="product-create-label" for="product-quantity">Số lượng tồn:</label><br>
             <input class="product-create-numeric" type="number" name="product_quantity" id="product-quantity-input" value="<?= htmlspecialchars(number_format($product['SoLgTon'])) ?>" readonly>
 
             <label class="product-create-label" for="product-price">Giá:</label><br>

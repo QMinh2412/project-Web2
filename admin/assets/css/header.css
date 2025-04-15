@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
 }
-
+/* header logo */
 #logo_header {
     display: flex;
     position: absolute;

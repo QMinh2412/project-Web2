@@ -123,5 +123,7 @@
                 echo "<script>alert('ID danh mục không hợp lệ!');</script>";
             }
         }
+
+       
     }
 ?>

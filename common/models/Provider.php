@@ -51,6 +51,12 @@
         
             return false; 
         }
+
+        public function getNameProviderById($id){
+            $q = "SELECT TenNCC FROM NCC WHERE MaNCC = $id";
+            $result = $this->db->query($q);
+            return $result;
+        }
     }
         
 ?>

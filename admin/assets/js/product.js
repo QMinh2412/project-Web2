@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const ImageInput = document.getElementById('product-image-input');
     const ImagePreview = document.getElementById('product-image-preview');
+    const NewImgNoti = document.getElementById('product-image-preview-notification');
+    const NewImgAlert = document.getElementById('product-image-preview-alert');
     const limitImages = 5;
     const existingCountInput = document.getElementById('existing-image-count');
     const existingCount = existingCountInput ? parseInt(existingCountInput.value) : 0;
@@ -109,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     img.style.maxHeight = '200px';
                     img.style.margin = '5px';
                     img.style.cursor = 'pointer';
+                    img.style.objectFit = 'cover';
                     img.addEventListener("click", () => {
                         currentIndex = previewCreateProductImages.indexOf(img);
                         showModalwhenCreatingProduct(currentIndex);
@@ -126,6 +129,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (ImageInput && ImagePreview) {
         ImageInput.addEventListener('change', function (event) {
             const files = event.target.files;
+
+            if (files.length === 0) {
+                NewImgNoti.style.display = 'none';
+                NewImgAlert.style.display = 'block';
+            }
+            else {
+                NewImgNoti.style.display = 'flex';
+                NewImgAlert.style.display = 'none';
+            }
+        
             if (!validateImageCount(files.length)) {
                 ImageInput.value = '';
                 ImagePreview.innerHTML = '';
@@ -217,5 +230,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
-
 });
+
+// confirm delete product
+function confirmDeleteProduct (productName, URL) {
+    if (confirm(`Bạn có muốn xóa sản phẩm "${productName}"?`)) {
+        window.location.href = URL;
+    }
+}
