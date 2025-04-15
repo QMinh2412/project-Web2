@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="content reply_content"><?php echo $review['PhanHoi']; ?></div>
                                 </div>
-                            <?php elseif (isset($_SESSION['account_type']) && $_SESSION['account_type'] != 0): ?>
+                            <?php elseif (isset($_SESSION['account_role']) && $_SESSION['account_role'] != 0): ?>
                                 <div class="text_reply">Trả lời</div>
                                 <div class="write_reply" style="display: none;">
                                     <textarea name="content_reply" class="content_reply" cols="50" rows="5" placeholder="Viết câu trả lời gửi đến khách hàng"></textarea><br>

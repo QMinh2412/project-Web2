@@ -112,7 +112,7 @@
             // session_start();
             $accountId = $accountModel->getAccountIdByEmail($email);
             $_SESSION['account_id'] = $accountId;
-            // $_SESSION['account_type'] = 
+            $_SESSION['account_role'] = $accountModel->getRoleByEmail($email);
 
             echo json_encode([
                 'status' => 'success',

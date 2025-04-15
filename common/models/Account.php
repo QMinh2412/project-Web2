@@ -158,32 +158,6 @@ class Account {
         return $result;
     }
 
-    public function updateImage($account_id, $imagePath) {
-        // Kiểm tra xem đã có ảnh cho tài khoản này chưa
-        $sqlCheck = "SELECT COUNT(*) as count FROM HinhAnh WHERE MaND = ?";
-        $stmtCheck = $this->db->prepare($sqlCheck);
-        $stmtCheck->bind_param("i", $account_id);
-        $stmtCheck->execute();
-        $resultCheck = $stmtCheck->get_result();
-        $row = $resultCheck->fetch_assoc();
-        $stmtCheck->close();
-
-        if ($row['count'] > 0) {
-            // Cập nhật ảnh
-            $sql = "UPDATE HinhAnh SET DgDanAnh = ? WHERE MaND = ?";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bind_param("si", $imagePath, $account_id);
-        } else {
-            // Thêm mới ảnh
-            $sql = "INSERT INTO HinhAnh (DgDanAnh, MaND) VALUES (?, ?)";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bind_param("si", $imagePath, $account_id);
-        }
-        $result = $stmt->execute();
-        $stmt->close();
-        return $result;
-    }
-
     public function updateAccount($username, $role, $password, $user_id) {
         if (!empty($password)) {
             // Hash the new password
@@ -210,6 +184,12 @@ class Account {
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->close();
+    }
+
+    public function getRoleByEmail($email){
+        $query = "SELECT LoaiTK FROM TaiKhoan WHERE MaND = ( SELECT MaND FROM NgDung WHERE EmailND = $email)";
+        $result = $this->db->query($query);
+        return $result;
     }
 }
 ?>
