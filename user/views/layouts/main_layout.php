@@ -14,6 +14,7 @@
         <?php 
             echo $main_content; 
             // include __DIR__ . '/../product/product.php'; // Include the main content dynamically
+            // include __DIR__ . '/../product/detail.php';
         ?>
     </div>
     <?php

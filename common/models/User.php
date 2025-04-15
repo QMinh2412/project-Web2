@@ -134,5 +134,13 @@
             $row = $result->fetch_assoc();
             return $row['total'];
         }
+
+        public function deleteUser($user_id) {
+            $query = "DELETE FROM NgDung WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $stmt->close();
+        }
     }
 ?>

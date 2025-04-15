@@ -1,0 +1,524 @@
+* {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  /* width: 100%; */
+  padding: 0 50px;
+  background-color: #f1f1f1;
+}
+
+/* Box detail ====================================================================================================== */
+.container .box_detail {
+  display: flex;
+  width: calc(100% - 40px);
+  background-color: white;
+  padding: 10px 20px;
+}
+
+.box_detail .book_image {
+  width: 25%;
+  background-color: #fff;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.box_detail .book_image .main_image {
+  width: 100%;
+  height: 330px;
+  padding: 5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.box_detail .book_image .main_image img {
+  width: auto;
+  max-width: 90%;
+  /* height: 100%; */
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.book_image .detail_image {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px 10px;
+  height: 70px;
+  width: calc(100% - 20px);
+  overflow: hidden;
+  transition: transform 1s;
+}
+
+/* .book_image .detail_image.animate {
+  transition: transform 0.5s ease-in-out;
+} */
+
+.book_image .detail_image div {
+  width: 60px;
+  height: 100%;
+  padding: 3px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.book_image .detail_image div:hover {
+  box-shadow: 1px 1px 5px #c1430c;
+}
+
+.book_image .detail_image div img {
+  width: 54px;
+  height: 64px;
+  user-select: none;
+}
+
+.box_detail .main_detail {
+  width: calc(45% - 20px);
+  background-color: white;
+  margin-left: 20px;
+  padding: 20px 10px;
+}
+
+.box_detail .main_detail span {
+  color: #c1430c;
+}
+
+.main_detail .book_title {
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 25px;
+  white-space: wrap;
+  margin-bottom: 15px;
+}
+
+.main_detail .book_author,
+.main_detail .book_category {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.main_detail .book_price {
+  margin-bottom: 10px;
+}
+
+.main_detail .book_price span {
+  font-size: 18px;
+}
+
+.main_detail .book_status {
+  margin-bottom: 10px;
+}
+
+.main_detail .book_quantity {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.main_detail .book_quantity span:nth-child(1) {
+  margin-left: 10px;
+}
+
+.main_detail .book_quantity span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #c1430c;
+}
+
+#minus_icon:hover,
+#plus_icon:hover {
+  background-color: #c1430c;
+  color: #fff;
+  cursor: pointer;
+}
+
+.main_detail .box_btn button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#addToCart {
+  background-color: #fff;
+  border: 2px solid #c1430c;
+  color: #c1430c;
+  transition: 0.3s;
+}
+
+#addToCart:hover {
+  background-color: #c1430c;
+  color: white;
+}
+
+#buyNow {
+  background-color: #c1430c;
+  color: white;
+  border: 2px solid #c1430c;
+  transition: 0.3s;
+}
+
+#buyNow:hover {
+  background-color: #fff;
+  color: #c1430c;
+}
+
+.box_detail .more_detail {
+  margin-left: 20px;
+  width: calc(30% - 20px);
+  background-color: #fff;
+  padding: 20px 10px;
+}
+
+.more_detail > div:nth-child(1) {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.more_detail .book_infomation,
+.more_detail .general_infomation {
+  margin-bottom: 10px;
+}
+
+.more_detail .book_infomation span {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.more_detail .general_infomation span {
+  color: #c1430c;
+  font-style: italic;
+}
+
+/* Box intro ==================================================================================== */
+.box_intro {
+  background-color: #fff;
+  width: calc(100% - 40px);
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.box_intro .title {
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+
+.box_intro .desc {
+  width: calc(100% - 20px);
+  margin-top: 10px;
+  padding: 5px 10px;
+}
+
+.box_intro .desc:empty {
+  /* background-color: red; */
+  width: 100%;
+  height: 200px;
+  margin-top: 10px;
+  padding: 5px 10px;
+}
+
+/* Box orther books ================================================================================================ */
+.box_orther_book {
+  background-color: #fff;
+  max-width: calc(100% - 40px);
+  margin-top: 20px;
+  padding: 20px;
+  position: relative;
+}
+
+.box_orther_book .title {
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box_orther_book .title a {
+  font-size: 12px;
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.box_orther_book .title a:hover {
+  text-decoration: underline;
+  color: #858585;
+}
+
+/* Style cho Owl Carousel */
+.orther_books {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.orther_books .owl-stage-outer {
+  overflow: hidden;
+}
+
+.orther_books .owl-stage {
+  display: flex;
+}
+
+/* Ẩn nút điều hướng mặc định của Owl Carousel */
+.orther_books .owl-nav {
+  display: none !important;
+}
+
+/* Style cho từng item */
+.orther_books .owl-item {
+  display: flex;
+  justify-content: center;
+  width: calc(20% - 20px);
+  min-height: 330px;
+}
+
+/* Style cho thẻ <a> bên trong owl-item */
+.orther_books .owl-item a {
+  width: 100%;
+  min-height: 330px;
+  max-height: 330px;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+  box-shadow: 1px 1px 10px black;
+  display: block;
+}
+
+/* Style cho book_item */
+.orther_books .book_item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style cho ảnh sách */
+.orther_books .book_item .book_image {
+  width: calc(100% - 6px);
+  height: calc(100% - 59px);
+  padding: 3px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+/* Style cho ảnh */
+.orther_books .book_item .book_image img {
+  width: auto;
+  max-width: 100%;
+  min-height: 80%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+/* Style cho tiêu đề sách */
+.orther_books .book_item .book_title {
+  font-size: 18px;
+  font-weight: bold;
+  height: 20px;
+  line-height: 20px;
+  margin: 5px 0 3px 0;
+  padding: 0 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Style cho giá sách */
+.orther_books .book_item .book_price {
+  color: #c1430c;
+  margin-bottom: 5px;
+  padding: 0 5px;
+  height: 20px;
+  line-height: 20px;
+}
+
+/* Style cho nút điều hướng tùy chỉnh */
+#prev,
+#next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+#prev {
+  left: 10px;
+}
+
+#next {
+  right: 10px;
+}
+
+#next:hover,
+#prev:hover {
+  opacity: 0.5;
+}
+
+/* Box comment =============================================================== */
+.box_comment {
+  background-color: #fff;
+  width: calc(100% - 40px);
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.box_comment .title {
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+
+.box_comment .comments {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.box_comment .comments .old_comments {
+  width: 50%;
+  margin-left: 50px;
+}
+
+.box_comment .old_comments .comment {
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+}
+
+.box_comment .old_comments .comment .info_account {
+  display: flex;
+  align-items: center;
+}
+
+.old_comments .account_image {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.old_comments .account_image img {
+  width: 100%;
+  height: 100%;
+}
+
+.old_comments .account_name {
+  margin-left: 10px;
+}
+
+.old_comments .date_comment {
+  margin-left: auto;
+  margin-right: 50px;
+}
+
+.old_comments .comment .content {
+  margin: 10px 50px;
+  color: #858585;
+}
+
+.old_comments .comment .text_reply {
+  margin-left: 50px;
+  color: #c1430c;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.old_comments .comment .write_reply {
+  margin-left: 60px;
+}
+
+.old_comments .comment .write_reply .reply_account_info {
+  display: flex;
+  align-items: center;
+}
+
+.old_comments .comment .write_reply textarea {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.old_comments .comment .write_reply .align_center {
+  /* width: calc(100% - 200px); */
+  /* text-align: right;
+  margin-left: 180px; */
+}
+
+.old_comments .comment .write_reply button {
+  border: 1px solid #c1430c;
+  border-radius: 5px;
+  background-color: #c1430c;
+  color: white;
+  padding: 5px 20px;
+  margin-left: 290px;
+  cursor: pointer;
+}
+
+.box_comment .comments .my_comment {
+  /* background-color: greenyellow; */
+  padding: 20px;
+  margin-left: auto;
+  margin-right: 50px;
+}
+
+.box_comment .comments .my_comment .comment_content {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.box_comment .comments .my_comment textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.box_comment .comments .my_comment .align_center {
+  width: calc(100% - 30px);
+  padding: 0 20px 0 10px;
+  text-align: right;
+}
+
+.box_comment .comments .my_comment button {
+  border: 1px solid #c1430c;
+  border-radius: 5px;
+  background-color: #c1430c;
+  color: white;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+textarea:focus {
+  outline: none;
+}

@@ -95,5 +95,19 @@
         
             return false; // Return false if the statement couldn't be prepared
         }
+
+        public function getCategoryLimit(){
+            $query = "SELECT * FROM TheLoai LIMIT 5";
+            $result = $this->db->query($query);
+            $categories = [];
+
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $categories[] = $row;
+                }
+            }
+
+            return $categories;
+        }
     }
 ?>

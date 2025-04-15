@@ -55,5 +55,21 @@
         
             return false; 
         }
+
+        public function getAuthorById($id){
+            $query = "SELECT * FROM TacGia WHERE MaTG = ?";
+            $stmt = $this->db->prepare($query);
+        
+            if ($stmt) {
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $author = $result->fetch_assoc();
+                $stmt->close();
+                return $author;
+            }
+        
+            return null;
+        }
     }
 ?>

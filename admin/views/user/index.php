@@ -28,14 +28,14 @@
                     </td>
                     <td class="admin-list-body-content-other" id="user-status">
                         <label class="switch">
-                            <input type="checkbox" data-id="<?= $user['MaND'] ?>" <?= $user['TinhTrang'] == 1 ? 'checked' : '' ?> onchange="location.href='?page=user&action=lock&id=<?= $user['MaND'] ?>'">
-                            <span class="slider"></span>
+                            <input type="checkbox" data-id="<?= $user['MaND'] ?>" <?= $user['TinhTrang'] == 1 ? 'checked' : '' ?> onchange="location.href='?page=user&action=lock&id=<?= $user['MaND'] ?>'"/>
+                            <span class="slider"  title="<?= $user['TinhTrang'] == 1 ? 'Khóa tài khoản' : 'Mở khóa tài khoản' ?>"></span>
                         </label>
                     </td>
                     <td class="admin-list-body-content-other" id="user-action">
-                        <button class="btn-user btn-detail" onclick="location.href='?page=user&action=view&id=<?= $user['MaND'] ?>'"><i class='bx bxs-detail'></i></button>
-                        <button class="btn-user btn-edit" onclick="location.href='?page=user&action=edit&id=<?= $user['MaND'] ?>'"><i class='bx bx-edit'></i></button>
-                        <button class="btn-user btn-delete" onclick="location.href='?page=user&action=delete&id=<?= $user['MaND'] ?>'"><i class='bx bxs-trash'></i></button>
+                        <button class="btn-user btn-detail" onclick="location.href='?page=user&action=view&id=<?= $user['MaND'] ?>'" title="Xem chi tiết"><i class='bx bxs-detail'></i></button>
+                        <button class="btn-user btn-edit" onclick="location.href='?page=user&action=edit&id=<?= $user['MaND'] ?>'" title="Chỉnh sửa"><i class='bx bx-edit'></i></button>
+                        <button class="btn-user btn-delete" onclick="location.href='?page=user&action=delete&id=<?= $user['MaND'] ?>'" title="Xóa"><i class='bx bxs-trash'></i></button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -44,7 +44,7 @@
 
     <div class="user-pagination">
         <a href="?page=user&current_page=<?= $pagination['currentPage'] - 1 ?>" 
-            class="<?= $pagination['currentPage'] == 1 ? 'disabled' : '' ?>">&lt;</a>
+            class="<?= $pagination['currentPage'] == 1 ? 'disabled' : '' ?>"><i class='bx bx-chevron-left'></i></a>
         
         <?php for ($i = 1; $i <= $pagination['totalPages']; $i++): ?>
             <a href="?page=user&current_page=<?= $i ?>"
@@ -54,6 +54,6 @@
         <?php endfor; ?>
 
         <a href="?page=user&current_page=<?= $pagination['currentPage'] + 1 ?>" 
-            class="<?= $pagination['currentPage'] == $pagination['totalPages'] ? 'disabled' : '' ?>">&gt;</a>
+            class="<?= $pagination['currentPage'] == $pagination['totalPages'] ? 'disabled' : '' ?>"><i class='bx bx-chevron-right' ></i></a>
     </div>
 </div>

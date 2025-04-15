@@ -2,6 +2,11 @@
     require_once __DIR__ . '/../../common/core/BaseController.php';
     require_once __DIR__ . '/../../common/models/User.php';
     require_once __DIR__ . '/../../common/models/Account.php';
+    require_once __DIR__ . '/../../common/models/Cart.php';
+    require_once __DIR__ . '/../../common/models/CartDetail.php';
+    require_once __DIR__ . '/../../common/models/Order.php';
+    require_once __DIR__ . '/../../common/models/OrderDetail.php';
+    require_once __DIR__ . '/../../common/models/Review.php';
 
     class UserController extends BaseController {
         public function index() {
@@ -215,6 +220,44 @@
             $userModel = new User();
             $accountModel = new Account();
             $imageModel = new Image();
+            $cartModel = new Cart();
+            $cartdetailModel = new CartDetail();
+            $reviewModel = new Review();
+            $orderModel = new Order();
+            $orderdetailModel = new OrderDetail();
+
+            $user = $userModel->getById($id);
+            $account = $accountModel->getById($id);
+            $cart = $cartModel->getCartById($id);
+            $order = $orderModel->getOrderById($id);
+
+            if ($user && $account) {
+                if ($order) {
+                    $orderdetailModel->deleteDetailsByUserId($id);
+                    $orderModel->deleteUserOrder($id);
+                }
+                $reviewModel->deleteUserReviews($id);
+                if ($cart) {
+                    $cartdetailModel->deleteCartDetail($id);
+                    $cartModel->deleteCart($id);
+                }
+
+                $imagePath = $imageModel->getUserImage($id);
+                $fullPath = $_SERVER['DOCUMENT_ROOT'] . $imagePath;
+                if(file_exists($fullPath)) {    
+                    unlink($fullPath);
+                }
+
+                $imageModel->deleteImageById($id);
+                $accountModel->deleteAccount($id);
+                $userModel->deleteUser($id);
+
+                echo "<script>alert('Xóa tài khoản thành công!'); window.location.href='?page=user&action=index';</script>";
+                exit;
+            } else {
+                echo "Không tìm thấy người dùng.";
+            }
+
         }
     }
 ?>
