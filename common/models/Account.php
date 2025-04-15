@@ -9,7 +9,7 @@ class Account {
     }
 
     public function getById($id) {
-        $sql = "SELECT * FROM TaiKhoan WHERE MaND = ?";
+        $sql = "SELECT * FROM TaiKhoan WHERE MaTK = ?";
         $stmt = $this->db->prepare($sql);
         if (!$stmt) return null;
         $stmt->bind_param("i", $id);
@@ -81,7 +81,7 @@ class Account {
                 VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         if (!$stmt) return false;
-        $stmt->bind_param("sissis", $username, $role, $created_at, $status, $hashedPassword, $user_id);
+        $stmt->bind_param("sissss", $username, $role, $created_at, $status, $hashedPassword, $user_id);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
@@ -148,15 +148,15 @@ class Account {
         return $result;
     }
 
-    // public function updateAccount($account_id, $username) {
-    //     $sql = "UPDATE TaiKhoan SET TenTK = ? WHERE MaND = ?";
-    //     $stmt = $this->db->prepare($sql);
-    //     if (!$stmt) return false;
-    //     $stmt->bind_param("si", $username, $account_id);
-    //     $result = $stmt->execute();
-    //     $stmt->close();
-    //     return $result;
-    // }
+    public function updateAccountName($account_id, $username) {
+        $sql = "UPDATE TaiKhoan SET TenTK = ? WHERE MaND = ?";
+        $stmt = $this->db->prepare($sql);
+        if (!$stmt) return false;
+        $stmt->bind_param("si", $username, $account_id);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
 
     public function updateImage($account_id, $imagePath) {
         // Kiểm tra xem đã có ảnh cho tài khoản này chưa

@@ -72,6 +72,9 @@ class Route {
             case 'updateAccount':
                 $controller->updateAccount();
                 break;
+            case 'updateAccountAjax':
+                $controller->updateAccountAjax();
+                break;
             case 'show_detail':
                 $controller->showDetail();
                 break;

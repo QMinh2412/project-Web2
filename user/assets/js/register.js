@@ -430,6 +430,8 @@ document.addEventListener("DOMContentLoaded", () => {
       dob.value
     )}&gender=${radioSelected}&address=${encodeURIComponent(address)}`;
 
+    console.log(`data: ${data}`);
+
     xhr.send(data);
   });
 });
