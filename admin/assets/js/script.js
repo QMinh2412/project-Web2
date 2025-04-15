@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Tablet: luôn collapsed, không off-canvas
             menu.classList.add('collapsed');
             menu.classList.remove('open');
-            closeBtn?.removeAttribute('style');
+            // closeBtn?.removeAttribute('style');
+            closeBtn.style.display = 'none';
             mobileBtn?.removeAttribute('style');
         } else {
             // Mobile: off-canvas, ẩn collapsed

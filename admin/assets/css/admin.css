@@ -90,8 +90,11 @@ body {
         position: absolute; top: 15px; left: 15px; z-index: 1001;
     }
     #left-menu {
-        position: fixed; top:0; left:0;
-        width: 250px; height:100%;
+        position: fixed; 
+        top:0; 
+        left:0;
+        width: 250px; 
+        height:100%;
         transform: translateX(-100%);
         transition: transform .3s ease;
         z-index: 1000;
