@@ -9,8 +9,8 @@
             </div>
             <div class="menu-list">
                 <?php foreach ($categories as $category): ?>
-                    <a href="/project-Web2/user/index.php?page=product&action=render_by_category&category_id=<?php echo urlencode($category['MaLoai']); ?>&current_page=1">
-                        <?php echo htmlspecialchars($category['TenLoai'], ENT_QUOTES, 'UTF-8'); ?>
+                    <a href="/project-Web2/user/index.php?page=product&category_id=<?php echo urlencode($category['MaLoai']); ?>&current_page=1">
+                        <?php echo $category['TenLoai']; ?>
                     </a>
                 <?php endforeach; ?>
                 <a class="menu-more" href="/project-Web2/user/index.php?page=product">Xem thêm</a>
@@ -38,15 +38,15 @@
         <!-- Tiêu đề thể loại -->
         <div class="category-header">
             <span><?php echo htmlspecialchars($category1['TenLoai']); ?></span>
-            <a href="#">Xem thêm</a>
+            <a href="/project-Web2/user/index.php?page=product&category_id=<?php echo urlencode($category1['MaLoai']); ?>&current_page=1">Xem thêm</a>
         </div>
         <!-- Danh sách sách -->
         <div class="books-list">
             <?php foreach ($products1 as $product): ?>
-                <a href="/project-Web2/user/index.php?page=detail&action=detail_product&product_id=<?php echo htmlspecialchars($product['MaSach']); ?>">
+                <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo htmlspecialchars($product['MaSach']); ?>">
                     <div class="book-item">
                         <!-- Hình ảnh sách -->
-                        <img src="<?php echo htmlspecialchars($product['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
+                        <img src="<?php echo htmlspecialchars($product['DgDanAnh']['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
                         <!-- Tên sách -->
                         <div class="book-title"><?php echo htmlspecialchars($product['TenSach']); ?></div>
                         <!-- Giá sách -->
@@ -61,15 +61,15 @@
         <!-- Tiêu đề thể loại -->
         <div class="category-header">
             <span><?php echo htmlspecialchars($category2['TenLoai']); ?></span>
-            <a href="#">Xem thêm</a>
+            <a href="/project-Web2/user/index.php?page=product&category_id=<?php echo urlencode($category2['MaLoai']); ?>&current_page=1">Xem thêm</a>
         </div>
         <!-- Danh sách sách -->
         <div class="books-list">
             <?php foreach ($products2 as $product): ?>
-                <a href="/project-Web2/user/index.php?page=detail&action=detail_product&product_id=<?php echo htmlspecialchars($product['MaSach']); ?>">
+                <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo htmlspecialchars($product['MaSach']); ?>">
                     <div class="book-item">
                         <!-- Hình ảnh sách -->
-                        <img src="<?php echo htmlspecialchars($product['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
+                        <img src="<?php echo htmlspecialchars($product['DgDanAnh']['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
                         <!-- Tên sách -->
                         <div class="book-title"><?php echo htmlspecialchars($product['TenSach']); ?></div>
                         <!-- Giá sách -->

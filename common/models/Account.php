@@ -36,7 +36,7 @@ class Account {
     }
 
     public function getNameById($id) {
-        $result = $this->db->query("SELECT TenTK FROM TaiKhoan WHERE MaND = $id");
+        $result = $this->db->query("SELECT TenTK FROM taikhoan WHERE MaTK = $id");
         if ($result && $row = $result->fetch_assoc()) {
             return $row['TenTK'];
         }
@@ -81,7 +81,7 @@ class Account {
                 VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         if (!$stmt) return false;
-        $stmt->bind_param("sissis", $username, $role, $created_at, $status, $hashedPassword, $user_id);
+        $stmt->bind_param("sissss", $username, $role, $created_at, $status, $hashedPassword, $user_id);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
@@ -182,6 +182,34 @@ class Account {
         $result = $stmt->execute();
         $stmt->close();
         return $result;
+    }
+
+    // // public function updateAccount($username, $role, $password, $user_id) {
+    // //     if (!empty($password)) {
+    // //         // Hash the new password
+    // //         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+    
+    // //         // Update all fields including the password
+    // //         $query = "UPDATE TaiKhoan SET TenTK = ?, LoaiTK = ?, MKTK = ? WHERE MaND = ?";
+    // //         $stmt = $this->db->prepare($query);
+    // //         $stmt->bind_param("sisi", $username, $role, $hashedPassword, $user_id);
+    // //     } else {
+    // //         // If password is empty, update everything except password
+    // //         $query = "UPDATE TaiKhoan SET TenTK = ?, LoaiTK = ? WHERE MaND = ?";
+    // //         $stmt = $this->db->prepare($query);
+    // //         $stmt->bind_param("sii", $username, $role, $user_id);
+    // //     }
+
+    //     $stmt->execute();
+    //     $stmt->close();
+    // }
+
+    public function lockAccount($id) {
+        $query = "UPDATE TaiKhoan SET TinhTrang = 0 WHERE MaND = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
     }
 }
 ?>

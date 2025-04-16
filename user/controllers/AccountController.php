@@ -44,6 +44,7 @@
                 if ($idNewUser) {        
                     session_start();
                     $_SESSION['account_id'] = $idNewUser;
+                    $_SESSION['account_type'] = 0;
 
                     echo json_encode([
                         'status' => 'success',
@@ -115,6 +116,7 @@
             session_start();
             $accountId = $accountModel->getAccountIdByEmail($email);
             $_SESSION['account_id'] = $accountId;
+            // $_SESSION['account_type'] = 
 
             echo json_encode([
                 'status' => 'success',

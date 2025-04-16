@@ -61,17 +61,31 @@
 }
 
 #createCategoryBtn {
-    background-color: #3ea2e1; /* Green */
+    background-color: #3ea2e1; 
     color: white;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#createCategoryBtn:hover {
+    background-color: #2b76a4; 
+}
+#createCategoryBtn:active {
+    background-color: #1c4f6e; 
 }
 
 #cancelCategoryBtn {
-    background-color: red; /* Green */
+    background-color: red; 
     color: white;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#cancelCategoryBtn:hover {
+    background-color: #b30000; 
+}
+#cancelCategoryBtn:active {
+    background-color: #800000; 
 }
 
 /* Edit category */
@@ -82,14 +96,28 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#editCategoryBtn:hover {
+    background-color: #2b76a4; 
+}
+#editCategoryBtn:active {
+    background-color: #1c4f6e; 
 }
 
 /* Delete category */
 #deleteCategoryBtn {
-    background-color: red; /* Green */
+    background-color: red; 
     color: white;
     padding: 10px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#deleteCategoryBtn:hover {
+    background-color: #b30000; 
+}
+#deleteCategoryBtn:active {
+    background-color: #800000; 
 }

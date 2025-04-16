@@ -22,7 +22,7 @@
         }
 
         public function getImgProduct($id) {
-            $query = "SELECT DgDanAnh FROM HinhAnh WHERE MaSach = ?";
+            $query = "SELECT MaHA, DgDanAnh FROM HinhAnh WHERE MaSach = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param("i", $id);
             $stmt->execute();
@@ -30,11 +30,55 @@
             $images = [];
 
             while ($row = $result->fetch_assoc()) {
-                $images[] = $row['DgDanAnh']; // Thêm từng ảnh vào mảng
+                $images[] = [
+                    'MaHA' => $row['MaHA'],
+                    'DgDanAnh' => $row['DgDanAnh']
+                ]; 
             }
 
             $stmt->close();
             return $images;
         }
+
+        public function getImageAccount($id_account){
+            $query = "SELECT * FROM HinhAnh WHERE MaND = (SELECT MaND FROM TaiKhoan WHERE MaTK = $id_account )";
+            $result = $this->db->query($query);
+            $image = [];
+
+            if($result){
+                while($row = $result->fetch_assoc()){
+                    $image = $row['DgDanAnh'];
+                }
+            }
+
+            return $image;
+        }
+        
+        public function getImageById($imageId) {
+            $query = "SELECT * FROM HinhAnh WHERE MaHA = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $imageId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $image = $result->fetch_assoc();
+            $stmt->close();
+            return $image;
+        }
+
+        public function addImageToProduct($productId, $imagePath) {
+            $query = "INSERT INTO HinhAnh (MaSach, DgDanAnh) VALUES (?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("is", $productId, $imagePath);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        public function deleteImageById($imageId) {
+            $query = "DELETE FROM HinhAnh WHERE MaHA = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $imageId);
+            $stmt->execute();
+            $stmt->close();
+        }  
     }
 ?>

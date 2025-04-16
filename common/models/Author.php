@@ -41,5 +41,35 @@
         
             return []; // Return an empty array if the statement couldn't be prepared
         }
+
+        public function createAuthor($authorData) {
+            $query = "INSERT INTO TacGia (TenTG, NgSinhTG, GioiTinhTG) VALUES (?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+        
+            if ($stmt) {
+                $stmt->bind_param("sdi", $authorData['TenTG'], $authorData['NgSinhTG'], $authorData['GioiTinhTG']);
+                if ($stmt->execute()) {
+                    return $this->db->insert_id; 
+                }
+            }
+        
+            return false; 
+        }
+
+        public function getAuthorById($id){
+            $query = "SELECT * FROM TacGia WHERE MaTG = ?";
+            $stmt = $this->db->prepare($query);
+        
+            if ($stmt) {
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $author = $result->fetch_assoc();
+                $stmt->close();
+                return $author;
+            }
+        
+            return null;
+        }
     }
 ?>

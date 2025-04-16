@@ -97,7 +97,10 @@
                     }
                 }
             } else {
-                echo "<script>alert('ID danh mục không hợp lệ!');</script>";
+                echo "<script>
+                    alert('ID danh mục không hợp lệ!');
+                    window.location.href = '?page=category&action=index';
+                </script>";
             }
         }
 
@@ -120,5 +123,7 @@
                 echo "<script>alert('ID danh mục không hợp lệ!');</script>";
             }
         }
+
+       
     }
 ?>

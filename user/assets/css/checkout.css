@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+h2 {
+    text-align: center;
+    color: #333;
+}
+h3 {
+    color: #333;
+    margin-top: 20px;
+}
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.radio-group {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.radio-group label {
+    display: inline;
+    margin: 0;
+    flex: 1;
+}
+.radio-group input[type="radio"] {
+    margin: 0;
+    width: 20px;
+    height: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+table, th, td {
+    border: 1px solid #ccc;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+.total {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+}
+button {
+    background-color: #d2691e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+button:hover {
+    background-color: #b3591a;
+}
