@@ -22,6 +22,9 @@ class RouteAdmin {
                     case 'index':
                         $controller->index();
                         break;
+                    case 'favoriteCustomers': // Thêm action này
+                        $controller->favoriteCustomers();
+                        break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
@@ -39,10 +42,10 @@ class RouteAdmin {
                         $controller->create();
                         break;
                     case 'edit':
-                        $controller->edit($id);
+                        $controller->edit();
                         break;
                     case 'delete':
-                        $controller->delete($id);
+                        $controller->delete();
                         break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
@@ -56,6 +59,21 @@ class RouteAdmin {
                 switch($action) {
                     case 'index':
                         $controller->index();
+                        break;
+                    case 'create':
+                        $controller->create();
+                        break;
+                    case 'edit':
+                        $controller->edit($id);
+                        break;
+                    case 'view':    
+                        $controller->view($id);
+                        break;
+                    case 'lock':
+                        $controller->lock($id);
+                        break;
+                    case 'delete':
+                        $controller->delete($id);
                         break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
@@ -82,6 +100,9 @@ class RouteAdmin {
                     case 'detail':
                         $controller->detail($id);
                         break;
+                    case 'delete':
+                        $controller->delete($id);
+                        break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
@@ -106,7 +127,10 @@ class RouteAdmin {
                 $controller = new OrderController();
                 switch($action) {
                     case 'index':
-                        $controller->index();
+                        $controller->index($current_page);
+                        break;
+                    case 'detail':
+                        $controller->detail($id);
                         break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định

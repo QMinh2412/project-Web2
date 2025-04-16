@@ -1,7 +1,7 @@
 #left-menu {
     width: 300px;
     background-color: #283339;
-    
+    z-index: 1000;
     /* height: 100%; */
 }
 
@@ -9,13 +9,8 @@
     color: white;
     height: 60px;
     padding-left: 35px;
-    padding-left: 35px;
     line-height: 60px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-#left-menu div + div{
-    margin-top: px;
 }
 
 #left-menu div:hover {
@@ -29,7 +24,51 @@
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+.menuitems {
+    display: flex;
+    align-items: center;
+}
+
 .menuitems i {
     padding-right: 15px;
     font-size: 1.2em;
+}
+
+/* Khi menu thu gọn */
+#left-menu.collapsed {
+    width: 70px;
+    transition: width 0.3s ease;
+}
+
+#left-menu.collapsed span {
+    display: none;
+}
+
+#left-menu.collapsed .menuitems {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    padding-left: 0;
+}
+
+#left-menu.collapsed .menuitems i {
+    padding: 0;
+}
+
+#left-menu.collapsed .menuitems #storage-arrow-down {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+
+    /* #admin-menu-icon {
+        display: none;
+    } */
+}
+
+@media only screen and (max-width: 1050px) {
+    /* #admin-menu-icon {
+        display: none;
+    } */
 }

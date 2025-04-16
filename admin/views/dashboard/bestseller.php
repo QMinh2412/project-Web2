@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../../assets/css/dashboard.css">
 <div class="dashboard-section">
     <div class="dashboard-header">
-        <h1>Sản phẩm bán chạy</h1>
+        <h1 class="h1-header">Sách bán chạy</h1>
         <div class="search-section">
             <form method="GET" action="">
                 <label for="product-from-date">Từ:</label>
@@ -14,7 +14,7 @@
             </form>
         </div>
     </div>
-    <table>
+    <table class="bestseller-table">
         <thead>
             <tr>
                 <th>STT</th>

@@ -1,6 +1,6 @@
 <script src="/project-Web2/admin/assets/js/product.js"></script>
 
-<div class="admin-wrapper">
+<div class="admin-wrapper" id="admin-wrapper-product-edit">
     <div class="admin-header" id="product-header">
         <h2>Sửa sản phẩm</h2>
         <form id="create-product-form" method="POST" action="?page=product&action=edit&id=<?= htmlspecialchars($product['MaSach']) ?>" enctype="multipart/form-data">
@@ -94,7 +94,6 @@
             <input type="hidden" id="existing-image-count" value="<?= count($oldImages ?? []) ?>">
             <input class="product-create-text" type="file" name="product_image[]" id="product-image-input" accept="image/*" multiple>
             <div id="edit-product-image-preview">
-                <div id="product-image-preview" style="margin-top: 5px;"></div>
                 <?php foreach ($oldImages as $img): ?>
                     <div class="edit-product-image-wrapper">
                         <input type="checkbox" name="delete_images[]" value="<?= $img['MaHA'] ?>" class="edit-product-deleteBtn">Xóa
@@ -102,6 +101,11 @@
                         <div class="product-image-url-edit"><?= $img['DgDanAnh'] ?></div>
                     </div>
                 <?php endforeach; ?>
+                <div id="new-image-section">
+                    <p id="product-image-preview-notification"><strong>Hình ảnh mới:</strong></p>
+                    <p id="product-image-preview-alert">Không có hình ảnh mới được tải lên.</p>
+                </div>
+                <div id="product-image-preview" style="margin-top: 5px;"></div>
             </div>
         
             <button type="submit" class="product-create-Btns" id="acceptEditProductBtn">Áp dụng thay đổi</button>

@@ -13,6 +13,27 @@ class Product {
         $this->db = Database::getInstance();
     }
 
+    public function getAllProductsWithoutPagination() {
+        $query = "SELECT * FROM DauSach";
+
+        $stmt = $this->db->prepare($query);
+        if (!$stmt) {
+            die("Prepare failed: " . $this->db->error);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $products = [];
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
+            }
+        }
+    
+        return $products;
+    }
+
     public function getAllProducts($currentpage, $bookperpage = 10) {
         $offset = ($currentpage - 1) * $bookperpage;
         $limit = $bookperpage;
@@ -318,6 +339,20 @@ class Product {
         $stmt->bind_param("ii", $productStatus, $productId);
         
         return $stmt->execute();
+    }
+
+    public function deleteProduct($productId) {
+        $query = "DELETE FROM DauSach WHERE MaSach = ?";
+        $stmt = $this->db->prepare($query);
+
+        if ($stmt) {
+            $stmt->bind_param("i", $productId);
+            $result = $stmt->execute();
+            $stmt->close();
+            return $result;
+        }
+
+        return false;
     }
 }
 ?>

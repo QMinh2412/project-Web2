@@ -1,7 +1,6 @@
-<link rel="stylesheet" href="../../assets/css/dashboard.css">
 <div class="dashboard-section">
     <div class="dashboard-header">
-        <h1>Khách hàng thân thiết</h1>
+        <h1 class="h1-header">Khách hàng thân thiết</h1>
         <div class="search-section">
             <form method="GET" action="">
                 <label for="customer-from-date">Từ:</label>
@@ -14,26 +13,45 @@
             </form>
         </div>
         </div>
-    <table>
+        <table class="favoritecus-table">
         <thead>
             <tr>
                 <th>STT</th>
                 <th>Họ tên</th>
                 <th>Email</th>
                 <th>Loại tài khoản</th>
-                <th>Số đơn</th>
+                <th>Số đơn hàng</th>
                 <th>Tổng tiền</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>nguyen Van A</td>
-                <td>nguyenvana123@gmail.com</td>
-                <td>Khách hàng</td>
-                <td>12</td>
-                <td>bruh</td>
-            </tr>
+            <?php if (!empty($loyalCustomers)): ?>
+                <?php foreach ($loyalCustomers as $index => $customer): ?>
+                    <tr>
+                        <td><?= $index + 1 ?></td>
+                        <td><?= htmlspecialchars($customer['name']) ?></td>
+                        <td><?= htmlspecialchars($customer['email']) ?></td>
+                        <td>
+                            <?php
+                                switch ($customer['account_type']) {
+                                    case 0: echo 'Khách hàng'; break;
+                                    case 1: echo 'Quản lý'; break;
+                                    case 2: echo 'Nhân viên'; break;
+                                    case 3: echo 'Admin'; break;
+                                    case 4: echo 'Chủ'; break;
+                                    default: echo 'Không xác định'; break;
+                                }
+                            ?>
+                        </td>
+                        <td><?= $customer['order_count'] ?></td>
+                        <td><?= number_format($customer['total_amount'], 0, ',', '.') ?>đ</td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="6">Không có khách hàng thân thiết nào</td>
+                </tr>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>

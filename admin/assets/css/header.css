@@ -1,6 +1,6 @@
 .header {
-    background-color: white;
-    height: 125px;
+    background-color: #283339;
+    height: 50px;
     position: relative;
     margin: 0;
     padding: 0;
@@ -8,12 +8,8 @@
     justify-content: center;
     align-items: center;
 }
-/* header logo */
-#logo_header {
-    display: flex;
-    position: absolute;
-    height: 125px;
-    left: 30px;
+#logo-header h4 {
+    color: white;
 }
 
 #admin-logo {
@@ -22,6 +18,14 @@
     height: 50px;
     right: 150px;
     line-height: 50px;
+}
+
+#mobile-menu-toggle {
+    display: none; /* Ẩn mặc định trên desktop */
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
 }
 
 #admin-logo :hover {
@@ -40,8 +44,7 @@
 }
 
 #admin-name {
-    font-size: 20px;
-    color: black;
+    color: white;
     margin-left: 10px;
     font-weight: bold;
 }
@@ -49,7 +52,7 @@
 #menu-down {
     border: solid 1px black;
     border-radius: 10%;
-    background-color: rgb(179, 179, 179);
+    background-color: rgb(221, 221, 221);
     display: none;
     position: absolute;
     width: 15%;
@@ -89,4 +92,26 @@
 #menu-down ul, li{
     list-style-type: none;
     margin-right: 10px;
+}
+@media only screen and (max-width: 600px) {
+    #logo_header {
+        left: 5px;
+    }
+    #admin-logo {
+        right: 15px;
+    }
+    #mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        left: 26px;
+        z-index: 1000;
+        cursor: pointer;
+    }
+    #logo_header {
+        left: 40px;
+        height: 75px;
+    }
+    #mobile-menu-toggle.active i {
+        color: white;
+    }
 }

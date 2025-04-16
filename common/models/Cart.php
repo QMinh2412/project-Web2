@@ -19,5 +19,10 @@
             return null;
         }
 
+        public function deleteCart($account_id) {
+            $account_id = $this->db->real_escape_string($account_id);
+            $query = "DELETE FROM GioHang WHERE MaTK = '$account_id'";
+            return $this->db->query($query);
+        }
     }
 ?>

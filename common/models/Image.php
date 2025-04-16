@@ -73,6 +73,39 @@
             $stmt->close();
         }
 
+        public function addImageToAccount($accountId, $imagePath) {
+            $query = "INSERT INTO HinhAnh (MaND, DgDanAnh) VALUES (?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("is", $accountId, $imagePath);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        public function deleteDefaultImage($user_id) {
+            $query = "DELETE FROM HinhAnh WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        public function updateUserImage($user_id, $imagePath) {
+            $query = "UPDATE HinhAnh SET DgDanAnh = ? WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("si", $imagePath, $user_id);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        public function getUserImage($id) {
+            $query = "SELECT DgDanAnh FROM hinhanh WHERE MaND = $id";
+            $result = $this->db->query($query);
+            if ($result && $row = $result->fetch_assoc()) {
+                return $row['DgDanAnh'];
+            }
+            return null;
+        }
+        
         public function deleteImageById($imageId) {
             $query = "DELETE FROM HinhAnh WHERE MaHA = ?";
             $stmt = $this->db->prepare($query);

@@ -1,6 +1,6 @@
 <script src="/project-Web2/admin/assets/js/product.js"></script>
 
-<div class="admin-wrapper">
+<div class="admin-wrapper" id="admin-wrapper-product-create">
     <div class="admin-header" id="product-header">
         <h2 id="product-header-title">Thêm sản phẩm</h2>
         <form id="create-product-form" method="POST" action="?page=product&action=create" enctype="multipart/form-data">

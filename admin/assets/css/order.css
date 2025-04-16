@@ -1,0 +1,122 @@
+/* Container chính */
+.order-container {
+    margin: 0px auto 20px auto;
+    width: calc(100% - 40px);
+}
+
+.order-header {
+    position: relative;
+}
+
+/* Form tìm kiếm */
+
+
+/************************ Index table **********************/
+#order-order {
+    width: 40px;
+}
+
+#order-id {
+    width: 40px;
+}
+
+#order-value {
+    width: 120px;
+}
+
+#order-time {
+    width: 90px;
+}
+
+#order-status {
+    width: 90px;
+}
+
+#order-features {
+    width: 200px;
+}
+
+
+/************************ Pagination ***********************/
+.order-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 8px;
+}
+
+.order-pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-decoration: none;  
+    color: #333;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+}
+
+.order-pagination a:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.order-pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    pointer-events: none;
+    border-color: #007bff;
+}
+
+.order-pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
+
+/************************ Order Feature Buttons ***********************/
+/* Order detail button */
+#detailOrderBtn {
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px rgb(209, 209, 0);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#detailOrderBtn:hover {
+    background-color: rgb(209, 209, 0); 
+}
+#detailOrderBtn:active {
+    background-color: rgb(189, 189, 0); 
+}
+
+/********************* ORDER DETAIL **************************/
+/*********** Div Form ******************/
+#order-detail-form {
+    border: solid 1px black;
+    margin: 0px 20px 20px 20px;
+}
+
+.general-order-info {
+    
+}
+
+.general-order-info-full {
+
+}
+
+.order-create-label {
+    margin: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.order-create-text {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+}
