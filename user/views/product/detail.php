@@ -134,3 +134,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Thêm Owl Carousel JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+    function handleBuyNow() {
+        // Lấy id_book từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id_book = urlParams.get('id_book');
+        
+        // Lấy số lượng từ giao diện
+        const quantity = document.getElementById('quantity').textContent;
+
+        // Chuyển hướng đến trang checkout.php với id_book và quantity
+        window.location.href = `/project-Web2/user/index.php?page=checkout&action=showCheckout&id_book=${id_book}&quantity=${quantity}`;
+    }
+
+    // Gắn sự kiện click cho nút "Mua Ngay"
+    document.getElementById('buyNow').addEventListener('click', handleBuyNow);
+</script>

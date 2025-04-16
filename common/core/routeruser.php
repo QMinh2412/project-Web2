@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../user/controllers/HomeController.php';
 require_once __DIR__ . '/../../user/controllers/AccountController.php';
 require_once __DIR__ . '/../../user/controllers/ProductController.php';
 require_once __DIR__ . '/../../user/controllers/CartController.php';
+require_once __DIR__ . '/../../user/controllers/CheckoutController.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Account.php';
 class Route {
@@ -35,6 +36,10 @@ class Route {
             case 'cart':
                 $controller = new CartController();
                 break;
+            case 'checkout': 
+                $controller = new CheckoutController();
+                break;
+    
 
             default:
                 $controller = new HomeController();
@@ -44,7 +49,7 @@ class Route {
         switch ($action) {
             case 'register':   
                 $controller->registerAjax();
-                break;  
+                break;
             case 'login':
                 $controller->loginAjax();
                 break;
@@ -63,14 +68,8 @@ class Route {
             case 'filter':
                 $controller->filterPriceRangeAjax();
                 break;
-            case 'changepassword':
-                $controller->changepassword();
-                break;
-            case 'changepasswordAjax':
-                $controller->changepasswordAjax();
-                break;
-            case 'updateAccount':
-                $controller->updateAccount();
+            case 'search':
+                $controller->search();
                 break;
             case 'updateAccountAjax':
                 $controller->updateAccountAjax();
@@ -87,12 +86,14 @@ class Route {
             case 'addToCart':
                 $controller->addToCart();
                 break;
+            case 'showCheckout':
+                $controller->showCheckout();
+                break;
+            case 'placeOrder': 
+                $controller->placeOrder();
+                break;
             default:
-            if (method_exists($controller, $action)) {
-                $controller->{$action}(); // gọi action theo tên
-            } else {
-                echo "404 Not Found: Action '$action' không tồn tại trong controller " . get_class($controller);
-            }
+                $controller->index();
                 break;
         }
     }
