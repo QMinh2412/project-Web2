@@ -1,6 +1,6 @@
 <script src="/project-Web2/admin/assets/js/user.js"></script>
 
-<div class="admin-wrapper">
+<div class="admin-wrapper" id="admin-wrapper-user-create">
     <div class="user-form">
         <form id="useraddform" method="POST" action="?page=user&action=create" enctype="multipart/form-data">
             <div class="admin-header">

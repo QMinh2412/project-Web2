@@ -38,7 +38,7 @@
                 $address = filter_var($_POST['address'], FILTER_SANITIZE_SPECIAL_CHARS);
                 $phone = $_POST['phone'];
                 $birthdate = $_POST['birthdate'];
-                $role = $_POST['role'];
+                $role = filter_var($_POST['role'], FILTER_SANITIZE_NUMBER_INT);
                 $created_at = date('Y-m-d H:i:s');
                 $gender = isset($_POST['gender']) ? $_POST['gender'] : 0;
                 $status = 1;
@@ -217,6 +217,8 @@
         }
 
         public function delete($id) {
+            session_start();
+
             $userModel = new User();
             $accountModel = new Account();
             $imageModel = new Image();
@@ -226,10 +228,31 @@
             $orderModel = new Order();
             $orderdetailModel = new OrderDetail();
 
+            $currentUser = $_SESSION['user_id'];
+            $currentAccount = $accountModel->getById($currentUser);
             $user = $userModel->getById($id);
             $account = $accountModel->getById($id);
             $cart = $cartModel->getCartById($id);
             $order = $orderModel->getOrderById($id);
+
+            if ($currentUser == $id) {
+                echo "<script>alert('Không thể xóa tài khoản của chính bạn!'); window.location.href='?page=user&action=index';</script>";
+                exit;
+            }
+
+            if ($currentAccount['LoaiTK'] <= 2 || $currentAccount['LoaiTK'] <= $user['LoaiTK']) {
+                // Proper console log
+                echo "<script>";
+                echo "console.log('Current Role: " . $currentAccount['LoaiTK'] . "');";
+                echo "console.log('Target Role: " . $account['LoaiTK'] . "');";
+                echo "window.history.back();";
+                echo "</script>";
+                echo "<script>alert('Bạn không có quyền xóa tài khoản có quyền cao hơn hoặc bằng!');</script>";
+    
+                
+
+                exit;
+            }
 
             if ($user && $account) {
                 if ($order) {

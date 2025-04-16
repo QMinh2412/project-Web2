@@ -1,7 +1,7 @@
 #left-menu {
     width: 300px;
     background-color: #283339;
-    
+    z-index: 1000;
     /* height: 100%; */
 }
 

@@ -1,3 +1,4 @@
+
 <div class="admin-wrapper">
     <div class="admin-header" id="user-header">
         <h2>Tài khoản</h2>
@@ -35,7 +36,7 @@
                     <td class="admin-list-body-content-other" id="user-action">
                         <button class="btn-user btn-detail" onclick="location.href='?page=user&action=view&id=<?= $user['MaND'] ?>'" title="Xem chi tiết"><i class='bx bxs-detail'></i></button>
                         <button class="btn-user btn-edit" onclick="location.href='?page=user&action=edit&id=<?= $user['MaND'] ?>'" title="Chỉnh sửa"><i class='bx bx-edit'></i></button>
-                        <button class="btn-user btn-delete" onclick="location.href='?page=user&action=delete&id=<?= $user['MaND'] ?>'" title="Xóa"><i class='bx bxs-trash'></i></button>
+                        <button class="btn-user btn-delete" onclick="return confirmDelete(<?= $user['MaND'] ?>)" title="Xóa"><i class='bx bxs-trash'></i></button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -57,3 +58,5 @@
             class="<?= $pagination['currentPage'] == $pagination['totalPages'] ? 'disabled' : '' ?>"><i class='bx bx-chevron-right' ></i></a>
     </div>
 </div>
+
+<script src="/project-Web2/admin/assets/js/user.js"></script>

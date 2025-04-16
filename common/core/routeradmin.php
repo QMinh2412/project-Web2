@@ -22,6 +22,9 @@ class RouteAdmin {
                     case 'index':
                         $controller->index();
                         break;
+                    case 'favoriteCustomers': // Thêm action này
+                        $controller->favoriteCustomers();
+                        break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');

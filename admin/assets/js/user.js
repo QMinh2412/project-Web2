@@ -1,8 +1,9 @@
 function previewImage(event) {
+    alert("Vui lòng chọn ảnh đại diện cho người dùng.");
     const file = event.target.files[0];
     const previewContainer = document.getElementById('user-image-preview');
 
-    previewContainer.innerHTML = ''; // Clear previous preview
+    previewContainer.innerHTML = '';
 
     if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
@@ -17,3 +18,13 @@ function previewImage(event) {
         reader.readAsDataURL(file);
     }
 }
+
+function confirmDelete(userId) {
+    if (confirm("Bạn có chắc chắn muốn xóa tài khoản này?")) {
+        window.location.href = `?page=user&action=delete&id=${userId}`;
+    }
+    return false;
+}    
+
+
+
