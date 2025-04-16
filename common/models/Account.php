@@ -270,10 +270,21 @@ class Account {
         $stmt->close();
     }
 
-    public function getRoleByEmail($email){
-        $query = "SELECT LoaiTK FROM TaiKhoan WHERE MaND = ( SELECT MaND FROM NgDung WHERE EmailND = $email)";
-        $result = $this->db->query($query);
-        return $result;
+    public function getRoleByEmail($email) {
+        $query = "SELECT LoaiTK FROM TaiKhoan WHERE MaND = (SELECT MaND FROM NgDung WHERE EmailND = ?)";
+        $stmt = $this->db->prepare($query);
+        if (!$stmt) {
+            die("Lỗi SQL (prepare): " . $this->db->error);
+        }
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            $stmt->close();
+            return $row['LoaiTK'];
+        }
+        $stmt->close();
+        return null;
     }
 
      // Lấy thông tin tài khoản dựa trên tên tài khoản
