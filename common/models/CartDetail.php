@@ -28,5 +28,15 @@
         
             return $result ? true : false;
         }
+
+        public function deleteCartDetail($account_id) {
+            $account_id = $this->db->real_escape_string($account_id);
+            $cartModel = new Cart();
+            $cart = $cartModel->getCartById($account_id);
+            $id_cart = $cart['MaGH'];
+        
+            $query = "DELETE FROM CTGH WHERE MaGH = '$id_cart'";
+            return $this->db->query($query);
+        }
     }
 ?>

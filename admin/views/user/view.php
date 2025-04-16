@@ -1,4 +1,6 @@
-<div class="admin-wrapper">
+<script src="/project-Web2/admin/assets/js/user.js"></script>
+
+<div class="admin-wrapper" id="admin-wrapper-user-view">
     <div class="user-form">
         <form id="userviewform">
             <div class="admin-header">

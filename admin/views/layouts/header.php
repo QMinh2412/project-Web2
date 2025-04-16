@@ -15,13 +15,14 @@ if (!isset($_SESSION['user_id'])) {
 }
 ?>
 
-<!-- header.php -->
-<header>
+<script src="./assets/js/header.js"></script>
+<script src="./assets/js/login.js"></script>
+
   <div class="header">
   <button id="mobile-menu-toggle">
     <i class='bx bx-menu' id="mobile-menu-toggle-i"></i>
   </button>
-    <div id="logo_header">
+    <div id="logo-header">
       <h4>Admin</h4>
     </div>
     <div id="admin-logo">
@@ -42,7 +43,6 @@ if (!isset($_SESSION['user_id'])) {
       </ul>
     </div>
   </div>
-  <script src="./assets/js/header.js"></script>
-  <script src="./assets/js/login.js"></script>
-</header>
+
+
 

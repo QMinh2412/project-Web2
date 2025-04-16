@@ -1,5 +1,5 @@
 create database webbookstore;
--- drop database webbookstore;
+drop database webbookstore;
 use webbookstore;
 
 create table `NCC` (
@@ -74,6 +74,8 @@ create table `QuanLy`(
 	`MaTKQL` int not null,
 	`MaTKBQL` int not null
 );
+
+drop table QuanLy;
 
 create table `DanhGia` (
 	`MaDG` int primary key not null auto_increment,

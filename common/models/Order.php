@@ -1,7 +1,8 @@
+<!-- cần thông tin bên folder user -->
 <?php
     require_once __DIR__ . '/../config/Database.php';
-    require_once __DIR__ . '/../models/Account.php';
     require_once __DIR__ . '/../models/User.php';
+    require_once __DIR__ . '/../models/Account.php';
 
     class Order {
         protected $db;
@@ -10,29 +11,17 @@
             $this->db = Database::getInstance();
         }
 
-        public function getAllOrders($currentpage, $orderperpage) {
-            $offset = ($currentpage - 1) * $orderperpage;
-            $limit = $orderperpage;
+        public function getOrderById($id) {
+            $query = "SELECT * FROM HoaDon WHERE MaHD = '$id'";
+            $result = $this->db->query($query);
+            return $result->fetch_assoc();
+        }
 
-            $query = "SELECT * FROM HoaDon LIMIT $offset, $limit";
-
+        public function deleteUserOrder($id) {
+            $query = "DELETE FROM HoaDon WHERE MaKH = ?";
             $stmt = $this->db->prepare($query);
-            if (!$stmt) {
-                die("Prepare failed: " . $this->db->error);
-            }
-
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $orders = [];
-
-            if ($result) {
-                while ($row = $result->fetch_assoc()) {
-                    $orders[] = $row; 
-                }
-            }
-
-            $stmt->close();
-            return $orders;
+            $stmt->bind_param("i", $id);
+            return $stmt->execute();
         }
     }
 ?>

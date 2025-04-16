@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 NewImgAlert.style.display = 'block';
             }
             else {
-                NewImgNoti.style.display = 'flex';
+                NewImgNoti.style.display = 'block';
                 NewImgAlert.style.display = 'none';
             }
         

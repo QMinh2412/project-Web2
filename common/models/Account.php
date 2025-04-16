@@ -32,37 +32,79 @@ class Account {
         }
         return null;
     }
-    
-    public function getImage($id) {
-        $query = "SELECT DgDanAnh FROM hinhanh WHERE MaND = $id";
-        $result = $this->db->query($query);
-        if ($result && $row = $result->fetch_assoc()) {
-            return $row['DgDanAnh'];
-        }
-        return null;
-    }
-    
 
-    public function emailExist($email) {
-        $sql = "SELECT COUNT(*) as count FROM NgDung WHERE EmailND = ?";
-        $stmt = $this->db->prepare($sql);
+    public function emailExist($email, $id = null) {
+        if ($id) {
+            $sql = "SELECT COUNT(*) as count FROM NgDung WHERE EmailND = ? AND MaND != ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("si", $email, $id);
+        } else {
+            $sql = "SELECT COUNT(*) as count FROM NgDung WHERE EmailND = ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("s", $email);
+        }
     
         if (!$stmt) {
-            die("Lỗi truy vấn: " . $this->db->error); // Debug nếu truy vấn lỗi
+            die("Lỗi truy vấn: " . $this->db->error);
         }
     
-        $stmt->bind_param("s", $email);            
         $stmt->execute();
         $result = $stmt->get_result();
-        
-        if ($row = $result->fetch_assoc()) {
-            $stmt->close();
-            return $row['count'] > 0; // Trả về true nếu email tồn tại
-        }
+    
+        $exists = ($row = $result->fetch_assoc()) && $row['count'] > 0;
     
         $stmt->close();
-        return false;
+        return $exists;
     }
+
+    public function phoneExist($phone, $id = null) {
+        if ($id) {
+            $sql = "SELECT COUNT(*) as count FROM NgDung WHERE SDT = ? AND MaND != ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("si", $phone, $id);
+        } else {
+            $sql = "SELECT COUNT(*) as count FROM NgDung WHERE SDT = ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("s", $phone);
+        }
+    
+        if (!$stmt) {
+            die("Lỗi truy vấn: " . $this->db->error);
+        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        $exists = ($row = $result->fetch_assoc()) && $row['count'] > 0;
+    
+        $stmt->close();
+        return $exists;
+    }
+
+    public function usernameExist($username, $id = null) {
+        if ($id) {
+            $sql = "SELECT COUNT(*) as count FROM TaiKhoan WHERE TenTK = ? AND MaND != ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("si", $username, $id);
+        } else {
+            $sql = "SELECT COUNT(*) as count FROM TaiKhoan WHERE TenTK = ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("s", $username);
+        }
+    
+        if (!$stmt) {
+            die("Lỗi truy vấn: " . $this->db->error);
+        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        $exists = ($row = $result->fetch_assoc()) && $row['count'] > 0;
+    
+        $stmt->close();
+        return $exists;
+    }
+    
     
     public function createAccount($username, $role, $created_at, $status, $password, $user_id) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Mã hóa mật khẩu
@@ -123,15 +165,11 @@ class Account {
 
     public function updateAccount($username, $role, $password, $user_id) {
         if (!empty($password)) {
-            // Hash the new password
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    
-            // Update all fields including the password
             $query = "UPDATE TaiKhoan SET TenTK = ?, LoaiTK = ?, MKTK = ? WHERE MaND = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param("sisi", $username, $role, $hashedPassword, $user_id);
         } else {
-            // If password is empty, update everything except password
             $query = "UPDATE TaiKhoan SET TenTK = ?, LoaiTK = ? WHERE MaND = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param("sii", $username, $role, $user_id);
@@ -141,8 +179,16 @@ class Account {
         $stmt->close();
     }
 
-    public function lockAccount($id) {
-        $query = "UPDATE TaiKhoan SET TinhTrang = 0 WHERE MaND = ?";
+    public function lockAccount($id, $status) {
+        $query = "UPDATE TaiKhoan SET TinhTrang = ? WHERE MaND = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii",$status, $id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function deleteAccount($id) {
+        $query = "DELETE FROM TaiKhoan WHERE MaND = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -150,7 +196,7 @@ class Account {
     }
 
      // Lấy thông tin tài khoản dựa trên tên tài khoản
-     public function getUserByUsername($TenTK) {
+    public function getUserByUsername($TenTK) {
         $query = "SELECT * FROM TaiKhoan WHERE TenTK = ?";
         $stmt = $this->db->prepare($query);
 
