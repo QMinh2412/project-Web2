@@ -12,7 +12,7 @@
             $this->db = Database::getInstance();
         }
 
-        public function getAllProducts($currentpage, $bookperpage = 10) {
+        public function getAllProducts($currentpage, $bookperpage) {
             $offset = ($currentpage - 1) * $bookperpage;
             $limit = $bookperpage;
             
@@ -209,13 +209,14 @@
         }
 
         public function createProduct($productData) {
-            $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, SoLgTon, GiaBan, NamXB, SoTrang, KichThuoc, MoTaChiTiet) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, MaNCC, SoLgTon, GiaBan, NamXB, SoTrang, KichThuoc, MoTaChiTiet) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param("siiiiiiiss", 
+            $stmt->bind_param("siiiiiiiiss", 
                                 $productData['TenSach'], 
                                 $productData['MaLoai'], 
                                 $productData['MaTG'], 
-                                $productData['MaNXB'], 
+                                $productData['MaNXB'],
+                                $productData['MaNCC'],
                                 $productData['SoLgTon'], 
                                 $productData['GiaBan'], 
                                 $productData['NamXB'], 
@@ -228,13 +229,14 @@
         }
 
         public function updateProduct($productId, $productData) {
-            $query = "UPDATE DauSach SET TenSach = ?, MaLoai = ?, MaTG = ?, MaNXB = ?, SoLgTon = ?, GiaBan = ?, NamXB = ?, SoTrang = ?, KichThuoc = ?, MoTaChiTiet = ? WHERE MaSach = ?";
+            $query = "UPDATE DauSach SET TenSach = ?, MaLoai = ?, MaTG = ?, MaNXB = ?, MaNCC = ?, SoLgTon = ?, GiaBan = ?, NamXB = ?, SoTrang = ?, KichThuoc = ?, MoTaChiTiet = ? WHERE MaSach = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param("siiiiiiissi", 
+            $stmt->bind_param("siiiiiiiissi", 
                                 $productData['TenSach'], 
                                 $productData['MaLoai'], 
                                 $productData['MaTG'], 
                                 $productData['MaNXB'], 
+                                $productData['MaNCC'],
                                 $productData['SoLgTon'], 
                                 $productData['GiaBan'], 
                                 $productData['NamXB'], 
@@ -305,6 +307,20 @@
             $stmt->bind_param("ii", $productStatus, $productId);
             
             return $stmt->execute();
+        }
+
+        public function deleteProduct($productId) {
+            $query = "DELETE FROM DauSach WHERE MaSach = ?";
+            $stmt = $this->db->prepare($query);
+
+            if ($stmt) {
+                $stmt->bind_param("i", $productId);
+                $result = $stmt->execute();
+                $stmt->close();
+                return $result;
+            }
+
+            return false;
         }
     }
 ?>

@@ -1,7 +1,7 @@
 <div class="admin-wrapper">
     <div class="admin-header" id="category-header">
         <h2>Danh mục sách</h2>
-        <a href="?page=category&action=create" class="btn btn-primary" id="addCategoryBtn">Thêm danh mục</a>
+        <button onclick="location.href='?page=category&action=create'" class="btn btn-primary" id="addCategoryBtn"><i class='bx bxs-duplicate' ></i>Thêm danh mục</button>
     </div>
     <table class="admin-list-container">
         <thead class="admin-list-header">

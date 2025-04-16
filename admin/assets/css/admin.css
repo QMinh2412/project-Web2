@@ -37,10 +37,7 @@ body {
 
 .admin-wrapper {
     background-color: white;
-    margin-right: 50px;
-    margin-left: 50px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 20px 50px;
     height: max-content;
     box-sizing: border-box;
     overflow: hidden;
@@ -84,6 +81,10 @@ body {
         margin: 5px 10px 5px 10px;
     }
 
+    .admin-header {
+        padding: 5px;
+    }
+
     /* Off-canvas sidebar */
     #mobile-menu-toggle {
         display: block;
@@ -92,12 +93,16 @@ body {
         color: white;
     }
     #left-menu {
-        position: fixed; top:0; left:0;
-        width: 250px; height:100%;
+        position: fixed; 
+        top:0; 
+        left:0;
+        width: 250px; 
+        height:100%;
         transform: translateX(-100%);
         transition: transform .3s ease;
         z-index: 1000;
     }
+
     #left-menu.open {
         transform: translateX(0);
     }

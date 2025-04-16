@@ -413,11 +413,13 @@
 
                     if ($isUpdated) {
                         echo "<script>
+                            alert('Đã ngừng bán sản phẩm');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
                     else {
                         echo "<script>
+                            alert('Cập nhật không thành công');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
@@ -428,11 +430,13 @@
 
                     if ($isUpdated) {
                         echo "<script>
+                            alert('Đã mở bán sản phẩm');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
                     else {
                         echo "<script>
+                            alert('Cập nhật không thành công');
                             window.location.href = '?page=product&action=index&current_page=$currentPage';
                         </script>";
                     }
@@ -445,7 +449,7 @@
             $currentPage = $_GET['current_page'] ?? 1;
 
             $productModel = new Product();
-            $productId = $_GET['id'] ?? null;
+            // $productId = $_GET['id'] ?? null;
 
             $imageModel = new Image();
             $images = $imageModel->getImgProduct($productId);
@@ -471,6 +475,13 @@
                 $publisherMap[$pub['MaNXB']] = $pub['TenNXB'];
             }
 
+            $providerModel = new Provider();
+            $providers = $providerModel->getAllProviders();
+            $providerMap = [];
+            foreach ($providers as $prov) {
+                $providerMap[$prov['MaNCC']] = $prov['TenNCC'];
+            }
+
             if ($productId) {
                 $product = $productModel->getProductById($productId);
 
@@ -484,10 +495,56 @@
                     'categoryMap' => $categoryMap,
                     'authorMap' => $authorMap,
                     'publisherMap' => $publisherMap,
+                    'providerMap' => $providerMap,
                     'currentPage' => $currentPage,
                     'images' => $images
                 ]);
             }
         }
+
+        public function delete ($productId) {
+            $currentPage = $_GET['current_page'] ?? 1;
+            
+            $productModel = new Product();
+            
+            $imageModel = new Image();
+            $images = $imageModel->getImgProduct($productId);
+
+            if ($productId) {
+
+                if ($images) {
+                    $projectRoot = $_SERVER['DOCUMENT_ROOT'];
+                    $folderPath = dirname($projectRoot . $images[0]['DgDanAnh']);
+
+                    foreach ($images as $img) {
+                        $absolutePath = $projectRoot . $img['DgDanAnh'];
+                        if (file_exists($absolutePath)) {
+                            unlink($absolutePath);
+                        }
+                        $imageModel->deleteImageById($img['MaHA']);
+                    }
+
+                    if (is_dir($folderPath)) {
+                        rmdir($folderPath);
+                    } 
+                }
+
+                $isDeleted = $productModel->deleteProduct($productId);
+
+                if ($isDeleted) {
+                    echo "<script>
+                        alert('Sản phẩm đã được xóa thành công!');
+                        window.location.href = '?page=product&action=index&current_page=$currentPage'
+                    </script>";
+                }
+                else {
+                    echo "<script>alert('Không thể xóa sản phẩm, vui lòng thử lại!');</script>";
+                }
+            }
+            else {
+                echo "<script>alert('ID sản phẩm không hợp lệ!')</script>";
+            }
+        }
+
     }
 ?>
