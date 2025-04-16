@@ -30,7 +30,6 @@ class RouteAdmin {
                         exit('Action not found');
                 }
                 break;
-
             case 'category':
                 $controller = new CategoryController();
                 switch($action) {
