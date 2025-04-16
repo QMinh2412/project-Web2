@@ -1,5 +1,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="/project-Web2/user/assets/css/product.css">
+<!-- <?php 
+    echo $category_id; 
+    echo $current_page;
+    echo "\n";
+    print_r($products);
+    echo "\n";
+    print_r($totalPage);
+?> -->
 
 <div class="outer_container">
     <div class="box_filter">
@@ -72,7 +80,7 @@
                     </label>
                 </div>
                 <div>
-                    <input type="checkbox" name="checkbox_price" class="checkbox_price" id="price_7" value="above_500000">
+                    <input type="checkbox" name="checkbox_price" class="checkbox_price" id="price_7" value="500000_over">
                     <label for="price_7">
                         <div class="item">Trên 500000 vnđ</div>
                     </label>
@@ -83,34 +91,41 @@
     
     <div class ="box_product">
         <div class="book_list container">
-            <?php foreach ($products as $product): ?>
+            <!-- <?php foreach ($products as $product): ?>
                 <div class="book_item">
                     <a href="/project-Web2/user/index.php?page=product&action=detail&id_book=<?php echo $product['MaSach']?>">
                         <div class="img_book">
-                            <img src="<?php echo $product['DgDanAnh']?>" alt="<?php echo $product['TenSach']?>">
+                            <img src="<?php echo $product['DgDanAnh']['DgDanAnh']?>" alt="<?php echo $product['TenSach']?>">
                         </div>
                         <div class="info_book">
                             <div class="title_book"><?php echo $product['TenSach']?></div>
-                            <div class="price_book"><?php echo number_format($product['GiaBan'], 0, "", ".");?> vnđ</div>
+                            <div class="price_book"><?php echo $product['GiaBan'];?> vnđ</div>
                         </div>
                     </a>
                 </div>
-            <?php endforeach; ?>
+            <?php endforeach; ?> -->
         </div>
 
         <div class="pagination">
-            <?php if($totalPage['currentPage'] != 1): ?>
-                <a href="#" id="pre_page"><i class="fa-solid fa-angles-left"></i></a>
-            <?php endif ?>
-            <?php for($i=1; $i<=$totalPage['totalPages']; $i++): ?>
-            <a href="?page=<?php echo $i; ?>" class="page <?php echo ($i == $totalPage['currentPage']) ? 'active' : ''; ?>">
-                <?php echo $i; ?>
-            </a>
+            <!-- Nút lùi về trang trước -->
+            <?php if ($totalPage['currentPage'] != 1): ?>
+                <span class="page prev">&laquo;</span>
+            <?php endif; ?>
+            
+            <!-- Các trang -->
+            <?php for ($i = 1; $i <= $totalPage['totalPages']; $i++): ?>
+                <span class="page <?php echo ($i == $totalPage['currentPage']) ? 'active' : ''; ?>">
+                    <?php echo $i; ?>
+                </span>
             <?php endfor; ?>
-            <?php if($totalPage['currentPage'] != $totalPage['totalPages']): ?>
-                <a href="#" id="next_page"><i class="fa-solid fa-angles-right"></i></a>
-            <?php endif ?>
+
+            <!-- Nút tiến tới trang sau -->
+            <?php if ($totalPage['currentPage'] != $totalPage['totalPages']): ?>
+                <span class="page next">&raquo;</span>
+            <?php endif; ?>
         </div>
     </div>
 </div>
 <script src="/project-Web2/user/assets/js/product.js"></script>
+
+<!-- C:\xampp\htdocs\project-Web2\user\assets\js\product.js -->

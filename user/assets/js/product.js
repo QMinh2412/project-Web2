@@ -1,10 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Ẩn hiện sub_box_item khi click vào main_item
+// Hàm ẩn hiện subbox
+function hideShowSubbox() {
   const main_item = document.querySelectorAll(".main_item");
-  console.log(main_item);
   for (let i = 0; i < main_item.length; i++) {
-    main_item[i].addEventListener("click", function (e) {
-      e.stopPropagation();
+    main_item[i].addEventListener("click", function () {
       const sub_box_item = this.nextElementSibling;
       const icon = this.querySelector("i");
 
@@ -12,8 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
       icon.classList.toggle("active");
     });
   }
+}
 
-  // Thay đổi màu page_item khi nó được chọn
+// Hàm thay đổi màu cho page_item khi nó được chọn
+function changeColorForPageItem() {
   const page_item = document.querySelectorAll(".page");
   for (let i = 0; i < page_item.length; i++) {
     page_item[i].addEventListener("click", function (e) {
@@ -25,29 +25,402 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(`trang ${i + 1} được chọn`);
     });
   }
+}
 
-  // Xử lý sự kiện click các nút next, prev
-  const prevBtn = document.querySelector(".prev");
-  const nextBtn = document.querySelector(".next");
-  const pageItems = document.querySelectorAll(".page");
-  let currentPage = 1;
-  const totalPages = pageItems.length;
-  prevBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    console.log(`currentPage: ${currentPage}`);
-    if (currentPage > 1) {
-      pageItems[currentPage].classList.remove("active");
-      currentPage--;
-      pageItems[currentPage].classList.add("active");
+// Hàm xử lý dữ liệu lấy được chuyển thành html
+function handleData(data) {
+  let html = "";
+  for (let i = 0; i < data.length; i++) {
+    html += `
+      <div class="book_item">
+        <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=${data[i]["MaSach"]}">
+          <div class="img_book">
+            <img src="${data[i]["DgDanAnh"]["DgDanAnh"]}" alt="${data[i]["TenSach"]}">
+          </div>
+          <div class="info_book">
+            <div class="title_book">${data[i]["TenSach"]}</div>
+            <div class="price_book">${data[i]["GiaBan"]} vnđ</div>
+          </div>
+        </a>
+      </div>
+    `;
+  }
+  return html;
+}
+
+// Hàm xử lý số trang lấy được chuyển thành html
+function handlePagination(current_page, totalPage) {
+  let html = "";
+  if (current_page > 1) {
+    html += `<span class="page prev">«</span>`;
+  }
+  for (let j = 1; j <= totalPage; j++) {
+    if (j == current_page) {
+      html += `<span class="page active">${j}</span>`;
+    } else {
+      html += `<span class="page">${j}</span>`;
     }
-  });
-  nextBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    console.log(`currentPage: ${currentPage}`);
-    if (currentPage < totalPages - 1) {
-      pageItems[currentPage].classList.remove("active");
-      currentPage++;
-      pageItems[currentPage].classList.add("active");
+  }
+  if (current_page < totalPage) {
+    html += `<span class="page next">»</span>`;
+  }
+  return html;
+}
+
+// Hàm gắn sự kiện click cho các nút phân trang
+function attachPaginationEvents(callback) {
+  const paginationLinks = document.querySelectorAll(".page");
+
+  for (let i = 0; i < paginationLinks.length; i++) {
+    paginationLinks[i].addEventListener("click", function (e) {
+      e.preventDefault();
+
+      if (this.classList.contains("prev")) {
+        const currentPage = parseInt(
+          document.querySelector(".page.active").textContent.trim()
+        );
+        if (currentPage > 1) {
+          callback(currentPage - 1);
+        }
+      } else if (this.classList.contains("next")) {
+        const currentPage = parseInt(
+          document.querySelector(".page.active").textContent.trim()
+        );
+        const totalPages = document.querySelectorAll(
+          ".page:not(.prev):not(.next)"
+        ).length;
+        if (currentPage < totalPages) {
+          callback(currentPage + 1);
+        }
+      } else {
+        const page = parseInt(this.textContent.trim());
+        callback(page);
+      }
+    });
+  }
+}
+
+// Ajax cho phân trang
+function loadPageData(page) {
+  const xhr = new XMLHttpRequest();
+  xhr.open(
+    "GET",
+    `/project-Web2/user/index.php?page=product&action=show_page&current_page=${page}`,
+    true
+  );
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+
+      let data = handleData(response["products"]);
+      let pagination = handlePagination(page, response["totalPage"]);
+
+      document.querySelector(".book_list").innerHTML = data;
+      document.querySelector(".pagination").innerHTML = pagination;
+
+      // Chuẩn hóa trạng thái
+      const state = {
+        type: "page",
+        page: page,
+        category_id: null,
+        author_id: null,
+        price_range: null,
+      };
+      const newUrl = `/project-Web2/user/index.php?page=product&current_page=${page}`;
+
+      if (
+        window.history.state?.page !== page ||
+        window.history.state?.type !== "page"
+      ) {
+        history.pushState(state, "", newUrl);
+      }
+
+      attachPaginationEvents(function (page) {
+        loadPageData(page);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
+  };
+
+  xhr.send();
+}
+
+// Ajax cho thể loại sách
+let currentCategoryId = null;
+function loadBookByCategory(current_page, category_id = null) {
+  const xhr = new XMLHttpRequest();
+  xhr.open(
+    "GET",
+    `/project-Web2/user/index.php?page=product&action=render_by_category&category_id=${category_id}&current_page=${current_page}`,
+    true
+  );
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      const response = JSON.parse(xhr.responseText);
+
+      let data = handleData(response["products"]);
+      let pagination = handlePagination(current_page, response["totalPage"]);
+
+      document.querySelector(".pagination").innerHTML = pagination;
+      document.querySelector(".book_list").innerHTML = data;
+
+      // Chuẩn hóa trạng thái
+      const state = {
+        type: "category",
+        page: current_page,
+        category_id: category_id,
+        author_id: null,
+        price_range: null,
+      };
+      const newUrl = `/project-Web2/user/index.php?page=product&category_id=${category_id}&current_page=${current_page}`;
+
+      if (
+        window.history.state?.category_id !== category_id ||
+        window.history.state?.page !== current_page ||
+        window.history.state?.type !== "category"
+      ) {
+        history.pushState(state, "", newUrl);
+      }
+
+      attachPaginationEvents(function (current_page) {
+        loadBookByCategory(current_page, category_id);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+  xhr.send();
+}
+
+function attachCategoryEvents() {
+  const categories = document.querySelectorAll(".category-item");
+  categories.forEach((category) => {
+    category.addEventListener("click", function () {
+      currentCategoryId = this.getAttribute("data-id");
+      console.log(`Thể loại ${currentCategoryId} vừa được click`);
+      loadBookByCategory(1, currentCategoryId);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   });
+}
+
+// Ajax cho tác giả
+let currentAuthorId = null;
+function loadBookByAuthor(current_page, author_id = null) {
+  const xhr = new XMLHttpRequest();
+  xhr.open(
+    "GET",
+    `/project-Web2/user/index.php?page=product&action=render_by_author&author_id=${author_id}&current_page=${current_page}`,
+    true
+  );
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      const response = JSON.parse(xhr.responseText);
+
+      let data = handleData(response["products"]);
+      let pagination = handlePagination(current_page, response["totalPage"]);
+
+      document.querySelector(".pagination").innerHTML = pagination;
+      document.querySelector(".book_list").innerHTML = data;
+
+      // Chuẩn hóa trạng thái
+      const state = {
+        type: "author",
+        page: current_page,
+        category_id: null,
+        author_id: author_id,
+        price_range: null,
+      };
+      const newUrl = `/project-Web2/user/index.php?page=product&author_id=${author_id}&current_page=${current_page}`;
+
+      if (
+        window.history.state?.author_id !== author_id ||
+        window.history.state?.page !== current_page ||
+        window.history.state?.type !== "author"
+      ) {
+        history.pushState(state, "", newUrl);
+      }
+
+      attachPaginationEvents(function (current_page) {
+        loadBookByAuthor(current_page, author_id);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+  xhr.send();
+}
+
+function attachAuthorEvents() {
+  const authors = document.querySelectorAll(".author-item");
+  authors.forEach((author) => {
+    author.addEventListener("click", function () {
+      currentAuthorId = this.getAttribute("data-id");
+      console.log(`Tác giả ${currentAuthorId} vừa được click`);
+      loadBookByAuthor(1, currentAuthorId);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+}
+
+// Ajax cho khoảng giá
+let currSelectChecked = null;
+function loadBookPriceRange(selectChecked, current_page) {
+  // Nếu không có khoảng giá nào được chọn, chuyển về danh sách mặc định
+  if (!selectChecked || selectChecked.length === 0) {
+    loadPageData(1);
+    return;
+  }
+
+  const xhr = new XMLHttpRequest();
+  const priceRangeQuery = Array.isArray(selectChecked)
+    ? selectChecked.join(",")
+    : selectChecked;
+  xhr.open(
+    "GET",
+    `/project-Web2/user/index.php?page=product&action=filter&price_range=${priceRangeQuery}&current_page=${current_page}`,
+    true
+  );
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      const response = JSON.parse(xhr.responseText);
+
+      let data = handleData(response["products"]);
+      let pagination = handlePagination(current_page, response["totalPage"]);
+
+      document.querySelector(".pagination").innerHTML = pagination;
+      document.querySelector(".book_list").innerHTML = data;
+
+      // Chuẩn hóa trạng thái
+      const state = {
+        type: "price",
+        page: current_page,
+        category_id: null,
+        author_id: null,
+        price_range: selectChecked,
+      };
+      // Chỉ hiển thị page và current_page trên URL
+      const newUrl = `/project-Web2/user/index.php?page=product&current_page=${current_page}`;
+
+      // Kiểm tra trạng thái hiện tại
+      if (
+        window.history.state?.price_range?.join(",") !== priceRangeQuery ||
+        window.history.state?.page !== current_page ||
+        window.history.state?.type !== "price"
+      ) {
+        history.pushState(state, "", newUrl);
+      }
+
+      attachPaginationEvents(function (current_page) {
+        loadBookPriceRange(selectChecked, current_page);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+  xhr.send();
+}
+
+function attachFilterEvents() {
+  const filters = document.querySelectorAll(".checkbox_price");
+  filters.forEach((filter) => {
+    filter.addEventListener("change", function () {
+      var selectChecked = [];
+      filters.forEach((filter) => {
+        if (filter.checked) {
+          selectChecked.push(filter.value);
+        }
+      });
+      currSelectChecked = selectChecked;
+      if (selectChecked.length === 0) {
+        // Nếu không có checkbox nào được chọn, tải danh sách mặc định
+        loadPageData(1);
+      } else {
+        // Nếu có checkbox được chọn, tải theo khoảng giá
+        loadBookPriceRange(selectChecked, 1);
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+}
+
+function getParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  hideShowSubbox();
+  changeColorForPageItem();
+
+  attachCategoryEvents();
+  attachAuthorEvents();
+  attachFilterEvents();
+
+  const category_id = getParam("category_id");
+  const author_id = getParam("author_id");
+  const current_page = parseInt(getParam("current_page")) || 1;
+
+  console.log(`ma the loai: ${category_id}`);
+  console.log(`ma tac gia: ${author_id}`);
+  console.log(`trang hien tai: ${current_page}`);
+
+  let state;
+  let url;
+
+  if (category_id) {
+    state = {
+      type: "category",
+      page: current_page,
+      category_id: category_id,
+      author_id: null,
+      price_range: null,
+    };
+    url = `/project-Web2/user/index.php?page=product&category_id=${category_id}&current_page=${current_page}`;
+    loadBookByCategory(current_page, category_id);
+  } else if (author_id) {
+    state = {
+      type: "author",
+      page: current_page,
+      category_id: null,
+      author_id: author_id,
+      price_range: null,
+    };
+    url = `/project-Web2/user/index.php?page=product&author_id=${author_id}&current_page=${current_page}`;
+    loadBookByAuthor(current_page, author_id);
+  } else {
+    state = {
+      type: "page",
+      page: current_page,
+      category_id: null,
+      author_id: null,
+      price_range: null,
+    };
+    url = `/project-Web2/user/index.php?page=product&current_page=${current_page}`;
+    loadPageData(current_page);
+  }
+
+  // Đẩy trạng thái ban đầu vào lịch sử
+  history.replaceState(state, "", url);
+});
+
+// Xử lý sự kiện popstate
+window.addEventListener("popstate", function (event) {
+  const state = event.state;
+
+  // Nếu không có trạng thái, tải trang mặc định
+  if (!state) {
+    loadPageData(1);
+    return;
+  }
+
+  const { type, page, category_id, author_id, price_range } = state;
+
+  if (type === "category" && category_id) {
+    loadBookByCategory(page, category_id);
+  } else if (type === "author" && author_id) {
+    loadBookByAuthor(page, author_id);
+  } else if (type === "price" && price_range) {
+    loadBookPriceRange(price_range, page);
+  } else {
+    loadPageData(page);
+  }
 });

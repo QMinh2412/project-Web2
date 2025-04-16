@@ -7,16 +7,29 @@
 <link rel="stylesheet" href="/project-Web2/user/assets/css/header.css">
 <header>
     <div class="header">
-        <div id="logo_header"><img src="/project-Web2/common/images/logo3.png" alt="Logo"></div>
+        <a href="/project-Web2/user/index.php"><div id="logo_header"><img src="/project-Web2/common/images/logo3.png" alt="Logo"></div></a>
         <div class="search_box">
-            <form>
-                <input type="text" name="search_box" id="search_box" placeholder="TÌm kiếm" autocomplete="off">
+
+                <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
+                <div class="box_input">
+                    <input type="text" name="name" id="search_box" placeholder="Nhập tên sách bạn cần tìm" autocomplete="off">
+                    <input type="text" name="category" id="" placeholder="Nhập thể loại sách bạn cần tìm" autocomplete="off">
+                    <input type="text" name="author" id="" placeholder="Nhập tên tác giả bạn muốn tìm" autocomplete="off">
+                </div>
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
+
+        </div>
+        <div class="product_box">
+            <a href="/project-Web2/user/index.php?page=product&current_page=1">
+                <i class="fa-solid fa-book"></i>
+                <span>Sản phẩm</span>
+            </a>
         </div>
         <div class="cart_box">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span>Giỏ hàng</span>
+            <a href="#">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Giỏ hàng</span>
+            </a>
         </div>
         <div class="account_box">
             <?php if($userData): ?>

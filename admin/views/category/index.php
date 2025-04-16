@@ -1,14 +1,13 @@
 <div class="admin-wrapper">
     <div class="admin-header" id="category-header">
         <h2>Danh mục sách</h2>
-        <a href="?page=category&action=create" class="btn btn-primary" id="addCategoryBtn">Thêm danh mục</a>
+        <button onclick="location.href='?page=category&action=create'" class="btn btn-primary" id="addCategoryBtn"><i class='bx bxs-duplicate' ></i>Thêm danh mục</button>
     </div>
     <table class="admin-list-container">
         <thead class="admin-list-header">
             <tr class="admin-list-header-content">
                 <th id="category-order">STT</th>
                 <th id="category-name">Tên thể loại</th>
-                <!-- <th id="category-quantity">Số lượng</th> -->
                 <th id="category-features">Chức năng</th>
             </tr>
         </thead>

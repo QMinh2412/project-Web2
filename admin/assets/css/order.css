@@ -1,7 +1,8 @@
 /* Container chính */
 .order-container {
-    width: 90%;
-    margin: 0 auto;
+    /* width: 100%; */
+    margin: 0px auto 20px auto;
+    width: calc(100% - 40px);
 }
 
 .order-header {

@@ -24,6 +24,15 @@
     line-height: 50px;
 }
 
+#mobile-menu-toggle {
+    display: none; /* Ẩn mặc định trên desktop */
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
 #admin-logo :hover {
     cursor: pointer;
     transition: all 0.3s ease;
@@ -71,22 +80,31 @@
     background-color: #283339;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 15px;
+    font-size: 24px;
+    color: white;
     cursor: pointer;
-    border-radius: 5px;
-    width: 80%;
-    margin: 5px 0;
-    text-align: center;
 }
 
-#menu-down button:hover {
-    background-color: #1a1a1a;
-    transition: all 0.3s ease;
-    transform: scale(1.05);
-}
-
-#menu-down ul, li{
-    list-style-type: none;
-    margin-right: 10px;
+@media only screen and (max-width: 600px) {
+    #logo_header {
+        left: 5px;
+    }
+    #admin-logo {
+        right: 15px;
+    }
+    #mobile-menu-toggle {
+        display: block; /* Hiện khi mobile */
+        position: absolute;
+        top: 30px;
+        left: 26px;
+        z-index: 1000;
+        color: #333;   
+    }
+    #logo_header {
+        left: 40px;
+        height: 75px;
+    }
+    #mobile-menu-toggle.active i {
+        color: white;
+    }
 }

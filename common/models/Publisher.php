@@ -22,6 +22,34 @@
             return $publishers;
         }
 
+        public function createPublisher($publisherData) {
+            $query = "INSERT INTO NXB (TenNXB, DcNXB, EmailNXB) VALUES (?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+
+            if ($stmt) {
+                $stmt->bind_param("sss", $publisherData['TenNXB'], $publisherData['DcNXB'], $publisherData['EmailNXB']);
+                if ($stmt->execute()) {
+                    return $this->db->insert_id; 
+                }
+            }
+
+            return false; 
+        } 
+
+        public function getPublisherById($id){
+            $query = "SELECT * FROM NXB WHERE MaNXB = ?";
+            $stmt = $this->db->prepare($query);
         
+            if ($stmt) {
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $publisher = $result->fetch_assoc();
+                $stmt->close();
+                return $publisher;
+            }
+        
+            return null;
+        }
     }
 ?>

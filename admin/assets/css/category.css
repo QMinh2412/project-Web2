@@ -7,11 +7,15 @@
     background-color: #4CAF50; /* Green */
     padding: 15px;
     border-radius: 10px;
+    border: none;
     right: 20px;
     top: 10px;
     color: white;
     text-decoration: none;
     transition: background-color 0.3s ease-in-out; 
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -23,16 +27,17 @@
     background-color: #3e8e41; 
 }
 
+#addCategoryBtn i {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
 #category-order {
     width: 150px;
 }
 
 #category-name {
     text-align: center;
-}
-
-#category-quantity {
-    width: 200px;
 }
 
 #category-features {
@@ -61,35 +66,77 @@
 }
 
 #createCategoryBtn {
-    background-color: #3ea2e1; /* Green */
+    background-color: #3ea2e1; 
     color: white;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#createCategoryBtn:hover {
+    background-color: #2b76a4; 
+}
+#createCategoryBtn:active {
+    background-color: #1c4f6e; 
 }
 
 #cancelCategoryBtn {
-    background-color: red; /* Green */
+    background-color: red; 
     color: white;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#cancelCategoryBtn:hover {
+    background-color: #b30000; 
+}
+#cancelCategoryBtn:active {
+    background-color: #800000; 
 }
 
 /* Edit category */
 #editCategoryBtn {
-    background-color: #3ea2e1; /* Green */
+    background-color: #3ea2e1;
     color: white;
     padding: 10px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#editCategoryBtn:hover {
+    background-color: #2b76a4; 
+}
+#editCategoryBtn:active {
+    background-color: #1c4f6e; 
 }
 
 /* Delete category */
 #deleteCategoryBtn {
-    background-color: red; /* Green */
+    background-color: red; 
     color: white;
     padding: 10px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#deleteCategoryBtn:hover {
+    background-color: #b30000; 
+}
+#deleteCategoryBtn:active {
+    background-color: #800000; 
+}
+
+@media only screen and (max-width: 600px) {
+    #category-order {
+        max-width: 45px;
+    }
+
+    #category-features {
+        max-width: 100px;
+    }
+
+    #editCategoryBtn {
+        margin-bottom: 5px;
+    }
 }

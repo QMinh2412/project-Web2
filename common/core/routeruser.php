@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../user/controllers/HomeController.php';
 require_once __DIR__ . '/../../user/controllers/AccountController.php';
 require_once __DIR__ . '/../../user/controllers/ProductController.php';
+require_once __DIR__ . '/../../user/controllers/CartController.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Account.php';
 class Route {
@@ -27,6 +28,14 @@ class Route {
                 $controller = new ProductController();
                 break;
 
+            case 'detail':
+                $controller = new ProductController();
+                break;
+
+            case 'cart':
+                $controller = new CartController();
+                break;
+
             default:
                 $controller = new HomeController();
                 break;
@@ -41,6 +50,33 @@ class Route {
                 break;
             case 'logout':
                 $controller->logout();
+                break;
+            case 'show_page':
+                $controller->pagingHandleAjax();
+                break;
+            case 'render_by_category':
+                $controller->showCategoryAjax();
+                break;
+            case 'render_by_author':
+                $controller->showAuthorAjax();
+                break;
+            case 'filter':
+                $controller->filterPriceRangeAjax();
+                break;
+            case 'search':
+                $controller->search();
+                break;
+            case 'show_detail':
+                $controller->showDetail();
+                break;
+            case 'writeComment':
+                $controller->writeComment();
+                break;
+            case 'replyComment':
+                $controller->replyComment();
+                break;
+            case 'addToCart':
+                $controller->addToCart();
                 break;
             default:
                 $controller->index();

@@ -24,8 +24,8 @@ body {
 
 .container {
     display: flex;
-    /* background-color: #f1f1f1; */
-    background-color: black;
+    background-color: #f1f1f1;
+    /* background-color: black; */
     flex: 1;
     width: 100%;
     height: 100%;
@@ -37,10 +37,7 @@ body {
 
 .admin-wrapper {
     background-color: white;
-    margin-right: 50px;
-    margin-left: 50px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 30px 50px;
     height: max-content;
     box-sizing: border-box;
     overflow: hidden;
@@ -62,7 +59,7 @@ body {
 
 .admin-list-container th, td {
     padding: 5px 10px;
-    border: 1px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
     word-wrap: break-word;
 }
 
@@ -73,3 +70,66 @@ body {
 .admin-list-body-content-other {
     text-align: left;
 }
+
+#admin-menu-icon,
+#mobile-menu-toggle {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .admin-wrapper {
+        margin: 5px 10px 5px 10px;
+    }
+
+    .admin-header {
+        padding: 5px;
+    }
+
+    /* Off-canvas sidebar */
+    #mobile-menu-toggle {
+        display: block;
+        position: absolute; top: 15px; left: 15px; z-index: 1001;
+    }
+    #left-menu {
+        position: fixed; 
+        top:0; 
+        left:0;
+        width: 250px; 
+        height:100%;
+        transform: translateX(-100%);
+        transition: transform .3s ease;
+        z-index: 1000;
+    }
+
+    #left-menu.open {
+        transform: translateX(0);
+    }
+
+    /* Close button nằm trong menu */
+    #admin-menu-icon {
+        display: none; /* sẽ bật bằng JS khi menu.open */
+        cursor: pointer;
+    }
+
+    #left-menu.open #admin-menu-icon {
+        display: flex; /* hiện khi menu mở */
+        /* justify-content: flex-end; */
+        left: 19px;
+    }
+    
+    .container {
+        flex-direction: column; /* tùy layout bạn */
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    
+    .admin-wrapper {
+        margin: 5px 10px 5px 10px;
+    }
+
+    #admin-menu-icon {
+        display: none;
+    }
+}
+  

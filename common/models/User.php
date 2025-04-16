@@ -84,7 +84,6 @@
             $stmt->bind_param("ssssssi", $fullname, $address, $email, $gender, $phone, $dob, $user_id);
             $stmt->execute();
             $stmt->close();
-        }
-        
+        } 
     }
 ?>
