@@ -6,9 +6,14 @@
 
         public function index($currentPage) {
             $orderModel = new Order();
-            $accountModel = new Account();
             $userModel = new User();
             $users = $userModel->getAllUsers();
+
+            $ordersPerPage = 10;
+            $firstOrder = $ordersPerPage * $currentPage - 9;
+
+            $orders = $orderModel->getAllOrdersWithTotals($currentPage, $ordersPerPage);
+            $pagingation = $orderModel->getOrderPagination($currentPage, $ordersPerPage);
 
             $userMap = [];
             foreach ($users as $us) {
@@ -16,10 +21,25 @@
             }
 
             $this->render('order/index', [
-                'title' => 'Order Management',
-                'message' => 'Welcome to the Order Management page!'
+                'firstOrder' => $firstOrder,
+                'orders' => $orders,
+                'userMap' => $userMap,
+                'pagination' => $pagingation
+            ]);
+        }
+
+        public function detail($orderId) {
+            $orderModel = new Order();
+            $userModel = new User();
+
+            $order = $orderModel->getOrderById($orderId);
+            $userId = $order['MaKH'];
+            $user = $userModel->getById($userId);
+
+            $this->render('order/detail', [
+                'order' => $order,
+                'user' => $user
             ]);
         }
     }
 ?>
-<!-- cần thông tin bên folder user -->

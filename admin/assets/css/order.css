@@ -1,129 +1,122 @@
 /* Container chính */
 .order-container {
-    /* width: 100%; */
     margin: 0px auto 20px auto;
     width: calc(100% - 40px);
 }
 
 .order-header {
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    position: relative;
 }
 
 /* Form tìm kiếm */
-.order-search-form {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Khoảng cách giữa các phần tử */
-    flex-wrap: nowrap; /* Đảm bảo các phần tử nằm trên cùng một hàng */
+
+
+/************************ Index table **********************/
+#order-order {
+    width: 40px;
 }
 
-.order-form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+#order-id {
+    width: 40px;
 }
 
-.order-search-form label {
-    font-size: 14px;
-    font-weight: bold;
+#order-value {
+    width: 120px;
 }
 
-.order-search-form input[type="text"],
-.order-search-form input[type="date"],
-.order-search-form select {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+#order-time {
+    width: 90px;
+}
+
+#order-status {
+    width: 90px;
+}
+
+#order-features {
     width: 200px;
-    box-sizing: border-box;
 }
 
-.order-search-btn {
-    margin-top: 20px;
-    padding: 5px 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    height: 30px;
+
+/************************ Pagination ***********************/
+.order-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 8px;
 }
 
-.order-search-btn:hover {
-    background-color: #218838;
-}
-
-/* Bảng hiển thị đơn hàng */
-.order-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.order-table th, .order-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
-
-.order-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-.order-table tbody tr:nth-child(even) {
+.order-pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-decoration: none;  
+    color: #333;
     background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
 }
 
-.order-table tbody tr:hover {
-    background-color: #f1f1f1;
+.order-pagination a:hover {
+    background-color: #e0e0e0;
+    color: #000;
 }
 
-/* Nút hành động */
-.order-detail-btn {
-    background-color: blue;
-    color: white;
-    padding: 5px 10px;
-    border: none;
+.order-pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    pointer-events: none;
+    border-color: #007bff;
+}
+
+.order-pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
+
+/************************ Order Feature Buttons ***********************/
+/* Order detail button */
+#detailOrderBtn {
+    background-color: white; 
+    color: black;
+    padding: 10px;
     border-radius: 5px;
+    border: solid 1px rgb(209, 209, 0);
     cursor: pointer;
-    font-size: 12px;
+    transition: background-color 0.3s ease-in-out; 
+}
+#detailOrderBtn:hover {
+    background-color: rgb(209, 209, 0); 
+}
+#detailOrderBtn:active {
+    background-color: rgb(189, 189, 0); 
 }
 
-.order-detail-btn:hover {
-    background-color: #0056b3;
+/********************* ORDER DETAIL **************************/
+/*********** Div Form ******************/
+#order-detail-form {
+    border: solid 1px black;
+    margin: 0px 20px 20px 20px;
 }
 
-.order-confirm-btn {
-    background-color: green;
-    color: white;
-    padding: 5px 10px;
-    border: none;
+.general-order-info {
+    
+}
+
+.general-order-info-full {
+
+}
+
+.order-create-label {
+    margin: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.order-create-text {
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.order-confirm-btn:hover {
-    background-color: #218838;
-}
-
-.order-cancel-btn {
-    background-color: red;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.order-cancel-btn:hover {
-    background-color: #c82333;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
 }

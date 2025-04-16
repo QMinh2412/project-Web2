@@ -96,5 +96,19 @@
             return $new_reply;
         }
 
+        public function deleteUserReviews($maKH) {
+            $query = "DELETE FROM DanhGia WHERE MaKH = ?";
+            $stmt = $this->db->prepare($query);
+        
+            if (!$stmt) {
+                die("Lỗi truy vấn: " . $this->db->error);
+            }
+        
+            $stmt->bind_param("i", $maKH);
+            $result = $stmt->execute();
+            $stmt->close();
+        
+            return $result;
+        }
     }
 ?>

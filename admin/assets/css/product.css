@@ -52,10 +52,12 @@
 }
 
 #addProductBtn:hover {
+    color: white;
     background-color: #45a049; 
 }
 
 #addProductBtn:active {
+    color: white;
     background-color: #3e8e41; 
 }
 #addProductBtn i {
@@ -600,6 +602,10 @@ input:checked + .slider::before {
     #product-description-input {
         margin: 5px;
     }
+
+    .product-image-url-edit {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1050px) {
@@ -641,17 +647,17 @@ input:checked + .slider::before {
 
 @media only screen and (min-width: 1051px) {
     #admin-wrapper-product-detail {
-        max-height: calc(100vh - 200px); 
+        max-height: calc(100vh - 110px); 
         overflow-y: auto;
     }
 
     #admin-wrapper-product-create {
-        max-height: calc(100vh - 200px); 
+        max-height: calc(100vh - 110px); 
         overflow-y: auto;
     }
 
     #admin-wrapper-product-edit {
-        max-height: calc(100vh - 200px); 
+        max-height: calc(100vh - 110px); 
         overflow-y: auto;
     }
 }

@@ -18,9 +18,10 @@
   <button id="mobile-menu-toggle">
     <i class='bx bx-menu' id="mobile-menu-toggle-i"></i>
   </button>
-    <div id="logo_header">
-      <img src="../common/images/logo3.png" alt="logo">
+    <div id="logo-header">
+      <h4>Admin</h4>
     </div>
+    
     <div id="admin-logo">
       <img src="../common/images/defaultuser.png" alt="Admin Logo">
     </div>

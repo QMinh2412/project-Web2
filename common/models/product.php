@@ -13,6 +13,27 @@
             $this->db = Database::getInstance();
         }
 
+        public function getAllProductsWithoutPagination() {
+            $query = "SELECT * FROM DauSach";
+
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) {
+                die("Prepare failed: " . $this->db->error);
+            }
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $products = [];
+
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $products[] = $row;
+                }
+            }
+        
+            return $products;
+        }
+
         public function getAllProducts($currentpage, $bookperpage) {
             $offset = ($currentpage - 1) * $bookperpage;
             $limit = $bookperpage;

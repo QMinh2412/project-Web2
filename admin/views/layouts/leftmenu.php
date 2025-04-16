@@ -42,7 +42,7 @@
         </div>
     </a>
 
-    <a href="?page=order&action=index">
+    <a href="?page=order&action=index&current_page=1">
         <div class="menuitems">   
             <i class='bx bx-cart' ></i>
             <span class="menuitems-span">Đơn hàng</span>
