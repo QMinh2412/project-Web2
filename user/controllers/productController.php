@@ -1,7 +1,5 @@
 <?php
-
-use LDAP\Result;
-
+    require_once __DIR__ . '/../../common/config/init.php';
     require_once __DIR__ . '/../../common/models/Category.php';
     require_once __DIR__ . '/../../common/models/Product.php'; 
     require_once __DIR__ . '/../../common/models/Author.php'; 
@@ -109,7 +107,7 @@ use LDAP\Result;
         }
 
         public function writeComment(){
-            session_start();
+            // session_start();
             $content_comment = isset($_POST['content']) ? $_POST['content'] : "";
             $id_book = $_POST['id_book'];
             $current_account = isset($_SESSION['account_id']) ? $_SESSION['account_id']: "";
@@ -152,7 +150,7 @@ use LDAP\Result;
         public function replyComment(){
             $content = isset($_POST['content']) ? $_POST['content'] : "";
             $comment_id = isset($_POST['comment_id']) ? $_POST['comment_id'] : "";
-            session_start();
+            // session_start();
             $current_account = isset($_SESSION['account_id']) ? $_SESSION['account_id'] : "";
 
             if (empty($content)) {

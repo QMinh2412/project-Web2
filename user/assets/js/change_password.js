@@ -15,6 +15,10 @@ function changepasswordAjax() {
     const new_pwd = document.getElementById("new_password");
     const confirm_pwd = document.getElementById("confirm_password");
 
+    console.log(
+      `mk cũ: ${old_pwd.value}, mk mới: ${new_pwd.value}, xác nhận mk: ${confirm_pwd.value}`
+    );
+
     const xhr = new XMLHttpRequest();
     xhr.open(
       "POST",
@@ -25,6 +29,7 @@ function changepasswordAjax() {
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.responseText);
         const response = JSON.parse(xhr.responseText);
         console.log(response);
 

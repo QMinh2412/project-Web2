@@ -157,11 +157,11 @@
             $accountModel = new Account();
     
             $email = $accountModel->getEmailById($account_id);
-            // if (!$email) {
-            //     echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy tài khoản']);
-            //     ob_end_flush();
-            //     exit();
-            // }
+            if (!$email) {
+                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy tài khoản']);
+                // ob_end_flush();
+                exit();
+            }
     
             if (!$accountModel->isPasswordCorrect($email, $old_password)) {
                 echo json_encode(['status' => 'error','field' => 'old_password', 'message' => 'Mật khẩu cũ không chính xác']);
@@ -244,7 +244,7 @@
                 }
 
                 // Kiểm tra loại file và kích thước
-                $allowedTypes = ['image/jpg', 'image/png', 'image/gif'];
+                $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
                 if (!in_array($_FILES['image']['type'], $allowedTypes)) {
                     echo json_encode(['status' => 'error', 'message' => 'Chỉ cho phép upload file ảnh (JPEG, PNG, GIF)']);
                     exit();

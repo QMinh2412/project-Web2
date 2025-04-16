@@ -1,8 +1,9 @@
 <?php
+    require_once __DIR__ . '/../../common/config/init.php';
     require_once __DIR__ . '/../../common/models/CartDetail.php'; 
     class CartController{
         public function addToCart() {
-            session_start();
+            // session_start();
             header('Content-Type: application/json; charset=utf-8');
             $current_account = isset($_SESSION['account_id']) ? $_SESSION['account_id'] : "";
     
@@ -17,8 +18,8 @@
             $id_book = isset($_POST['id_book']) ? $_POST['id_book'] : "";
             $qty = isset($_POST['quantity']) ? $_POST['quantity'] : 1;
     
-            $cartModel = new CartDetail();
-            $cartDetail = $cartModel->addToCart($current_account, $id_book, $qty);
+            $cartDetailModel = new CartDetail();
+            $cartDetail = $cartDetailModel->addToCart($current_account, $id_book, $qty);
     
             if (!$cartDetail) {
                 echo json_encode([

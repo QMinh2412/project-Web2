@@ -36,10 +36,10 @@ class Route {
             case 'cart':
                 $controller = new CartController();
                 break;
+
             case 'checkout': 
                 $controller = new CheckoutController();
                 break;
-    
 
             default:
                 $controller = new HomeController();
@@ -71,8 +71,17 @@ class Route {
             case 'search':
                 $controller->search();
                 break;
+            case 'updateAccount':
+                $controller->updateAccount();
+                break;
             case 'updateAccountAjax':
                 $controller->updateAccountAjax();
+                break;
+            case 'changePassword':
+                $controller->changepassword();
+                break;
+            case 'changepasswordAjax':
+                $controller->changepasswordAjax();
                 break;
             case 'show_detail':
                 $controller->showDetail();
