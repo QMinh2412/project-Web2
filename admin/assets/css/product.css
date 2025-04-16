@@ -19,7 +19,7 @@
 }
 
 #product-features {
-    width: 110px;
+    width: 120px;
     text-align: center;
 }
 
@@ -36,13 +36,13 @@
 
 #addProductBtn {
     position: absolute;
-    background-color: #4CAF50; /* Green */
+    background-color: white; 
     padding: 15px;
-    border: none;
+    border: solid 1px #4CAF50;
     border-radius: 10px;
     right: 20px;
     top: 10px;
-    color: white;
+    color: black;
     text-decoration: none;
     transition: background-color 0.3s ease-in-out; 
     display: inline-flex;
@@ -65,58 +65,62 @@
 
 /* Delete product button */
 #deleteProductBtn {
-    background-color: rgb(255, 0, 0); 
-    color: white;
+    background-color: white; 
+    color: black;
     padding: 10px;
     border-radius: 5px;
-    border: none;
+    border: solid 1px rgb(255, 0, 0);
     cursor: pointer;
     transition: background-color 0.3s ease-in-out; 
 }
 #deleteProductBtn:hover {
-    background-color: rgb(160, 0, 0);
+    color: white;
+    background-color: rgb(230, 0, 0);
 }
 #deleteProductBtn:active {
+    color: white;
     background-color: rgb(72, 0, 0);
 }
 #deleteProductBtn:disabled {
-    /* background-color: rgb(198, 198, 198); */
+    background-color: white;
     cursor: not-allowed;
-    color: white;
-    opacity: 0.2;
+    color: black;
+    opacity: 0.3;
 }
 
 /* Product detail button */
 #detailProductBtn {
-    background-color: yellow; 
+    background-color: white; 
     color: black;
     padding: 10px;
     border-radius: 5px;
-    border: none;
+    border: solid 1px rgb(209, 209, 0);
     cursor: pointer;
     transition: background-color 0.3s ease-in-out; 
 }
 #detailProductBtn:hover {
-    background-color: rgb(185, 185, 2); 
+    background-color: rgb(209, 209, 0); 
 }
 #detailProductBtn:active {
-    background-color: rgb(88, 88, 0); 
+    background-color: rgb(189, 189, 0); 
 }
 
 /*Edit Button*/
 #editProductBtn {
-    background-color: #3ea2e1; 
-    color: white;
+    background-color: white; 
+    color: black;
     padding: 10px;
     border-radius: 5px;
-    border: none;
+    border: solid 1px #3ea2e1;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out; 
 }
 #editProductBtn:hover {
+    color: white;
     background-color: #2f8bb0; 
 }
 #editProductBtn:active {
+    color: white;
     background-color: #2a7a9b;
 }
 

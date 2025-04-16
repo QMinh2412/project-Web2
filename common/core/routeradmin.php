@@ -18,14 +18,16 @@ class RouteAdmin {
         switch ($page) {
             case 'dashboard':
                 $controller = new DashboardController();
-                switch($action) {
+                switch ($action) {
                     case 'index':
                         $controller->index();
                         break;
+                    case 'favoriteCustomers': // Thêm action này
+                        $controller->favoriteCustomers();
+                        break;
                     default:
-                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');   
+                        exit('Action not found');
                 }
                 break;
 
@@ -109,7 +111,7 @@ class RouteAdmin {
                 $controller = new OrderController();
                 switch($action) {
                     case 'index':
-                        $controller->index();
+                        $controller->index($current_page);
                         break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định

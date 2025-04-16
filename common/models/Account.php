@@ -64,7 +64,6 @@ class Account {
         return false;
     }
     
-
     public function createAccount($username, $role, $created_at, $status, $password, $user_id) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Mã hóa mật khẩu
         $sql = "INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) 
@@ -148,6 +147,34 @@ class Account {
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->close();
+    }
+
+     // Lấy thông tin tài khoản dựa trên tên tài khoản
+     public function getUserByUsername($TenTK) {
+        $query = "SELECT * FROM TaiKhoan WHERE TenTK = ?";
+        $stmt = $this->db->prepare($query);
+
+        if ($stmt) {
+            $stmt->bind_param("s", $TenTK);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc();
+            $stmt->close();
+            return $user; // Trả về thông tin tài khoản nếu tìm thấy
+        }
+
+        return null; // Trả về null nếu không tìm thấy tài khoản
+    }
+
+    // Kiểm tra mật khẩu
+    public function verifyPassword($inputPassword, $hashedPassword) {
+        // Nếu password được mã hóa bằng bcrypt (password_hash)
+        if (strpos($hashedPassword, '$2y$') === 0) {
+            return password_verify($inputPassword, $hashedPassword);
+        } else {
+            // Nếu là hash dạng SHA-256 cũ
+            return hash('sha256', $inputPassword) === $hashedPassword;
+        }
     }
 }
 ?>

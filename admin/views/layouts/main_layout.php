@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./assets/css/category.css">
     <link rel="stylesheet" href="./assets/css/product.css">
     <link rel="stylesheet" href="./assets/css/dashboard.css">
+    <link rel="stylesheet" href="./assets/css/order.css">
 </head>
 <body>
     <div class="wrapper">
