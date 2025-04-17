@@ -18,10 +18,10 @@
     }
 
     switch ($order['PhThucTT']) {
-        case 0:
+        case 1:
             $paymentMethod = 'Thanh toán khi nhận hàng';
             break;
-        case 1:
+        case 2:
             $paymentMethod = 'Chuyển khoản';
             break;
         default:
@@ -42,7 +42,7 @@
     }
 ?>
 
-<div class="admin-wrapper">
+<div class="admin-wrapper" id="order-detail-wrapper">
     <div class="admin-header" id="order-header">
         <h2>Chi tiết đơn hàng</h2>
     </div>
@@ -90,17 +90,48 @@
             <label class="order-create-label" for="order-payment">Phương thức thanh toán:</label><br>
             <input class="order-create-text" type="text" name="order_payment" id="order-payment-input" value="<?= htmlspecialchars($deliveryMethod) ?>" readonly>
         </div>
+
+        <div class="general-order-info-full" id="order-note">
+            <label class="order-create-label" for="order-note">Ghi chú:</label><br>
+            <textarea class="order-create-text" name="order_note" id="order-note-input"readonly><?= htmlspecialchars($order['GhiChu']) ?></textarea>
+        </div>
     </div>
 
+    <p class="order-create-label" id="orderDetailHeader">Danh sách sản phẩm</p>
     <table class="admin-list-container">
         <thead class="admin-list-header">
             <tr class="admin-list-header-content">
-                <th id="product-order">STT</th>
-                <th id="product-name">Tên sản phẩm</th>
-                <th id="product-category">Thể loại</th>
-                <th id="product-number">Số lượng</th>
-                <th id="product-price">Giá bán</th>
+                <th id="order-detail-product-order">STT</th>
+                <th id="order-detail-product-name">Tên sản phẩm</th>
+                <th id="order-detail-product-category">Thể loại</th>
+                <th id="order-detail-product-number">Số lượng</th>
+                <th id="order-detail-product-price">Tổng tiền</th>
             </tr>
         </thead>
+        <tbody class="admin-list-body">
+            <?php 
+                $orderDetail_order = 1;
+                $totalValue = 0;
+                foreach ($details as $idex => $detail): 
+                    $TotalOfProduct = $detail['GiaBan'] * $detail['SoLg'];  
+                    $totalValue += $TotalOfProduct;
+            ?>
+                <td class="admin-list-body-content-num" id="order-detail-product-order"><?= $orderDetail_order++ ?></td>
+                <td class="admin-list-body-content-other" id="order-detail-product-name"><?= htmlspecialchars($detail['TenSach']) ?></td>
+                <td class="admin-list-body-content-num" id="order-detail-product-category"><?= htmlspecialchars($detail['TenLoai']) ?></td>
+                <td class="admin-list-body-content-num" id="order-detail-product-number"><?= htmlspecialchars(number_format($detail['SoLg'])) ?></td>
+                <td class="admin-list-body-content-num" id="order-detail-product-price"><?= htmlspecialchars(number_format($TotalOfProduct)) ?></td>
+
+            <?php endforeach; ?>
+        </tbody>
     </table>
+    <div id="orderDetailTotalValueDiv">
+        <div id="orderDetailTotalValue">
+            <label for="order-total-value" id="order-total-value-label">Thành tiền:</label>
+            <input type="text" name="order_total_value" id="order-total-value-input" value="<?= htmlspecialchars(number_format($totalValue)) ?>" readonly>
+        </div>
+    </div>
+    <div>
+        <button type="button" class="order-detail-close-Btns" id="closeOrderDetailBtn" onclick="location.href='?page=order&action=index&current_page=<?= $currentPage ?>'">Xong</button>
+    </div>
 </div>

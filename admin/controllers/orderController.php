@@ -32,14 +32,25 @@
             $orderModel = new Order();
             $userModel = new User();
 
+            $currentPage = $_GET['current_page'] ?? 1;
+
             $order = $orderModel->getOrderById($orderId);
             $userId = $order['MaKH'];
             $user = $userModel->getById($userId);
 
+            $orderDetailModel = new OrderDetail();
+            $details = $orderDetailModel->getOrderDetailsByOrderId($orderId);
+
             $this->render('order/detail', [
                 'order' => $order,
-                'user' => $user
+                'details' => $details,
+                'user' => $user,
+                'currentPage' => $currentPage
             ]);
+        }
+
+        public function status($orderId) {
+            
         }
     }
 ?>
