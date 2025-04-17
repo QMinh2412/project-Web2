@@ -302,19 +302,50 @@ input:checked + .slider::before {
 }
 
 /************ RESPONSIVE **************/
-@media only screen and (min-width: 1051px) {
+@media only screen and (max-width: 600px) {
+    .user-wrapper {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Hide email column on small screens */
+    #user-email {
+        display: none;
+    }
+
+    /* Adjust other column widths */
+    #user-stt {
+        width: 10%;
+    }
+    #user-name {
+        width: 30%;
+    }
+    #user-role {
+        width: 20%;
+    }
+    #user-status {
+        width: 20%;
+    }
+    #user-action {
+        width: 20%;
+    }
+
+
+}
+
+@media only screen and (min-width: 601px) {
     #admin-wrapper-user-view {
-        height: calc(100vh - 110px);
+        height: calc(100vh - 90px);
         overflow-y: auto;
     }
     
     #admin-wrapper-user-edit {
-        height: calc(100vh - 110px);
+        height: calc(100vh - 90px);
         overflow-y: auto;
     }
 
     #admin-wrapper-user-create {
-        height: calc(100vh - 110px);
+        height: calc(100vh - 90px);
         overflow-y: auto;
     }
 }

@@ -9,6 +9,7 @@
             $productModel = new Product();
 
             $product = $productModel->getAllProductsWithoutPagination();
+            $currentPage = isset($_GET['current_page']) ? (int)$_GET['current_page'] : 1;
 
             $review = $reviewModel->getAllReview();
 
@@ -18,6 +19,10 @@
                 'message' => 'Welcome to the User Management page!',
                 'reviews' => $review,
                 'products' => $product,
+                'pagination' => [
+                    'currentPage' => $currentPage,
+                    'totalPages' => ceil(count($review) / 10), // Assuming 10 reviews per page
+                ],
             ]);
         }
     }

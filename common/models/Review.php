@@ -10,26 +10,19 @@
         }
 
         public function getALLReview() {
-            $query = "
-                SELECT DanhGia.*, DauSach.TenSach 
-                FROM DanhGia
-                LEFT JOIN DauSach ON DanhGia.MaSach = DauSach.MaSach
-            ";
+            $query = "SELECT DanhGia.*, DauSach.TenSach 
+                      FROM DanhGia 
+                      JOIN DauSach ON DanhGia.MaSach = DauSach.MaSach";
             $result = $this->db->query($query);
             $reviews = [];
         
             if ($result) {
                 while ($row = $result->fetch_assoc()) {
-                    $image = new Image();
                     $account = new Account();
-                    $user = new User();
-        
-                    $row['AnhKH'] = $row['MaKH'] ? $image->getImageAccount($row['MaKH']) : null;
-                    $row['AnhDN'] = $row['MaAdmin'] ? $image->getImageAccount($row['MaAdmin']) : null;
-
-                    $row['TenKH'] = $user->getFullnameById($row['MaKH']);
-
-                    $row['TenSach'] = $row['TenSach'] ?? 'Unknown';
+                    $row['MaKH'] = !empty($row['MaKH']) ? $row['MaKH'] : null;
+                    $row['MaAdmin'] = !empty($row['MaAdmin']) ? $row['MaAdmin'] : null;
+                    $row['TenKH'] = $row['MaKH'] ? $account->getNameById($row['MaKH']) : null;
+                    $row['TenAdmin'] = $row['MaAdmin'] ? $account->getNameById($row['MaAdmin']) : null;
         
                     $reviews[] = $row;
                 }
@@ -37,6 +30,7 @@
         
             return $reviews;
         }
+        
         
         
 
