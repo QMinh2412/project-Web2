@@ -9,6 +9,37 @@
             $this->db = Database::getInstance();
         }
 
+        public function getALLReview() {
+            $query = "
+                SELECT DanhGia.*, DauSach.TenSach 
+                FROM DanhGia
+                LEFT JOIN DauSach ON DanhGia.MaSach = DauSach.MaSach
+            ";
+            $result = $this->db->query($query);
+            $reviews = [];
+        
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $image = new Image();
+                    $account = new Account();
+                    $user = new User();
+        
+                    $row['AnhKH'] = $row['MaKH'] ? $image->getImageAccount($row['MaKH']) : null;
+                    $row['AnhDN'] = $row['MaAdmin'] ? $image->getImageAccount($row['MaAdmin']) : null;
+
+                    $row['TenKH'] = $user->getFullnameById($row['MaKH']);
+
+                    $row['TenSach'] = $row['TenSach'] ?? 'Unknown';
+        
+                    $reviews[] = $row;
+                }
+            }
+        
+            return $reviews;
+        }
+        
+        
+
         public function getAllReviewById($id_book){
             $query = "SELECT * FROM DanhGia WHERE MaSach = $id_book";
             $result = $this->db->query($query);

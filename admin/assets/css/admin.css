@@ -85,13 +85,6 @@ body {
         padding: 5px;
     }
 
-    /* Off-canvas sidebar */
-    #mobile-menu-toggle {
-        display: block;
-        position: absolute; top: 15px; left: 25px; z-index: 999;
-        background-color: #283339;
-        color: white;
-    }
     #left-menu {
         position: fixed; 
         top:0; 
@@ -134,4 +127,3 @@ body {
         display: none;
     }
 }
-  

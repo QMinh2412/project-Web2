@@ -62,6 +62,22 @@
             return $users;
         }
 
+        public function getFullnameById($id) {
+            $query = "SELECT TenND FROM NgDung WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $fullname = null;
+    
+            if ($result && $row = $result->fetch_assoc()) {
+                $fullname = $row['TenND'];
+            }
+    
+            $stmt->close();
+            return $fullname;
+        }
+
         public function getById($id) {
             $query = "SELECT * FROM NgDung WHERE MaND = ?";
             $stmt = $this->db->prepare($query);

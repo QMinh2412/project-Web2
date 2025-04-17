@@ -26,12 +26,23 @@ class Account {
     }
 
     public function getNameById($id) {
-        $result = $this->db->query("SELECT TenTK FROM taikhoan WHERE MaTK = $id");
+        if (empty($id)) {
+            return null;
+        }
+    
+        $query = "SELECT TenTK FROM TaiKhoan WHERE MaTK = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
         if ($result && $row = $result->fetch_assoc()) {
             return $row['TenTK'];
         }
+    
         return null;
     }
+    
 
     public function emailExist($email, $id = null) {
         if ($id) {

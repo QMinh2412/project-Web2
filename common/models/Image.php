@@ -40,19 +40,26 @@
             return $images;
         }
 
-        public function getImageAccount($id_account){
-            $query = "SELECT * FROM HinhAnh WHERE MaND = (SELECT MaND FROM TaiKhoan WHERE MaTK = $id_account )";
-            $result = $this->db->query($query);
-            $image = [];
-
-            if($result){
-                while($row = $result->fetch_assoc()){
+        public function getImageAccount($id_account) {
+            if ($id_account === null) return null;
+        
+            $query = "SELECT * FROM HinhAnh WHERE MaND = (SELECT MaND FROM TaiKhoan WHERE MaTK = ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $id_account);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $image = null;
+        
+            if ($result) {
+                if ($row = $result->fetch_assoc()) {
                     $image = $row['DgDanAnh'];
                 }
             }
-
+        
+            $stmt->close();
             return $image;
         }
+        
         
         public function getImageById($imageId) {
             $query = "SELECT * FROM HinhAnh WHERE MaHA = ?";

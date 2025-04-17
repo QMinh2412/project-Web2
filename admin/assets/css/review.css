@@ -1,0 +1,60 @@
+/****************** TABLE ALIGNING **********/
+#review-order {
+    width: 7%;
+}
+
+#review-book {
+    width: 20%;
+}
+
+#review-name {
+    width: 18%;
+}
+
+#review-content {
+    width: 10%;
+}
+
+#review-date {
+    width: 10%;
+}
+
+#review-features {
+    width: 15%;
+}
+
+#review-book {
+    text-align: left;
+}
+
+#review-name {
+    text-align: left;
+}
+
+#review-content {
+    text-align: left;
+}
+
+#review-date {
+    text-align: left;
+}
+
+#review-action {
+    text-align: center;
+}
+
+.btn-review {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #333;
+    background-color: #f9f9f9;
+    margin-right: 6px;
+    transition: all 0.3s ease;
+}

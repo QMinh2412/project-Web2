@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./assets/css/product.css">
     <link rel="stylesheet" href="./assets/css/dashboard.css">
     <link rel="stylesheet" href="./assets/css/order.css">
+    <link rel="stylesheet" href="./assets/css/review.css">
 </head>
 <body>
     <div class="wrapper">
