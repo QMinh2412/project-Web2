@@ -36,7 +36,7 @@
         <div class="more_detail">
             <div>Thông tin chi tiết</div>
             <div class="book_infomation">
-                <div class="book_provider">Nhà cung cấp: <span>tên nhà cung cấp</span></div>
+                <!-- <div class="book_provider">Nhà cung cấp: <span>tên nhà cung cấp</span></div> -->
                 <div class="book_publisher">Nhà xuất bản: <span><?php echo $book_data['TenNXB']; ?></span></div>
                 <div class="book_publication_date">Ngày xuất bản: <span><?php echo $book_data['NamXB']; ?></span></div>
                 <div class="number_of_page">Số trang: <span><?php echo $book_data['SoTrang']; ?></span></div>
@@ -134,7 +134,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Thêm Owl Carousel JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script>
+<!-- <script>
     function handleBuyNow() {
         // Lấy id_book từ URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -149,4 +149,4 @@
 
     // Gắn sự kiện click cho nút "Mua Ngay"
     document.getElementById('buyNow').addEventListener('click', handleBuyNow);
-</script>
+</script> -->

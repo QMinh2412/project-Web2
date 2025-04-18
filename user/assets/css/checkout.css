@@ -1,72 +1,234 @@
-body {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.container_checkout_box {
+  /* background-color: pink; */
+  /* background-color: #fff; */
+  padding: 0px 50px;
 }
-h2 {
-    text-align: center;
-    color: #333;
+
+form {
+  width: calc(100% - 40px);
+  background: #fff;
+  padding: 20px;
 }
-h3 {
-    color: #333;
-    margin-top: 20px;
+
+.info_method {
+  display: flex;
+  /* background-color: palegreen; */
+  margin-bottom: 20px;
 }
-label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
+
+.info_method .title {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
 }
-input, textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+.info_method .info {
+  width: calc(60% - 20px);
+  /* background-color: paleturquoise; */
+  padding: 10px;
 }
-.radio-group {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+
+.info_method .info .pertional_info {
+  padding: 0 10px;
 }
-.radio-group label {
-    display: inline;
-    margin: 0;
-    flex: 1;
+
+.info .pertional_info div {
+  display: flex;
+  align-items: center;
+  /* background-color: yellowgreen; */
+  margin-bottom: 10px;
 }
-.radio-group input[type="radio"] {
-    margin: 0;
-    width: 20px;
-    height: 20px;
+
+.info .pertional_info div label {
+  width: calc(15% - 10px);
+  text-align: left;
+  padding-left: 10px;
 }
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+
+.info .pertional_info div input,
+.info .pertional_info div textarea {
+  width: 50%;
+  padding: 5px;
 }
-table, th, td {
-    border: 1px solid #ccc;
+
+.info .pertional_info div:nth-last-child(1) {
+  align-items: flex-start;
 }
-th, td {
-    padding: 10px;
-    text-align: left;
+
+.info .pertional_info div:nth-last-child(1) label {
+  padding-top: 5px;
 }
-.total {
-    font-weight: bold;
-    text-align: right;
-    margin-top: 10px;
+
+.info .pertional_info div input:focus,
+.info .pertional_info div textarea:focus {
+  outline: none;
 }
-button {
-    background-color: #d2691e;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    margin: 20px auto;
+
+.info_method .method {
+  width: calc(40% - 20px);
+  /* background-color: palevioletred; */
+  padding: 10px;
 }
-button:hover {
-    background-color: #b3591a;
+
+.method .method_box {
+  padding: 0 10px;
+  /* background-color: powderblue; */
+}
+
+.method .method_box label {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.method .method_box > div > div:first-child {
+  font-size: 18px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+.method .method_box > div > div:not(:first-child) {
+  padding: 0 10px;
+  margin-bottom: 5px;
+  /* background-color: yellow; */
+  color: #c1430c;
+  display: flex;
+  align-items: center;
+}
+
+.method .method_box .shipping_method {
+  /* background-color: palegreen; */
+  margin-bottom: 10px;
+}
+
+.method .method_box .payment_method {
+  /* background-color: plum; */
+}
+
+.order {
+  /* background-color: peru; */
+  margin-bottom: 20px;
+}
+
+.order .book_list_header {
+  /* background-color: plum; */
+  /* padding: 10px 0; */
+  display: flex;
+  align-items: center;
+}
+
+.order .book_list_header span {
+  border: 1px solid black;
+  font-weight: bold;
+  color: #c1430c;
+}
+
+.order .book_list_header span + span {
+  border-left: none;
+}
+
+.order .book_list_header .book_name {
+  display: inline-block;
+  width: calc(60% - 22px);
+  padding: 10px;
+  /* background-color: palegreen; */
+}
+
+.order .book_list_header .book_qty,
+.order .book_list_header .book_price {
+  display: inline-block;
+  width: calc(20% - 21px);
+  padding: 10px;
+  /* background-color: paleturquoise; */
+}
+
+.order .book_list {
+  /* background-color: pink; */
+  /* margin-bottom: 20px; */
+}
+
+.order .book_list .book {
+  /* background-color: palegoldenrod; */
+  /* margin-bottom: 5px; */
+  /* padding: 5px 0; */
+  border-bottom: 1px solid #ccc;
+  display: flex;
+}
+
+.order .book_list .book .book_name {
+  display: inline-block;
+  width: calc(60% - 20px);
+  height: calc(100% - 10px);
+  padding: 5px 10px;
+  /* background-color: palegreen; */
+}
+
+.order .book_list .book .book_qty,
+.order .book_list .book .book_price {
+  display: inline-block;
+  width: calc(20% - 20px);
+  height: calc(100% - 10px);
+  padding: 5px 10px;
+  /* background-color: paleturquoise; */
+  text-align: right;
+}
+
+.order .price_fee {
+  border-bottom: 1px solid #ccc;
+}
+
+.order .price_fee .total_price_order,
+.order .price_fee .fee_order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  /* background-color: plum; */
+}
+
+.order .price_fee .total_price_order span:last-child,
+.order .price_fee .fee_order span:last-child {
+  color: #c1430c;
+}
+
+.order .total_bill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  /* background-color: yellow; */
+}
+
+.order .total_bill span:first-child {
+  font-weight: bold;
+}
+
+.order .total_bill span:last-child {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+}
+
+.btn_box {
+  /* background-color: yellow; */
+  text-align: right;
+  padding-right: 10px;
+}
+
+.btn_box button {
+  font-size: 18px;
+  padding: 6px 20px;
+  border: 1px solid #c1430c;
+  color: #c1430c;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn_box button:hover {
+  color: #fff;
+  background-color: #c1430c;
 }

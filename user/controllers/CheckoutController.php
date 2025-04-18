@@ -11,13 +11,13 @@ class CheckoutController {
         $this->orderModel = new Order();
     }
 
-    public function showCheckout() {
-        if (!isset($_GET['id_book'])) {
-            header('Location: /project-Web2/user/index.php');
-            exit();
-        }
-        include __DIR__ . '/../views/layouts/checkout.php';
-    }
+    // public function showCheckout() {
+    //     if (!isset($_GET['id_book'])) {
+    //         header('Location: /project-Web2/user/index.php');
+    //         exit();
+    //     }
+    //     include __DIR__ . '/../views/payment/checkout.php';
+    // }
 
     public function placeOrder() {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

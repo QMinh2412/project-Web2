@@ -324,4 +324,8 @@ document.addEventListener("DOMContentLoaded", function () {
   addToCart();
   dragDropDetailImage();
   effectForOrtherBooks();
+
+  document.getElementById("buyNow").addEventListener("click", function () {
+    window.location.href = "/project-Web2/user/index.php?page=checkout";
+  });
 });

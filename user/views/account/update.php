@@ -50,7 +50,7 @@
 
                 <div>
                     <label for="address">Địa chỉ</label>
-                    <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($userInfo['DcND'] ?? ''); ?>">
+                    <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($userInfo['DcND'] != 'undefined' ?? ''); ?>">
                 </div>
 
                 <div>

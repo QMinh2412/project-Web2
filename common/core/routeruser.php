@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../user/controllers/HomeController.php';
 require_once __DIR__ . '/../../user/controllers/AccountController.php';
 require_once __DIR__ . '/../../user/controllers/ProductController.php';
 require_once __DIR__ . '/../../user/controllers/CartController.php';
-require_once __DIR__ . '/../../user/controllers/CheckoutController.php';
+require_once __DIR__ . '/../../user/controllers/OrderController.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Account.php';
 class Route {
@@ -38,7 +38,7 @@ class Route {
                 break;
 
             case 'checkout': 
-                $controller = new CheckoutController();
+                $controller = new OrderController();
                 break;
 
             default:
@@ -95,11 +95,20 @@ class Route {
             case 'addToCart':
                 $controller->addToCart();
                 break;
-            case 'showCheckout':
-                $controller->showCheckout();
+            // case 'showCheckout':
+            //     $controller->showCheckout();
+            //     break;
+            // case 'placeOrder': 
+            //     $controller->placeOrder();
+            //     break;
+            case 'updateStatus':
+                $controller->updateStatus();
                 break;
-            case 'placeOrder': 
-                $controller->placeOrder();
+            case 'remove':
+                $controller->remove();
+                break;
+            case 'updateQuantity':
+                $controller->updateQuantity();
                 break;
             default:
                 $controller->index();

@@ -123,7 +123,7 @@
         //changepassword
         public function changepassword() {
             ob_start();
-            include __DIR__ . '/../views/layouts/changepasswordAjax.php';
+            include __DIR__ . '/../views/account/changepasswordAjax.php';
             $main_content = ob_get_clean();
             include __DIR__ . '/../views/layouts/main_layout.php';
         }
@@ -194,7 +194,7 @@
             $accountInfo = $accountModel->getById($current_account);
 
             ob_start();
-            include __DIR__ . '/../views/layouts/update.php';
+            include __DIR__ . '/../views/account/update.php';
             $main_content = ob_get_clean();
             include __DIR__ . '/../views/layouts/main_layout.php';
         }
