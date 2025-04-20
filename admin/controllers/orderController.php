@@ -49,8 +49,36 @@
             ]);
         }
 
-        public function status($orderId) {
-            
+        public function changeStatus() {
+            $currentPage = $_GET['current_page'] ?? 1;
+            $orderId = $_GET['id'] ?? null;
+            $newStatus = $_GET['status'] ?? 1;
+
+            $orderModel = new Order();
+
+            if ($orderId) {
+                $order = $orderModel->getOrderById($orderId);
+
+                if(!$order) {
+                    echo "<script>alert('Đơn hàng không tồn tại!');</script>";
+                    return;
+                }
+
+                $isUpdated = $orderModel->changeOrderStatusById($orderId, $newStatus);
+
+                if ($isUpdated) {
+                    echo "<script>
+                        alert('Đã cập nhật thành công trạng thái đơn hàng');
+                        window.location.href = '?page=order&action=index&current_page=$currentPage';
+                    </script>";
+                }
+                else {
+                    echo "<script>
+                        alert('Cập nhật không thành công');
+                        window.location.href = '?page=order&action=index&current_page=$currentPage';
+                    </script>"; 
+                }
+            }
         }
     }
 ?>

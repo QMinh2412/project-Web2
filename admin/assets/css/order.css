@@ -29,11 +29,34 @@
 }
 
 #order-status {
-    width: 90px;
+    width: 110px;
 }
 
+.order-status-dropdown {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #f8f9fa;
+    color: #333;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.order-status-dropdown:hover {
+    border-color: #007bff;
+    background-color: #e9f2ff;
+}
+
+.order-status-dropdown:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 3px #007bff80;
+}
+
+
 #order-features {
-    width: 200px;
+    width: 80px;
 }
 
 
@@ -206,6 +229,20 @@
 }
 
 @media only screen and (max-width: 1050px) {
+    #order-order {
+        display: none;
+    }
+
+    #order-id {
+        width: 20px;
+    }
+
+    #order-value {
+        width: 70px;
+    }
+
+
+    /*Order Detail Form*/
     .order-create-label {
         font-size: 0.9em;
     }

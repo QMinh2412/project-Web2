@@ -1,3 +1,5 @@
+<script src="/project-Web2/admin/assets/js/order.js"></script>
+
 <div class="admin-wrapper">
     <div class="admin-header" id="order-header">
         <h2>Đơn hàng</h2>
@@ -48,23 +50,6 @@
             <?php if (!empty($orders)): ?>
                 <?php foreach ($orders as $index => $order): 
                     $customer = $userMap[$order['MaKH']] ?? 'N/A';
-                    switch ($order['TrangThaiDH']) {
-                        case 0:
-                            $orderStatus = 'Đã hủy';
-                            break;
-                        case 1:
-                            $orderStatus = 'Chờ duyệt';
-                            break;
-                        case 2:
-                            $orderStatus = 'Đang giao';
-                            break;
-                        case 3:
-                            $orderStatus = 'Đã giao';
-                            break;
-                        default:
-                            $orderStatus = 'N/A';
-                            break;
-                    }
                 ?>
                     <tr>
                         <td class="admin-list-body-content-num" id="order-order"><?= $firstOrder++ ?></td>
@@ -72,7 +57,38 @@
                         <td class="admin-list-body-content-other" id="order-customer"><?= htmlspecialchars($customer) ?></td>
                         <td class="admin-list-body-content-num" id="order-value"><?= htmlspecialchars(number_format($order['TongTien'])) ?></td>
                         <td class="admin-list-body-content-num" id="order-time"><?= date_format(new DateTime($order['NgLap']), "d/m/Y") ?></td>
-                        <td class="admin-list-body-content-num" id="order-status"><?= htmlspecialchars($orderStatus) ?></td>
+                        <td class="admin-list-body-content-num" id="order-status">
+                            <select 
+                                class="order-status-dropdown" 
+                                onchange="handleStatusChange(this, <?= $order['MaHD'] ?>, <?= $pagination['currentPage'] ?>)"
+                            >
+                                <?php
+                                    $statusLabels = [
+                                        1 => 'Chờ duyệt',
+                                        2 => 'Đang giao',
+                                        3 => 'Đã giao',
+                                        0 => 'Đã hủy'
+                                    ];
+
+                                    $currentStatus = $order['TrangThaiDH'];
+                                    foreach ($statusLabels as $value => $label) {
+                                        $allow = false;
+
+                                        if ($value === $currentStatus) {
+                                            $allow = true;
+                                        }
+
+                                        if (($value > $currentStatus && $value != 0 && $currentStatus <= 3) || ($value === 0 && $currentStatus < 2)) {
+                                            $allow = true;
+                                        }   
+
+                                        if ($allow) {
+                                            echo "<option value='$value'" . ($value === $currentStatus ? ' selected' : '') . " class='order-status-dropdown'>$label</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </td>
                         <td class="admin-list-body-content-num" id="order-features">
                             <button class="btn btn-primary" id="detailOrderBtn" 
                                 onclick="location.href='?page=order&action=detail&id=<?= number_format($order['MaHD']) ?>&current_page=<?= $pagination['currentPage'] ?>'" 

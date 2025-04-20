@@ -98,6 +98,7 @@
 /* Edit category */
 #editCategoryBtn {
     border: solid 1px #3ea2e1;
+    background-color: white;
     color: black;
     padding: 10px;
     border-radius: 5px;
@@ -116,6 +117,7 @@
 /* Delete category */
 #deleteCategoryBtn {
     border: solid 1px red; 
+    background-color: white;
     color: black;
     padding: 10px;
     border-radius: 5px;
