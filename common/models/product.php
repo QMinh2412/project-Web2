@@ -5,6 +5,7 @@
     require_once __DIR__ . '/../models/Category.php';
     require_once __DIR__ . '/../models/Provider.php';
     require_once __DIR__ . '/../models/Publisher.php';
+    
     class Product{
         protected $db;
 

@@ -127,7 +127,10 @@ class RouteAdmin {
                 $controller = new OrderController();
                 switch($action) {
                     case 'index':
-                        $controller->index();
+                        $controller->index($current_page);
+                        break;
+                    case 'detail':
+                        $controller->detail($id);
                         break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định

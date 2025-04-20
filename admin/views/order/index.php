@@ -1,7 +1,8 @@
-<link rel="stylesheet" href="../../assets/css/order.css">
 <div class="admin-wrapper">
+    <div class="admin-header" id="order-header">
+        <h2>Đơn hàng</h2>
+    </div>
     <div class="order-container">
-        <h2 class="order-header">Đơn hàng</h2>
         <form class="order-search-form" method="GET" action="">
             <div class="order-form-group">
                 <label for="order-id">Mã hóa đơn</label>
@@ -30,42 +31,82 @@
                 <button type="submit" class="order-search-btn">Tìm kiếm</button>
             </div>
         </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>ID đơn hàng</th>
-                    <th>Tên khách hàng</th>
-                    <th>Tổng tiền</th>
-                    <th>Thời gian</th>
-                    <th>Tình trạng</th>
-                    <th>Hành động</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($orders)): ?>
-                    <?php foreach ($orders as $index => $order): ?>
-                        <tr>
-                            <td><?= $index + 1 ?></td>
-                            <td><?= htmlspecialchars($order['id']) ?></td>
-                            <td><?= htmlspecialchars($order['customer_name']) ?></td>
-                            <td><?= number_format($order['total'], 0, ',', '.') ?>đ</td>
-                            <td><?= htmlspecialchars($order['created_at']) ?></td>
-                            <td><?= htmlspecialchars($order['status']) ?></td>
-                            <td>
-                                <button class="detail-btn">Chi tiết</button>
-                                <button class="confirm-btn">Xác nhận</button>
-                                <button class="cancel-btn">Hủy</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
+    </div>
+    <table class="admin-list-container">
+        <thead class="admin-list-header">
+            <tr class="admin-list-header-content">
+                <th id="order-order">STT</th>
+                <th id="order-id">ID</th>
+                <th id="order-customer">Khách hàng</th>
+                <th id="order-value">Tổng tiền</th>
+                <th id="order-time">Thời gian</th>
+                <th id="order-status">Tình trạng</th>
+                <th id="order-features">Chức năng</th>
+            </tr>
+        </thead>
+        <tbody class="admin-list-body">
+            <?php if (!empty($orders)): ?>
+                <?php foreach ($orders as $index => $order): 
+                    $customer = $userMap[$order['MaKH']] ?? 'N/A';
+                    switch ($order['TrangThaiDH']) {
+                        case 0:
+                            $orderStatus = 'Đã hủy';
+                            break;
+                        case 1:
+                            $orderStatus = 'Chờ duyệt';
+                            break;
+                        case 2:
+                            $orderStatus = 'Đang giao';
+                            break;
+                        case 3:
+                            $orderStatus = 'Đã giao';
+                            break;
+                        default:
+                            $orderStatus = 'N/A';
+                            break;
+                    }
+                ?>
                     <tr>
-                        <td colspan="7">Không có đơn hàng nào</td>
+                        <td class="admin-list-body-content-num" id="order-order"><?= $firstOrder++ ?></td>
+                        <td class="admin-list-body-content-num" id="order-id"><?= htmlspecialchars(number_format($order['MaHD'])) ?></td>
+                        <td class="admin-list-body-content-other" id="order-customer"><?= htmlspecialchars($customer) ?></td>
+                        <td class="admin-list-body-content-num" id="order-value"><?= htmlspecialchars(number_format($order['TongTien'])) ?></td>
+                        <td class="admin-list-body-content-num" id="order-time"><?= date_format(new DateTime($order['NgLap']), "d/m/Y") ?></td>
+                        <td class="admin-list-body-content-num" id="order-status"><?= htmlspecialchars($orderStatus) ?></td>
+                        <td class="admin-list-body-content-num" id="order-features">
+                            <button class="btn btn-primary" id="detailOrderBtn" 
+                                onclick="location.href='?page=order&action=detail&id=<?= number_format($order['MaHD']) ?>&current_page=<?= $pagination['currentPage'] ?>'" 
+                                title="Xem chi tiết"
+                            >
+                                <i class='bx bx-info-circle'></i>
+                            </button>
+                        </td>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="7">Không có đơn hàng nào</td>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <!-- Phân trang -->
+    <div class="order-pagination">
+        <a href="?page=order&current_page=<?= $pagination['currentPage'] - 1 ?>" 
+            class="<?= $pagination['currentPage'] == 1 ? 'disabled' : '' ?>">
+            <i class='bx bx-chevron-left'></i>
+        </a>
+        
+        <?php for ($i = 1; $i <= $pagination['totalPages']; $i++): ?>
+            <a href="?page=order&current_page=<?= $i ?>"
+               class="<?= $i == $pagination['currentPage'] ? 'active' : '' ?>">
+               <?= $i ?>
+            </a>
+        <?php endfor; ?>
+
+        <a href="?page=order&current_page=<?= $pagination['currentPage'] + 1 ?>" 
+            class="<?= $pagination['currentPage'] == $pagination['totalPages'] ? 'disabled' : '' ?>">
+            <i class='bx bx-chevron-right'></i>
+        </a>
     </div>
 </div>
-    
