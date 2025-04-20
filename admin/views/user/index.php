@@ -11,7 +11,7 @@
                 <th id="user-email">Email</th>
                 <th id="user-role">Loại tài khoản</th>
                 <th id="user-status">Tình trạng</th>
-                <th id="user-action">Chức năng tài khoản</th>
+                <th id="user-action">Chức năng</th>
             </tr>
         </thead>
         <tbody class="admin-list-body">
