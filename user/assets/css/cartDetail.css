@@ -1,0 +1,178 @@
+/* * {
+  background-color: #f87979;
+} */
+.container_cart_detail_box {
+  /* background-color: greenyellow; */
+  padding: 0 50px;
+  display: flex;
+  justify-content: center;
+  min-height: 500px;
+  /* align-items: center; */
+}
+
+.cart_detail {
+  width: calc(80% - 20px);
+  background-color: white;
+  padding: 10px;
+}
+
+.cart_detail h2 {
+  /* background-color: palegoldenrod; */
+  padding: 0 10px 3px 10px;
+  border-bottom: 2px solid black;
+  margin: 0 0 10px 0;
+}
+
+.cart_detail .books_in_cart a {
+  text-decoration: none;
+  color: black;
+}
+
+.books_in_cart .book_in_cart {
+  /* background-color: peru; */
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+.book_in_cart .book_image {
+  width: 20%;
+  height: auto;
+  max-height: 250px;
+  /* background-color: paleturquoise; */
+}
+
+.book_in_cart .book_image a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book_in_cart .book_image img {
+  width: auto;
+  max-width: 90%;
+  height: auto;
+  max-height: 90%;
+}
+
+.book_in_cart .name_box {
+  width: calc(50% - 40px);
+  padding: 20px;
+  /* background-color: palegreen; */
+}
+
+.book_in_cart .name_box .book_name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.book_in_cart .name_box .author_name,
+.book_in_cart .name_box .category_name {
+  margin-bottom: 5px;
+  display: flex;
+  /* background-color: yellow; */
+  align-items: center;
+}
+
+.book_in_cart .name_box .author_name span,
+.book_in_cart .name_box .category_name span {
+  margin-left: 10px;
+  color: #c1430c;
+  font-size: 18px;
+}
+
+.book_in_cart .name_box .button_box {
+  display: flex;
+  align-items: center;
+  /* background-color: yellow; */
+}
+
+.book_in_cart .name_box .button_box span {
+  margin-left: 5px;
+  padding-right: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.book_in_cart .name_box .button_box button {
+  margin-left: 10px;
+  border: none;
+  color: #c1430c;
+  background-color: transparent;
+}
+
+.book_in_cart .book_price {
+  /* background-color: papayawhip; */
+  width: calc(15% - 20px);
+  padding: 20px 10px;
+  text-align: center;
+  color: #c1430c;
+  font-size: 18px;
+}
+
+.book_in_cart .quantity_box {
+  display: flex;
+  justify-content: center;
+  width: calc(15% - 20px);
+  padding: 20px 10px;
+  /* background-color: yellowgreen; */
+}
+
+.book_in_cart .quantity_box span:nth-child(1) {
+  margin-left: 10px;
+}
+
+.book_in_cart .quantity_box span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #c1430c;
+}
+
+#minus_icon:hover,
+#plus_icon:hover {
+  background-color: #c1430c;
+  color: #fff;
+  cursor: pointer;
+}
+
+.total_box {
+  width: calc(20% - 40px);
+  /* background-color: purple; */
+  padding: 0 20px;
+  text-align: center;
+}
+
+.total_box form {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.total_box form div {
+  margin-bottom: 5px;
+}
+
+.total_box form .total_price {
+  color: #c1430c;
+}
+
+.total_box form button {
+  border: 1px solid #c1430c;
+  border-radius: 5px;
+  background-color: #c1430c;
+  color: #fff;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  transition: color 0.3s;
+}
+
+.total_box form button:hover {
+  background-color: #fff;
+  color: #c1430c;
+}

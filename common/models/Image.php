@@ -120,5 +120,19 @@
             $stmt->execute();
             $stmt->close();
         }  
+
+        public function updateImageForUser($account_id, $imagePath){
+            $account_id = $this->db->real_escape_string($account_id);
+            $imagePath = $this->db->real_escape_string($imagePath);
+            $sql = "UPDATE HinhAnh SET DgDanAnh = '$imagePath' WHERE MaND = '$account_id'";
+            $result = $this->db->query($sql);
+            if (!$result) {
+                die(json_encode([
+                    "status" => "error",
+                    "message" => "Lỗi SQL: " . $this->db->error
+                ]));
+            }
+            return $result;
+        }
     }
 ?>

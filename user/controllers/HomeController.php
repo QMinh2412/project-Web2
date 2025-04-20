@@ -1,11 +1,12 @@
 <?php
+    require_once __DIR__ . '/../../common/config/init.php';
     require_once __DIR__ . '/../../common/models/Account.php';
     require_once __DIR__ . '/../../common/models/Category.php';
     require_once __DIR__ . '/../../common/models/Product.php';
 
     class HomeController {
         public function getAccountData() {
-            session_start();
+            // session_start();
             if (isset($_SESSION['account_id'])) {
                 $accountModel = new Account();
                 $name  = $accountModel->getNameById($_SESSION['account_id']);
