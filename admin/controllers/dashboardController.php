@@ -19,7 +19,6 @@
                 'loyalCustomers' => $loyalCustomers // Truyền danh sách khách hàng vào view
             ];
 
-            // Gọi phương thức render để hiển thị view dashboard/index.php
             $this->render('dashboard/index', $data);
         }
 
@@ -27,7 +26,6 @@
             // Lấy danh sách khách hàng thân thiết
             $loyalCustomers = $this->customerModel->getLoyalCustomers();
 
-            // Chuẩn bị dữ liệu để gửi vào view
             $data = [
                 'title' => 'Khách hàng thân thiết',
                 'loyalCustomers' => $loyalCustomers

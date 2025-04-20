@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th>STT</th>
-                <th>Tên sản phẩm</th>
+                <th>Tên sách</th>
                 <th>Số lượng bán được</th>
                 <th>Giá tiền</th>
                 <th>Tổng tiền</th>
