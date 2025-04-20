@@ -72,5 +72,13 @@
             $stmt->bind_param("i", $id);
             return $stmt->execute();
         }
+
+        public function changeOrderStatusById($orderId, $newStatus) {
+            $query = "UPDATE HoaDon SET TrangThaiDH = ? WHERE MaHD = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("ii", $newStatus, $orderId);
+            
+            return $stmt->execute();
+        }
     }
 ?>
