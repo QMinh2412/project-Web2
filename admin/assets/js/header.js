@@ -1,8 +1,8 @@
-document.getElementById('admin-logo').addEventListener('click', function () {
-    document.getElementById('menu-down').classList.toggle('active');
-});
-
 document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('admin-logo').addEventListener('click', function () {
+        document.getElementById('menu-down').classList.toggle('active');
+    });
+    
     const btn = document.getElementById('logoutBtn');
     if (!btn) return;
 
