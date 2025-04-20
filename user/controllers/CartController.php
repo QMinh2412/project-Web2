@@ -10,9 +10,9 @@
             $cartModel = new Cart();
             $cartDetailModel = new CartDetail();
             $productModel = new Product();
-            $current_account = $_SESSION['account_id'];
+            $current_account = isset($_SESSION['account_id']) ? $_SESSION['account_id'] : '';
             $myCart = $cartModel->getCartById($current_account);
-            $myCartId = $myCart['MaGH'];
+            $myCartId = isset($myCart['MaGH']) ? $myCart['MaGH'] : '';
             $bookInMyCart = $cartDetailModel->getBookInCartByCartId($myCartId);
 
             ob_start();
@@ -42,7 +42,7 @@
             if (!$cartDetail) {
                 echo json_encode([
                     'success' => false,
-                    'message' => 'Sản phẩm đã tồn tại trong giỏ hàng, vui lòng kiểm tra giỏ hàng của ban.'
+                    'message' => 'Sản phẩm đã tồn tại trong giỏ hàng hoặc kho không đủ hàng'
                 ]);
             } else {
                 echo json_encode([

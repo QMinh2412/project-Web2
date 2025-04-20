@@ -354,5 +354,17 @@ class Product {
 
         return false;
     }
+
+    public function updateStock($id_book, $quantity) {
+        $query = "UPDATE DauSach SET SoLgTon = SoLgTon - ? WHERE MaSach = ?";
+        $stmt = $this->db->prepare($query);
+        if (!$stmt) {
+            die("Prepare failed: " . $this->db->error);
+        }
+        $stmt->bind_param("ii", $quantity, $id_book);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
 }
 ?>

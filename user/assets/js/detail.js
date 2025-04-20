@@ -315,6 +315,42 @@ function effectForOrtherBooks() {
   });
 }
 
+function buyNow() {
+  document.getElementById("buyNow").addEventListener("click", () => {
+    const urlParam = new URLSearchParams(window.location.search);
+    const bookId = urlParam.get("id_book");
+    const qty = document.getElementById("quantity").textContent;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+      "POST",
+      "/project-Web2/user/index.php?page=product&action=buynow",
+      true
+    );
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        const response = JSON.parse(xhr.responseText);
+        console.log(response);
+
+        if (response.status) {
+          alert(response.message);
+          window.location.href =
+            "/project-Web2/user/index.php?page=checkout&action=showCheckout&source=buynow";
+        } else {
+          alert(response.message);
+        }
+      }
+    };
+
+    let data = "";
+    if (bookId) data += `id_book=${bookId}&`;
+    if (qty) data += `quantity=${qty}`;
+
+    xhr.send(data);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   plusItem();
   minusItem();
@@ -325,7 +361,8 @@ document.addEventListener("DOMContentLoaded", function () {
   dragDropDetailImage();
   effectForOrtherBooks();
 
-  document.getElementById("buyNow").addEventListener("click", function () {
-    window.location.href = "/project-Web2/user/index.php?page=checkout";
-  });
+  // document.getElementById("buyNow").addEventListener("click", function () {
+  //   window.location.href = "/project-Web2/user/index.php?page=checkout";
+  // });
+  buyNow();
 });

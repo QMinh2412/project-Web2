@@ -97,7 +97,8 @@ create table `HoaDon` (
 	`DiaChiGiaoHang` varchar(255) not null,
     `SDT` varchar(255) not null,
 	`PhThucTT` int default 0,
-    `PhThucVC` int default 0
+    `PhThucVC` int default 0,
+    `TongTien` long
 );
 -- PhThucTT: 1-COD, 2-QR
 -- PhThucVC: 1-gia hàng thông thường, 2-giao hàng hỏa tốc
@@ -114,7 +115,8 @@ create table `PhNhap` (
 	`MaPhNhap` int primary key not null auto_increment,
     `MaNCC` int not null,
     `MaTK` int not null,
-    `NgNhap` date not null
+    `NgNhap` date not null, 
+    `TongTien` long
 );
 
 create table `CTPN` (
@@ -456,45 +458,61 @@ INSERT INTO DanhGia (NoiDung, PhanHoi, NgayViet, MaKH, MaAdmin, MaSach) VALUES
 ('Hình ảnh minh họa đẹp, bé nhà mình rất thích.', null, '2025-03-17 20:10:00', 4, null, 17),
 ('Sách hơi nhàu khi giao nhưng nội dung rất hay.', 'Xin lỗi về vấn đề giao hàng, chúng tôi sẽ cải thiện dịch vụ tốt hơn!', '2025-03-16 12:00:00', 5, 4, 24);
 
-INSERT INTO PhNhap (MaNCC, MaTK, NgNhap) VALUES
-(1, 2, CURDATE()),
-(2, 2, CURDATE()),
-(3, 2, CURDATE()),
-(4, 5, CURDATE()),
-(5, 5, CURDATE()),
-(6, 5, CURDATE()),
-(7, 10, CURDATE()),
-(8, 2, CURDATE());
+INSERT INTO PhNhap (MaNCC, MaTK, NgNhap, TongTien) VALUES
+(1, 2, CURDATE(), 31131520),
+(2, 2, CURDATE(), 22153600),
+(3, 2, CURDATE(), 33317200),
+(4, 5, CURDATE(), 16953720),
+(5, 5, CURDATE(), 11042500),
+(6, 5, CURDATE(), 7653800),
+(7, 10, CURDATE(), 11106200),
+(8, 2, CURDATE(), 10590160);
 
 INSERT INTO CTPN (SoLgNhap, GiaNhap, MaSach, MaPhNhap) VALUES
-(50, 352000, 1, 1),
-(25, 400000, 2, 1),
-(10, 230000, 3, 2),
-(20, 150000, 4, 2),
-(12, 700000, 5, 3),
-(18, 950000, 6, 3),
-(15, 110000, 7, 4),
-(5, 95000, 8, 4),
-(20, 75000, 9, 5),
-(40, 88000, 10, 5),
-(130, 120000, 11, 6),
-(50, 220000, 12, 6),
-(130, 150000, 13, 7),
-(5, 120000, 14, 7),
-(30, 89000, 15, 8),
-(50, 105000, 16, 8);
+(44, 53200, 1, 1),
+(20, 71400, 2, 2),
+(7, 61600, 3, 3),
+(12, 48510, 4, 4),
+(10, 84000, 5, 5),
+(15, 371000, 6, 6),
+(10, 47250, 7, 7),
+(2, 173880, 8, 8),
+(16, 71120, 9, 1),
+(32, 16100, 10, 2),
+(123, 18900, 11, 3),
+(57, 91000, 12, 4),
+(123, 42000, 13, 5),
+(4, 78400, 14, 6),
+(22, 88900, 15, 7),
+(45, 97300, 16, 8),
+(33, 26600, 17, 1),
+(127, 88200, 18, 2),
+(48, 58100, 19, 3),
+(14, 18900, 20, 4),
+(7, 20300, 21, 5),
+(34, 47600, 22, 6),
+(23, 53900, 23, 7),
+(71, 8400, 24, 8),
+(153, 175000, 25, 1),
+(39, 231000, 26, 2),
+(69, 402500, 27, 3),
+(20, 546000, 28, 4),
+(92, 53200, 29, 5),
+(4, 39200, 30, 6),
+(138, 53900, 31, 7),
+(35, 150500, 32, 8);
 
-INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, PhThucTT, PhThucVC, SDT) VALUES
-(2, 1, '2025-03-21', 1, 'Giao hàng nhanh', '123 Nguyễn Văn Cừ, Quận 5, TP.HCM', 1, 1, 0123456789),   
-(5, 3, '2025-03-21', 2, NULL, '45 Lê Lợi, Quận 1, TP.HCM', 1, 2, 0123456789),   
-(2, 6, '2025-03-21', 1, 'Kiểm tra hàng trước khi nhận', '98 Đinh Tiên Hoàng, Q.Bình Thạnh', 2, 1, 0123456789),   
-(5, 7, '2025-03-21', 3, 'Giao buổi chiều', '789 Trần Phú, Quận 7', 2, 2, 0123456789),   
-(10, 8, '2025-03-21', 1, NULL, '159 Pasteur, Quận 3', 1, 1, 0123456789),   
-(10, 1, '2025-03-21', 2, 'Ưu tiên giao sáng', '88 Lý Tự Trọng, Quận 1', 2, 2, 0123456789),  
-(2, 3, '2025-03-21', 3, NULL, '67 Bạch Đằng, Quận Tân Bình', 1, 1, 0123456789),  
-(5, 6, '2025-03-21', 1, 'Chuyển khoản trước', '23 Võ Văn Tần, Quận 10', 1, 2, 0123456789),   
-(5, 7, '2025-03-21', 1, 'Giao trong tuần', '56 Nguyễn Trãi, Quận 5', 2, 1, 0123456789),   
-(10, 8, '2025-03-21', 2, NULL, '12 An Dương Vương, Quận 6', 1, 2, 0123456789);
+INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, PhThucTT, PhThucVC, SDT, TongTien) VALUES
+(2, 1, '2025-03-21', 1, 'Giao hàng nhanh', '123 Nguyễn Văn Cừ, Quận 5, TP.HCM', 1, 1, 0123456789, 240000),   
+(5, 3, '2025-03-21', 2, NULL, '45 Lê Lợi, Quận 1, TP.HCM', 1, 1, 0123456789, 248400),   
+(2, 6, '2025-03-21', 1, 'Kiểm tra hàng trước khi nhận', '98 Đinh Tiên Hoàng, Q.Bình Thạnh', 2, 1, 0123456789, 390000),   
+(5, 7, '2025-03-21', 3, 'Giao buổi chiều', '789 Trần Phú, Quận 7', 2, 1, 0123456789, 176000),   
+(10, 8, '2025-03-21', 1, NULL, '159 Pasteur, Quận 3', 1, 1, 0123456789, 466400),   
+(10, 1, '2025-03-21', 2, 'Ưu tiên giao sáng', '88 Lý Tự Trọng, Quận 1', 2, 1, 0123456789, 224000),  
+(2, 3, '2025-03-21', 3, NULL, '67 Bạch Đằng, Quận Tân Bình', 1, 1, 0123456789, 126000),  
+(5, 6, '2025-03-21', 1, 'Chuyển khoản trước', '23 Võ Văn Tần, Quận 10', 1, 1, 0123456789, 340000),   
+(5, 7, '2025-03-21', 1, 'Giao trong tuần', '56 Nguyễn Trãi, Quận 5', 2, 1, 0123456789, 660000),   
+(10, 8, '2025-03-21', 2, NULL, '12 An Dương Vương, Quận 6', 1, 1, 0123456789, 168000);
 
 INSERT INTO CTHD (SoLg, MaHD, MaSach) VALUES
 ( 2, 1, 5),

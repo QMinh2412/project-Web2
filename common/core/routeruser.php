@@ -95,12 +95,12 @@ class Route {
             case 'addToCart':
                 $controller->addToCart();
                 break;
-            // case 'showCheckout':
-            //     $controller->showCheckout();
-            //     break;
-            // case 'placeOrder': 
-            //     $controller->placeOrder();
-            //     break;
+            case 'showCheckout':
+                $controller->showCheckout();
+                break;
+            case 'placeOrder': 
+                $controller->placeOrder();
+                break;
             case 'updateStatus':
                 $controller->updateStatus();
                 break;
@@ -109,6 +109,12 @@ class Route {
                 break;
             case 'updateQuantity':
                 $controller->updateQuantity();
+                break;
+            case 'buynow':
+                $controller->buyNow();
+                break;
+            case 'checkout':
+                $controller->checkout();
                 break;
             default:
                 $controller->index();

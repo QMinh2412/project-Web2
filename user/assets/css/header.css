@@ -50,14 +50,16 @@ a {
   display: flex;
 }
 
-.search_box input {
+.search_box #search_box {
   width: calc(340px - 20px);
   height: calc(30px - 6px);
   padding: 3px 10px;
   border: none;
+  box-sizing: content-box;
+  border-radius: 0;
 }
 
-.search_box input:focus {
+.search_box #search_box:focus {
   outline: none;
 }
 
@@ -68,9 +70,11 @@ a {
   justify-content: center;
   align-items: center;
   border: none;
+  padding: 0;
   background-color: #fff;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 14px;
 }
 
 .search_box button:hover {

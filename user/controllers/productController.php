@@ -5,7 +5,7 @@
     require_once __DIR__ . '/../../common/models/Author.php'; 
     require_once __DIR__ . '/../../common/models/Review.php'; 
     class productController {
-        protected $bookperpage = 5;
+        protected $bookperpage = 10;
 
         public function index() {
             $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : "";
@@ -176,6 +176,69 @@
                 ]);
             }
             exit;
+        }
+
+        public function buyNow(){
+            $current_account = isset($_SESSION['account_id']) ? $_SESSION['account_id'] : '';
+            $bookId = isset($_POST['id_book']) ? $_POST['id_book'] : '';
+            $qty = isset($_POST['quantity']) ? $_POST['quantity'] : '';
+
+            if($current_account){
+                $productModel = new Product();
+                $book = $productModel->getProductById($bookId);
+                $bookQty = $book['SoLgTon'];
+
+                if($qty > $bookQty){
+                    echo json_encode([
+                        'status' => false,
+                        'message' => 'Số lượng trong kho không đủ'
+                    ]);
+                } else {
+                    // Lưu thông tin sản phẩm vào session
+                    $_SESSION['buy_now'] = [
+                        'items' => [[
+                            'MaSach' => $book['MaSach'],
+                            'TenSach' => $book['TenSach'],
+                            'SoLg' => (int)$qty,
+                            'GiaBan' => $book['GiaBan'],
+                            'DgDanAnh' => $book['DgDanAnh'][0] ?? ''
+                        ]]
+                    ];
+                    echo json_encode([
+                        'status' => true,
+                        'message' => 'dang chuyen qua trang thanh toan'
+                    ]);
+                }
+                
+                exit();
+            }
+
+            echo json_encode([
+                'status' => false,
+                'message' => 'vui long dang nhap de mua hang'
+            ]);
+        }
+
+        public function checkout(){
+            $current_account = $_SESSION['account_id'];
+            $cartModel = new Cart();
+            $my_cart = $cartModel->getCartById($current_account);
+            $cart_id = $my_cart['MaGH'];
+            $cartDetailModel = new CartDetail();
+            $selected_books = $cartDetailModel->getSelectedBookInCart($cart_id);
+
+            if($selected_books){
+                echo json_encode([
+                    'status' => true,
+                    'message' => 'dang chuyen sang tran thanh toan'
+                ]);
+            } else {
+                echo json_encode([
+                    'status' => false,
+                    'message' => 'vui long chon san pham truoc khi thanh toan'
+                ]);
+            }
+            exit();
         }
 
     }

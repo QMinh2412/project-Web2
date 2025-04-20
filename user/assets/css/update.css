@@ -1,6 +1,7 @@
 .container_update_account {
   display: flex;
   margin: 0px 50px;
+  min-height: 500px;
 }
 
 .menu_links {

@@ -136,6 +136,36 @@ function handleQuantityChange(button, isIncrement) {
   );
 }
 
+function handleCheckoutClick() {
+  document.querySelector(".btn_submit").addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("dang thuc hien ajax thanh toan trong gio hang");
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+      "POST",
+      "/project-Web2/user/index.php?page=product&action=checkout"
+    );
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        const response = JSON.parse(xhr.responseText);
+        console.log(response);
+
+        if (response.status) {
+          alert(response.message);
+          window.location.href =
+            "/project-Web2/user/index.php?page=checkout&action=showCheckout&source=cart";
+        } else {
+          alert(response.message);
+        }
+      }
+    };
+
+    xhr.send();
+  });
+}
+
 // Gán sự kiện cho các phần tử
 function initializeEventListeners() {
   document.querySelectorAll(".selected").forEach((checkbox) => {
@@ -153,14 +183,10 @@ function initializeEventListeners() {
   document.querySelectorAll(".plus_icon").forEach((button) => {
     button.addEventListener("click", () => handleQuantityChange(button, true));
   });
-
-  // const submitButton = document.querySelector(".btn_submit");
-  // if (submitButton) {
-  //   submitButton.addEventListener("click", handleCheckoutClick);
-  // }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  handleCheckoutClick();
   initializeEventListeners();
   updateTotal();
 });

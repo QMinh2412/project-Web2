@@ -2,6 +2,8 @@
   /* background-color: pink; */
   /* background-color: #fff; */
   padding: 0px 50px;
+  min-height: 500px;
+  position: relative;
 }
 
 form {
@@ -231,4 +233,89 @@ form {
 .btn_box button:hover {
   color: #fff;
   background-color: #c1430c;
+}
+
+/* form xác nhận */
+#container_confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* Thay inset: 0 để tương thích tốt hơn */
+  background-color: rgba(0, 0, 0, 0.5); /* Tăng độ tối nền */
+  -webkit-backdrop-filter: blur(8px); /* Hỗ trợ Safari */
+  backdrop-filter: blur(8px); /* Làm mờ nền */
+  z-index: 1000; /* Tăng z-index để đảm bảo nằm trên cùng */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container_confirm form {
+  width: 600px; /* Kích thước cố định */
+  max-width: 90%; /* Đảm bảo không vượt quá màn hình nhỏ */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin: 0; /* Loại bỏ margin mặc định */
+}
+
+#container_confirm h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #c1430c;
+}
+
+.info_method_confirm {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.pertional_info_confirm,
+.method_confirm {
+  width: 50%;
+  padding: 10px;
+}
+
+.pertional_info_confirm div,
+.method_confirm div {
+  margin-bottom: 10px;
+}
+
+.book_list_header_confirm {
+  display: flex;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.book_list_header_confirm span {
+  flex: 1;
+  text-align: center;
+}
+
+.book_list_confirm .book {
+  display: flex;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.book_list_confirm .book span {
+  flex: 1;
+  text-align: center;
+}
+
+.btn_box button {
+  margin-left: 10px;
+}
+
+.btn_box #close {
+  background-color: #ccc;
+  color: #000;
+  border: none;
+}
+
+.btn_box #close:hover {
+  background-color: #999;
 }

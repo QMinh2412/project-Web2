@@ -19,9 +19,12 @@
             $productModel = new Product();
             $cart = $cartModel->getCartById($account_id);
             $id_cart = $cart['MaGH'];
-        
-            // $book = $productModel->getProductById($id_book);
-            // $book_price = $book['GiaBan'];
+
+            // Kiểm tra tồn kho
+            $book = $productModel->getProductById($id_book);
+            if ($book['SoLgTon'] < $qty) {
+                return false; // Không đủ hàng
+            }
         
             $query = "INSERT INTO CTGH (MaSach, MaGH, TinhTrang, SoLg)
                         VALUES ('$id_book', '$id_cart', 0, '$qty')";
@@ -108,6 +111,21 @@
             $result = $this->db->query($query);
         
             return $result && $this->db->affected_rows > 0;
+        }
+
+        public function getSelectedBookInCart($cartId){
+            $cartId = $this->db->real_escape_string($cartId);
+            $query = "SELECT * FROM ctgh WHERE MaGH = '$cartId' AND TinhTrang = 1";
+            $result = $this->db->query($query);
+            $books = [];
+
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $books[] = $row;
+                }
+            }
+
+            return $books;
         }
     }
 ?>
