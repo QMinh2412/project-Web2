@@ -131,5 +131,38 @@
                 </div>
             </form>
     </div>
+
+    <div id="container_transfer_payment" style="display: none;">
+        <div id="transfer_info_box">
+            <h2>Xác nhận thanh toán</h2>
+            <p>Cảm ơn bạn đã đặt hàng! Vui lòng thực hiện các bước chuyển khoản theo thông tin bên dưới</p>
+            <div id="order_info">
+                <h3>Thông tin đơn hàng</h3>
+                <div id="order_id">Mã đơn hàng: <span>Mã đơn hàng</span></div>
+                <div id="total_order">Tổng tiền: <span>Tổng tiền hóa đơn</span></div>
+                <div id="name">Tên khách hàng: <span>Tên khách hàng</span></div>
+                <div id="address">Địa chỉ: <span>Địa chỉ nhận hàng</span></div>
+                <div id="phone">Số điện thoại: <span>số điện đoại</span></div>
+            </div>
+            <div id="transfer_info">
+                <h3>Thông tin chuyển khoản</h3>
+                <div id="bank">Ngân hàng: <span>Techcombank</span></div>
+                <div id="account_number">Số tài khoản: <span>0123456789</span></div>
+                <div id="account_holder">Chủ tài khoản: <span>BookstoreStudent</span></div>
+                <div id="branch">Chi nhánh: <span>TP Hồ Chí Minh</span></div>
+                <div id="content">Nội dung: <span>Mã đơn hàng - Tên khách hàng</span></div>
+                <div id="attention">Lưu ý: <span>Vui lòng chuyển đúng số tiền và ghi chính xác nội dung chuyển khoản để chúng tôi xác nhận nhanh chóng.</span></div>
+            </div>
+            <div id="payment_confirm">
+                <h3>Gửi xác nhận thanh toán</h3>
+                <div id="up_proof_of_transfer">Tải mình chứng chuyển khoản: <input type="file" name="" id=""></div>
+            </div>
+            <div class="btn_box">
+                <button id="back">Quay lại</button>
+                <button id="btn_confirm_payment">Hoàn tất</button>
+            </div>
+
+        </div>
+    </div>
 </div>
 <script src="/project-Web2/user/assets/js/checkout.js"></script>

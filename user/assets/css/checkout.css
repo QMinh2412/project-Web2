@@ -215,7 +215,10 @@ form {
 
 .btn_box {
   /* background-color: yellow; */
-  text-align: right;
+  /* text-align: right; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   padding-right: 10px;
 }
 
@@ -249,11 +252,14 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
+  max-height: 100vh;
 }
 
 #container_confirm form {
   width: 600px; /* Kích thước cố định */
   max-width: 90%; /* Đảm bảo không vượt quá màn hình nhỏ */
+  /* max-height: 100%; */
   background: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -358,4 +364,104 @@ form {
 
 .btn_box #close:hover {
   background-color: #999;
+}
+
+/* thông tin thanh toán */
+#container_transfer_payment {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* Thay inset: 0 để tương thích tốt hơn */
+  background-color: rgba(0, 0, 0, 0.5); /* Tăng độ tối nền */
+  -webkit-backdrop-filter: blur(8px); /* Hỗ trợ Safari */
+  backdrop-filter: blur(8px); /* Làm mờ nền */
+  z-index: 1000; /* Tăng z-index để đảm bảo nằm trên cùng */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container_transfer_payment #transfer_info_box {
+  width: 600px; /* Kích thước cố định */
+  max-width: 90%; /* Đảm bảo không vượt quá màn hình nhỏ */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin: 0; /* Loại bỏ margin mặc định */
+}
+
+#transfer_info_box > h2 {
+  /* background-color: pink; */
+  text-align: center;
+  color: #c1430c;
+}
+
+#transfer_info_box > p {
+  /* background-color: palegoldenrod; */
+  font-size: 14px;
+  font-style: italic;
+  color: #3d3d3d;
+  margin-top: 3px;
+  text-align: center;
+}
+
+#transfer_info_box > div {
+  /* background-color: #f1f1f1; */
+  margin-top: 10px;
+}
+
+#transfer_info_box > div:not(:last-child) {
+  background-color: #f8f8f8;
+  /* box-shadow: 0 0 10px f1f1f1; */
+  margin-top: 10px;
+  padding: 10px;
+  padding-left: 15px;
+  border-left: 6px solid #c1430c;
+}
+
+#transfer_info_box h3 {
+  /* background-color: paleturquoise; */
+  margin-bottom: 5px;
+}
+
+#order_info > div,
+#transfer_info > div,
+#payment_confirm > div {
+  font-weight: bold;
+  /* background-color: palevioletred; */
+  margin-bottom: 3px;
+  font-size: 14px;
+}
+
+#order_info > div span,
+#transfer_info > div span {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+#attention {
+  color: red;
+  font-size: 14px;
+}
+
+#payment_confirm input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+#back {
+  background-color: #ccc;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+#back:hover {
+  background-color: #bbb;
 }
