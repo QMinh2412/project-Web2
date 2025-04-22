@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./assets/css/dashboard.css">
     <link rel="stylesheet" href="./assets/css/order.css">
     <link rel="stylesheet" href="./assets/css/review.css">
+    <link rel="stylesheet" href="./assets/css/import.css">
 </head>
 <body>
     <div class="wrapper">

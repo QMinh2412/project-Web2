@@ -1,0 +1,92 @@
+/* Container chính */
+.import-header {
+    position: relative;
+}
+
+/************************ Index table **********************/
+
+.import-status-dropdown {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #f8f9fa;
+    color: #333;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    width: 160px;
+    text-align: center;
+    text-align-last: center;
+}
+
+.import-status-dropdown option {
+    text-align: left;
+    background-color: white;
+    color: black;
+}
+
+.import-status-dropdown:hover {
+    border-color: #007bff;
+    background-color: #e9f2ff;
+}
+
+.import-status-dropdown:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 3px #007bff80;
+}
+/************************ Pagination ***********************/
+.import-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 8px;
+}
+
+.import-pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-decoration: none;  
+    color: #333;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+}
+
+.import-pagination a:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.import-pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    pointer-events: none;
+    border-color: #007bff;
+}
+
+.import-pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
+
+/************************ Import Feature Buttons ***********************/
+/* Import detail button */
+#detailImportBtn {
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px rgb(209, 209, 0);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#detailImportBtn:hover {
+    background-color: rgb(209, 209, 0); 
+}
+#detailImportBtn:active {
+    background-color: rgb(189, 189, 0); 
+}

@@ -68,8 +68,8 @@
                 $authorId = $_POST['product_author'];
                 $publisherId = $_POST['product_publisher'];
                 $providerId = $_POST['product_provider'];
-                $productQuantity  = filter_var(filter_var($_POST['product_quantity'], FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
-                $productPrice = filter_var(filter_var($_POST['product_price'], FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
+                $productQuantity = 0;
+                $productPrice = 0;
                 $productYear = $_POST['product_year'];
                 $productPage = filter_var(filter_var($_POST['product_page'], FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT) ?? null;
                 $productSize = trim(strip_tags($_POST['product_size'])) ?? null;
@@ -248,7 +248,7 @@
                     $authorId = $_POST['product_author'];
                     $publisherId = $_POST['product_publisher'];
                     $providerId = $_POST['product_provider'];
-                    $productQuantity  = filter_var(filter_var($_POST['product_quantity'], FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
+                    // $productQuantity  = filter_var(filter_var($_POST['product_quantity'], FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
                     $productPrice = filter_var(filter_var($_POST['product_price'], FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
                     $productYear = $_POST['product_year'];
                     $productPage = filter_var(filter_var($_POST['product_page'], FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
@@ -360,7 +360,6 @@
                         'MaTG' => $authorId,
                         'MaNXB' => $publisherId,
                         'MaNCC' => $providerId,
-                        'SoLgTon' => $productQuantity,
                         'GiaBan' => $productPrice,
                         'NamXB' => $productYear,
                         'SoTrang' => $productPage,
