@@ -64,7 +64,10 @@
                     <p id="emptyImageinDetail">Không có hình ảnh cho sản phẩm này.</p>
                 <?php endif; ?>
             </div>
-            <button type="button" class="product-create-Btns" id="closeProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">Xong</button>
+            <button type="button" class="product-create-Btns" id="closeProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">
+                <i class='bx bx-check'></i>
+                Xong
+            </button>
         </div>
     </div>
 </div>

@@ -64,6 +64,61 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /************** check number of new images uploaded (create product) ****************/
+    const imageInput = document.getElementById("product-create-image-input");
+    const previewContainer = document.getElementById("product-create-image-preview");
+    const imageModal = document.getElementById("ProductCreateImageModal");
+    const modalImage = document.getElementById("ProductCreateModalImage");
+    const closeModal = document.querySelector(".close");
+
+    imageInput.addEventListener("change", function () {
+        previewContainer.innerHTML = "";
+        const files = Array.from(this.files);
+
+        if (files.length > 5) {
+            alert("Bạn chỉ được chọn tối đa 5 ảnh.");
+            this.value = ""; 
+            return;
+        }
+
+        files.forEach(file => {
+            if (!file.type.startsWith("image/")) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.style.width = "150px";
+                img.style.height = "150px";
+                img.style.marginLeft = "10px";
+                img.style.objectFit = "cover";
+                img.style.cursor = "pointer";
+
+                // Gán sự kiện mở modal khi click
+                img.addEventListener("click", () => {
+                    modalImage.src = img.src;
+                    imageModal.style.display = "block";
+                });
+
+                previewContainer.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+
+    // Đóng modal khi bấm dấu X
+    closeModal.addEventListener("click", () => {
+        imageModal.style.display = "none";
+    });
+
+    // Đóng modal khi click ngoài ảnh
+    imageModal.addEventListener("click", (e) => {
+        if (e.target === imageModal) {
+            imageModal.style.display = "none";
+        }
+    });
+
+    /****************** check when editing ******************/
     const ImageInput = document.getElementById('product-image-input');
     const ImagePreview = document.getElementById('product-image-preview');
     const NewImgNoti = document.getElementById('product-image-preview-notification');

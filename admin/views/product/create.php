@@ -88,17 +88,23 @@
             <textarea name="product_description" id="product-description-input" placeholder="Mô tả sản phẩm"></textarea>
 
             <label class="product-create-label" for="product-image">Hình ảnh:</label><br>
-            <input class="product-create-text" type="file" name="product_image[]" id="product-image-input" accept="image/*" multiple>
-            <div id="product-image-preview" style="margin-top: 5px;"></div>
+            <input class="product-create-text" type="file" name="product_image[]" id="product-create-image-input" accept="image/*" multiple>
+            <div id="product-create-image-preview" style="margin-top: 5px;"></div>
         
-            <button type="submit" class="product-create-Btns" id="createProductBtn">Áp dụng thay đổi</button>
-            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index'">Hủy</button>
+            <button type="submit" class="product-create-Btns" id="createProductBtn">
+                <i class='bx bx-check'></i>
+                Áp dụng thay đổi
+            </button>
+            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index'">
+                <i class='bx bx-x'></i> 
+                Hủy
+            </button>
         </form>
     </div>
 </div>
 
 <!-- Modal hiển thị ảnh -->
-<div id="imageModal" class="image-modal">
+<div id="ProductCreateImageModal" class="image-modal">
     <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
+    <img class="modal-content" id="ProductCreateModalImage">
 </div>

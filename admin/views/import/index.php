@@ -31,7 +31,10 @@
                 <input type="date" id="import-search-to-date" name="import_to_date" value="<?= htmlspecialchars($_GET['import_to_date'] ?? '') ?>">
             </div>
             <div class="order-form-group">
-                <button type="submit" class="order-search-btn" id="import-search-btn">Tìm kiếm</button>
+                <button type="submit" class="order-search-btn" id="import-search-btn">
+                    <i class='bx bx-search'></i>
+                    Tìm kiếm
+                </button>
             </div>
             <div class="order-form-group">
                 <button type="button" class="import-add-btn" id="import-add-btn" onclick="addImport(this)">Thêm phiếu nhập</button>

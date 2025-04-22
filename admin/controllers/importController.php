@@ -1,6 +1,7 @@
 <?php
     require_once __DIR__ . '/../../common/core/BaseController.php';
     require_once __DIR__ . '/../../common/models/Import.php';
+    require_once __DIR__ . '/../../common/models/ImportDetail.php';
     require_once __DIR__ . '/../../common/models/product.php';
 
     class ImportController extends BaseController {
@@ -68,20 +69,44 @@
             $importModel = new Import();
             $productModel = new Product();
             $providerModel = new Provider();
+            $providerId = $_GET['provider_id'] ?? null;
 
-            $providers = $providerModel->getAllProviders();
-            $products = $productModel->getAllProductsWithoutPagination();
+            $provider = $providerModel->getProviderById($providerId);
+            $product = $productModel->getAllProductsWithoutPagination();
+            $profit = $_POST['importprofit'] ?? 0;
 
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $importProvider = $_POST['import_provider'] ?? '';
-                $importProfit = $_POST['importprofit'] ?? 0;
+            // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //     $importProvider = $_POST['import_provider'] ?? '';
+            //     $importProfit = $_POST['importprofit'] ?? 0;
 
-                exit;
-            }
+            //     exit;
+            // }
 
             $this->render('import/create', [
-                'providers' => $providers,
-                'products' => $products
+                'providers' => $provider,
+                'products' => $product,
+                'profit' => $profit,
+            ]);
+        }
+        
+        public function detail() {
+            $currentPage = $_GET['current_page'] ?? 1;
+            $importId = $_GET['id'] ?? null;
+
+            $importModel = new Import();
+            $providerModel = new Provider();
+            $importDetailModel = new ImportDetail();
+            
+            $import = $importModel->getImportById($importId);
+            $providerId = $import['MaNCC'];
+            $provider = $providerModel->getProviderById($providerId);
+            $details = $importDetailModel->getImportDetailById($providerId);
+
+            $this->render('import/detail', [
+                'import' => $import,
+                'details' => $details,
+                'provider' => $provider,
+                'currentPage' => $currentPage
             ]);
         }
     }

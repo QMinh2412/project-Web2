@@ -57,6 +57,22 @@
             $result = $this->db->query($q);
             return $result;
         }
+
+        public function getProviderById($id) {
+            $query = "SELECT * FROM NCC WHERE MaNCC = ?";
+            $stmt = $this->db->prepare($query);
+        
+            if ($stmt) {
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $provider = $result->fetch_assoc();
+                $stmt->close();
+                return $provider;
+            }
+        
+            return null;
+        }
     }
         
 ?>

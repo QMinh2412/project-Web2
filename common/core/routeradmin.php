@@ -121,6 +121,9 @@ class RouteAdmin {
                     case 'create':
                         $controller->create();
                         break;
+                    case 'detail':
+                        $controller->detail();
+                        break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');

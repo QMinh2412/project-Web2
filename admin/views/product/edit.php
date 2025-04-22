@@ -108,8 +108,14 @@
                 <div id="product-image-preview" style="margin-top: 5px;"></div>
             </div>
         
-            <button type="submit" class="product-create-Btns" id="acceptEditProductBtn">Áp dụng thay đổi</button>
-            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">Hủy</button>
+            <button type="submit" class="product-create-Btns" id="acceptEditProductBtn">
+                <i class='bx bx-check'></i>
+                Áp dụng thay đổi
+            </button>
+            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">
+                <i class='bx bx-x'></i>
+                Hủy
+            </button>
 
         </form>
     </div>

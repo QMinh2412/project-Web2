@@ -33,7 +33,10 @@
                 <input type="date" id="order-search-to-date" name="order_to_date" value="<?= htmlspecialchars($_GET['order_to_date'] ?? '') ?>">
             </div>
             <div class="order-form-group">
-                <button type="submit" class="order-search-btn" id="order-search-btn">Tìm kiếm</button>
+                <button type="submit" class="order-search-btn" id="order-search-btn">
+                    <i class='bx bx-search'></i> 
+                    Tìm kiếm
+                </button>
             </div>
         </form>
     </div>
