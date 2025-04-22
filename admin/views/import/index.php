@@ -135,7 +135,9 @@
 <div class="import-add-modal" id="import-add-modal">
     <div class="import-add-modal-content">
         <h2 id="import-add-header">Bảng nhập sách</h2>
-        <form id="import-add-form" action="?page=import&action=create" method="POST" enctype="multipart/form-data">
+        <form id="import-add-form" action="index.php" method="GET" enctype="multipart/form-data">
+            <input type="hidden" name="page" value="import">
+            <input type="hidden" name="action" value="create">
             <div class="import-add-form-group">
                 <label for="import-add-provider">Nhà cung cấp</label>
                 <select id="import-add-provider" name="import_provider" required>
@@ -147,7 +149,7 @@
             </div>
             <div class="import-add-form-group">
                 <label for="import-add-profit">Chiết khấu:</label>
-                <input type="number" name="importprofit" id="import-add-profit" placeholder="Nhập chiết khấu" min="0" max="100" value="0">
+                <input type="number" name="importprofit" id="import-add-profit" placeholder="Nhập chiết khấu" min="0" max="100" value="0">%
             </div>
             <div class="import-add-form-group" id="import-add-btn">
                 <button type="button" id="import-cancel-btn" onclick="closeAddImport(this)">Hủy</button>

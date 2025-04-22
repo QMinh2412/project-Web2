@@ -2,7 +2,7 @@
     require_once __DIR__ . '/../../common/core/BaseController.php';
     require_once __DIR__ . '/../../common/models/Import.php';
     require_once __DIR__ . '/../../common/models/ImportDetail.php';
-    require_once __DIR__ . '/../../common/models/product.php';
+    require_once __DIR__ . '/../../common/models/Product.php';
 
     class ImportController extends BaseController {
         public function index($currentPage) {
@@ -69,22 +69,23 @@
             $importModel = new Import();
             $productModel = new Product();
             $providerModel = new Provider();
-            $providerId = $_GET['provider_id'] ?? null;
+            $categoryModel = new Category();
+            $providerId = $_GET['import_provider'] ?? null;
 
             $provider = $providerModel->getProviderById($providerId);
-            $product = $productModel->getAllProductsWithoutPagination();
-            $profit = $_POST['importprofit'] ?? 0;
-
-            // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //     $importProvider = $_POST['import_provider'] ?? '';
-            //     $importProfit = $_POST['importprofit'] ?? 0;
-
-            //     exit;
-            // }
+            $products = $productModel->getProductsByProvider($providerId);
+            $categories = $categoryModel->getAllCategories();
+  
+            $categoryMap = [];
+            foreach ($categories as $cat) {
+                $categoryMap[$cat['MaLoai']] = $cat['TenLoai'];
+            }
+            $profit = $_GET['importprofit'] ?? 0;
 
             $this->render('import/create', [
-                'providers' => $provider,
-                'products' => $product,
+                'provider' => $provider,
+                'products' => $products,
+                'categoryMap' => $categoryMap,
                 'profit' => $profit,
             ]);
         }

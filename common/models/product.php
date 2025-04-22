@@ -367,5 +367,27 @@ class Product {
         $stmt->close();
         return $result;
     }
+
+    public function getProductsByProvider($provider_id) {
+        $query = "SELECT * FROM DauSach WHERE MaNCC = ?";
+        $stmt = $this->db->prepare($query);
+    
+        if ($stmt) {
+            $stmt->bind_param("i", $provider_id);
+            $stmt->execute();
+            $result = $stmt->get_result(); 
+    
+            $products = [];
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $products[] = $row; 
+                }
+            }
+            $stmt->close();
+            return $products; 
+        }
+    
+        return false; 
+    }
 }
 ?>

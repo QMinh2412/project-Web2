@@ -17,7 +17,7 @@
             }
 
             if (isset($status) && is_numeric($status)) {
-                $conditions .= " AND TrangThaiPN = " . intval($status);
+                $conditions .= " AND TinhTrang = " . intval($status);
             }
 
             if (!empty($fromDate)) {
@@ -50,7 +50,7 @@
             }
 
             if (isset($status) && is_numeric($status)) {
-                $conditions .= " AND TrangThaiPN = " . intval($status);
+                $conditions .= " AND TinhTrang = " . intval($status);
             }
 
             if (!empty($fromDate)) {
