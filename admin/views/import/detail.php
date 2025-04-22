@@ -1,3 +1,17 @@
+<?php
+    switch ($import['TinhTrang']) {
+        case 0: 
+            $importStatus = 'Chưa hoàn thành';
+            break;
+        case 1:
+            $importStatus = 'Đã hoàn thành';
+            break;
+        default:
+            $importStatus = 'N/A';
+            break;
+    }
+?>
+
 <div class="admin-wrapper" id="import-detail-wrapper">
     <div class="admin-header" id="import-header">
         <h2>Chi tiết phiếu nhập</h2>
@@ -9,7 +23,12 @@
             <input class="import-create-text" type="text" name="import_id" id="import-id-input" value="<?= htmlspecialchars(number_format($import['MaPhNhap'])) ?>" readonly>
         </div>
 
-        <div class="general-import-info" id="import-date-div">
+        <div class="general-import-info" id="import-status-div">
+            <label class="import-create-label" for="import-status">Trạng thái:</label><br>
+            <input class="import-create-text" type="text" name="import_status" id="import-status-input" value="<?= htmlspecialchars($importStatus) ?>" readonly>
+        </div>
+
+        <div class="general-import-info-full" id="import-date-div">
             <label class="import-create-label" for="import-date">Ngày lập phiếu:</label><br>
             <input class="import-create-text" type="text" name="import_date" id="import-date-input" value="<?= date_format(new DateTime($import['NgNhap']), "d/m/Y") ?>" readonly>
         </div>
