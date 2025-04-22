@@ -144,5 +144,74 @@
             
             return $stmt->execute();
         }
+
+        public function getFilteredOrders($currentPage, $ordersPerPage, $orderId = '', $status = '', $fromDate = '', $toDate = '') {
+            $offset = ($currentPage - 1) * $ordersPerPage;
+            $conditions = "WHERE 1=1";
+        
+            // Gắn điều kiện nếu có giá trị
+            if (!empty($orderId)) {
+                $conditions .= " AND MaHD = " . intval($orderId);
+            }
+        
+            if (isset($status) && is_numeric($status)) {
+                $conditions .= " AND TrangThaiDH = " . intval($status);
+            }
+        
+            if (!empty($fromDate)) {
+                $conditions .= " AND NgLap >= '" . $this->db->real_escape_string($fromDate) . "'";
+            }
+        
+            if (!empty($toDate)) {
+                $conditions .= " AND NgLap <= '" . $this->db->real_escape_string($toDate) . "'";
+            }
+        
+            // Câu truy vấn chính
+            $query = "SELECT * FROM HoaDon $conditions ORDER BY NgLap DESC LIMIT $ordersPerPage OFFSET $offset";
+            $result = $this->db->query($query);
+        
+            $orders = [];
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $orders[] = $row;
+                }
+            }
+            
+            return $orders;
+        }
+        
+
+        public function getOrderPaginationFiltered($currentPage, $ordersPerPage, $orderId = '', $status = '', $fromDate = '', $toDate = '') {
+            $conditions = "WHERE 1=1";
+        
+            if (!empty($orderId)) {
+                $conditions .= " AND MaHD = " . intval($orderId);
+            }
+        
+            if (isset($status) && is_numeric($status)) {
+                $conditions .= " AND TrangThaiDH = " . intval($status);
+            }
+        
+            if (!empty($fromDate)) {
+                $conditions .= " AND NgLap >= '" . $this->db->real_escape_string($fromDate) . "'";
+            }
+        
+            if (!empty($toDate)) {
+                $conditions .= " AND NgLap <= '" . $this->db->real_escape_string($toDate) . "'";
+            }
+        
+            $query = "SELECT COUNT(*) as total FROM HoaDon $conditions";
+            $result = $this->db->query($query);
+            $row = $result->fetch_assoc();
+            $totalOrder = $row['total'];
+            $totalPages = ceil((int)$totalOrder / (int)$ordersPerPage);
+        
+            return [
+                'totalOrders' => $totalOrder,
+                'totalPages' => $totalPages,
+                'currentPage' => $currentPage
+            ];
+        }
+        
     }
 ?>

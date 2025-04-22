@@ -139,7 +139,18 @@ class RouteAdmin {
                         exit('Action not found');   
                 }
                 break;
-
+            
+            // case 'warehouse':
+            //     $controller = new WarehouseController();
+            //     switch($action) {
+            //         case 'history':
+            //             $controller->history();
+            //         default:
+            //             // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
+            //             header('HTTP/1.0 404 Not Found');
+            //             exit('Action not found');   
+            //     }
+            //     break;
             case 'review':
                 $controller = new ReviewController();
                 switch($action) {

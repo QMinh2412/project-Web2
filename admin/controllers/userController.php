@@ -257,15 +257,13 @@
             }
 
             if ($order) {
-                echo "<script>alert('Không thể xóa tài khoản đã có đơn hàng!'); window.location.href='?page=user&action=index';</script>";
+                echo "<script>alert('Tài khoản đã từng có đơn hàng nên đã bị khóa thay vì xóa!'); window.location.href='?page=user&action=index';</script>";
+
+                $this->lock($id);
                 exit;
             }
 
             if ($user && $account) {
-                if (!$order) {
-                    $orderdetailModel->deleteDetailsByUserId($id);
-                    $orderModel->deleteUserOrder($id);
-                }
                 $reviewModel->deleteUserReviews($id);
                 if ($cart) {
                     $cartdetailModel->deleteCartDetail($id);

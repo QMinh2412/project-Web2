@@ -17,6 +17,29 @@ document.addEventListener("DOMContentLoaded", () => {
         select.style.backgroundColor = style.background;
         select.style.color = style.fontcolor;
     }
+
+    // Search/filter order
+    const searchForm = document.querySelector(".order-search-form");
+    if (searchForm) {
+        searchForm.addEventListener("submit", (e) => {
+            e.preventDefault(); // Prevent default form submission if needed
+            const searchParams = {
+                order_id: document.getElementById("order-search-order-id")?.value || "",
+                order_status: document.getElementById("order-search-order-status")?.value || "",
+                order_from_date: document.getElementById("order-search-from-date")?.value || "",
+                order_to_date: document.getElementById("order-search-to-date")?.value || ""
+            };
+
+            // Construct query string
+            const queryString = Object.entries(searchParams)
+                .filter(([_, value]) => value) // Remove empty values
+                .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+                .join("&");
+
+            // Redirect with query parameters
+            window.location.href = `?page=order&action=index&${queryString}`;
+        });
+    }
 });
 
 function handleStatusChange(select, orderId, currentPage) {
