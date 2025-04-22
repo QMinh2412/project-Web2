@@ -325,5 +325,15 @@ class Account {
             return hash('sha256', $inputPassword) === $hashedPassword;
         }
     }
+
+    public function deletedUser($id) {
+        $sql = "UPDATE TaiKhoan SET DaXoa = 1 WHERE MaND = ?";
+        $stmt = $this->db->prepare($sql);
+        if ($stmt) {
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $stmt->close();
+        }
+    }
 }
 ?>

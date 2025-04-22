@@ -257,9 +257,8 @@
             }
 
             if ($order) {
-                echo "<script>alert('Tài khoản đã từng có đơn hàng nên đã bị khóa thay vì xóa!'); window.location.href='?page=user&action=index';</script>";
-
-                $this->lock($id);
+                $accountModel->deletedUser($id);
+                echo "<script>alert('Xóa tài khoản thành công!'); window.location.href='?page=user&action=index';</script>";
                 exit;
             }
 
