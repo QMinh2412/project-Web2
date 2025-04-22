@@ -180,6 +180,12 @@
 
         public function buyNow(){
             $current_account = isset($_SESSION['account_id']) ? $_SESSION['account_id'] : '';
+
+            $accountModel = new Account();
+            $userModel = new User();
+            $accountInfo = $accountModel->getById($current_account);
+            $userInfo = $userModel->getById($accountInfo['MaND']);
+
             $bookId = isset($_POST['id_book']) ? $_POST['id_book'] : '';
             $qty = isset($_POST['quantity']) ? $_POST['quantity'] : '';
 
@@ -204,6 +210,7 @@
                             'DgDanAnh' => $book['DgDanAnh'][0] ?? ''
                         ]]
                     ];
+                    $_SESSION['user_info'] = $userInfo;
                     echo json_encode([
                         'status' => true,
                         'message' => 'dang chuyen qua trang thanh toan'

@@ -27,6 +27,11 @@
             if($source == 'cart'){
                 $current_account = $_SESSION['account_id'];
 
+                $accountModel = new Account();
+                $userModel = new User();
+                $accountInfo = $accountModel->getById($current_account);
+                $userInfo = $userModel->getById($accountInfo['MaND']);
+
                 $cartModel = new Cart();
                 $cartDetailModel = new CartDetail();
                 $productModel = new Product();
@@ -46,6 +51,7 @@
                 }
             } else {
                 $bookList = $_SESSION['buy_now']['items'] ?? [];
+                $userInfo = $_SESSION['user_info'] ?? [];
             }
             
             if (empty($bookList)) {
@@ -55,7 +61,7 @@
     
             // Tính tổng tiền
             $totalPrice = array_sum(array_map(fn($item) => $item['GiaBan'] * $item['SoLg'], $bookList));
-            $shippingFee = 5000; // Mặc định phí vận chuyển
+            $shippingFee = $totalPrice * 0.05; // Mặc định phí vận chuyển
     
             ob_start();
             include __DIR__ . '/../views/checkout/checkout.php';
@@ -133,6 +139,19 @@
             } else {
                 header("Location: /project-Web2/user/index.php?page=checkout&error=order_failed");
                 exit;
+            }
+        }
+
+        public function calculateFeeShip(){
+            $totalPrice = isset($_GET['totalPrice']) ? $_GET['totalPrice'] : 0;
+            $shipMethod = isset($_GET['shipMethod']) ? $_GET['shipMethod'] : 1;
+
+            $totalPrice = floatval($totalPrice);
+
+            if($shipMethod == 1){
+                echo json_encode($totalPrice * 0.05);
+            } else {
+                echo json_encode($totalPrice * 0.1);
             }
         }
     }

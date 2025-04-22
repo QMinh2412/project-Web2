@@ -286,13 +286,20 @@ form {
 .book_list_header_confirm {
   display: flex;
   font-weight: bold;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
+  /* border-bottom: 1px solid #ccc; */
+  /* padding-bottom: 5px; */
+  margin-bottom: 5px;
 }
 
 .book_list_header_confirm span {
   flex: 1;
   text-align: center;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.book_list_header_confirm span + span {
+  border-left: none;
 }
 
 .book_list_confirm .book {
@@ -303,7 +310,40 @@ form {
 
 .book_list_confirm .book span {
   flex: 1;
-  text-align: center;
+  text-align: right;
+  padding: 0 10px;
+}
+
+/* .book_list_confirm .book span + span {
+  border-left: 1px solid #000;
+} */
+
+.book_list_confirm .book span:first-child {
+  text-align: left;
+}
+
+.total_price_order,
+.fee_order,
+.total_bill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px 0;
+}
+
+#total_price,
+#fee {
+  color: #c1430c;
+}
+
+#total_bill {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#confirmInfo .btn_box {
+  margin-top: 10px;
 }
 
 .btn_box button {

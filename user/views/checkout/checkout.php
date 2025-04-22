@@ -1,22 +1,26 @@
 <link rel="stylesheet" href="/project-Web2/user/assets/css/checkout.css">
 <div class="container_checkout_box">
     <?php if (!empty($bookList)): ?>
-        <form action="/project-Web2/user/index.php?page=checkout&action=placeOrder" method="POST">
+        <?php print_r($userInfo); ?>
+        <form action="/project-Web2/user/index.php?page=checkout&action=placeOrder" method="POST" id="formInfo">
             <div class="info_method">
                 <div class="info">
                     <div class="title">Thông tin cá nhân</div>
                     <div class="pertional_info">
                         <div>
                             <label for="txtName">Họ tên: </label>
-                            <input type="text" name="txtName" id="txtName" required>
+                            <input type="text" name="txtName" id="txtName" 
+                                value="<?php if(isset($userInfo['TenND'])) echo $userInfo['TenND'];  ?>">
                         </div>
                         <div>
                             <label for="txtPhone">SĐT: </label>
-                            <input type="text" name="txtPhone" id="txtPhone" required>
+                            <input type="text" name="txtPhone" id="txtPhone" 
+                                value="<?php if(isset($userInfo['SDT'])) echo $userInfo['SDT'];  ?>">
                         </div>
                         <div>
                             <label for="txtAddress">Địa chỉ:</label>
-                            <input type="text" name="txtAddress" id="txtAddress" required>
+                            <input type="text" name="txtAddress" id="txtAddress" 
+                                value="<?php if( !empty($userInfo['DcND']) && $userInfo['DcND'] != 'undefined') echo $userInfo['DcND'];  ?>">
                         </div>
                         <div>
                             <label for="txtNote">Ghi chú:</label>
@@ -29,13 +33,13 @@
                     <div class="method_box">
                         <div class="shipping_method">
                             <div>Phương thức vận chuyển</div>
-                            <div><input type="radio" name="shipping_method" id="regular" value=1 checked> <label for="regular">Giao hàng thông thường</label></div>
-                            <div><input type="radio" name="shipping_method" id="express" value=2> <label for="express">Giao hàng hỏa tốc</label></div>
+                            <div><input type="radio" name="shipping_method" id="regular" value="1" checked> <label for="regular">Giao hàng thông thường</label></div>
+                            <div><input type="radio" name="shipping_method" id="express" value="2"> <label for="express">Giao hàng hỏa tốc</label></div>
                         </div>
                         <div class="payment_method">
                             <div>Phương thức thanh toán</div>
-                            <div><input type="radio" name="payment_method" id="cod" value=1 checked> <label for="cod">Thanh toán khi nhận hàng</label></div>
-                            <div><input type="radio" name="payment_method" id="qr" value=2> <label for="qr">Thanh toán bằng mã QR</label></div>
+                            <div><input type="radio" name="payment_method" id="cod" value="1" checked> <label for="cod">Thanh toán khi nhận hàng</label></div>
+                            <div><input type="radio" name="payment_method" id="qr" value="2"> <label for="qr">Thanh toán bằng mã QR</label></div>
                         </div>
                     </div>
                 </div>
@@ -48,26 +52,26 @@
                 </div>
                 <div class="book_list">
                     <?php foreach ($bookList as $book): ?>
-                        <div class="book">
+                        <div class="book" data-id=<?php echo $book['MaSach']; ?> >
                             <span class="book_name"><?php echo htmlspecialchars($book['TenSach']); ?></span>
                             <span class="book_qty"><?php echo $book['SoLg']; ?></span>
                             <span class="book_price"><?php echo number_format($book['GiaBan'], 0, ',', '.'); ?> đ</span>
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <!-- <div class="price_fee">
+                <div class="price_fee">
                     <div class="total_price_order">
                         <span>Tiền hàng:</span>
-                        <span class="total_price"><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
+                        <span class="total_price"><?php echo number_format($totalPrice, 0, ',', ','); ?> đ</span>
                     </div>
                     <div class="fee_order">
                         <span>Phí vận chuyển:</span>
-                        <span><?php echo number_format($shippingFee, 0, ',', '.'); ?> đ</span>
+                        <span class="fee"><?php echo number_format($shippingFee, 0, ',', ','); ?> đ</span>
                     </div>
-                </div> -->
+                </div>
                 <div class="total_bill">
                     <span>Tiền hàng:</span>
-                    <span><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
+                    <span><?php echo number_format($totalPrice + $shippingFee, 0, ',', '.'); ?> đ</span>
                 </div>
             </div>
             <div class="btn_box">
@@ -83,14 +87,14 @@
                 <h2>Xác nhận thông tin</h2>
                 <div class="info_method_confirm">
                     <div class="pertional_info_confirm">
-                        <div class="name_confirm">Tên: tên khách hàng</div>
-                        <div class="phone_confirm">SĐT: 0123456789</div>
-                        <div class="address_confirm">Địa chỉ: địa chỉ nhận hàng</div>
+                        <div class="name_confirm">Tên: <i>Tên khách hàng</i></div>
+                        <div class="phone_confirm">SĐT: <i>Tên khách hàng</i></div>
+                        <div class="address_confirm">Địa chỉ: <i>Địa chỉ nhận hàng</i></div>
                     </div>
                     <div class="method_confirm">
-                        <div class="shipping_method_confirm">Phương thức vận chuyển: phương thức vận chuyển</div>
-                        <div class="payment_method_confirm">Phương thức thanh toán: phương thức thanh toán</div>
-                        <div class="note_confirm">Ghi chú: nội dung</div>
+                        <div class="shipping_method_confirm">PTVC: <i>phương thức vận chuyển</i></div>
+                        <div class="payment_method_confirm">PTTT: <i>phương thức thanh toán</i></div>
+                        <div class="note_confirm">Ghi chú: <i>nội dung</i></div>
                     </div>
                 </div>
                 <div class="book_list_header_confirm">
@@ -110,20 +114,20 @@
                 <div class="price_fee">
                     <div class="total_price_order">
                         <span>Tiền hàng:</span>
-                        <span class="total_price"><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
+                        <span id="total_price"><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
                     </div>
                     <div class="fee_order">
                         <span>Phí vận chuyển:</span>
-                        <span><?php echo number_format($shippingFee, 0, ',', '.'); ?> đ</span>
+                        <span id="fee"><?php echo number_format($shippingFee, 0, ',', '.'); ?> đ</span>
                     </div>
                 </div>
                 <div class="total_bill">
                     <span>Tiền hàng:</span>
-                    <span><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
+                    <span id="total_bill"><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
                 </div>
                 <div class="btn_box">
                     <button id="close">Hủy</button>
-                    <button type="submit">Đặt hàng</button>
+                    <button type="submit">Xác nhận</button>
                 </div>
             </form>
     </div>
