@@ -54,12 +54,7 @@
             $providerModel = new Provider();
             $providers = $providerModel->getAllProviders();
 
-            $this->render('product/create', [
-                'categories' => $categories,
-                'authors' => $authors,
-                'publishers' => $publishers,
-                'providers' => $providers
-            ]);
+            
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -68,8 +63,6 @@
                 $authorId = $_POST['product_author'];
                 $publisherId = $_POST['product_publisher'];
                 $providerId = $_POST['product_provider'];
-                $productQuantity = 0;
-                $productPrice = 0;
                 $productYear = $_POST['product_year'];
                 $productPage = filter_var(filter_var($_POST['product_page'], FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT) ?? null;
                 $productSize = trim(strip_tags($_POST['product_size'])) ?? null;
@@ -144,12 +137,12 @@
                     'MaTG' => $authorId,
                     'MaNXB' => $publisherId,
                     'MaNCC' => $providerId,
-                    'SoLgTon' => $productQuantity,
-                    'GiaBan' => $productPrice,
                     'NamXB' => $productYear,
                     'SoTrang' => $productPage,
                     'KichThuoc' => $productSize,
-                    'MoTa' => $productDescription
+                    'MoTaChiTiet' => $productDescription,
+                    'SoLgTon' => 0,
+                    'GiaBan' => 0
                 ];                
                 
                 $array = $productModel->createProduct($productData);
@@ -194,6 +187,12 @@
                     </script>";
                 }
             }   
+            $this->render('product/create', [
+                'categories' => $categories,
+                'authors' => $authors,
+                'publishers' => $publishers,
+                'providers' => $providers
+            ]);
         }
         
 

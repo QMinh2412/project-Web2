@@ -33,6 +33,9 @@
             <div class="order-form-group">
                 <button type="submit" class="order-search-btn" id="import-search-btn">Tìm kiếm</button>
             </div>
+            <div class="order-form-group">
+                <button type="button" class="import-add-btn" id="import-add-btn" onclick="addImport(this)">Thêm phiếu nhập</button>
+            </div>
         </form>
     </div>
 
@@ -125,3 +128,28 @@
     </div>
 </div>
 
+<!--------------------------- FORM ADD PHIEU NHAP ----------------------------->
+<div class="import-add-modal" id="import-add-modal">
+    <div class="import-add-modal-content">
+        <h2 id="import-add-header">Bảng nhập sách</h2>
+        <form id="import-add-form" action="?page=import&action=create" method="POST" enctype="multipart/form-data">
+            <div class="import-add-form-group">
+                <label for="import-add-provider">Nhà cung cấp</label>
+                <select id="import-add-provider" name="import_provider" required>
+                    <option value="">Chọn nhà cung cấp</option>
+                    <?php foreach ($providerMap as $id => $name): ?>
+                        <option value="<?= htmlspecialchars($id) ?>"><?= htmlspecialchars($name) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="import-add-form-group">
+                <label for="import-add-profit">Chiết khấu:</label>
+                <input type="number" name="importprofit" id="import-add-profit" placeholder="Nhập chiết khấu" min="0" max="100" value="0">
+            </div>
+            <div class="import-add-form-group" id="import-add-btn">
+                <button type="button" id="import-cancel-btn" onclick="closeAddImport(this)">Hủy</button>
+                <button type="submit" id="import-accept-btn">Tiếp tục</button>
+            </div>
+        </form>
+    </div>
+</div>

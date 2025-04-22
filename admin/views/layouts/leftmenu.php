@@ -1,6 +1,11 @@
 <script src="./assets/js/leftmenu.js"></script>
 
 <div id="left-menu">
+
+    <div class="menuitems" id="admin-menu-icon">
+        <i class='bx bx-menu'></i>  
+    </div>
+    
     <a href="?page=dashboard&action=index">
         <div class="menuitems">
             <i class='bx bx-stats'></i>
@@ -31,7 +36,7 @@
     
     <a href="?page=import&action=index">
         <div class="menuitems">
-            <i class='bx bx-box'></i>
+            <i class='bx bx-sushi'></i>
             <span class="menuitems-span">Quản lý kho</span>
         </div>
     </a>

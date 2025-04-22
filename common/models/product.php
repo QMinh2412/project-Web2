@@ -244,20 +244,20 @@ class Product {
     }
 
     public function createProduct($productData) {
-        $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, MaNCC, SoLgTon, GiaBan, NamXB, SoTrang, KichThuoc, MoTaChiTiet) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, MaNCC, NamXB, SoTrang, KichThuoc, MoTaChiTiet, SoLgTon, GiaBan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("siiiiiiiiss", 
+        $stmt->bind_param("siiiiiissii", 
                             $productData['TenSach'], 
                             $productData['MaLoai'], 
                             $productData['MaTG'], 
                             $productData['MaNXB'],
                             $productData['MaNCC'],
-                            $productData['SoLgTon'], 
-                            $productData['GiaBan'], 
                             $productData['NamXB'], 
                             $productData['SoTrang'], 
                             $productData['KichThuoc'], 
-                            $productData['MoTaChiTiet']
+                            $productData['MoTaChiTiet'],
+                            $productData['SoLgTon'],
+                            $productData['GiaBan']
         );
         
         return array($stmt->execute(), $this->db->insert_id);

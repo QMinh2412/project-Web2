@@ -19,9 +19,9 @@ if (!isset($_SESSION['user_id'])) {
 <script src="./assets/js/login.js"></script>
 
   <div class="header">
-  <button id="mobile-menu-toggle">
-    <i class='bx bx-menu' id="mobile-menu-toggle-i"></i>
-  </button>
+    <button id="mobile-menu-toggle">
+      <i class='bx bx-menu' id="mobile-menu-toggle-i"></i>
+    </button>
     <div id="logo-header">
       <h4>Admin</h4>
     </div>

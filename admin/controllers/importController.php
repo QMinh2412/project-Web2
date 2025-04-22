@@ -4,7 +4,6 @@
     require_once __DIR__ . '/../../common/models/product.php';
 
     class ImportController extends BaseController {
-        
         public function index($currentPage) {
             $importModel = new Import();
             $productModel = new Product();
@@ -63,6 +62,27 @@
                     </script>"; 
                 }
             }
+        }
+
+        public function create() {
+            $importModel = new Import();
+            $productModel = new Product();
+            $providerModel = new Provider();
+
+            $providers = $providerModel->getAllProviders();
+            $products = $productModel->getAllProductsWithoutPagination();
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $importProvider = $_POST['import_provider'] ?? '';
+                $importProfit = $_POST['importprofit'] ?? 0;
+
+                exit;
+            }
+
+            $this->render('import/create', [
+                'providers' => $providers,
+                'products' => $products
+            ]);
         }
     }
 ?>

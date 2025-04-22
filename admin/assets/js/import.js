@@ -66,9 +66,21 @@ document.addEventListener("DOMContentLoaded", () => {
         select.style.backgroundColor = style.background;
         select.style.color = style.fontcolor;
     }
+
+    
 });
 
 function handleStatusChange(select, importId, currentPage) {
     const newStatus = select.value;
     window.location.href = `?page=import&action=changeStatus&id=${importId}&status=${newStatus}&current_page=${currentPage}`;
+}
+
+function addImport() {
+    const addForm = document.getElementById("import-add-modal");
+    addForm.style.display = "flex";
+}
+
+function closeAddImport() {
+    const addForm = document.getElementById("import-add-modal");
+    addForm.style.display = "none";
 }
