@@ -8,7 +8,11 @@
         <form class="order-search-form" method="GET" action="">
             <div class="order-form-group">
                 <label for="order-search-order-id">Mã hóa đơn</label>
-                <input type="text" id="order-search-order-id" name="order_id" placeholder="Nhập mã hóa đơn" value="<?= htmlspecialchars($_GET['order_id'] ?? '') ?>">
+                <input type="number" id="order-search-order-id" 
+                    name="order_id" 
+                    placeholder="Nhập mã hóa đơn" 
+                    value="<?= htmlspecialchars($_GET['order_id'] ?? '') ?>"
+                >
             </div>
             <div class="order-form-group">
                 <label for="order-search-order-status">Trạng thái</label>

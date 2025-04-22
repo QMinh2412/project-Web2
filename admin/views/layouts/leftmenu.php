@@ -29,27 +29,12 @@
         </div>
     </a>
     
-    <div class="menuitems dropdown">
-        <div class="dropdown-header">
+    <a href="?page=warehouse&action=index">
+        <div class="menuitems">
             <i class='bx bx-box'></i>
             <span class="menuitems-span">Quản lý kho</span>
-            <i class='bx bxs-chevron-down' id="storage-arrow-down"></i>
         </div>
-        <div class="dropdown-content">
-            <a href="?page=warehouse&action=history">
-                <div class="menuitems">
-                    <i class='bx bx-history'></i>
-                    <span class="menuitems-span" id="dropdownitems">Lịch sử nhập hàng</span>
-                </div>
-            </a>
-            <a href="?page=warehouse&action=index">
-                <div class="menuitems">
-                    <i class='bx bx-download'></i>
-                    <span class="menuitems-span" id="dropdownitems">Nhập sách</span>
-                </div>
-            </a>
-        </div>
-    </div>
+    </a>
     
     <a href="?page=order&action=index">
         <div class="menuitems" >
