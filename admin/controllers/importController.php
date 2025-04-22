@@ -1,6 +1,7 @@
 <?php
     require_once __DIR__ . '/../../common/core/BaseController.php';
     require_once __DIR__ . '/../../common/models/Import.php';
+    require_once __DIR__ . '/../../common/models/ImportDetail.php';
     require_once __DIR__ . '/../../common/models/product.php';
 
     class ImportController extends BaseController {
@@ -63,6 +64,27 @@
                     </script>"; 
                 }
             }
+        }
+
+        public function detail() {
+            $currentPage = $_GET['current_page'] ?? 1;
+            $importId = $_GET['id'] ?? null;
+
+            $importModel = new Import();
+            $providerModel = new Provider();
+            $importDetailModel = new ImportDetail();
+            
+            $import = $importModel->getImportById($importId);
+            $providerId = $import['MaNCC'];
+            $provider = $providerModel->getProviderById($providerId);
+            $details = $importDetailModel->getImportDetailById($providerId);
+
+            $this->render('import/detail', [
+                'import' => $import,
+                'details' => $details,
+                'provider' => $provider,
+                'currentPage' => $currentPage
+            ]);
         }
     }
 ?>

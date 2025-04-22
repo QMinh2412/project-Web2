@@ -4,6 +4,25 @@
 }
 
 /************************ Index table **********************/
+#import-id {
+    width: 40px;
+}
+
+#import-value {
+    width: 100px;
+}
+
+#import-time {
+    width: 100px;
+}
+
+#import-status {
+    width: 200px;
+}
+
+#import-features {
+    width: 100px;
+}
 
 .import-status-dropdown {
     padding: 6px 12px;
@@ -89,4 +108,149 @@
 }
 #detailImportBtn:active {
     background-color: rgb(189, 189, 0); 
+}
+
+/********************* IMPORT DETAIL **************************/
+/*********** Div Form ******************/
+
+#import-detail-form {
+    margin: 0px 20px 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.general-import-info {
+    flex: 1 1 calc(45% - 10px);
+}
+
+.general-import-info-full {
+    flex: 1 1 100%;
+}
+
+.import-create-label {
+    margin: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.import-create-text {
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 1px black;
+}
+
+#importDetailHeader {
+    margin: 0px 30px 10px 30px;
+}
+
+#importDetailTotalValueDiv {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 20px;
+}
+
+#importDetailTotalValue {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+#import-total-value-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#import-total-value-input {
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#closeImportDetailBtn {
+    margin: 0px 20px 10px 20px;
+    background-color: red; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#closeImportDetailBtn:hover {
+    background-color: #b30000; 
+}
+#closeImportDetailBtn:active {
+    background-color: #800000; 
+}
+
+
+/******** Import Detail Form ***********/
+#import-detail-product-order {
+    width: 50px;
+}
+
+#import-detail-product-category {
+    width: 110px;
+}
+
+#import-detail-product-number {
+    width: 100px;
+}
+
+#import-detail-product-iPrice {
+    width: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+    .general-import-info {
+        flex: 1 1 calc(100% - 8px);
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    /*Order Detail Form*/
+    .import-create-label {
+        font-size: 0.9em;
+    }
+
+    .import-create-text {
+        font-size: 0.9em;
+    }
+
+    #import-detail-product-order {
+        display: none;
+    }
+
+    #import-detail-product-name {
+        font-size: 0.9em;
+    }
+
+    #import-detail-product-category {
+        width: 60px;
+        font-size: 0.9em;
+    }
+
+    #import-detail-product-number {
+        width: 60px;
+        font-size: 0.9em;
+    }
+
+    #import-detail-product-iPrice {
+        width: 80px;
+        font-size: 0.9em;
+    }
+
+    #import-total-value-label {
+        font-size: 1em;
+    }
 }

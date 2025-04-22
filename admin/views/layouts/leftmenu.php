@@ -36,7 +36,7 @@
     
     <a href="?page=import&action=index">
         <div class="menuitems">
-            <i class='bx bx-box'></i>
+            <i class='bx bx-sushi'></i>
             <span class="menuitems-span">Quản lý kho</span>
         </div>
     </a>
