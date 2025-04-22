@@ -139,7 +139,7 @@
             <div class="import-add-form-group">
                 <label for="import-add-provider">Nhà cung cấp</label>
                 <select id="import-add-provider" name="import_provider" required>
-                    <option value="">Chọn nhà cung cấp</option>
+                    <option value="">Chọn nhà cung cấp:</option>
                     <?php foreach ($providerMap as $id => $name): ?>
                         <option value="<?= htmlspecialchars($id) ?>"><?= htmlspecialchars($name) ?></option>
                     <?php endforeach; ?>

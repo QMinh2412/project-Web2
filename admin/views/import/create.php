@@ -5,23 +5,14 @@
         <h2>Thông tin nhập sách</h2>
     </div>
     <div class="order-container">
-        <form class="order-search-form" method="GET" action="">
+        <form class="order-add-form" method="GET" action="">
             <div class="order-form-group">
                 <label for="import-add-provider">Nhà cung cấp</label>
-                <input type="date" id="import-search-provider" name="provider-add" value="<?= htmlspecialchars($provider['TenNCC']) ?>" readonly>
+                <input type="text" id="import-add-provider" name="provider-add" value="<?= htmlspecialchars($provider['TenNCC']) ?>" readonly>
             </div>
             <div class="order-form-group">
-                <label for="import-search-to-date">Đến ngày</label>
-                <input type="date" id="import-search-to-date" name="import_to_date" value="<?= htmlspecialchars($_GET['import_to_date'] ?? '') ?>">
-            </div>
-            <div class="order-form-group">
-                <button type="submit" class="order-search-btn" id="import-search-btn">
-                    <i class='bx bx-search'></i>
-                    Tìm kiếm
-                </button>
-            </div>
-            <div class="order-form-group">
-                <button type="button" class="import-add-btn" id="import-add-btn" onclick="addImport(this)">Thêm phiếu nhập</button>
+                <label for="import-add-profit">Chiết khấu:</label>
+                <input type="number" id="import-add-profit" name="import-add-profit" value="<?= htmlspecialchars($profit) ?>">
             </div>
         </form>
     </div>

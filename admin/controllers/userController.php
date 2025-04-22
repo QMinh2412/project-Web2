@@ -275,7 +275,7 @@
                     unlink($fullPath);
                 }
 
-                $imageModel->deleteImageById($id);
+                $imageModel->deleteImageByUserId($id);
                 $accountModel->deleteAccount($id);
                 $userModel->deleteUser($id);
 

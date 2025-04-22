@@ -135,6 +135,10 @@
 #import-add-header {
     margin: 5px;
     padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
 }
 #import-add-modal {
     display: none;
@@ -146,10 +150,9 @@
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
- 
 }
 
 #import-add-modal .import-add-modal-content {
@@ -157,9 +160,11 @@
     border: 1px solid #ccc;
     z-index: 2;
     width: 400px;
+    max-width: 90%;
     height: auto;
     margin: 0 0;
-    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border-radius: 10px;
 }
 
 #import-add-form {
@@ -167,7 +172,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 #import-add-form div {
@@ -179,7 +184,9 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 100%;
     font-size: 14px;
+    box-sizing: border-box;
 }
 
 #import-add-btn {

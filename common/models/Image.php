@@ -121,6 +121,14 @@
             $stmt->close();
         }  
 
+        public function deleteImageByUserId($userId) {
+            $query = "DELETE FROM HinhAnh WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $userId);
+            $stmt->execute();
+            $stmt->close();
+        }
+
         public function updateImageForUser($account_id, $imagePath){
             $account_id = $this->db->real_escape_string($account_id);
             $imagePath = $this->db->real_escape_string($imagePath);
