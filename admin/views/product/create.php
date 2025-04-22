@@ -62,11 +62,11 @@
             <input class="new-provider-input" type="email" name="product_provider_email" id="product-provider-email-input" style="display: none;" placeholder="Nhập email nhà cung cấp mới">
 
 
-            <label class="product-create-label" for="product-quantity">Số lượng:</label><br>
+            <!-- <label class="product-create-label" for="product-quantity">Số lượng:</label><br>
             <input class="product-create-numeric" type="number" name="product_quantity" id="product-quantity-input" placeholder="Số lượng" min="0" required>
 
             <label class="product-create-label" for="product-price">Giá:</label><br>
-            <input class="product-create-numeric" type="number" name="product_price" id="product-price-input" placeholder="Giá" min="10000" required>
+            <input class="product-create-numeric" type="number" name="product_price" id="product-price-input" placeholder="Giá" min="10000" required> -->
 
             <label class="product-create-label" for="product-year">Năm xuất bản:</label><br>
             <select class="product-create-dropdown" name="product_year" id="product-year-input" required>

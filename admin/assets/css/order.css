@@ -29,7 +29,7 @@
 }
 
 #order-status {
-    width: 110px;
+    width: 120px;
 }
 
 .order-status-dropdown {
@@ -41,6 +41,15 @@
     color: #333;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    width: 115px;
+    text-align: center;
+    text-align-last: center;
+}
+
+.order-status-dropdown option {
+    text-align: left;
+    background-color: white;
+    color: black;
 }
 
 .order-status-dropdown:hover {

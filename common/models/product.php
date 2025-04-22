@@ -244,13 +244,14 @@ class Product {
     }
 
     public function createProduct($productData) {
-        $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, SoLgTon, GiaBan, NamXB, SoTrang, KichThuoc, MoTaChiTiet) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, MaNCC, SoLgTon, GiaBan, NamXB, SoTrang, KichThuoc, MoTaChiTiet) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("siiiiiiiss", 
+        $stmt->bind_param("siiiiiiiiss", 
                             $productData['TenSach'], 
                             $productData['MaLoai'], 
                             $productData['MaTG'], 
-                            $productData['MaNXB'], 
+                            $productData['MaNXB'],
+                            $productData['MaNCC'],
                             $productData['SoLgTon'], 
                             $productData['GiaBan'], 
                             $productData['NamXB'], 
@@ -263,14 +264,14 @@ class Product {
     }
 
     public function updateProduct($productId, $productData) {
-        $query = "UPDATE DauSach SET TenSach = ?, MaLoai = ?, MaTG = ?, MaNXB = ?, SoLgTon = ?, GiaBan = ?, NamXB = ?, SoTrang = ?, KichThuoc = ?, MoTaChiTiet = ? WHERE MaSach = ?";
+        $query = "UPDATE DauSach SET TenSach = ?, MaLoai = ?, MaTG = ?, MaNXB = ?, MaNCC = ?, GiaBan = ?, NamXB = ?, SoTrang = ?, KichThuoc = ?, MoTaChiTiet = ? WHERE MaSach = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("siiiiiiissi", 
                             $productData['TenSach'], 
                             $productData['MaLoai'], 
                             $productData['MaTG'], 
-                            $productData['MaNXB'], 
-                            $productData['SoLgTon'], 
+                            $productData['MaNXB'],
+                            $productData['MaNCC'], 
                             $productData['GiaBan'], 
                             $productData['NamXB'], 
                             $productData['SoTrang'], 

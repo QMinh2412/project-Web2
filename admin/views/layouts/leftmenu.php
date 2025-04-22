@@ -29,7 +29,7 @@
         </div>
     </a>
     
-    <a href="?page=warehouse&action=index">
+    <a href="?page=import&action=index">
         <div class="menuitems">
             <i class='bx bx-box'></i>
             <span class="menuitems-span">Quản lý kho</span>
