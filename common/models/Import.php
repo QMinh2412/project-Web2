@@ -17,7 +17,7 @@
             }
 
             if (isset($status) && is_numeric($status)) {
-                $conditions .= " AND TrangThaiPN = " . intval($status);
+                $conditions .= " AND TinhTrang = " . intval($status);
             }
 
             if (!empty($fromDate)) {
@@ -50,7 +50,7 @@
             }
 
             if (isset($status) && is_numeric($status)) {
-                $conditions .= " AND TrangThaiPN = " . intval($status);
+                $conditions .= " AND TinhTrang = " . intval($status);
             }
 
             if (!empty($fromDate)) {
@@ -87,5 +87,48 @@
             
             return $stmt->execute();
         }
+
+        public function createImport($data)
+        {
+            $query = "INSERT INTO PhNhap (MaNCC, MaTK, NgNhap, TongTien, TinhTrang) VALUES (?, ?, ?, ?, 0)";
+            $stmt = $this->db->prepare($query);
+
+            $maNCC = (int) $data['MaNCC'];
+            $maTK = (int) $data['MaTK']; // truyền từ session người đăng nhập
+            $ngayNhap = $data['NgayNhap'];
+            $tongTien = (int) $data['TongTien'];
+
+            $stmt->bind_param("iisi", $maNCC, $maTK, $ngayNhap, $tongTien);
+            
+            if ($stmt->execute()) {
+                return $stmt->insert_id; // Trả về mã phiếu nhập mới tạo
+            }
+
+            return false;
+        }
+
+        public function addImportDetail(int $importId, int $bookId, int $quantity, int $price): bool {
+            $query = "
+                INSERT INTO CTPN 
+                    (MaPhNhap, MaSach, SoLgNhap, GiaNhap)
+                VALUES (?, ?, ?, ?)
+            ";
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) {
+                die("Lỗi chuẩn bị câu lệnh addImportDetail: " . $this->db->error);
+            }
+            $stmt->bind_param("iiii", $importId, $bookId, $quantity, $price);
+        
+            $ok = $stmt->execute();
+            if (!$ok) {
+                // bạn có thể log lỗi ở đây nếu muốn
+                error_log("Lỗi execute addImportDetail: " . $stmt->error);
+            }
+        
+            $stmt->close();
+            return $ok;
+        }
+
+        
     }
 ?>

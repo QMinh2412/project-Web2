@@ -2,7 +2,7 @@
     require_once __DIR__ . '/../../common/core/BaseController.php';
     require_once __DIR__ . '/../../common/models/Import.php';
     require_once __DIR__ . '/../../common/models/ImportDetail.php';
-    require_once __DIR__ . '/../../common/models/product.php';
+    require_once __DIR__ . '/../../common/models/Product.php';
 
     class ImportController extends BaseController {
         public function index($currentPage) {
@@ -69,25 +69,87 @@
             $importModel = new Import();
             $productModel = new Product();
             $providerModel = new Provider();
-            $providerId = $_GET['provider_id'] ?? null;
-
+            $categoryModel = new Category();
+            $providerId = $_GET['import_provider'] ?? null;
+        
             $provider = $providerModel->getProviderById($providerId);
-            $product = $productModel->getAllProductsWithoutPagination();
-            $profit = $_POST['importprofit'] ?? 0;
-
-            // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //     $importProvider = $_POST['import_provider'] ?? '';
-            //     $importProfit = $_POST['importprofit'] ?? 0;
-
-            //     exit;
-            // }
-
+            $products = $productModel->getProductsByProvider($providerId);
+            $categories = $categoryModel->getAllCategories();
+        
+            // Map Category (MaLoai => TenLoai) để hiển thị tên thể loại
+            $categoryMap = [];
+            foreach ($categories as $cat) {
+                $categoryMap[$cat['MaLoai']] = $cat['TenLoai'];
+            }
+            $profit = $_GET['importprofit'] ?? 0; // lấy lợi nhuận gửi lên từ form trước đó
+        
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $providerId = $_POST['import_provider'] ?? null;
+                $profit = $_POST['import_profit'] ?? 0;
+                $books = $_POST['books'] ?? [];
+        
+                if ($providerId && !empty($books)) {
+                    // 1. Tính tổng tiền
+                    $tongTien = 0;
+                    foreach ($books as $book) {
+                        $tongTien += (int)$book['price'] * (int)$book['quantity'];
+                    }
+        
+                    // 2. Tạo phiếu nhập mới
+                    $importId = $importModel->createImport([
+                        'MaNCC' => $providerId,
+                        'MaTK' => $_SESSION['user_id'] ?? 1, // fallback nếu chưa có session
+                        'NgayNhap' => date('Y-m-d'),
+                        'TongTien' => $tongTien
+                    ]);
+        
+                    // 3. Lưu chi tiết phiếu nhập + cập nhật sản phẩm
+                    foreach ($books as $book) {
+                        $bookId = (int)$book['id'];
+                        $quantity = (int)$book['quantity'];
+                        $price = (int)$book['price'];
+        
+                        // 3.1. Thêm chi tiết phiếu nhập
+                        $importModel->addImportDetail($importId, $bookId, $quantity, $price);
+        
+                        // 3.2. Lấy thông tin sản phẩm hiện tại
+                        $product = $productModel->getProductById($bookId);
+        
+                        if ($product) {
+                            $currentPrice = (int)$product['GiaBan'];
+                            $currentQuantity = (int)$product['SoLgTon'];
+        
+                            $newQuantity = $currentQuantity + $quantity;
+        
+                            // Tính giá bán mới theo lợi nhuận
+                            $discountRate = $profit / 100; // profit là % lợi nhuận
+                            $newSellingPrice = (int)($price * (1 / (1 - $discountRate)));
+        
+                            // Nếu giá bán mới > giá bán cũ thì cập nhật
+                            $finalSellingPrice = $newSellingPrice > $currentPrice ? $newSellingPrice : $currentPrice;
+        
+                            // 3.3. Update sản phẩm
+                            $productModel->updateProductAfterImport($bookId, $finalSellingPrice, $newQuantity);
+                        }
+                    }
+        
+                    // 4. Chuyển hướng
+                    header('Location: index.php?page=import&action=index');
+                    exit;
+                } else {
+                    echo "Thiếu thông tin phiếu nhập.";
+                }
+                return; // không render view nữa sau khi submit
+            }
+        
             $this->render('import/create', [
-                'providers' => $provider,
-                'products' => $product,
+                'provider' => $provider,
+                'products' => $products,
+                'categoryMap' => $categoryMap,
                 'profit' => $profit,
             ]);
         }
+        
         
         public function detail() {
             $currentPage = $_GET['current_page'] ?? 1;
@@ -100,7 +162,7 @@
             $import = $importModel->getImportById($importId);
             $providerId = $import['MaNCC'];
             $provider = $providerModel->getProviderById($providerId);
-            $details = $importDetailModel->getImportDetailById($providerId);
+            $details = $importDetailModel->getImportDetailById($importId);
 
             $this->render('import/detail', [
                 'import' => $import,

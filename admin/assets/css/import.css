@@ -222,6 +222,87 @@
     background-color: #c62828;
     cursor: pointer;
 }
+
+/* Nền mờ khi mở modal */
+.addBookmodal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Hộp nội dung modal */
+.import-add-book-modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    animation: fadeIn 0.3s ease;
+    position: relative;
+}
+
+/* Nút đóng (X) */
+.import-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.2s ease;
+}
+.import-close-btn:hover {
+    color: #000;
+}
+
+/* Label và input/select styling */
+.import-add-book-modal-content label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#importAddBookQuantity, #importAddBookPrice, #importAddBookSelect {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Nút xác nhận */
+.import-add-book-modal-content button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+.import-add-book-modal-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Hiệu ứng xuất hiện */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
 /********************* IMPORT DETAIL **************************/
 /*********** Div Form ******************/
 
