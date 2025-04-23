@@ -101,6 +101,7 @@ body {
     }
 
     /* Close button nằm trong menu */
+    /* Close button nằm trong menu */
     #admin-menu-icon {
         display: none; /* sẽ bật bằng JS khi menu.open */
         cursor: pointer;

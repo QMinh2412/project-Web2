@@ -299,20 +299,13 @@ class Account {
     }
 
      // Lấy thông tin tài khoản dựa trên tên tài khoản
-    public function getUserByUsername($TenTK) {
+     public function getUserByUsername($TenTK) {
         $query = "SELECT * FROM TaiKhoan WHERE TenTK = ?";
         $stmt = $this->db->prepare($query);
-
-        if ($stmt) {
-            $stmt->bind_param("s", $TenTK);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $user = $result->fetch_assoc();
-            $stmt->close();
-            return $user; // Trả về thông tin tài khoản nếu tìm thấy
-        }
-
-        return null; // Trả về null nếu không tìm thấy tài khoản
+        $stmt->bind_param("s", $TenTK);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
     // Kiểm tra mật khẩu

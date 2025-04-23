@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="./assets/css/review.css">
     <link rel="stylesheet" href="./assets/css/import.css">
 </head>
+<?php
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /project-Web2/admin/views/layouts/login.php");
+    exit;
+}
+?>
 <body>
     <div class="wrapper">
         <?php

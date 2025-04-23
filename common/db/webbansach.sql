@@ -1,5 +1,5 @@
 create database webbookstore;
--- drop database webbookstore;
+drop database webbookstore;
 use webbookstore;
 
 create table `NCC` (

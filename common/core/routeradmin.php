@@ -111,7 +111,7 @@ class RouteAdmin {
 
             case 'import':
                 $controller = new ImportController();
-                switch($action) {
+                switch ($action) {
                     case 'index':
                         $controller->index($current_page);
                         break;
@@ -124,10 +124,24 @@ class RouteAdmin {
                     case 'detail':
                         $controller->detail();
                         break;
+                    case 'save':
+                        $controller->save();
+                        break;
+                    case 'history':
+                        $controller->history();
+                        break;
+                    case 'detail':
+                        $id = $_GET['id'] ?? null;
+                        if ($id) {
+                            $controller->detail($id);
+                        } else {
+                            header('HTTP/1.0 404 Not Found');
+                            exit('ID not provided');
+                        }
+                        break;
                     default:
-                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');   
+                        exit('Action not found');
                 }
                 break;
 
