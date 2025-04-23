@@ -1,11 +1,11 @@
-function hiddenShowAdvacedSearch() {
-  const icon = document.querySelector(".icon");
-  const advanceSearch = document.querySelector(".box_input");
-  icon.addEventListener("click", function () {
-    icon.querySelector("i").classList.toggle("active");
-    advanceSearch.classList.toggle("active");
-  });
-}
+// function hiddenShowAdvacedSearch() {
+//   const icon = document.querySelector(".icon");
+//   const advanceSearch = document.querySelector(".box_input");
+//   icon.addEventListener("click", function () {
+//     icon.querySelector("i").classList.toggle("active");
+//     advanceSearch.classList.toggle("active");
+//   });
+// }
 
 function hiddenShowBoxAccount() {
   document.querySelector(".account_box").addEventListener("click", () => {
@@ -53,6 +53,6 @@ function searchAjax() {
 
 document.addEventListener("DOMContentLoaded", function () {
   hiddenShowBoxAccount();
-  hiddenShowAdvacedSearch();
+  // hiddenShowAdvacedSearch();
   // searchAjax();
 });

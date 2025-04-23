@@ -11,18 +11,16 @@
 <body>
     <div class="login-container">
         <h2 class="login-title">Đăng nhập</h2>
-        
-        <!-- Thông báo lỗi -->
+
         <div id="message" class="message"></div>
-        
-        <!-- Form đăng nhập -->
+
         <form id="loginForm" method="POST" action="/project-Web2/admin/controllers/loginController.php?action=login">
             <div class="form-group">
-                <label for="TenTK">Tên tài khoản:</label>
+                <label for="TenTK">Tên tài khoản</label>
                 <input type="text" name="TenTK" id="TenTK" placeholder="Nhập tên tài khoản" required />
             </div>
             <div class="form-group">
-                <label for="MKTK">Mật khẩu:</label>
+                <label for="MKTK">Mật khẩu</label>
                 <input type="password" name="MKTK" id="MKTK" placeholder="Nhập mật khẩu" required />
             </div>
             <button type="submit" class="login-btn">Đăng nhập</button>

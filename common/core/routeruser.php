@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../user/controllers/HomeController.php';
 require_once __DIR__ . '/../../user/controllers/AccountController.php';
 require_once __DIR__ . '/../../user/controllers/ProductController.php';
 require_once __DIR__ . '/../../user/controllers/CartController.php';
+require_once __DIR__ . '/../../user/controllers/OrderController.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Account.php';
 class Route {
@@ -36,6 +37,10 @@ class Route {
                 $controller = new CartController();
                 break;
 
+            case 'checkout': 
+                $controller = new OrderController();
+                break;
+
             default:
                 $controller = new HomeController();
                 break;
@@ -66,6 +71,18 @@ class Route {
             case 'search':
                 $controller->search();
                 break;
+            case 'updateAccount':
+                $controller->updateAccount();
+                break;
+            case 'updateAccountAjax':
+                $controller->updateAccountAjax();
+                break;
+            case 'changePassword':
+                $controller->changepassword();
+                break;
+            case 'changepasswordAjax':
+                $controller->changepasswordAjax();
+                break;
             case 'show_detail':
                 $controller->showDetail();
                 break;
@@ -77,6 +94,27 @@ class Route {
                 break;
             case 'addToCart':
                 $controller->addToCart();
+                break;
+            case 'showCheckout':
+                $controller->showCheckout();
+                break;
+            case 'placeOrder': 
+                $controller->placeOrder();
+                break;
+            case 'updateStatus':
+                $controller->updateStatus();
+                break;
+            case 'remove':
+                $controller->remove();
+                break;
+            case 'updateQuantity':
+                $controller->updateQuantity();
+                break;
+            case 'buynow':
+                $controller->buyNow();
+                break;
+            case 'checkout':
+                $controller->checkout();
                 break;
             default:
                 $controller->index();

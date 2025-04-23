@@ -1,0 +1,321 @@
+.container_checkout_box {
+  /* background-color: pink; */
+  /* background-color: #fff; */
+  padding: 0px 50px;
+  min-height: 500px;
+  position: relative;
+}
+
+form {
+  width: calc(100% - 40px);
+  background: #fff;
+  padding: 20px;
+}
+
+.info_method {
+  display: flex;
+  /* background-color: palegreen; */
+  margin-bottom: 20px;
+}
+
+.info_method .title {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+}
+
+.info_method .info {
+  width: calc(60% - 20px);
+  /* background-color: paleturquoise; */
+  padding: 10px;
+}
+
+.info_method .info .pertional_info {
+  padding: 0 10px;
+}
+
+.info .pertional_info div {
+  display: flex;
+  align-items: center;
+  /* background-color: yellowgreen; */
+  margin-bottom: 10px;
+}
+
+.info .pertional_info div label {
+  width: calc(15% - 10px);
+  text-align: left;
+  padding-left: 10px;
+}
+
+.info .pertional_info div input,
+.info .pertional_info div textarea {
+  width: 50%;
+  padding: 5px;
+}
+
+.info .pertional_info div:nth-last-child(1) {
+  align-items: flex-start;
+}
+
+.info .pertional_info div:nth-last-child(1) label {
+  padding-top: 5px;
+}
+
+.info .pertional_info div input:focus,
+.info .pertional_info div textarea:focus {
+  outline: none;
+}
+
+.info_method .method {
+  width: calc(40% - 20px);
+  /* background-color: palevioletred; */
+  padding: 10px;
+}
+
+.method .method_box {
+  padding: 0 10px;
+  /* background-color: powderblue; */
+}
+
+.method .method_box label {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.method .method_box > div > div:first-child {
+  font-size: 18px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+.method .method_box > div > div:not(:first-child) {
+  padding: 0 10px;
+  margin-bottom: 5px;
+  /* background-color: yellow; */
+  color: #c1430c;
+  display: flex;
+  align-items: center;
+}
+
+.method .method_box .shipping_method {
+  /* background-color: palegreen; */
+  margin-bottom: 10px;
+}
+
+.method .method_box .payment_method {
+  /* background-color: plum; */
+}
+
+.order {
+  /* background-color: peru; */
+  margin-bottom: 20px;
+}
+
+.order .book_list_header {
+  /* background-color: plum; */
+  /* padding: 10px 0; */
+  display: flex;
+  align-items: center;
+}
+
+.order .book_list_header span {
+  border: 1px solid black;
+  font-weight: bold;
+  color: #c1430c;
+}
+
+.order .book_list_header span + span {
+  border-left: none;
+}
+
+.order .book_list_header .book_name {
+  display: inline-block;
+  width: calc(60% - 22px);
+  padding: 10px;
+  /* background-color: palegreen; */
+}
+
+.order .book_list_header .book_qty,
+.order .book_list_header .book_price {
+  display: inline-block;
+  width: calc(20% - 21px);
+  padding: 10px;
+  /* background-color: paleturquoise; */
+}
+
+.order .book_list {
+  /* background-color: pink; */
+  /* margin-bottom: 20px; */
+}
+
+.order .book_list .book {
+  /* background-color: palegoldenrod; */
+  /* margin-bottom: 5px; */
+  /* padding: 5px 0; */
+  border-bottom: 1px solid #ccc;
+  display: flex;
+}
+
+.order .book_list .book .book_name {
+  display: inline-block;
+  width: calc(60% - 20px);
+  height: calc(100% - 10px);
+  padding: 5px 10px;
+  /* background-color: palegreen; */
+}
+
+.order .book_list .book .book_qty,
+.order .book_list .book .book_price {
+  display: inline-block;
+  width: calc(20% - 20px);
+  height: calc(100% - 10px);
+  padding: 5px 10px;
+  /* background-color: paleturquoise; */
+  text-align: right;
+}
+
+.order .price_fee {
+  border-bottom: 1px solid #ccc;
+}
+
+.order .price_fee .total_price_order,
+.order .price_fee .fee_order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  /* background-color: plum; */
+}
+
+.order .price_fee .total_price_order span:last-child,
+.order .price_fee .fee_order span:last-child {
+  color: #c1430c;
+}
+
+.order .total_bill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  /* background-color: yellow; */
+}
+
+.order .total_bill span:first-child {
+  font-weight: bold;
+}
+
+.order .total_bill span:last-child {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+}
+
+.btn_box {
+  /* background-color: yellow; */
+  text-align: right;
+  padding-right: 10px;
+}
+
+.btn_box button {
+  font-size: 18px;
+  padding: 6px 20px;
+  border: 1px solid #c1430c;
+  color: #c1430c;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn_box button:hover {
+  color: #fff;
+  background-color: #c1430c;
+}
+
+/* form xác nhận */
+#container_confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* Thay inset: 0 để tương thích tốt hơn */
+  background-color: rgba(0, 0, 0, 0.5); /* Tăng độ tối nền */
+  -webkit-backdrop-filter: blur(8px); /* Hỗ trợ Safari */
+  backdrop-filter: blur(8px); /* Làm mờ nền */
+  z-index: 1000; /* Tăng z-index để đảm bảo nằm trên cùng */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container_confirm form {
+  width: 600px; /* Kích thước cố định */
+  max-width: 90%; /* Đảm bảo không vượt quá màn hình nhỏ */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin: 0; /* Loại bỏ margin mặc định */
+}
+
+#container_confirm h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #c1430c;
+}
+
+.info_method_confirm {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.pertional_info_confirm,
+.method_confirm {
+  width: 50%;
+  padding: 10px;
+}
+
+.pertional_info_confirm div,
+.method_confirm div {
+  margin-bottom: 10px;
+}
+
+.book_list_header_confirm {
+  display: flex;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.book_list_header_confirm span {
+  flex: 1;
+  text-align: center;
+}
+
+.book_list_confirm .book {
+  display: flex;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.book_list_confirm .book span {
+  flex: 1;
+  text-align: center;
+}
+
+.btn_box button {
+  margin-left: 10px;
+}
+
+.btn_box #close {
+  background-color: #ccc;
+  color: #000;
+  border: none;
+}
+
+.btn_box #close:hover {
+  background-color: #999;
+}

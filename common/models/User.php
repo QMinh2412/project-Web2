@@ -41,25 +41,41 @@
             return $insertId;
         }
 
-        public function getAllUsers() {
-            $query = "
-                SELECT 
-                    NgDung.MaND, NgDung.TenND, NgDung.DcND, NgDung.EmailND, NgDung.GioiTinhND,
-                    NgDung.SDT, NgDung.NgSinhND, 
-                    TaiKhoan.MaTK, TaiKhoan.TenTK, TaiKhoan.LoaiTK, TaiKhoan.NgLap, TaiKhoan.TinhTrang
-                FROM NgDung
-                LEFT JOIN TaiKhoan ON NgDung.MaND = TaiKhoan.MaND
-                WHERE TaiKhoan.LoaiTK != 4
-            ";
+    public function getAllUsers() {
+        $query = "
+            SELECT 
+                NgDung.MaND, NgDung.TenND, NgDung.DcND, NgDung.EmailND, NgDung.GioiTinhND,
+                NgDung.SDT, NgDung.NgSinhND, 
+                TaiKhoan.MaTK, TaiKhoan.TenTK, TaiKhoan.LoaiTK, TaiKhoan.NgLap, TaiKhoan.TinhTrang
+            FROM NgDung
+            LEFT JOIN TaiKhoan ON NgDung.MaND = TaiKhoan.MaND
+            WHERE TaiKhoan.LoaiTK != 4
+        ";
+
+        $result = $this->db->query($query);
+        $users = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
+        }
+
+        $result->close(); 
+        return $users;
+    }
+        public function getFullnameById($id) {
+            $query = "SELECT TenND FROM NgDung WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $fullname = null;
     
-            $result = $this->db->query($query);
-            $users = [];
-    
-            while ($row = $result->fetch_assoc()) {
-                $users[] = $row;
+            if ($result && $row = $result->fetch_assoc()) {
+                $fullname = $row['TenND'];
             }
     
-            return $users;
+            $stmt->close();
+            return $fullname;
         }
 
         public function getById($id) {
@@ -78,13 +94,13 @@
             return $user;
         }
 
-        public function updateUser($user_id, $fullname, $address, $email, $gender, $phone, $dob) {
-            $query = "UPDATE NgDung SET TenND = ?, DcND = ?, EmailND = ?, GioiTinhND = ?, SDT = ?, NgSinhND = ? WHERE MaND = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param("ssssssi", $fullname, $address, $email, $gender, $phone, $dob, $user_id);
-            $stmt->execute();
-            $stmt->close();
-        }
+        // public function updateUser($user_id, $fullname, $address, $email, $gender, $phone, $dob) {
+        //     $query = "UPDATE NgDung SET TenND = ?, DcND = ?, EmailND = ?, GioiTinhND = ?, SDT = ?, NgSinhND = ? WHERE MaND = ?";
+        //     $stmt = $this->db->prepare($query);
+        //     $stmt->bind_param("ssssssi", $fullname, $address, $email, $gender, $phone, $dob, $user_id);
+        //     $stmt->execute();
+        //     $stmt->close();
+        // }
         
         public function getUserPagination($currentPage, $usersPerPage) {
             $offset = ($currentPage - 1) * $usersPerPage;
@@ -142,5 +158,38 @@
             $stmt->execute();
             $stmt->close();
         }
-    }
+
+        // public function getById($id) {
+        //     $sql = "SELECT * FROM NgDung WHERE MaND = ?";
+        //     $stmt = $this->db->prepare($sql);
+        //     if (!$stmt) {
+        //         die(json_encode([
+        //             "status" => "error",
+        //             "message" => "Lỗi SQL: " . $this->db->error
+        //         ]));
+        //     }
+        //     $stmt->bind_param("i", $id);
+        //     $stmt->execute();
+        //     $result = $stmt->get_result();
+        //     $data = $result->fetch_assoc();
+        //     error_log("User data for ID $id: " . print_r($data, true)); // Log để debug
+        //     $stmt->close();
+        //     return $data;
+        // }
+
+        public function updateUser($id, $fullname, $address, $email, $gender, $phone, $dob) {
+            $sql = "UPDATE NgDung SET TenND = ?, DcND = ?, EmailND = ?, GioiTinhND = ?, SDT = ?, NgSinhND = ? WHERE MaND = ?";
+            $stmt = $this->db->prepare($sql);
+            if (!$stmt) {
+                die(json_encode([
+                    "status" => "error",
+                    "message" => "Lỗi SQL: " . $this->db->error
+                ]));
+            }
+            $stmt->bind_param("ssssssi", $fullname, $address, $email, $gender, $phone, $dob, $id);
+            $result = $stmt->execute();
+            $stmt->close();
+            return $result;
+        }
+}
 ?>

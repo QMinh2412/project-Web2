@@ -1,0 +1,90 @@
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.form-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Table */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.admin-table th,
+.admin-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.admin-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.table-input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-add {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-save {
+    background-color: #007bff;
+    color: white;
+    margin-top: 20px;
+    align-self: flex-end;
+}
+
+.btn-add-row {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+}
+
+.btn-remove-row {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}

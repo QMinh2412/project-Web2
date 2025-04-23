@@ -23,7 +23,7 @@
 
                 if ($user) {
                     if ($this->accountModel->verifyPassword($MKTK, $user['MKTK'])) {
-                        if ($user['LoaiTK'] == 3 || $user['LoaiTK'] == 4) {
+                        if ($user['LoaiTK'] == 1 || $user['LoaiTK'] == 2 || $user['LoaiTK'] == 3 || $user['LoaiTK'] == 4) {
                             session_start();
                             $_SESSION['user_id'] = $user['MaTK'];
                             $_SESSION['role'] = $user['LoaiTK'];
@@ -65,7 +65,7 @@
             setcookie('role', '', time() - 3600, '/');
             setcookie('TenTK', '', time() - 3600, '/');
         
-            header("Location: /project-Web2/admin/controllers/loginController.php?action=index");
+            header("Location: /project-Web2/admin/views/layouts/login.php");
             exit;
         }
     }

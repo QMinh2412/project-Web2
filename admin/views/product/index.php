@@ -8,7 +8,7 @@
     <table class="admin-list-container">
         <thead class="admin-list-header">
             <tr class="admin-list-header-content">
-                <th id="product-order">STT</th>
+                <th id="product-order">ID</th>
                 <th id="product-name">Tên sách</th>
                 <th id="product-category">Thể loại</th>
                 <th id="product-quantity">Số lượng</th>

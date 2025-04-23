@@ -4,13 +4,13 @@
 
 #addCategoryBtn {
     position: absolute;
-    background-color: #4CAF50; /* Green */
+    border: solid 1px #4CAF50; /* Green */
     padding: 15px;
     border-radius: 10px;
-    border: none;
     right: 20px;
     top: 10px;
-    color: white;
+    color: black;
+    background-color: white;
     text-decoration: none;
     transition: background-color 0.3s ease-in-out; 
     display: inline-flex;
@@ -20,10 +20,12 @@
 }
 
 #addCategoryBtn:hover {
+    color: white;
     background-color: #45a049; 
 }
 
 #addCategoryBtn:active {
+    color: white;
     background-color: #3e8e41; 
 }
 
@@ -95,36 +97,40 @@
 
 /* Edit category */
 #editCategoryBtn {
-    background-color: #3ea2e1;
-    color: white;
+    border: solid 1px #3ea2e1;
+    background-color: white;
+    color: black;
     padding: 10px;
     border-radius: 5px;
-    border: none;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out; 
 }
 #editCategoryBtn:hover {
+    color: white;
     background-color: #2b76a4; 
 }
 #editCategoryBtn:active {
+    color: white;
     background-color: #1c4f6e; 
 }
 
 /* Delete category */
 #deleteCategoryBtn {
-    background-color: red; 
-    color: white;
+    border: solid 1px red; 
+    background-color: white;
+    color: black;
     padding: 10px;
     border-radius: 5px;
-    border: none;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out; 
 }
 #deleteCategoryBtn:hover {
-    background-color: #b30000; 
+    color: white;
+    background-color: red; 
 }
 #deleteCategoryBtn:active {
-    background-color: #800000; 
+    color: white;
+    background-color: #da0000; 
 }
 
 @media only screen and (max-width: 600px) {

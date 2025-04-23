@@ -85,13 +85,6 @@ body {
         padding: 5px;
     }
 
-    /* Off-canvas sidebar */
-    #mobile-menu-toggle {
-        display: block;
-        position: absolute; top: 15px; left: 25px; z-index: 999;
-        background-color: #283339;
-        color: white;
-    }
     #left-menu {
         position: fixed; 
         top:0; 
@@ -107,6 +100,7 @@ body {
         transform: translateX(0);
     }
 
+    /* Close button nằm trong menu */
     /* Close button nằm trong menu */
     #admin-menu-icon {
         display: none; /* sẽ bật bằng JS khi menu.open */
@@ -134,4 +128,3 @@ body {
         display: none;
     }
 }
-  

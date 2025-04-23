@@ -1,15 +1,15 @@
 <script src="/project-Web2/admin/assets/js/product.js"></script>
 
 <?php 
-$category = $categoryMap[$product['MaLoai']] ?? 'N/A';
+    $category = $categoryMap[$product['MaLoai']] ?? 'N/A';
 
-$status = $product['TinhTrang'] == 1 ? 'Đang bán' : 'Ngừng bán';
+    $status = $product['TinhTrang'] == 1 ? 'Đang bán' : 'Ngừng bán';
 
-$author = $authorMap[$product['MaTG']] ?? 'N/A';
+    $author = $authorMap[$product['MaTG']] ?? 'N/A';
 
-$publisher = $publisherMap[$product['MaNXB']] ?? 'N/A';
+    $publisher = $publisherMap[$product['MaNXB']] ?? 'N/A';
 
-$provider = $providerMap[$product['MaNCC']] ?? 'N/A';
+    $provider = $providerMap[$product['MaNCC']] ?? 'N/A';
 ?>
 <div class="admin-wrapper" id="admin-wrapper-product-detail">
     <div class="admin-header" id="product-header">
@@ -56,16 +56,14 @@ $provider = $providerMap[$product['MaNCC']] ?? 'N/A';
 
             <label class="product-create-label" for="product-image">Hình ảnh:</label><br>
             <div id="product-image-preview">
-            <?php if (!empty($images)): ?>
-                <?php foreach ($images as $src): ?>
-                    <img src="<?= htmlspecialchars($src['DgDanAnh'], ENT_QUOTES, 'UTF-8') ?>" class="product-image-img" alt="<?= htmlspecialchars($product['TenSach']) ?>">
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p id="emptyImageinDetail">Không có hình ảnh cho sản phẩm này.</p>
-            <?php endif; ?>
+                <?php if (!empty($images)): ?>
+                    <?php foreach ($images as $src): ?>
+                        <img src="<?= htmlspecialchars($src['DgDanAnh'], ENT_QUOTES, 'UTF-8') ?>" class="product-image-img" alt="<?= htmlspecialchars($product['TenSach']) ?>">
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p id="emptyImageinDetail">Không có hình ảnh cho sản phẩm này.</p>
+                <?php endif; ?>
             </div>
-
-
             <button type="button" class="product-create-Btns" id="closeProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">Xong</button>
         </div>
     </div>

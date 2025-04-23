@@ -18,6 +18,7 @@
 
             $users = $userModel->getUserPagination($currentPage, $usersPerPage);
             $pagination = $userModel->getPagination($currentPage, $usersPerPage);
+            $pagination['limit'] = $usersPerPage;
 
             $this->render('user/index', [
                 'users' => $users,

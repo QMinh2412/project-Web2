@@ -1,4 +1,3 @@
-
 <div class="admin-wrapper">
     <div class="admin-header" id="user-header">
         <h2>Tài khoản</h2>
@@ -16,10 +15,10 @@
             </tr>
         </thead>
         <tbody class="admin-list-body">
-            <?php $stt = 1; ?>
+            <?php $stt = ($pagination['currentPage'] - 1) * $pagination['limit'] + 1; ; ?>
             <?php foreach ($users as $user): ?>
                 <tr class="admin-list-body-content">
-                    <td class="admin-list-body-content-num" id="user-stt"><?= $stt++ ?></td>
+                    <td class="admin-list-body-content-num" id="user-stt"><?= $stt++?></td>
                     <td class="admin-list-body-content-other" id="user-name"><?= htmlspecialchars($user['TenND']) ?></td>
                     <td class="admin-list-body-content-other" id="user-email"><?= htmlspecialchars($user['EmailND']) ?></td>
                     <td class="admin-list-body-content-other" id="user-role">
