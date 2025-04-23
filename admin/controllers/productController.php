@@ -54,8 +54,6 @@
             $providerModel = new Provider();
             $providers = $providerModel->getAllProviders();
 
-            
-
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $productName = trim(strip_tags($_POST['product_name']));

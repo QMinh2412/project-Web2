@@ -37,7 +37,10 @@
                 </button>
             </div>
             <div class="order-form-group">
-                <button type="button" class="import-add-btn" id="import-add-btn" onclick="addImport(this)">Thêm phiếu nhập</button>
+                <button type="button" class="import-add-btn" id="import-add-btn" onclick="addImport(this)">
+                    <i class='bx bx-plus'></i>
+                    Thêm phiếu nhập
+                </button>
             </div>
         </form>
     </div>

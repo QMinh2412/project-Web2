@@ -4,13 +4,13 @@
     <div class="admin-header" id="import-header">
         <h2>Thông tin nhập sách</h2>
     </div>
-    <div class="order-container">
-        <div class="order-form-group">
+    <div class="import-container">
+        <div class="import-form-group">
             <label for="import-create-provider">Nhà cung cấp</label>
             <input type="text" id="import-create-provider" name="import_provider" value="<?= htmlspecialchars($provider['TenNCC']) ?>" readonly>
         </div>
-        <div class="order-form-group">
-            <label for="import-create-profit">Chiến khấu</label>
+        <div class="import-form-group">
+            <label for="import-create-profit">Chiết khấu</label>
             <input type="text" id="import-create-profit" name="import_profit" value="<?= htmlspecialchars($profit) ?>%" readonly>
         </div>
     </div>
@@ -24,7 +24,6 @@
         <thead class="admin-list-header">
             <tr class="admin-list-header-content">
                 <th></th>
-                <th id="import-create-product-order">STT</th>
                 <th id="import-create-product-name">Tên sách</th>
                 <th id="import-create-product-category">Thể loại</th>
                 <th id="import-create-product-quanity">Số lượng</th>
@@ -43,8 +42,9 @@
         <h3>Thêm sách vào phiếu nhập</h3>
         <label>Tên sách:</label>
         <select id="importAddBookSelect">
+            <option value="0">Chọn tên sách</option>
             <?php foreach ($products as $product): ?>
-                <option value="<?= $product['MaSach'] ?>" data-name="<?= htmlspecialchars($product['TenSach']) ?>" data-category="<?= $categoryMap[$product['MaLoai']] ?>">
+                <option value="<?= $product['MaSach'] ?>" data-name="<?= htmlspecialchars($product['TenSach']) ?>" data-category="<?= $categoryMap[$product['MaLoai']] ?>" data-id="<?= $product['MaSach'] ?>">
                     <?= htmlspecialchars($product['TenSach']) ?>
                 </option>
             <?php endforeach; ?>

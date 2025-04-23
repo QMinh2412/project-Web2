@@ -71,41 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("createProductImportBtn").addEventListener("click", function () {
         document.getElementById("addBookModal").style.display = "block";
     });
-    
-    
-    // let bookCount = 0;
-
-    // function addBookToTable() {
-    //     const select = document.getElementById("importAddBookSelect");
-    //     const bookId = select.value;
-    //     const name = select.options[select.selectedIndex].dataset.name;
-    //     const category = select.options[select.selectedIndex].dataset.category;
-    //     const quantity = document.getElementById("importAddBookQuantity").value;
-    //     const price = document.getElementById("importAddBookPrice").value;
-
-    //     if (!quantity || !price || quantity <= 0 || price <= 0) {
-    //         alert("Vui lòng nhập số lượng và giá nhập hợp lệ.");
-    //         return;
-    //     }
-
-    //     const tbody = document.querySelector(".admin-list-body");
-    //     const row = document.createElement("tr");
-
-    //     row.innerHTML = `
-    //         <td>${++bookCount}</td>
-    //         <td>${name}</td>
-    //         <td>${category}</td>
-    //         <td>${quantity}</td>
-    //         <td>${price}</td>
-    //         <input type="hidden" name="books[${bookCount}][id]" value="${bookId}">
-    //         <input type="hidden" name="books[${bookCount}][quantity]" value="${quantity}">
-    //         <input type="hidden" name="books[${bookCount}][price]" value="${price}">
-    //     `;
-
-    //     tbody.appendChild(row);
-    //     closeAddBookModal();
-    // }
-
 });
 
 function handleStatusChange(select, importId, currentPage) {
@@ -128,9 +93,9 @@ function closeAddBookModal() {
 }
 
 let bookCount = 0;
-
 /* Model them san pham */
 function addBookToTable() {
+    bookCount ++;
     const select = document.getElementById("importAddBookSelect");
     const bookId = select.value;
     const name = select.options[select.selectedIndex].dataset.name;
@@ -138,8 +103,8 @@ function addBookToTable() {
     const quantity = document.getElementById("importAddBookQuantity").value;
     const price = document.getElementById("importAddBookPrice").value;
 
-    if (!quantity || !price || quantity <= 0 || price < 10000) {
-        alert("Vui lòng nhập số lượng và giá nhập hợp lệ.");
+    if (!quantity || !price || quantity <= 0 || price < 10000 || bookId == 0) {
+        alert("Vui lòng kiểm tra lại thông tin.");
         return;
     }
 
@@ -150,7 +115,6 @@ function addBookToTable() {
 
     row.innerHTML = `
         <td><button type="button" class="btn btn-sm btn-danger delete-btn"><i class='bx bx-x'></i></button></td>
-        <td>${++bookCount}</td>
         <td>${name}</td>
         <td>${category}</td>
         <td>${quantity}</td>
@@ -162,7 +126,6 @@ function addBookToTable() {
 
     row.querySelector(".delete-btn").addEventListener("click", () => {
         row.remove();
-        // Bỏ disable cho option đã bị ẩn, để được chọn lại
         select.querySelector(`option[value="${bookId}"]`).disabled = false;
     });
     tbody.appendChild(row);
