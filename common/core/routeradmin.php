@@ -15,6 +15,25 @@ class RouteAdmin {
         $current_page = isset($_GET['current_page']) ? (int)$_GET['current_page'] : 1;
         $id = isset($_GET['id']) ? $_GET['id'] : null;
 
+        // Lấy loại tài khoản từ session
+        $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
+        
+        // Định nghĩa quyền truy cập cho từng loại tài khoản
+        $permissions = [
+            'dashboard' => [2, 4], 
+            'category' => [1, 4],
+            'product' => [1, 4], 
+            'user' => [3, 4], 
+            'import' => [1, 4], 
+            'order' => [2, 4], 
+            'review' => [2, 4],
+        ];
+        
+        // Kiểm tra quyền truy cập
+        if (isset($permissions[$page]) && !in_array($role, $permissions[$page])) {
+            echo "<script>alert('Bạn không có quyền truy cập vào trang này!'); window.history.back();</script>";
+            exit;
+        }
         switch ($page) {
             case 'dashboard':
                 $controller = new DashboardController();
