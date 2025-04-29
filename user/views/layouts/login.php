@@ -3,7 +3,7 @@
 session_start();
 
 // Kiểm tra nếu người dùng đã đăng nhập, chuyển hướng đến trang chính
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['account_id'])) {
     header("Location: main_layout.php");
     exit;
 }
