@@ -23,7 +23,7 @@
                     <td class="admin-list-body-content-other" id="review-content"><?= htmlspecialchars($review['NoiDung']) ?></td>
                     <td class="admin-list-body-content-other" id="review-date"><?= date('d/m/Y', strtotime($review['NgayViet'])) ?></td>
                     <td class="admin-list-body-content-other" id="review-features">
-                        <button class="btn-review" onclick="window.location.href='/project-Web2/review/index.php?page=detail&action=show_detail&id_book=<?=$review['MaSach'] ?>'">Xem</button>
+                        <button class="btn-review" onclick="window.location.href='/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?=$review['MaSach'] ?>'">Xem</button>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -23,16 +23,16 @@
 .menuitems {
     display: flex;
     align-items: center;
-    min-height: 60px; /* Đảm bảo chiều cao đồng nhất */
-    padding-left: 35px; /* Thụt lề đồng nhất với các mục khác */
+    min-height: 60px; 
+    padding-left: 35px; 
 }
 
 .menuitems i {
-    margin-right: 10px; /* Giảm khoảng cách giữa icon và văn bản */
     font-size: 1.2em;
 }
 
 .menuitems-span {
+    margin-left: 20px;
     flex-grow: 1;
 }
 

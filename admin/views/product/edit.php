@@ -92,7 +92,6 @@
 
             <label class="product-create-label" for="product-image">Hình ảnh:</label><br>
             <input type="hidden" id="existing-image-count" value="<?= count($oldImages ?? []) ?>">
-            <input class="product-create-text" type="file" name="product_image[]" id="edit-product-image-input" accept="image/*" multiple>
             <div id="edit-product-image-preview-container">
                 <?php foreach ($oldImages as $img): ?>
                     <div class="edit-product-image-wrapper">
@@ -106,6 +105,7 @@
                     <p id="product-image-preview-notification"><strong>Hình ảnh mới:</strong></p>
                     <p id="product-image-preview-alert">Không có hình ảnh mới được tải lên.</p>
                 </div>
+                <input class="product-create-text" type="file" name="product_image[]" id="edit-product-image-input" accept="image/*" multiple>
                 <div id="edit-product-new-image-preview" style="margin-top: 5px;"></div>
             </div>
         
