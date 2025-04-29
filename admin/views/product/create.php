@@ -104,7 +104,9 @@
 </div>
 
 <!-- Modal hiển thị ảnh -->
-<div id="ProductCreateImageModal" class="image-modal">
+<div id="universalImageModal" class="image-modal">
     <span class="close">&times;</span>
-    <img class="modal-content" id="ProductCreateModalImage">
+    <img id="universalModalImage" class="modal-content">
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
 </div>
