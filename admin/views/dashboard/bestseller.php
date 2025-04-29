@@ -20,7 +20,7 @@
                     <td><?= $index++ ?></td>
                     <td><?= htmlspecialchars($bestSeller['TenSach']) ?></td>
                     <td><?= htmlspecialchars($bestSeller['total_sold']) ?></td>
-                    <td><?= number_format($bestSeller['total_amount'], 0, ',', '.') ?>₫</td>
+                    <td><?= number_format($bestSeller['total_revenue'], 0, ',', '.') ?>₫</td>
                 </tr>
             <?php endforeach; ?>
         <?php else : ?>

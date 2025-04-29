@@ -28,12 +28,12 @@
 }
 
 .menuitems i {
-    margin-right: 10px; /* Giảm khoảng cách giữa icon và văn bản */
     font-size: 1.2em;
 }
 
 .menuitems-span {
     flex-grow: 1;
+    margin-left: 20px;
 }
 
 .menuitems:hover {

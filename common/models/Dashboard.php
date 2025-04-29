@@ -8,8 +8,21 @@
             $this->db = Database::getInstance();
         }
 
+        private function buildDateFilter(&$params, $from = null, $to = null) {
+            $filter = "hd.TrangThaiDH = 3";
+            if ($from && $to) {
+                $filter .= " AND DATE(hd.NgLap) BETWEEN ? AND ?";
+                $params[] = $from;
+                $params[] = $to;
+            }
+            return $filter;
+        }
+        
         // Lấy danh sách khách hàng thân thiết
-        public function getLoyalCustomers() {
+        public function getLoyalCustomers($from = null, $to = null) {
+            $params = [];
+            $whereClause = $this->buildDateFilter($params, $from, $to);
+        
             $query = "
                 SELECT 
                     nd.TenND AS name,
@@ -20,58 +33,96 @@
                 FROM TaiKhoan tk
                 JOIN NgDung nd ON tk.MaND = nd.MaND
                 JOIN HoaDon hd ON tk.MaTK = hd.MaKH
-                WHERE tk.LoaiTK = 0
-                  AND hd.TrangThaiDH = 3
+                WHERE $whereClause
                 GROUP BY tk.MaTK
                 ORDER BY total_amount DESC
                 LIMIT 5
             ";
-            
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $customers = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         
-            return $customers;
+            $stmt = $this->db->prepare($query);
+            if (!empty($params)) {
+                $stmt->bind_param(str_repeat('s', count($params)), ...$params);
+            }
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
         
-        public function getBestSellingProducts() {
+        
+        public function getBestSellingProducts($from = null, $to = null) {
+            $params = [];
+            $whereClause = $this->buildDateFilter($params, $from, $to);
+        
             $query = "
                 SELECT 
                     ds.TenSach AS TenSach,
                     SUM(ct.SoLg) AS total_sold,
-                    SUM(ct.SoLg * ct.DonGia) AS total_amount
+                    SUM(ct.SoLg * ct.DonGia) AS total_revenue
                 FROM CTHD ct
                 JOIN DauSach ds ON ct.MaSach = ds.MaSach
                 JOIN HoaDon hd ON ct.MaHD = hd.MaHD
-                WHERE hd.TrangThaiDH = 3
+                WHERE $whereClause
                 GROUP BY ds.MaSach
                 ORDER BY total_sold DESC
                 LIMIT 5
             ";
-            
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $products = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         
-            return $products;
-        }
+            $stmt = $this->db->prepare($query);
+            if (!empty($params)) {
+                $stmt->bind_param(str_repeat('s', count($params)), ...$params);
+            }
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        }        
         
         
 
-        public function getTotalRevenue() {
-            $sql = "SELECT SUM(TongTien) AS TotalRevenue FROM hoadon WHERE TrangThaiDH = 3";
-            $stmt = $this->db->prepare($sql);
+        public function getTotalRevenue($from = null, $to = null) {
+            $query = "SELECT SUM(TongTien) AS TotalRevenue FROM hoadon WHERE TrangThaiDH = 3";
+        
+            $params = [];
+            $types = '';
+        
+            if ($from && $to) {
+                $query .= " AND DATE(NgLap) BETWEEN ? AND ?";
+                $params[] = $from;
+                $params[] = $to;
+                $types = 'ss';
+            }
+        
+            $stmt = $this->db->prepare($query);
+            if (!empty($params)) {
+                $stmt->bind_param($types, ...$params);
+            }
+        
             $stmt->execute();
             $result = $stmt->get_result()->fetch_assoc();
             return $result['TotalRevenue'] ?? 0;
         }
         
-        public function getTotalCost() {
-            $sql = "SELECT SUM(TongTien) AS TotalRevenue FROM phnhap WHERE TinhTrang = 1";
-            $stmt = $this->db->prepare($sql);
+        
+        
+        public function getTotalCost($from = null, $to = null) {
+            $query = "SELECT SUM(TongTien) AS TotalCost FROM phnhap WHERE TinhTrang = 1";
+        
+            $params = [];
+            $types = '';
+        
+            if ($from && $to) {
+                $query .= " AND DATE(NgNhap) BETWEEN ? AND ?";
+                $params[] = $from;
+                $params[] = $to;
+                $types = 'ss';
+            }
+        
+            $stmt = $this->db->prepare($query);
+            if (!empty($params)) {
+                $stmt->bind_param($types, ...$params);
+            }
+        
             $stmt->execute();
             $result = $stmt->get_result()->fetch_assoc();
-            return $result['TotalRevenue'] ?? 0;
+            return $result['TotalCost'] ?? 0;
         }
+        
     }
 ?>
