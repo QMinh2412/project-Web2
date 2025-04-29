@@ -19,7 +19,6 @@
                 <th>STT</th>
                 <th>Họ tên</th>
                 <th>Email</th>
-                <th>Loại tài khoản</th>
                 <th>Số đơn hàng</th>
                 <th>Tổng tiền</th>
             </tr>
@@ -31,18 +30,6 @@
                         <td><?= $index + 1 ?></td>
                         <td><?= htmlspecialchars($customer['name']) ?></td>
                         <td><?= htmlspecialchars($customer['email']) ?></td>
-                        <td>
-                            <?php
-                                switch ($customer['account_type']) {
-                                    case 0: echo 'Khách hàng'; break;
-                                    case 1: echo 'Quản lý'; break;
-                                    case 2: echo 'Nhân viên'; break;
-                                    case 3: echo 'Admin'; break;
-                                    case 4: echo 'Chủ'; break;
-                                    default: echo 'Không xác định'; break;
-                                }
-                            ?>
-                        </td>
                         <td><?= $customer['order_count'] ?></td>
                         <td><?= number_format($customer['total_amount'], 0, ',', '.') ?>đ</td>
                     </tr>
