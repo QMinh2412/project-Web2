@@ -360,36 +360,71 @@ input:checked + .slider::before {
 }
 
 /************ RESPONSIVE **************/
-@media only screen and (max-width: 600px) {
-    .user-wrapper {
-        width: 100%;
+@media only screen and (max-width: 1050px) {
+    /* Reduce padding and size */
+    .admin-wrapper {
         padding: 10px;
     }
 
-    /* Hide email column on small screens */
+    .admin-list-container th,
+    .admin-list-container td {
+        padding: 6px 4px;
+        font-size: 12px;
+    }
+
+    /* Hide email on smaller screens */
     #user-email {
         display: none;
     }
 
-    /* Adjust other column widths */
+    /* Reassign width to adapt better */
     #user-stt {
         width: 10%;
     }
+
     #user-name {
         width: 30%;
     }
+
     #user-role {
         width: 20%;
     }
+
     #user-status {
         width: 20%;
     }
+
     #user-action {
         width: 20%;
     }
 
+    /* Ensure buttons stay in a row */
+    #user-action {
+        display: flex;
+        justify-content: center;
+    }
 
+    #user-action .btn-user {
+        padding: 4px 6px;
+        font-size: 12px;
+    }
+
+    .btn-user .bx {
+        font-size: 14px;
+    }
+
+    /* Make add button fit smaller screens */
+    .btn-add {
+        padding: 10px;
+        font-size: 14px;
+        right: 10px;
+    }
+
+    .admin-header h2 {
+        font-size: 18px;
+    }
 }
+
 
 @media only screen and (min-width: 601px) {
     #admin-wrapper-user-view {
