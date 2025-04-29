@@ -189,10 +189,56 @@
     box-sizing: border-box;
 }
 
+.import-container {
+    margin: 0 20px 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.import-form-group {
+    flex: 1 1 48%;
+    display: flex;
+    flex-direction: column;
+}
+
+.import-form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+#import-create-provider,
+#import-create-profit {
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+#createProductImportBtn {
+    padding: 12px;
+    border-radius: 5px;
+    margin: 0px 0px 10px 20px;
+    background-color: #00ff66;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#createProductImportBtn:hover {
+    background-color: #01d355;
+}
+
+#createProductImportBtn:hover {
+    background-color: #03b349;
+}
+
 #import-add-btn {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 #import-add-btn button {

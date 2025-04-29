@@ -52,7 +52,7 @@
         <select id="importAddBookSelect">
             <option value="0">Chọn tên sách</option>
             <?php foreach ($products as $product): ?>
-                <option value="<?= $product['MaSach'] ?>" data-name="<?= htmlspecialchars($product['TenSach']) ?>" data-category="<?= $categoryMap[$product['MaLoai']] ?>">
+                <option value="<?= $product['MaSach'] ?>" data-name="<?= htmlspecialchars($product['TenSach']) ?>" data-category="<?= $categoryMap[$product['MaLoai']] ?>" data-id="<?= $product['MaSach'] ?>">
                     <?= htmlspecialchars($product['TenSach']) ?>
                 </option>
             <?php endforeach; ?>
