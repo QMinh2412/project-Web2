@@ -20,7 +20,7 @@
         }
         
         public function getOrderDetailsByOrderId($orderId) {
-            $query = "SELECT CTHD.SoLg, CTHD.MaSach, DS.TenSach, TL.TenLoai, DS.GiaBan
+            $query = "SELECT CTHD.SoLg, CTHD.MaSach, DS.TenSach, TL.TenLoai, CTHD.DonGia
                         FROM CTHD 
                         JOIN DauSach DS ON CTHD.MaSach = DS.MaSach
                         JOIN TheLoai TL ON DS.MaLoai = TL.MaLoai
@@ -36,6 +36,31 @@
             }
 
             return $details;
+        }
+
+        public function createOrderDetail($order_id, $product_id, $quantity) {
+            if (!$order_id || !$product_id || !$quantity) {
+                error_log("Invalid input for createOrderDetail: order_id=$order_id, product_id=$product_id, quantity=$quantity");
+                return false;
+            }
+        
+            $query = "INSERT INTO CTHD (MaHD, MaSach, SoLg) VALUES (?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) {
+                error_log("Prepare failed: " . $this->db->error);
+                return false;
+            }
+        
+            $stmt->bind_param("iii", $order_id, $product_id, $quantity);
+            $result = $stmt->execute();
+            if (!$result) {
+                error_log("Execute failed: " . $stmt->error);
+                $stmt->close();
+                return false;
+            }
+        
+            $stmt->close();
+            return true;
         }
     }
 ?>

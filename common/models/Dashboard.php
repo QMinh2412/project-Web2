@@ -38,7 +38,8 @@
             $query = "
                 SELECT 
                     ds.TenSach AS TenSach,
-                    SUM(ct.SoLg) AS total_sold
+                    SUM(ct.SoLg) AS total_sold,
+                    SUM(ct.SoLg * ct.DonGia) AS total_amount
                 FROM CTHD ct
                 JOIN DauSach ds ON ct.MaSach = ds.MaSach
                 JOIN HoaDon hd ON ct.MaHD = hd.MaHD
@@ -54,6 +55,7 @@
         
             return $products;
         }
+        
         
 
         public function getTotalRevenue() {

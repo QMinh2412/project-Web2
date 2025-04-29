@@ -9,7 +9,6 @@
                 <th>STT</th>
                 <th>Tên sách</th>
                 <th>Số lượng bán được</th>
-                <th>Giá tiền</th>
                 <th>Tổng tiền</th>
             </tr>
         </thead>
@@ -21,8 +20,7 @@
                     <td><?= $index++ ?></td>
                     <td><?= htmlspecialchars($bestSeller['TenSach']) ?></td>
                     <td><?= htmlspecialchars($bestSeller['total_sold']) ?></td>
-                    <td>—</td> <!-- Giá (nếu cần lấy thì join thêm) -->
-                    <td>—</td> <!-- Tổng tiền (nếu cần lấy thì tự tính) -->
+                    <td><?= number_format($bestSeller['total_amount'], 0, ',', '.') ?>₫</td>
                 </tr>
             <?php endforeach; ?>
         <?php else : ?>

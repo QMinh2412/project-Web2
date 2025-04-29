@@ -12,53 +12,39 @@
             $this->db = Database::getInstance();
         }
 
-        public function createOrder($account_id, $items, $personalInfo, $shipping_method, $payment_method) {
-            try {
-                $this->db->beginTransaction();
-    
-                // Tính tổng tiền
-                $total = array_sum(array_map(fn($item) => $item['GiaBan'] * $item['SoLg'], $items));
-                $shipping_fee = $shipping_method === 'express' ? $total * 0.1 : 0;
-                $total += $shipping_fee;
-    
-                // Tạo đơn hàng (HoaDon)
-                $sql = "INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, PhThucTT, PhThucVC, SDT, TongTien) 
-                        VALUES (?, ?, NOW(), 1, ?, ?, ?, ?, ?, ?)";
-                $stmt = $this->db->prepare($sql);
-                $maNV = 0; // Giả sử MaNV mặc định là 2 (có thể lấy từ hệ thống)
-                $stmt->bind_param("iissiisi", 
-                    $maNV, 
-                    $account_id, 
-                    $personalInfo['note'], 
-                    $personalInfo['address'], 
-                    $payment_method, 
-                    $shipping_method, 
-                    $personalInfo['phone'], 
-                    $total
-                );
-                $stmt->execute();
-                $order_id = $this->db->insert_id;
-    
-                // Thêm chi tiết đơn hàng (CTHD)
-                $sql = "INSERT INTO CTHD (SoLg, MaHD, MaSach) VALUES (?, ?, ?)";
-                $stmt = $this->db->prepare($sql);
-                foreach ($items as $item) {
-                    $stmt->bind_param("iii", $item['SoLg'], $order_id, $item['MaSach']);
-                    $stmt->execute();
-                }
-    
-                // Cập nhật tồn kho
-                $productModel = new Product();
-                foreach ($items as $item) {
-                    $productModel->updateStock($item['MaSach'], $item['SoLg']);
-                }
-    
-                $this->db->commit();
-                return $order_id;
-            } catch (Exception $e) {
-                $this->db->rollBack();
+        public function createOrder($staff_id, $user_id, $createDate, $status, $note, $address, $phone, $paymentMethod, $shippingMethod, $total_bill) {
+            $query = "INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, SDT, PhThucTT, PhThucVC, TongTien) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) {
+                error_log("Failed to prepare statement: " . $this->db->error);
                 return false;
             }
+
+            $stmt->bind_param(
+            "iisisssiii",
+            $staff_id,
+            $user_id,
+            $createDate,
+            $status,
+            $note,
+            $address,
+            $phone,
+            $paymentMethod,
+            $shippingMethod,
+            $total_bill
+            );
+
+            if (!$stmt->execute()) {
+                error_log("Failed to execute statement: " . $stmt->error);
+                $stmt->close();
+                return false;
+            }
+
+            $insert_id = $stmt->insert_id;
+            $stmt->close();
+            return $insert_id;
         }
     
         public function getById($order_id) {

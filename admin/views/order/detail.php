@@ -113,7 +113,7 @@
                 $orderDetail_order = 1;
                 $totalValue = 0;
                 foreach ($details as $index => $detail): 
-                    $TotalOfProduct = $detail['GiaBan'] * $detail['SoLg'];  
+                    $TotalOfProduct = $detail['DonGia'] * $detail['SoLg'];  
                     $totalValue += $TotalOfProduct;
             ?>
             <tr>
