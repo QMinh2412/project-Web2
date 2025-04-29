@@ -26,7 +26,6 @@ class RouteAdmin {
         // Lấy loại tài khoản từ session
         $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
         
-        // Định nghĩa quyền truy cập cho từng loại tài khoản
         $permissions = [
             'dashboard' => [1, 2, 3, 4], 
             'category' => [1, 4],
