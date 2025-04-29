@@ -121,5 +121,18 @@
             $stmt->bind_param("i", $id);
             return $stmt->execute();
         }
+
+        public function getOrdersByAccountId($account_id) {
+            $query = "SELECT * FROM HoaDon WHERE MaKH = $account_id";
+            $result = $this->db->query($query);
+            $orders = [];
+
+            if($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $orders[] = $row;
+                }
+            }
+            return $orders;
+        }
     }
 ?>

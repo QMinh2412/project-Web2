@@ -5,6 +5,9 @@
     require_once __DIR__ . '/../../common/models/Order.php';
     require_once __DIR__ . '/../../common/models/OrderDetail.php';
     require_once __DIR__ . '/../../common/models/Product.php';
+    require_once __DIR__ . '/../../common/models/User.php';
+    require_once __DIR__ . '/../../common/models/Account.php';
+    
 
 
     class OrderController{
@@ -122,7 +125,9 @@
 
                 // Create order details
                 foreach ($booksInCart as $book) {
-                    if (!$orderDetailModel->createOrderDetail($newOrderId, $book['MaSach'], $book['SoLg'])) {
+                    $bookInfo = $productModel->getProductById($book['MaSach']);
+                    $bookPrice = $bookInfo['GiaBan'];
+                    if (!$orderDetailModel->createOrderDetail($newOrderId, $book['MaSach'], $book['SoLg'], $bookPrice)) {
                         echo json_encode(['status' => 'error', 'message' => 'Không thể tạo chi tiết hóa đơn trong giỏ hàng']);
                         exit;
                     }
@@ -166,7 +171,9 @@
 
                 // Create order details
                 foreach ($booksInCart as $book) {
-                    if (!$orderDetailModel->createOrderDetail($newOrderId, $book['MaSach'], $book['SoLg'])) {
+                    $bookInfo = $productModel->getProductById($book['MaSach']);
+                    $bookPrice = $bookInfo['GiaBan'];
+                    if (!$orderDetailModel->createOrderDetail($newOrderId, $book['MaSach'], $book['SoLg'], $bookPrice)) {
                         echo json_encode(['status' => 'error', 'message' => 'Không thể tạo chi tiết hóa đơn']);
                         exit;
                     }
@@ -195,6 +202,87 @@
             } else {
                 echo json_encode($totalPrice * 0.1);
             }
+        }
+
+        public function showOrderHistory(){
+            $account_id = $_SESSION['account_id'] ?? null;
+            if (!$account_id) {
+                header("Location: /project-Web2/user/index.php?page=login");
+                exit;
+            }
+
+            $orderModel = new Order();
+            $orderDetailModel = new OrderDetail();
+            $productModel = new Product();
+
+            $orders = $orderModel->getOrdersByAccountId($account_id);
+
+            ob_start();
+            include __DIR__ . '/../views/order/order_history.php';
+            $main_content = ob_get_clean();
+            include __DIR__ . '/../views/layouts/main_layout.php';
+        }
+
+        public function showOrderDetail(){
+            $order_id = $_POST['orderId'] ?? null;
+            $account_id = $_SESSION['account_id'] ?? null;
+
+            if (!$order_id) {
+                echo json_encode(['status' => 'error', 'message' => 'Thiếu thông tin đơn hàng']);
+                exit;
+            }
+            if (!$account_id) {
+                echo json_encode(['status' => 'error', 'message' => 'Thiếu thông tin tài khoản']);
+                exit;
+            }
+
+            // tạo đối tượng liên quan
+            $orderModel = new Order();
+            $orderDetailModel = new OrderDetail();
+            $userModel = new User();
+            $accountModel = new Account();
+
+            // lấy thông tin hóa đơn
+            $orderInfo = $orderModel->getOrderById($order_id);
+            if(!$orderInfo) {
+                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy hóa đơn']);
+                exit;
+            }
+            // lấy chi tiết hóa đơn
+            $orderDetails = $orderDetailModel->getOrderDetailByOrderId($order_id);
+            if(!$orderDetails) {
+                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy chi tiết hóa đơn']);
+                exit;
+            }
+
+            // lấy tên khách hàng
+            $accountInfo = $accountModel->getById($orderInfo['MaKH']);
+            $userId = $accountInfo['MaND'];
+            $userInfo = $userModel->getById($userId);
+            if(!$userInfo) {
+                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy thông tin người dùng']);
+                exit;
+            }
+
+            echo json_encode(['status' => 'success', 
+                'orderInfo' => $orderInfo,
+                'orderDetails' => $orderDetails,
+                'userInfo' => $userInfo
+            ]);
+            exit;
+        }
+
+        public function cancelOrder(){
+            // Lấy mã hóa đơn cần hủy
+            $orderId = $_POST['orderId'] ?? null;
+            if(!$orderId) {
+                echo json_encode(['status' => 'error', 'message' => 'Thiếu thông tin đơn hàng']);
+                exit;
+            }
+
+            $orderModel = new Order();
+            
+            echo json_encode(['status' => 'success', 'message' => 'Hủy đơn hàng thành công']);
         }
     }
 ?>

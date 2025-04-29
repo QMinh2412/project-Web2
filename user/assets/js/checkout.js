@@ -213,7 +213,8 @@ function sendDataByAjax(data) {
         console.log(response);
         if (response.status === "success") {
           alert(response.message);
-          // window.location.href = "/project-Web2/user/index.php?page=home";
+          window.location.href =
+            "/project-Web2/user/index.php?page=order&action=showOrderHistory";
         } else {
           alert("Lỗi: " + response.message);
         }

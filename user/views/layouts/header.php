@@ -34,7 +34,7 @@
                     <ul>
                         <a href="/project-Web2/user/index.php?page=account&action=updateAccount"><li>Cập nhật tài khoản</li></a>
                         <a href="/project-Web2/user/index.php?page=account&action=changePassword"><li>Thay đổi mật khẩu</li></a>
-                        <a href="#"><li>Lịch sử giao dịch</li></a>
+                        <a href="/project-Web2/user/index.php?page=order&action=showOrderHistory"><li>Lịch sử giao dịch</li></a>
                         <a href="/project-Web2/user/index.php?page=account&action=logout"><li style="color: red;">Đăng xuất</li></a>
                     </ul>
                 </div>
