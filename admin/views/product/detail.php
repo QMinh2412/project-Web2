@@ -55,24 +55,27 @@
             <input class="product-create-text" type="text" name="product_status" id="product-status-input" value="<?= htmlspecialchars($status) ?>" readonly>
 
             <label class="product-create-label" for="product-image">Hình ảnh:</label><br>
-            <div id="product-image-preview">
+            <div id="product-detail-image-preview">
                 <?php if (!empty($images)): ?>
                     <?php foreach ($images as $src): ?>
-                        <img src="<?= htmlspecialchars($src['DgDanAnh'], ENT_QUOTES, 'UTF-8') ?>" class="product-image-img" alt="<?= htmlspecialchars($product['TenSach']) ?>">
+                        <img src="<?= htmlspecialchars($src['DgDanAnh'], ENT_QUOTES, 'UTF-8') ?>" class="product-detail-image-img zoomable-img" alt="<?= htmlspecialchars($product['TenSach']) ?>">
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p id="emptyImageinDetail">Không có hình ảnh cho sản phẩm này.</p>
                 <?php endif; ?>
             </div>
-            <button type="button" class="product-create-Btns" id="closeProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">Xong</button>
+            <button type="button" class="product-create-Btns" id="closeProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">
+                <i class='bx bx-check'></i>
+                Xong
+            </button>
         </div>
     </div>
 </div>
 
 <!-- Modal hiển thị ảnh -->
-<div id="imageModal" class="image-modal">
+<div id="universalImageModal" class="image-modal">
     <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage" tabindex="-1">
+    <img id="universalModalImage" class="modal-content">
     <a class="prev">&#10094;</a>
     <a class="next">&#10095;</a>
 </div>

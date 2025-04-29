@@ -112,16 +112,17 @@
             <?php 
                 $orderDetail_order = 1;
                 $totalValue = 0;
-                foreach ($details as $idex => $detail): 
-                    $TotalOfProduct = $detail['GiaBan'] * $detail['SoLg'];  
+                foreach ($details as $index => $detail): 
+                    $TotalOfProduct = $detail['DonGia'] * $detail['SoLg'];  
                     $totalValue += $TotalOfProduct;
             ?>
+            <tr>
                 <td class="admin-list-body-content-num" id="order-detail-product-order"><?= $orderDetail_order++ ?></td>
                 <td class="admin-list-body-content-other" id="order-detail-product-name"><?= htmlspecialchars($detail['TenSach']) ?></td>
                 <td class="admin-list-body-content-num" id="order-detail-product-category"><?= htmlspecialchars($detail['TenLoai']) ?></td>
                 <td class="admin-list-body-content-num" id="order-detail-product-number"><?= htmlspecialchars(number_format($detail['SoLg'])) ?></td>
                 <td class="admin-list-body-content-num" id="order-detail-product-price"><?= htmlspecialchars(number_format($TotalOfProduct)) ?></td>
-
+            </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
@@ -132,6 +133,9 @@
         </div>
     </div>
     <div>
-        <button type="button" class="order-detail-close-Btns" id="closeOrderDetailBtn" onclick="location.href='?page=order&action=index&current_page=<?= $currentPage ?>'">Xong</button>
+        <button type="button" class="order-detail-close-Btns" id="closeOrderDetailBtn" onclick="location.href='?page=order&action=index&current_page=<?= $currentPage ?>'">
+            <i class='bx bx-check'></i>
+            Xong
+        </button>
     </div>
 </div>

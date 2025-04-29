@@ -116,6 +116,9 @@ class Route {
             case 'checkout':
                 $controller->checkout();
                 break;
+            case "calculateFeeShip":
+                $controller->calculateFeeShip();
+                break;
             default:
                 $controller->index();
                 break;

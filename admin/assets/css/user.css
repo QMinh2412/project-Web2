@@ -17,7 +17,7 @@
 }
 
 #user-email {
-    width: 18%;
+    width: 28%;
 }
 
 #user-role {
@@ -29,7 +29,7 @@
 }
 
 #user-action {
-    width: 15%;
+    width: 10%;
 }
 
 #user-name {
@@ -57,7 +57,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    /* gap: 5px; */
     text-decoration: none;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -65,13 +65,10 @@
     font-size: 14px;
     color: #333;
     background-color: #f9f9f9;
-    margin-right: 6px;
-    transition: all 0.3s ease;
+    /* margin-right: 6px; */
 }
 
 .btn-user:hover {
-    background-color: #eaeaea;
-    transform: scale(1.03);
     cursor: pointer;
 }
 
@@ -95,25 +92,81 @@
 }
 .btn-add {
     position: absolute;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: solid 1px #4CAF50;
     top: 10px;
     right: 20px;
-    border-color: #4caf50;
+    transition: background-color 0.3s ease-in-out; 
+}
+.btn-add:hover {
+    color: white;
+    background-color: #45a049; 
+}
+
+.btn-add:active {
+    color: white;
+    background-color: #3e8e41; 
 }
 
 /*********** DETAIL BUTTON **************/
 .btn-detail {
-    border-color: #cfcf00;
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px rgb(209, 209, 0);
+    transition: background-color 0.3s ease-in-out; 
+}
+
+.btn-detail:hover {
+    background-color: rgb(209, 209, 0); 
+}
+
+.btn-detail:active {
+    background-color: rgb(189, 189, 0); 
 }
 
 /*********** EDIT BUTTON **************/
 .btn-edit {
-    border-color: #00bcd4;
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px #3ea2e1;
+    transition: background-color 0.3s ease-in-out; 
+}
+.btn-edit:hover {
+    color: white;
+    background-color: #2f8bb0; 
+}
+
+.btn-edit:active {
+    color: white;
+    background-color: #2a7a9b;
 }
 
 /*********** DELETE BUTTON **************/
 .btn-delete {
-    border-color: #e57373;
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px rgb(255, 0, 0);
+    transition: background-color 0.3s ease-in-out; 
 }
+
+.btn-delete:hover {
+    color: white;
+    background-color: rgb(230, 0, 0);
+}
+
+.btn-delete:active {
+    color: white;
+    background-color: rgb(72, 0, 0);
+}
+
 
 /***************************** FORM ****************************/
 .user-form {
@@ -165,6 +218,11 @@
 }
 
 .form-user-confirm #btnuserconfirm {
+    background-color: #0ab2d4;
+    color: white;
+}
+
+.form-user-confirm #btnuseredit {
     background-color: #0ab2d4;
     color: white;
 }

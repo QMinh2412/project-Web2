@@ -62,11 +62,11 @@
             <input class="new-provider-input" type="email" name="product_provider_email" id="product-provider-email-input" style="display: none;" placeholder="Nhập email nhà cung cấp mới">
 
 
-            <label class="product-create-label" for="product-quantity">Số lượng:</label><br>
+            <!-- <label class="product-create-label" for="product-quantity">Số lượng:</label><br>
             <input class="product-create-numeric" type="number" name="product_quantity" id="product-quantity-input" placeholder="Số lượng" min="0" required>
 
             <label class="product-create-label" for="product-price">Giá:</label><br>
-            <input class="product-create-numeric" type="number" name="product_price" id="product-price-input" placeholder="Giá" min="10000" required>
+            <input class="product-create-numeric" type="number" name="product_price" id="product-price-input" placeholder="Giá" min="10000" required> -->
 
             <label class="product-create-label" for="product-year">Năm xuất bản:</label><br>
             <select class="product-create-dropdown" name="product_year" id="product-year-input" required>
@@ -88,17 +88,25 @@
             <textarea name="product_description" id="product-description-input" placeholder="Mô tả sản phẩm"></textarea>
 
             <label class="product-create-label" for="product-image">Hình ảnh:</label><br>
-            <input class="product-create-text" type="file" name="product_image[]" id="product-image-input" accept="image/*" multiple>
-            <div id="product-image-preview" style="margin-top: 5px;"></div>
+            <input class="product-create-text" type="file" name="product_image[]" id="product-create-image-input" accept="image/*" multiple>
+            <div id="product-create-image-preview" style="margin-top: 5px;"></div>
         
-            <button type="submit" class="product-create-Btns" id="createProductBtn">Áp dụng thay đổi</button>
-            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index'">Hủy</button>
+            <button type="submit" class="product-create-Btns" id="createProductBtn">
+                <i class='bx bx-check'></i>
+                Áp dụng thay đổi
+            </button>
+            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index'">
+                <i class='bx bx-x'></i> 
+                Hủy
+            </button>
         </form>
     </div>
 </div>
 
 <!-- Modal hiển thị ảnh -->
-<div id="imageModal" class="image-modal">
+<div id="universalImageModal" class="image-modal">
     <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
+    <img id="universalModalImage" class="modal-content">
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
 </div>

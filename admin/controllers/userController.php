@@ -202,11 +202,23 @@
 
             $user = $userModel->getById($id);
             $account = $accountModel->getById($id);
+            $currentUser = $_SESSION['user_id'];
+            $currentAccount = $accountModel->getById($currentUser);
+
+            if ($currentUser == $id) {
+                echo "<script>alert('Không thể khóa tài khoản của chính bạn!'); window.location.href='?page=user&action=index';</script>";
+                exit;
+            }
+
+            if ($currentAccount['LoaiTK'] <= 2 || $currentAccount['LoaiTK'] <= $account['LoaiTK']) {
+                echo "<script>alert('Bạn không có quyền khóa tài khoản có quyền cao hơn hoặc bằng!'); window.location.href='?page=user&action=index';</script>";
+                exit;
+            }
 
             if ($user && $account) {
                 $Status = $account['TinhTrang'];
 
-               $newStatus = $Status == 0 ? 1 : 0;
+                $newStatus = $Status == 0 ? 1 : 0;
                 $accountModel->lockAccount($id, $newStatus);
 
                 $statusText = $newStatus == 1 ? 'đã được mở khóa' : 'đã bị khóa';
@@ -218,8 +230,6 @@
         }
 
         public function delete($id) {
-            session_start();
-
             $userModel = new User();
             $accountModel = new Account();
             $imageModel = new Image();
@@ -241,25 +251,18 @@
                 exit;
             }
 
-            if ($currentAccount['LoaiTK'] <= 2 || $currentAccount['LoaiTK'] <= $user['LoaiTK']) {
-                // Proper console log
-                echo "<script>";
-                echo "console.log('Current Role: " . $currentAccount['LoaiTK'] . "');";
-                echo "console.log('Target Role: " . $account['LoaiTK'] . "');";
-                echo "window.history.back();";
-                echo "</script>";
+            if ($currentAccount['LoaiTK'] <= 2 || $currentAccount['LoaiTK'] <= $account['LoaiTK']) {
                 echo "<script>alert('Bạn không có quyền xóa tài khoản có quyền cao hơn hoặc bằng!');</script>";
-    
-                
+                exit;
+            }
 
+            if ($order) {
+                $accountModel->deletedUser($id);
+                echo "<script>alert('Xóa tài khoản thành công!'); window.location.href='?page=user&action=index';</script>";
                 exit;
             }
 
             if ($user && $account) {
-                if ($order) {
-                    $orderdetailModel->deleteDetailsByUserId($id);
-                    $orderModel->deleteUserOrder($id);
-                }
                 $reviewModel->deleteUserReviews($id);
                 if ($cart) {
                     $cartdetailModel->deleteCartDetail($id);
@@ -272,7 +275,7 @@
                     unlink($fullPath);
                 }
 
-                $imageModel->deleteImageById($id);
+                $imageModel->deleteImageByUserId($id);
                 $accountModel->deleteAccount($id);
                 $userModel->deleteUser($id);
 

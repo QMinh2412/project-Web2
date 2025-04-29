@@ -3,9 +3,11 @@
 $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 ?>
 <div id="left-menu">
+
     <div class="menuitems" id="admin-menu-icon">
         <i class='bx bx-menu'></i>  
     </div>
+    
     <?php if ($role == 2 || $role == 4): ?>
     <a href="?page=dashboard&action=index">
         <div class="menuitems">

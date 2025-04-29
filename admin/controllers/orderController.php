@@ -12,8 +12,13 @@
             $ordersPerPage = 10;
             $firstOrder = $ordersPerPage * $currentPage - 9;
 
-            $orders = $orderModel->getAllOrdersWithTotals($currentPage, $ordersPerPage);
-            $pagingation = $orderModel->getOrderPagination($currentPage, $ordersPerPage);
+            $orderId = $_GET['order_id'] ?? '';
+            $status = $_GET['order_status'] ?? '';
+            $fromDate = $_GET['order_from_date'] ?? '';
+            $toDate = $_GET['order_to_date'] ?? '';
+
+            $orders = $orderModel->getFilteredOrders($currentPage, $ordersPerPage, $orderId, $status, $fromDate, $toDate);
+            $pagination = $orderModel->getOrderPaginationFiltered($currentPage, $ordersPerPage, $orderId, $status, $fromDate, $toDate);
 
             $userMap = [];
             foreach ($users as $us) {
@@ -24,7 +29,7 @@
                 'firstOrder' => $firstOrder,
                 'orders' => $orders,
                 'userMap' => $userMap,
-                'pagination' => $pagingation
+                'pagination' => $pagination
             ]);
         }
 

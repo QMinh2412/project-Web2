@@ -88,7 +88,7 @@
 
             $id_cart = $this->db->real_escape_string($cart['MaGH']);
 
-            $query = "DELETE FROM ctgh WHERE MaSach = '$bookId' and MaGH = '$account_id'";
+            $query = "DELETE FROM ctgh WHERE MaSach = '$bookId' and MaGH = '$id_cart'";
             $result = $this->db->query($query);
         
             return $result && $this->db->affected_rows > 0;

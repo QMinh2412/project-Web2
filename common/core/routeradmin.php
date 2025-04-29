@@ -48,9 +48,6 @@ class RouteAdmin {
                     case 'index':
                         $controller->index();
                         break;
-                    case 'favoriteCustomers': // Thêm action này
-                        $controller->favoriteCustomers();
-                        break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
@@ -139,13 +136,16 @@ class RouteAdmin {
                 $controller = new ImportController();
                 switch ($action) {
                     case 'index':
-                        $controller->index();
+                        $controller->index($current_page);
                         break;
-                    case 'save':
-                        $controller->save();
+                    case 'changeStatus':
+                        $controller->changeStatus();
                         break;
-                    case 'history':
-                        $controller->history();
+                    case 'create':
+                        $controller->create();
+                        break;
+                    case 'detail':
+                        $controller->detail();
                         break;
                     case 'detail':
                         $id = $_GET['id'] ?? null;
@@ -173,6 +173,7 @@ class RouteAdmin {
                         break;
                     case 'changeStatus':
                         $controller->changeStatus();
+                        break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
