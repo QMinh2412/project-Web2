@@ -109,7 +109,8 @@ create table `CTHD` (
 	`SoLg` int not null,
 	-- `GiaBan` long not null,
     `MaHD` int not null,
-    `MaSach` int not null
+    `MaSach` int not null,
+    `DonGia` long
 );
 
 create table `PhNhap` (
@@ -145,7 +146,8 @@ create table `HinhAnh` (
 	`MaHA` int primary key not null auto_increment,
 	`DgDanAnh` LONGTEXT,
     `MaND` int,
-    `MaSach` int
+    `MaSach` int,
+    `MaHD` int
 );
 
 -- KHOAI CHINH --
@@ -164,6 +166,7 @@ alter table `CTPN` add constraint FK_CTPN_DS FOREIGN KEY (MaSach) REFERENCES Dau
 alter table `CTPN` add constraint FK_CTPN_PN FOREIGN KEY (MaPhNhap) REFERENCES PhNhap(MaPhNhap);
 alter table `HinhAnh` add constraint FK_HA_DS FOREIGN KEY (MaSach) REFERENCES DauSach(MaSach);
 alter table `HinhAnh` add constraint FK_HA_ND FOREIGN KEY (MaND) REFERENCES NgDung(MaND);
+alter table `HinhAnh` add constraint FK_HA_HD FOREIGN KEY (MaHD)  REFERENCES HoaDon(MaHD);
 alter table `HoaDon` add constraint FK_HD_TK FOREIGN KEY (MaNV) REFERENCES TaiKhoan(MaTK);
 alter table `HoaDon` add constraint FK_HD_TK_2 FOREIGN KEY (MaKH) REFERENCES TaiKhoan(MaTK);
 alter table `CTHD` add constraint FK_CTHD_DS FOREIGN KEY (MaSach) REFERENCES DauSach(MaSach);
@@ -549,17 +552,17 @@ INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, PhTh
 (5, 7, '2025-03-21', 1, 'Giao trong tuần', '56 Nguyễn Trãi, Quận 5', 2, 1, 0123456789, 660000),   
 (10, 8, '2025-03-21', 2, NULL, '12 An Dương Vương, Quận 6', 1, 1, 0123456789, 168000);
 
-INSERT INTO CTHD (SoLg, MaHD, MaSach) VALUES
-( 2, 1, 5),
-( 1, 2, 8),
-( 3, 3, 12),
-( 2, 4, 3),
-( 4, 5, 9),
-( 2, 6, 14),
-( 1, 7, 18),
-( 5, 8, 22),
-( 2, 9, 26),
-( 3, 10, 30);
+INSERT INTO CTHD (SoLg, MaHD, MaSach, DonGia) VALUES
+( 2, 1, 5, 120000),
+( 1, 2, 8, 248400),
+( 3, 3, 12, 130000),
+( 2, 4, 3, 88000),
+( 4, 5, 9, 101600),
+( 2, 6, 14, 112000),
+( 1, 7, 18, 126000),
+( 5, 8, 22, 68000),
+( 2, 9, 26, 330000),
+( 3, 10, 30, 56000);
 
 INSERT INTO ctgh (MaSach, MaGH, SoLg) VALUES
 (1, 1, 2),  
