@@ -23,8 +23,8 @@
 .menuitems {
     display: flex;
     align-items: center;
-    min-height: 60px; /* Đảm bảo chiều cao đồng nhất */
-    padding-left: 35px; /* Thụt lề đồng nhất với các mục khác */
+    min-height: 60px; 
+    padding-left: 35px; 
 }
 
 .menuitems i {
@@ -32,6 +32,7 @@
 }
 
 .menuitems-span {
+    margin-left: 20px;
     flex-grow: 1;
     margin-left: 20px;
 }

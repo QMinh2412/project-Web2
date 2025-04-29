@@ -192,7 +192,12 @@
 
     .search-section input[type="date"],
     .search-section button {
+        margin-top: 10px;
         width: 100%; 
+    }
+
+    .search-section button {
+        margin-left: 5px;
     }
 
     .dashboard-statistics {

@@ -41,9 +41,9 @@
         </form>
     </div>
 
-    <table class="admin-list-container">
-        <thead class="admin-list-header">
-            <tr class="admin-list-header-content">
+    <table class="admin-list-container" id="order-list-container">
+        <thead class="admin-list-header" id="order-list-header">
+            <tr class="admin-list-header-content" id="order-list-header-content">
                 <th id="order-order">STT</th>
                 <th id="order-id">ID</th>
                 <th id="order-customer">Khách hàng</th>
@@ -53,18 +53,18 @@
                 <th id="order-features">Chức năng</th>
             </tr>
         </thead>
-        <tbody class="admin-list-body">
+        <tbody class="admin-list-body" id="order-list-body">
             <?php if (!empty($orders)): ?>
                 <?php foreach ($orders as $index => $order): 
                     $customer = $userMap[$order['MaKH']] ?? 'N/A';
                 ?>
                     <tr>
-                        <td class="admin-list-body-content-num" id="order-order"><?= $firstOrder++ ?></td>
-                        <td class="admin-list-body-content-num" id="order-id"><?= htmlspecialchars(number_format($order['MaHD'])) ?></td>
-                        <td class="admin-list-body-content-other" id="order-customer"><?= htmlspecialchars($customer) ?></td>
-                        <td class="admin-list-body-content-num" id="order-value"><?= htmlspecialchars(number_format($order['TongTien'])) ?></td>
-                        <td class="admin-list-body-content-num" id="order-time"><?= date_format(new DateTime($order['NgLap']), "d/m/Y") ?></td>
-                        <td class="admin-list-body-content-num" id="order-status">
+                        <td class="admin-list-body-content-num" id="order-order" data-label="STT"><?= $firstOrder++ ?></td>
+                        <td class="admin-list-body-content-num" id="order-id" data-label="ID"><?= htmlspecialchars(number_format($order['MaHD'])) ?></td>
+                        <td class="admin-list-body-content-other" id="order-customer" data-label="Khách hàng"><?= htmlspecialchars($customer) ?></td>
+                        <td class="admin-list-body-content-num" id="order-value" data-label="Tổng tiền"><?= htmlspecialchars(number_format($order['TongTien'])) ?></td>
+                        <td class="admin-list-body-content-num" id="order-time order-list-body-status" data-label="Ngày tạo"><?= date_format(new DateTime($order['NgLap']), "d/m/Y") ?></td>
+                        <td class="admin-list-body-content-num" id="order-status" data-label="Tình trạng">
                             <select 
                                 class="order-status-dropdown" 
                                 onchange="handleStatusChange(this, <?= $order['MaHD'] ?>, <?= $pagination['currentPage'] ?>)"
@@ -96,7 +96,7 @@
                                 ?>
                             </select>
                         </td>
-                        <td class="admin-list-body-content-num" id="order-features">
+                        <td class="admin-list-body-content-num" id="order-features" data-label="Chức năng">
                             <button class="btn btn-primary" id="detailOrderBtn" 
                                 onclick="location.href='?page=order&action=detail&id=<?= number_format($order['MaHD']) ?>&current_page=<?= $pagination['currentPage'] ?>'" 
                                 title="Xem chi tiết"
