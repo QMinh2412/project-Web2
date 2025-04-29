@@ -164,10 +164,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Modal for Product Edition
-
     const editInput      = document.getElementById('edit-product-image-input');
     const editPreview    = document.getElementById('edit-product-new-image-preview');
-    const notifSection   = document.getElementById('edit-product-new-image-section');
     const newImgNoti     = document.getElementById('product-image-preview-notification');
     const newImgAlert    = document.getElementById('product-image-preview-alert');
     const limitImages    = 5;
