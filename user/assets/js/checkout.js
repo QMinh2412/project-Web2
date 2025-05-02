@@ -25,7 +25,7 @@ function checkInfoEmpty() {
   const note = document.getElementById("txtNote");
 
   if (!name.value) {
-    alert("Vui lòng nhập tên nhận hàng");
+    alert("Vui lòng nhập tên người nhận");
     name.select();
     name.focus();
     return false;
@@ -39,7 +39,7 @@ function checkInfoEmpty() {
   }
 
   if (!address.value) {
-    alert("Vui lòng nhập tên nhận hàng");
+    alert("Vui lòng nhập địa chỉ nhận hàng");
     address.select();
     address.focus();
     return false;
@@ -57,11 +57,11 @@ function hiddenConfirmForm() {
     }
   });
 
-  closeButton.addEventListener("click", (e) => {
-    e.preventDefault();
+  closeButton.addEventListener("click", () => {
+    alert("vừa nhấn nút hủy");
     console.log("Đã nhấn nút Hủy");
     confirmContainer.style.display = "none";
-    document.body.style.overflow = "auto"; // Khôi phục cuộn
+    document.body.style.overflow = "auto";
   });
 }
 
@@ -98,11 +98,11 @@ function showConfirmForm() {
       document.querySelector(".address_confirm i").textContent = address;
       document.querySelector(".note_confirm i").textContent = note || "";
       document.querySelector(".shipping_method_confirm i").textContent =
-        shippingMethod === "1" ? "Giao hàng thông thường" : "Giao hàng hỏa tốc";
+        shippingMethod === "1" ? "Giao hàng tiêu chuẩn" : "Giao hàng hỏa tốc";
       document.querySelector(".payment_method_confirm i").textContent =
         paymentMethod === "1"
           ? "Thanh toán khi nhận hàng"
-          : "Thanh toán bằng mã QR";
+          : "Thanh toán bằng chuyển khoản ngân hàng";
 
       // console.log("Trước khi hiển thị form xác nhận");
       confirmContainer.style.display = "flex";
@@ -165,9 +165,13 @@ function getDataFromForm() {
   const paymentMethod = document.querySelector(
     'input[name="payment_method"]:checked'
   ).value;
+  const feeShipText = document.querySelector(
+    ".fee_order span:last-child"
+  ).textContent;
   const totalBillText = document.querySelector(
     ".total_bill span:last-child"
   ).textContent;
+  const feeShip = parseInt(feeShipText.replace(/[^0-9]/g, "")) || 0;
   const total_bill = parseInt(totalBillText.replace(/[^0-9]/g, "")) || 0;
 
   const data = new URLSearchParams({
@@ -178,6 +182,7 @@ function getDataFromForm() {
     shippingMethod: shippingMethod,
     paymentMethod: paymentMethod,
     total_bill: total_bill,
+    feeShip: feeShip,
     source: source,
   }).toString();
 

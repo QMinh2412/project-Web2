@@ -449,6 +449,7 @@
 .old_comments .comment .content {
   margin: 10px 50px;
   color: #858585;
+  overflow-wrap: break-word;
 }
 
 .old_comments .comment .text_reply {
@@ -473,10 +474,8 @@
   margin-bottom: 5px;
 }
 
-.old_comments .comment .write_reply .align_center {
-  /* width: calc(100% - 200px); */
-  /* text-align: right;
-  margin-left: 180px; */
+.old_comments .comment .write_reply .reply_content {
+  orverflow-wrap: break-word;
 }
 
 .old_comments .comment .write_reply button {

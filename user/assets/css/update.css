@@ -44,14 +44,14 @@ h2 {
   padding: 0 5px 3px;
 }
 
-form {
+#update-account-form {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 5px;
 }
 
-form div {
+#update-account-form div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -81,8 +81,8 @@ select {
   height: 40px;
 }
 
-form input:focus,
-form select:focus {
+#update-account-form input:focus,
+#update-account-form select:focus {
   outline: none;
 }
 

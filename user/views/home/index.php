@@ -50,7 +50,7 @@
                         <!-- Tên sách -->
                         <div class="book-title"><?php echo htmlspecialchars($product['TenSach']); ?></div>
                         <!-- Giá sách -->
-                        <div class="book-price"><?php echo number_format($product['GiaBan'], 0, ',', '.') . 'đ'; ?></div>
+                        <div class="book-price"><?php echo number_format($product['GiaBan'], 0, '.', '.') . 'đ'; ?></div>
                     </div>
                 </a>
             <?php endforeach; ?>
@@ -73,7 +73,7 @@
                         <!-- Tên sách -->
                         <div class="book-title"><?php echo htmlspecialchars($product['TenSach']); ?></div>
                         <!-- Giá sách -->
-                        <div class="book-price"><?php echo number_format($product['GiaBan'], 0, ',', '.') . 'đ'; ?></div>
+                        <div class="book-price"><?php echo number_format($product['GiaBan'], 0, '.', '.') . 'đ'; ?></div>
                     </div>
                 </a>
             <?php endforeach; ?>

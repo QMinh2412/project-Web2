@@ -50,12 +50,12 @@ h2 {
 .order_filter form {
   display: flex;
   justify-content: flex-start;
-  alien-items: center;
+  align-items: flex-end;
   /* background-color: palegreen; */
   padding: 0 10px;
 }
 
-.order_filter form > div:not(#box_btn_order_filter) {
+.order_filter form > div {
   /* background-color: paleturquoise; */
   margin-right: 10px;
   padding: 5px 0px;
@@ -88,8 +88,9 @@ h2 {
 }
 
 #box_btn_order_filter {
+  height: 100%;
   display: flex;
-  align-items: flex-end;
+  /* align-items: flex-end; */
   padding-bottom: 7px;
 }
 .order_filter form button {
@@ -285,6 +286,7 @@ h2 {
 
 #order_detail_book_list_header span:nth-child(2) {
   width: calc(100% - 480px);
+  white-space: pre-wrap;
 }
 
 #book_list .book {
@@ -295,7 +297,7 @@ h2 {
 }
 
 #book_list .book span {
-  height: 20px;
+  /* height: 20px; */
   padding: 5px;
 }
 

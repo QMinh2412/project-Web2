@@ -37,8 +37,7 @@ a {
 }
 
 .search_box form {
-  width: 400px;
-  height: 36px;
+  background-color: transparent;
   margin-left: 50px;
   width: 100%;
   height: 100%;

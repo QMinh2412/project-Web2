@@ -29,7 +29,7 @@
                                 <button>Xóa</button>
                             </div>
                         </div>
-                        <div class="book_price"><?php echo $book_data['GiaBan']; ?> đ</div>
+                        <div class="book_price"><?php echo number_format($book_data['GiaBan'], 0, '.', '.'); ?> đ</div>
                         <div class="quantity_box">
                             <span class="minus_icon"><i class="fa-solid fa-minus"></i></span>
                             <span class="quantity"><?php echo $book['SoLg']; ?></span>
