@@ -41,6 +41,10 @@ class Route {
                 $controller = new OrderController();
                 break;
 
+            case 'order':
+                $controller = new OrderController();
+                break;
+
             default:
                 $controller = new HomeController();
                 break;
@@ -118,6 +122,21 @@ class Route {
                 break;
             case "calculateFeeShip":
                 $controller->calculateFeeShip();
+                break;
+            case 'showOrderHistory':
+                $controller->showOrderHistory();
+                break;
+            case 'showOrderHistoryAjax':
+                $controller->showOrderHistoryAjax();
+                break;
+            case 'showOrderDetail':
+                $controller->showOrderDetail();
+                break;
+            case 'cancelOrder':
+                $controller->cancelOrder();
+                break;
+            case 'filterOrders':
+                $controller->filterOrders();
                 break;
             default:
                 $controller->index();

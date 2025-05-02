@@ -107,21 +107,23 @@
         </div>
 
         <div class="pagination">
-            <!-- Nút lùi về trang trước -->
-            <?php if ($totalPage['currentPage'] != 1): ?>
-                <span class="page prev">&laquo;</span>
-            <?php endif; ?>
-            
-            <!-- Các trang -->
-            <?php for ($i = 1; $i <= $totalPage['totalPages']; $i++): ?>
-                <span class="page <?php echo ($i == $totalPage['currentPage']) ? 'active' : ''; ?>">
-                    <?php echo $i; ?>
-                </span>
-            <?php endfor; ?>
+            <?php if ($totalPage['totalPages'] > 1): ?>
+                <!-- Nút lùi về trang trước -->
+                <?php if ($totalPage['currentPage'] != 1): ?>
+                    <span class="page prev">&laquo;</span>
+                <?php endif; ?>
+                
+                <!-- Các trang -->
+                <?php for ($i = 1; $i <= $totalPage['totalPages']; $i++): ?>
+                    <span class="page <?php echo ($i == $totalPage['currentPage']) ? 'active' : ''; ?>">
+                        <?php echo $i; ?>
+                    </span>
+                <?php endfor; ?>
 
-            <!-- Nút tiến tới trang sau -->
-            <?php if ($totalPage['currentPage'] != $totalPage['totalPages']): ?>
-                <span class="page next">&raquo;</span>
+                <!-- Nút tiến tới trang sau -->
+                <?php if ($totalPage['currentPage'] != $totalPage['totalPages']): ?>
+                    <span class="page next">&raquo;</span>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
     </div>

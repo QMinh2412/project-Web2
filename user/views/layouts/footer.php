@@ -36,8 +36,4 @@
           <p><strong>Zalo:</strong> 0123456789 (Bookstore Student)</p>
         </div>
       </div>
-
-      <button class="scroll-to-top" onclick="scrollToTop()">
-        <i class="fa-solid fa-arrow-up"></i>
-      </button>
     </footer>

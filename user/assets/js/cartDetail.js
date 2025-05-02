@@ -139,7 +139,6 @@ function handleQuantityChange(button, isIncrement) {
 function handleCheckoutClick() {
   document.querySelector(".btn_submit").addEventListener("click", (e) => {
     e.preventDefault();
-    alert("dang thuc hien ajax thanh toan trong gio hang");
     const xhr = new XMLHttpRequest();
     xhr.open(
       "POST",

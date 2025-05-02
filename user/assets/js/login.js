@@ -36,19 +36,26 @@ document
     // Xử lý phản hồi từ server
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log(xhr.responseText); // Kiểm tra dữ liệu nhận về
-        let response = JSON.parse(xhr.responseText);
-
-        if (response.status === "error") {
-          if (response.field === "email") {
-            document.querySelector(".err_email").innerHTML = response.message;
+        console.log("Raw response: ", xhr.responseText);
+        if (xhr.responseText.includes("<!--")) {
+          console.error("HTML comment detected in response");
+        }
+        try {
+          let response = JSON.parse(xhr.responseText);
+          if (response.status === "error") {
+            if (response.field === "email") {
+              document.querySelector(".err_email").innerHTML = response.message;
+            }
+            if (response.field === "password") {
+              document.querySelector(".err_password").innerHTML =
+                response.message;
+            }
+          } else if (response.status === "success") {
+            window.location.href = "/project-Web2/user/index.php";
           }
-          if (response.field === "password") {
-            document.querySelector(".err_password").innerHTML =
-              response.message;
-          }
-        } else if (response.status === "success") {
-          window.location.href = "/project-Web2/user/index.php";
+        } catch (e) {
+          console.error("JSON parse error: ", e);
+          alert("Lỗi xử lý phản hồi từ server");
         }
       }
     };

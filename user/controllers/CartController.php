@@ -10,7 +10,7 @@
             $cartModel = new Cart();
             $cartDetailModel = new CartDetail();
             $productModel = new Product();
-            $current_account = isset($_SESSION['account_id']) ? $_SESSION['account_id'] : '';
+            $current_account = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
             $myCart = $cartModel->getCartById($current_account);
             $myCartId = isset($myCart['MaGH']) ? $myCart['MaGH'] : '';
             $bookInMyCart = $cartDetailModel->getBookInCartByCartId($myCartId);
@@ -23,12 +23,22 @@
 
         public function addToCart() {
             header('Content-Type: application/json; charset=utf-8');
-            $current_account = isset($_SESSION['account_id']) ? $_SESSION['account_id'] : "";
+            $current_account = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
     
             if (empty($current_account)) {
                 echo json_encode([
                     'success' => false,
                     'message' => 'Đăng nhập để thêm vào giỏ hàng cá nhân'
+                ]);
+                exit;
+            }
+
+            $accountModel = new Account();
+            $role = $accountModel->getById($current_account)['LoaiTK'];
+            if($role !== 0){
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Tài khoản của bạn không có quyền thêm sản phẩm vào giỏ hàng'
                 ]);
                 exit;
             }
@@ -59,7 +69,7 @@
         
             $bookId = $_POST['bookId'] ?? null;
             $status = $_POST['status'] ?? null;
-            $account_id = $_SESSION['account_id'];
+            $account_id = $_SESSION['user_id'];
         
             if (!$bookId || !isset($status)) {
                 echo json_encode(['status' => false, 'message' => 'Dữ liệu không hợp lệ']);
@@ -77,7 +87,7 @@
 
         public function remove() {
             $bookId = $_POST['bookId'] ?? null;
-            $account_id = $_SESSION['account_id'];
+            $account_id = $_SESSION['user_id'];
     
             if (!$bookId) {
                 echo json_encode(['success' => false, 'message' => 'Dữ liệu không hợp lệ']);
@@ -96,7 +106,7 @@
         public function updateQuantity() {
             $bookId = $_POST['bookId'] ?? null;
             $quantity = $_POST['quantity'] ?? null;
-            $account_id = $_SESSION['account_id'];
+            $account_id = $_SESSION['user_id'];
     
             if (!$bookId || !is_numeric($quantity) || $quantity < 1) {
                 echo json_encode(['success' => false, 'message' => 'Dữ liệu không hợp lệ']);

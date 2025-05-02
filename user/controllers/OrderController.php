@@ -5,9 +5,14 @@
     require_once __DIR__ . '/../../common/models/Order.php';
     require_once __DIR__ . '/../../common/models/OrderDetail.php';
     require_once __DIR__ . '/../../common/models/Product.php';
+    require_once __DIR__ . '/../../common/models/User.php';
+    require_once __DIR__ . '/../../common/models/Account.php';
+    
 
 
     class OrderController{
+        protected $ordersPerPage = 5;
+
         public function index(){
 
             ob_start();
@@ -18,7 +23,7 @@
 
         public function showCheckout() {
             // không cần do đã kiểm tra chỗ nút mua ngay và nút thêm vào giỏ hàng
-            // $account_id = $_SESSION['account_id'] ?? null;
+            // $account_id = $_SESSION['user_id'] ?? null;
             // if (!$account_id) {
             //     header("Location: /project-Web2/user/index.php?page=login");
             //     exit;
@@ -29,7 +34,7 @@
             $bookList = [];
 
             if($source == 'cart'){
-                $current_account = $_SESSION['account_id'];
+                $current_account = $_SESSION['user_id'];
 
                 $accountModel = new Account();
                 $userModel = new User();
@@ -74,7 +79,7 @@
         }
 
         public function placeOrder() {
-            $account_id = $_SESSION['account_id'] ?? null;
+            $account_id = $_SESSION['user_id'] ?? null;
             $name = $_POST['name'] ?? null;
             $phone = $_POST['phone'] ?? null;
             $address = $_POST['address'] ?? null;
@@ -122,7 +127,9 @@
 
                 // Create order details
                 foreach ($booksInCart as $book) {
-                    if (!$orderDetailModel->createOrderDetail($newOrderId, $book['MaSach'], $book['SoLg'])) {
+                    $bookInfo = $productModel->getProductById($book['MaSach']);
+                    $bookPrice = $bookInfo['GiaBan'];
+                    if (!$orderDetailModel->createOrderDetail($newOrderId, $book['MaSach'], $book['SoLg'], $bookPrice)) {
                         echo json_encode(['status' => 'error', 'message' => 'Không thể tạo chi tiết hóa đơn trong giỏ hàng']);
                         exit;
                     }
@@ -166,7 +173,9 @@
 
                 // Create order details
                 foreach ($booksInCart as $book) {
-                    if (!$orderDetailModel->createOrderDetail($newOrderId, $book['MaSach'], $book['SoLg'])) {
+                    $bookInfo = $productModel->getProductById($book['MaSach']);
+                    $bookPrice = $bookInfo['GiaBan'];
+                    if (!$orderDetailModel->createOrderDetail($newOrderId, $book['MaSach'], $book['SoLg'], $bookPrice)) {
                         echo json_encode(['status' => 'error', 'message' => 'Không thể tạo chi tiết hóa đơn']);
                         exit;
                     }
@@ -195,6 +204,153 @@
             } else {
                 echo json_encode($totalPrice * 0.1);
             }
+        }
+
+        public function showOrderHistory(){
+            $currentPage = $_POST['current_page'] ?? 1;
+            $account_id = $_SESSION['user_id'] ?? null;
+            if (!$account_id) {
+                header("Location: /project-Web2/user/index.php?page=login");
+                exit;
+            }
+
+            $orderModel = new Order();
+            $orderDetailModel = new OrderDetail();
+            $productModel = new Product();
+
+            $result = $orderModel->getOrdersByAccountId($account_id, $currentPage, $this->ordersPerPage);
+
+            ob_start();
+            include __DIR__ . '/../views/order/order_history.php';
+            $main_content = ob_get_clean();
+            include __DIR__ . '/../views/layouts/main_layout.php';
+        }
+
+        public function showOrderHistoryAjax(){
+            $currentPage = $_GET['current_page'] ?? 1;
+            $account_id = $_SESSION['user_id'] ?? null;
+            $current_page = $_GET['current_page'];
+            $orderModel = new Order();
+            $result = $orderModel->getOrdersByAccountId($account_id, $currentPage, $this->ordersPerPage);
+            echo json_encode($result);
+        }
+
+        public function showOrderDetail(){
+            $order_id = $_POST['orderId'] ?? null;
+            $account_id = $_SESSION['user_id'] ?? null;
+
+            if (!$order_id) {
+                echo json_encode(['status' => 'error', 'message' => 'Thiếu thông tin đơn hàng']);
+                exit;
+            }
+            if (!$account_id) {
+                echo json_encode(['status' => 'error', 'message' => 'Thiếu thông tin tài khoản']);
+                exit;
+            }
+
+            // tạo đối tượng liên quan
+            $orderModel = new Order();
+            $orderDetailModel = new OrderDetail();
+            $userModel = new User();
+            $accountModel = new Account();
+
+            // lấy thông tin hóa đơn
+            $orderInfo = $orderModel->getOrderById($order_id);
+            if(!$orderInfo) {
+                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy hóa đơn']);
+                exit;
+            }
+            // lấy chi tiết hóa đơn
+            $orderDetails = $orderDetailModel->getOrderDetailByOrderId($order_id);
+            if(!$orderDetails) {
+                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy chi tiết hóa đơn']);
+                exit;
+            }
+
+            // lấy tên khách hàng
+            $accountInfo = $accountModel->getById($orderInfo['MaKH']);
+            $userId = $accountInfo['MaND'];
+            $userInfo = $userModel->getById($userId);
+            if(!$userInfo) {
+                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy thông tin người dùng']);
+                exit;
+            }
+
+            echo json_encode(['status' => 'success', 
+                'orderInfo' => $orderInfo,
+                'orderDetails' => $orderDetails,
+                'userInfo' => $userInfo
+            ]);
+            exit;
+        }
+
+        public function cancelOrder(){
+            // Lấy mã hóa đơn cần hủy
+            $orderId = $_POST['orderId'] ?? null;
+            if(!$orderId) {
+                echo json_encode(['status' => 'error', 'message' => 'Thiếu thông tin đơn hàng']);
+                exit;
+            }
+
+            $orderModel = new Order();
+            if($orderModel->changeOrderStatusById($orderId, 0)){
+                echo json_encode(['status' => 'success', 'message' => 'Hủy đơn hàng thành công']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Hủy đơn hàng không thành công']);
+            }
+
+            // Cập nhật lại số lượng sản phẩm
+            $orderDetailModel = new OrderDetail();
+            $orderDetails = $orderDetailModel->getOrderDetailByOrderId($orderId);
+            $productModel = new Product();
+            foreach($orderDetails as $book){
+                $productModel->updateStock($book['MaSach'], -$book['SoLg']);
+            }
+            
+        }
+
+        public function filterOrders() {    
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                // Nếu là GET, chuyển hướng về showOrderHistory
+                $currentPage = $_GET['current_page'] ?? 1;
+                $account_id = $_SESSION['user_id'] ?? null;
+                if (!$account_id) {
+                    header("Location: /project-Web2/user/index.php?page=login");
+                    exit;
+                }
+        
+                $orderModel = new Order();
+                $result = $orderModel->getOrdersByAccountId($account_id, $currentPage, $this->ordersPerPage);
+        
+                ob_start();
+                include __DIR__ . '/../views/order/order_history.php';
+                $main_content = ob_get_clean();
+                include __DIR__ . '/../views/layouts/main_layout.php';
+                return;
+            }
+
+            $currentPage = $_POST['current_page'] ?? 1;
+            $orderId = $_POST['orderId'] ?? '';
+            $status = $_POST['status'] ?? '';
+            $fromDate = $_POST['fromDate'] ?? '';
+            $toDate = $_POST['toDate'] ?? '';
+            $account_id = $_SESSION['user_id'] ?? null;
+    
+            if (!$account_id) {
+                echo json_encode(['status' => 'error', 'message' => 'Vui lòng đăng nhập']);
+                exit;
+            }
+    
+            $orderModel = new Order();
+            $result = $orderModel->getFilteredOrdersAndPaginationByAccountId($account_id, $this->ordersPerPage, $currentPage, $orderId, $status, $fromDate, $toDate);
+    
+            echo json_encode([
+                'status' => 'success',
+                'orders' => $result['orders'],
+                'totalPages' => $result['totalPages'],
+                'currentPage' => $result['currentPage']
+            ]);
+            exit;
         }
     }
 ?>

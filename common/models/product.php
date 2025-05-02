@@ -284,6 +284,7 @@ class Product {
     }
 
     public function search($search) {
+        $search = $this->db->real_escape_string($search);
         $query = "SELECT * FROM DauSach WHERE TenSach LIKE '%$search%'";
         $result = $this->db->query($query);
         $products = [];

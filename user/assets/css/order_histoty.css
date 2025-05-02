@@ -47,26 +47,26 @@ h2 {
   padding: 0 5px 3px;
 }
 
-.order_filter {
+.order_filter form {
   display: flex;
   justify-content: flex-start;
-  alien-items: center;
+  align-items: center;
   /* background-color: palegreen; */
   padding: 0 10px;
 }
 
-.order_filter > div {
+.order_filter form > div:not(#box_btn_order_filter) {
   /* background-color: paleturquoise; */
   margin-right: 10px;
   padding: 5px 0px;
 }
 
-.order_filter > div label {
+.order_filter form > div label {
   padding-left: 5px;
   margin-bottom: 5px;
 }
 
-.order_filter > div input {
+.order_filter form > div input {
   width: 190px;
   height: 20px;
   padding: 3px 5px;
@@ -74,7 +74,7 @@ h2 {
   border-radius: 5px;
 }
 
-.order_filter > div select {
+.order_filter form > div select {
   width: 200px;
   height: 26px;
   padding: 3px;
@@ -82,12 +82,17 @@ h2 {
   border-radius: 5px;
 }
 
-.order_filter > div input:focus,
-.order_filter > div select:focus {
+.order_filter form > div input:focus,
+.order_filter form > div select:focus {
   outline: none;
 }
 
-.order_filter button {
+#box_btn_order_filter {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 7px;
+}
+.order_filter form button {
   height: 25px;
   background-color: #a75026;
   color: #fff;
@@ -100,7 +105,7 @@ h2 {
   align-items: center;
 }
 
-#box_btn_order_filter {
+#box_btn_order_filter form {
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -302,4 +307,57 @@ h2 {
 
 #book_list .book span:nth-child(2) {
   width: calc(100% - 480px);
+}
+
+/* pagination_box */
+.pagination_box {
+  clear: both;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.pagination_box .page {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #a75026;
+  padding: 5px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+#pre_page,
+#next_page {
+  width: 30px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #a75026;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.pagination_box span + span {
+  margin-left: 5px;
+}
+
+#pre_page:hover,
+#next_page:hover,
+.pagination_box .page:hover {
+  background-color: #a75026;
+  color: white;
+}
+
+.pagination_box .page.active {
+  background-color: #a75026;
+  color: white;
+  border-radius: 10px;
 }

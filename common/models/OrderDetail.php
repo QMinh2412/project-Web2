@@ -38,20 +38,20 @@
             return $details;
         }
 
-        public function createOrderDetail($order_id, $product_id, $quantity) {
+        public function createOrderDetail($order_id, $product_id, $quantity, $price) {
             if (!$order_id || !$product_id || !$quantity) {
                 error_log("Invalid input for createOrderDetail: order_id=$order_id, product_id=$product_id, quantity=$quantity");
                 return false;
             }
         
-            $query = "INSERT INTO CTHD (MaHD, MaSach, SoLg) VALUES (?, ?, ?)";
+            $query = "INSERT INTO CTHD (MaHD, MaSach, SoLg, DonGia) VALUES (?, ?, ?, ?)";
             $stmt = $this->db->prepare($query);
             if (!$stmt) {
                 error_log("Prepare failed: " . $this->db->error);
                 return false;
             }
         
-            $stmt->bind_param("iii", $order_id, $product_id, $quantity);
+            $stmt->bind_param("iiii", $order_id, $product_id, $quantity, $price);
             $result = $stmt->execute();
             if (!$result) {
                 error_log("Execute failed: " . $stmt->error);
@@ -61,6 +61,23 @@
         
             $stmt->close();
             return true;
+        }
+
+        public function getOrderDetailByOrderId($orderId){
+            $query = "SELECT * FROM CTHD WHERE MaHD = $orderId";
+            $result = $this->db->query($query);
+            $orderDetails = [];
+            $productModel = new Product();
+
+            if($result){
+                while($row = $result->fetch_assoc()){
+                    $productInfo = $productModel->getProductById($row['MaSach']);
+                    $row['TenSach'] = $productInfo['TenSach'];
+                    $orderDetails[] = $row;
+                }
+            }
+
+            return $orderDetails;
         }
     }
 ?>

@@ -146,7 +146,8 @@ create table `HinhAnh` (
 	`MaHA` int primary key not null auto_increment,
 	`DgDanAnh` LONGTEXT,
     `MaND` int,
-    `MaSach` int
+    `MaSach` int,
+    `MaHD` int
 );
 
 -- KHOAI CHINH --
@@ -165,6 +166,7 @@ alter table `CTPN` add constraint FK_CTPN_DS FOREIGN KEY (MaSach) REFERENCES Dau
 alter table `CTPN` add constraint FK_CTPN_PN FOREIGN KEY (MaPhNhap) REFERENCES PhNhap(MaPhNhap);
 alter table `HinhAnh` add constraint FK_HA_DS FOREIGN KEY (MaSach) REFERENCES DauSach(MaSach);
 alter table `HinhAnh` add constraint FK_HA_ND FOREIGN KEY (MaND) REFERENCES NgDung(MaND);
+alter table `HinhAnh` add constraint FK_HA_HD FOREIGN KEY (MaHD)  REFERENCES HoaDon(MaHD);
 alter table `HoaDon` add constraint FK_HD_TK FOREIGN KEY (MaNV) REFERENCES TaiKhoan(MaTK);
 alter table `HoaDon` add constraint FK_HD_TK_2 FOREIGN KEY (MaKH) REFERENCES TaiKhoan(MaTK);
 alter table `CTHD` add constraint FK_CTHD_DS FOREIGN KEY (MaSach) REFERENCES DauSach(MaSach);
