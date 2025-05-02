@@ -645,19 +645,19 @@ input:checked + .slider::before {
     }
 }
 
-@media only screen and (min-width: 1051px) {
+@media only screen and (min-width: 601px) {
     #admin-wrapper-product-detail {
-        max-height: calc(100vh - 110px); 
+        max-height: calc(100vh - 90px); 
         overflow-y: auto;
     }
 
     #admin-wrapper-product-create {
-        max-height: calc(100vh - 110px); 
+        max-height: calc(100vh - 90px); 
         overflow-y: auto;
     }
 
     #admin-wrapper-product-edit {
-        max-height: calc(100vh - 110px); 
+        max-height: calc(100vh - 90px); 
         overflow-y: auto;
     }
 }

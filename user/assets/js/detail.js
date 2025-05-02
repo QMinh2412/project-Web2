@@ -177,9 +177,6 @@ function addToCart() {
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        // console.log(xhr.responseText);
-        // console.log(typeof xhr.responseText);
-
         const response = JSON.parse(xhr.responseText);
         console.log(response);
         alert(response.message);
@@ -334,7 +331,6 @@ function buyNow() {
         console.log(response);
 
         if (response.status) {
-          alert(response.message);
           window.location.href =
             "/project-Web2/user/index.php?page=checkout&action=showCheckout&source=buynow";
         } else {

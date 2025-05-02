@@ -50,13 +50,10 @@
 }
 
 #menu-down {
-    border: solid 1px black;
-    border-radius: 10%;
-    background-color: rgb(221, 221, 221);
     display: none;
     position: absolute;
     width: 15%;
-    top: 80px; 
+    top: 50px; 
     right: 65px;
     line-height: 50px;
     flex-direction: column; 

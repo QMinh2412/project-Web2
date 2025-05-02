@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
       radioSelected = gender[1].value;
     }
 
-    let address;
+    let address = "";
     if (city.selectedIndex != 0) {
       console.log(`city: ${city.options[city.selectedIndex].text}`);
       address = address + city.options[city.selectedIndex].text + ", ";
@@ -396,7 +396,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".err_gender").innerHTML = "";
     }
 
-    //
     let xhr = new XMLHttpRequest();
     xhr.open(
       "POST",
@@ -413,6 +412,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.status === "error") {
           if (response.field === "email") {
             document.querySelector(".err_email").innerHTML = response.message;
+          } else if (response.field === "phone") {
+            document.querySelector(".err_phone").innerHTML = response.message;
           }
         } else if (response.status === "success") {
           window.location.href = "/project-Web2/user/index.php";

@@ -36,12 +36,23 @@ class Account {
     }
 
     public function getNameById($id) {
-        $result = $this->db->query("SELECT TenTK FROM taikhoan WHERE MaTK = $id");
+        if (empty($id)) {
+            return null;
+        }
+    
+        $query = "SELECT TenTK FROM TaiKhoan WHERE MaTK = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
         if ($result && $row = $result->fetch_assoc()) {
             return $row['TenTK'];
         }
+    
         return null;
     }
+    
 
     public function getImage($id) {
         $query = "SELECT DgDanAnh FROM HinhAnh WHERE MaND = ?";
@@ -130,7 +141,8 @@ class Account {
         return $exists;
     }
     public function createAccount($username, $role, $created_at, $status, $password, $user_id) {
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $hashedPassword = hash('sha256', $password);
         $sql = "INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) 
                 VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
@@ -170,7 +182,7 @@ class Account {
         if ($row = $result->fetch_assoc()) {
             $hashedPassword = $row['MKTK'];
             $stmt->close();
-            return password_verify($password, $hashedPassword);
+            return hash('sha256', $password) === $hashedPassword;
         }
         $stmt->close();
         return false;
@@ -192,7 +204,7 @@ class Account {
     }
 
     public function updatePassword($account_id, $new_password) {
-        $hashedPassword = password_hash($new_password, PASSWORD_BCRYPT);
+        $hashedPassword = hash('sha256', $new_password);
         $sql = "UPDATE TaiKhoan SET MKTK = ? WHERE MaND = ?";
         $stmt = $this->db->prepare($sql);
         if (!$stmt) return false;
@@ -288,20 +300,13 @@ class Account {
     }
 
      // Lấy thông tin tài khoản dựa trên tên tài khoản
-    public function getUserByUsername($TenTK) {
+     public function getUserByUsername($TenTK) {
         $query = "SELECT * FROM TaiKhoan WHERE TenTK = ?";
         $stmt = $this->db->prepare($query);
-
-        if ($stmt) {
-            $stmt->bind_param("s", $TenTK);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $user = $result->fetch_assoc();
-            $stmt->close();
-            return $user; // Trả về thông tin tài khoản nếu tìm thấy
-        }
-
-        return null; // Trả về null nếu không tìm thấy tài khoản
+        $stmt->bind_param("s", $TenTK);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
     // Kiểm tra mật khẩu
@@ -312,6 +317,16 @@ class Account {
         } else {
             // Nếu là hash dạng SHA-256 cũ
             return hash('sha256', $inputPassword) === $hashedPassword;
+        }
+    }
+
+    public function deletedUser($id) {
+        $sql = "UPDATE TaiKhoan SET DaXoa = 1 WHERE MaND = ?";
+        $stmt = $this->db->prepare($sql);
+        if ($stmt) {
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $stmt->close();
         }
     }
 }

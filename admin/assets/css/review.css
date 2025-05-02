@@ -1,0 +1,109 @@
+/****************** TABLE ALIGNING **********/
+#review-order {
+    width: 7%;
+}
+
+#review-book {
+    width: 27%;
+}
+
+#review-name {
+    width: 15%;
+}
+
+#review-content {
+    width: 20%;
+}
+
+#review-date {
+    width: 10%;
+}
+
+#review-features {
+    width: 5%;
+}
+
+#review-book {
+    text-align: left;
+}
+
+#review-name {
+    text-align: left;
+}
+
+#review-content {
+    text-align: left;
+}
+
+#review-date {
+    text-align: left;
+}
+
+#review-action {
+    align-items: center;
+}
+
+.btn-review {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.btn-review:hover {
+    background-color: #e0e0e0;
+    color: #000;
+    border-color: #bbb;
+    cursor: pointer;
+}
+
+.btn-review:active {
+    background-color: #d0d0d0;
+    color: #000;
+    border-color: #aaa;
+}
+
+.review-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 8px;
+}
+
+.review-pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-decoration: none;  
+    color: #333;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+}
+
+.review-pagination a:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.review-pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    pointer-events: none;
+    border-color: #007bff;
+}
+
+.review-pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}

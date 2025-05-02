@@ -2,36 +2,32 @@
 <div class="dashboard-section">
     <div class="dashboard-header">
         <h1 class="h1-header">Sách bán chạy</h1>
-        <div class="search-section">
-            <form method="GET" action="">
-                <label for="product-from-date">Từ:</label>
-                <input type="date" id="product-from-date" name="product-from-date" required>
-
-                <label for="product-to-date">Đến:</label>
-                <input type="date" id="product-to-date" name="product-to-date" required>
-
-                <button type="submit">Tìm kiếm</button>
-            </form>
-        </div>
     </div>
     <table class="bestseller-table">
         <thead>
             <tr>
                 <th>STT</th>
-                <th>Tên sản phẩm</th>
+                <th>Tên sách</th>
                 <th>Số lượng bán được</th>
-                <th>Giá tiền</th>
                 <th>Tổng tiền</th>
             </tr>
         </thead>
         <tbody>
+        <?php if (!empty($bestSellers)) : ?>
+            <?php $index = 1; ?>
+            <?php foreach ($bestSellers as $bestSeller) : ?>
+                <tr>
+                    <td><?= $index++ ?></td>
+                    <td><?= htmlspecialchars($bestSeller['TenSach']) ?></td>
+                    <td><?= htmlspecialchars($bestSeller['total_sold']) ?></td>
+                    <td><?= number_format($bestSeller['total_amount'], 0, ',', '.') ?>₫</td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else : ?>
             <tr>
-                <td>1</td>
-                <td>Tên sách</td>
-                <td>10</td>
-                <td>100.000đ</td>
-                <td>1.000.000đ</td>
+                <td colspan="5">Không có dữ liệu</td>
             </tr>
+        <?php endif; ?>
         </tbody>
     </table>
 </div>

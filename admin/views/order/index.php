@@ -1,3 +1,5 @@
+<script src="/project-Web2/admin/assets/js/order.js"></script>
+
 <div class="admin-wrapper">
     <div class="admin-header" id="order-header">
         <h2>Đơn hàng</h2>
@@ -5,33 +7,40 @@
     <div class="order-container">
         <form class="order-search-form" method="GET" action="">
             <div class="order-form-group">
-                <label for="order-id">Mã hóa đơn</label>
-                <input type="text" id="order-id" name="order_id" placeholder="Nhập mã hóa đơn">
+                <label for="order-search-order-id">Mã hóa đơn</label>
+                <input type="number" id="order-search-order-id" 
+                    name="order_id" 
+                    placeholder="Nhập mã hóa đơn" 
+                    value="<?= htmlspecialchars($_GET['order_id'] ?? '') ?>"
+                >
             </div>
             <div class="order-form-group">
-                <label for="status">Trạng thái</label>
-                <select id="status" name="status">
-                    <option value="">Tất cả</option>
-                    <option value="pending">Chờ xác nhận</option>
-                    <option value="confirmed">Xác nhận</option>
-                    <option value="shipping">Vận chuyển</option>
-                    <option value="completed">Hoàn thành</option>
-                    <option value="cancelled">Đã hủy</option>
+                <label for="order-search-order-status">Trạng thái</label>
+                <select id="order-search-order-status" name="order_status">
+                    <option value="" <?= empty($_GET['order_status']) ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="1" <?= (isset($_GET['order_status']) && $_GET['order_status'] == '1') ? 'selected' : '' ?>>Chờ duyệt</option>
+                    <option value="2" <?= (isset($_GET['order_status']) && $_GET['order_status'] == '2') ? 'selected' : '' ?>>Đang giao</option>
+                    <option value="3" <?= (isset($_GET['order_status']) && $_GET['order_status'] == '3') ? 'selected' : '' ?>>Đã giao</option>
+                    <option value="0" <?= (isset($_GET['order_status']) && $_GET['order_status'] == '0') ? 'selected' : '' ?>>Đã hủy</option>
                 </select>
             </div>
             <div class="order-form-group">
-                <label for="from-date">Từ ngày</label>
-                <input type="date" id="from-date" name="from_date">
+                <label for="order-search-from-date">Từ ngày</label>
+                <input type="date" id="order-search-from-date" name="order_from_date" value="<?= htmlspecialchars($_GET['order_from_date'] ?? '') ?>">
             </div>
             <div class="order-form-group">
-                <label for="to-date">Đến ngày</label>
-                <input type="date" id="to-date" name="to_date">
+                <label for="order-search-to-date">Đến ngày</label>
+                <input type="date" id="order-search-to-date" name="order_to_date" value="<?= htmlspecialchars($_GET['order_to_date'] ?? '') ?>">
             </div>
             <div class="order-form-group">
-                <button type="submit" class="order-search-btn">Tìm kiếm</button>
+                <button type="submit" class="order-search-btn" id="order-search-btn">
+                    <i class='bx bx-search'></i> 
+                    Tìm kiếm
+                </button>
             </div>
         </form>
     </div>
+
     <table class="admin-list-container">
         <thead class="admin-list-header">
             <tr class="admin-list-header-content">
@@ -48,23 +57,6 @@
             <?php if (!empty($orders)): ?>
                 <?php foreach ($orders as $index => $order): 
                     $customer = $userMap[$order['MaKH']] ?? 'N/A';
-                    switch ($order['TrangThaiDH']) {
-                        case 0:
-                            $orderStatus = 'Đã hủy';
-                            break;
-                        case 1:
-                            $orderStatus = 'Chờ duyệt';
-                            break;
-                        case 2:
-                            $orderStatus = 'Đang giao';
-                            break;
-                        case 3:
-                            $orderStatus = 'Đã giao';
-                            break;
-                        default:
-                            $orderStatus = 'N/A';
-                            break;
-                    }
                 ?>
                     <tr>
                         <td class="admin-list-body-content-num" id="order-order"><?= $firstOrder++ ?></td>
@@ -72,7 +64,38 @@
                         <td class="admin-list-body-content-other" id="order-customer"><?= htmlspecialchars($customer) ?></td>
                         <td class="admin-list-body-content-num" id="order-value"><?= htmlspecialchars(number_format($order['TongTien'])) ?></td>
                         <td class="admin-list-body-content-num" id="order-time"><?= date_format(new DateTime($order['NgLap']), "d/m/Y") ?></td>
-                        <td class="admin-list-body-content-num" id="order-status"><?= htmlspecialchars($orderStatus) ?></td>
+                        <td class="admin-list-body-content-num" id="order-status">
+                            <select 
+                                class="order-status-dropdown" 
+                                onchange="handleStatusChange(this, <?= $order['MaHD'] ?>, <?= $pagination['currentPage'] ?>)"
+                            >
+                                <?php
+                                    $statusLabels = [
+                                        1 => 'Chờ duyệt',
+                                        2 => 'Đang giao',
+                                        3 => 'Đã giao',
+                                        0 => 'Đã hủy'
+                                    ];
+
+                                    $currentStatus = (int)$order['TrangThaiDH'];
+                                    foreach ($statusLabels as $value => $label) {
+                                        $allow = false;
+
+                                        if ($value === $currentStatus) {
+                                            $allow = true;
+                                        }
+
+                                        if (($value > $currentStatus && $value != 0 && $currentStatus <= 3) || ($value === 0 && $currentStatus < 2)) {
+                                            $allow = true;
+                                        }   
+
+                                        if ($allow) {
+                                            echo "<option value='$value'" . ($value === $currentStatus ? ' selected' : '') . " class='order-status-dropdown'>$label</option>";
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </td>
                         <td class="admin-list-body-content-num" id="order-features">
                             <button class="btn btn-primary" id="detailOrderBtn" 
                                 onclick="location.href='?page=order&action=detail&id=<?= number_format($order['MaHD']) ?>&current_page=<?= $pagination['currentPage'] ?>'" 

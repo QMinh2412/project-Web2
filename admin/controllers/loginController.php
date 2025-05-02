@@ -23,7 +23,7 @@
 
                 if ($user) {
                     if ($this->accountModel->verifyPassword($MKTK, $user['MKTK'])) {
-                        if ($user['LoaiTK'] == 3 || $user['LoaiTK'] == 4) {
+                        if ($user['LoaiTK'] == 1 || $user['LoaiTK'] == 2 || $user['LoaiTK'] == 3 || $user['LoaiTK'] == 4) {
                             session_start();
                             $_SESSION['user_id'] = $user['MaTK'];
                             $_SESSION['role'] = $user['LoaiTK'];
@@ -33,9 +33,33 @@
                             setcookie('user_id', $user['MaTK'], time() + (7 * 24 * 60 * 60), '/');
                             setcookie('role', $user['LoaiTK'], time() + (7 * 24 * 60 * 60), '/');
                             setcookie('TenTK', $user['TenTK'], time() + (7 * 24 * 60 * 60), '/');
-                
+
+                            // xác định URL mặc định cho từng loại tài khoản
+                            $redirectUrl = '/project-Web2/admin/index.php?page=dashboard&action=index'; // Mặc định là dashboard
+                            switch ($user['LoaiTK']) {
+                                case 0: // Khách hàng
+                                    $redirectUrl = '/project-Web2/admin/index.php?page=dashboard&action=index';
+                                    break;
+                                case 1: // Quản lý
+                                    $redirectUrl = '/project-Web2/admin/index.php?page=import&action=index';
+                                    break;
+                                case 2: // Nhân viên
+                                    $redirectUrl = '/project-Web2/admin/index.php?page=dashboard&action=index';
+                                    break;
+                                case 3: // Admin
+                                    $redirectUrl = '/project-Web2/admin/index.php?page=user&action=index';
+                                    break;
+                                case 4: // Chủ doanh nghiệp
+                                    $redirectUrl = '/project-Web2/admin/index.php?page=dashboard&action=index';
+                                    break;
+                                default:
+                                    // Nếu không khớp với bất kỳ loại tài khoản nào, chuyển hướng đến trang mặc định
+                                    $redirectUrl = '/project-Web2/admin/index.php?page=dashboard&action=index';
+                                    break;
+                            }
+
                             // Trả về phản hồi JSON thành công
-                            echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công!']);
+                            echo json_encode(['status' => 'success', 'redirect' => $redirectUrl]);
                             exit;
                         } else {
                             // Trả về lỗi không có quyền truy cập
@@ -65,7 +89,7 @@
             setcookie('role', '', time() - 3600, '/');
             setcookie('TenTK', '', time() - 3600, '/');
         
-            header("Location: /project-Web2/admin/controllers/loginController.php?action=index");
+            header("Location: /project-Web2/admin/views/layouts/login.php");
             exit;
         }
     }

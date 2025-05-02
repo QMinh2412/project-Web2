@@ -114,7 +114,10 @@ function loadPageData(page) {
       const response = JSON.parse(xhr.responseText);
 
       let data = handleData(response["products"]);
-      let pagination = handlePagination(page, response["totalPage"]);
+      let pagination =
+        response["totalPage"] > 1
+          ? handlePagination(page, response["totalPage"])
+          : "";
 
       document.querySelector(".book_list").innerHTML = data;
       document.querySelector(".pagination").innerHTML = pagination;
@@ -136,9 +139,11 @@ function loadPageData(page) {
         history.pushState(state, "", newUrl);
       }
 
-      attachPaginationEvents(function (page) {
-        loadPageData(page);
-      });
+      if (response["totalPage"] > 1) {
+        attachPaginationEvents(function (page) {
+          loadPageData(page);
+        });
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -160,7 +165,10 @@ function loadBookByCategory(current_page, category_id = null) {
       const response = JSON.parse(xhr.responseText);
 
       let data = handleData(response["products"]);
-      let pagination = handlePagination(current_page, response["totalPage"]);
+      let pagination =
+        response["totalPage"] > 1
+          ? handlePagination(current_page, response["totalPage"])
+          : "";
 
       document.querySelector(".pagination").innerHTML = pagination;
       document.querySelector(".book_list").innerHTML = data;
@@ -183,9 +191,11 @@ function loadBookByCategory(current_page, category_id = null) {
         history.pushState(state, "", newUrl);
       }
 
-      attachPaginationEvents(function (current_page) {
-        loadBookByCategory(current_page, category_id);
-      });
+      if (response["totalPage"] > 1) {
+        attachPaginationEvents(function (current_page) {
+          loadBookByCategory(current_page, category_id);
+        });
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -218,7 +228,10 @@ function loadBookByAuthor(current_page, author_id = null) {
       const response = JSON.parse(xhr.responseText);
 
       let data = handleData(response["products"]);
-      let pagination = handlePagination(current_page, response["totalPage"]);
+      let pagination =
+        response["totalPage"] > 1
+          ? handlePagination(current_page, response["totalPage"])
+          : "";
 
       document.querySelector(".pagination").innerHTML = pagination;
       document.querySelector(".book_list").innerHTML = data;
@@ -241,9 +254,11 @@ function loadBookByAuthor(current_page, author_id = null) {
         history.pushState(state, "", newUrl);
       }
 
-      attachPaginationEvents(function (current_page) {
-        loadBookByAuthor(current_page, author_id);
-      });
+      if (response["totalPage"] > 1) {
+        attachPaginationEvents(function (current_page) {
+          loadBookByAuthor(current_page, author_id);
+        });
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -285,7 +300,10 @@ function loadBookPriceRange(selectChecked, current_page) {
       const response = JSON.parse(xhr.responseText);
 
       let data = handleData(response["products"]);
-      let pagination = handlePagination(current_page, response["totalPage"]);
+      let pagination =
+        response["totalPage"] > 1
+          ? handlePagination(current_page, response["totalPage"])
+          : "";
 
       document.querySelector(".pagination").innerHTML = pagination;
       document.querySelector(".book_list").innerHTML = data;
@@ -310,9 +328,11 @@ function loadBookPriceRange(selectChecked, current_page) {
         history.pushState(state, "", newUrl);
       }
 
-      attachPaginationEvents(function (current_page) {
-        loadBookPriceRange(selectChecked, current_page);
-      });
+      if (response["totalPage"] > 1) {
+        attachPaginationEvents(function (current_page) {
+          loadBookPriceRange(selectChecked, current_page);
+        });
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };

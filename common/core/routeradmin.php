@@ -15,6 +15,25 @@ class RouteAdmin {
         $current_page = isset($_GET['current_page']) ? (int)$_GET['current_page'] : 1;
         $id = isset($_GET['id']) ? $_GET['id'] : null;
 
+        // Lấy loại tài khoản từ session
+        $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
+        
+        // Định nghĩa quyền truy cập cho từng loại tài khoản
+        $permissions = [
+            'dashboard' => [2, 4], 
+            'category' => [1, 4],
+            'product' => [1, 4], 
+            'user' => [3, 4], 
+            'import' => [1, 4], 
+            'order' => [2, 4], 
+            'review' => [2, 4],
+        ];
+        
+        // Kiểm tra quyền truy cập
+        if (isset($permissions[$page]) && !in_array($role, $permissions[$page])) {
+            echo "<script>alert('Bạn không có quyền truy cập vào trang này!'); window.history.back();</script>";
+            exit;
+        }
         switch ($page) {
             case 'dashboard':
                 $controller = new DashboardController();
@@ -22,16 +41,12 @@ class RouteAdmin {
                     case 'index':
                         $controller->index();
                         break;
-                    case 'favoriteCustomers': // Thêm action này
-                        $controller->favoriteCustomers();
-                        break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
                         exit('Action not found');   
                 }
                 break;
-
             case 'category':
                 $controller = new CategoryController();
                 switch($action) {
@@ -112,14 +127,31 @@ class RouteAdmin {
 
             case 'import':
                 $controller = new ImportController();
-                switch($action) {
+                switch ($action) {
                     case 'index':
-                        $controller->index();
+                        $controller->index($current_page);
+                        break;
+                    case 'changeStatus':
+                        $controller->changeStatus();
+                        break;
+                    case 'create':
+                        $controller->create();
+                        break;
+                    case 'detail':
+                        $controller->detail();
+                        break;
+                    case 'detail':
+                        $id = $_GET['id'] ?? null;
+                        if ($id) {
+                            $controller->detail($id);
+                        } else {
+                            header('HTTP/1.0 404 Not Found');
+                            exit('ID not provided');
+                        }
                         break;
                     default:
-                        // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
-                        exit('Action not found');   
+                        exit('Action not found');
                 }
                 break;
 
@@ -131,6 +163,9 @@ class RouteAdmin {
                         break;
                     case 'detail':
                         $controller->detail($id);
+                        break;
+                    case 'changeStatus':
+                        $controller->changeStatus();
                         break;
                     default:
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định

@@ -1,5 +1,4 @@
 function previewImage(event) {
-    alert("Vui lòng chọn ảnh đại diện cho người dùng.");
     const file = event.target.files[0];
     const previewContainer = document.getElementById('user-image-preview');
 

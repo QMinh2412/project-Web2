@@ -31,7 +31,7 @@
 
         <div class="form-group">
           <div class="form-column">
-            <label for="phone">Số điện thoại</label>
+            <label for="phone">Số điện thoại *</label>
             <input type="text" name="phone" id="phone" />
             <div class="err err_phone"></div>
           </div>

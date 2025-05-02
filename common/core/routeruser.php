@@ -126,11 +126,17 @@ class Route {
             case 'showOrderHistory':
                 $controller->showOrderHistory();
                 break;
+            case 'showOrderHistoryAjax':
+                $controller->showOrderHistoryAjax();
+                break;
             case 'showOrderDetail':
                 $controller->showOrderDetail();
                 break;
             case 'cancelOrder':
                 $controller->cancelOrder();
+                break;
+            case 'filterOrders':
+                $controller->filterOrders();
                 break;
             default:
                 $controller->index();

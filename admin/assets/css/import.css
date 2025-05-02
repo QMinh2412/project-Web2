@@ -1,0 +1,449 @@
+/* Container chính */
+.import-header {
+    position: relative;
+}
+
+/************************ Index table **********************/
+#import-id {
+    width: 40px;
+}
+
+#import-value {
+    width: 100px;
+}
+
+#import-time {
+    width: 100px;
+}
+
+#import-status {
+    width: 200px;
+}
+
+#import-features {
+    width: 100px;
+}
+
+.import-status-dropdown {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #f8f9fa;
+    color: #333;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    width: 160px;
+    text-align: center;
+    text-align-last: center;
+}
+
+.import-status-dropdown option {
+    text-align: left;
+    background-color: white;
+    color: black;
+}
+
+.import-status-dropdown:hover {
+    border-color: #007bff;
+    background-color: #e9f2ff;
+}
+
+.import-status-dropdown:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 3px #007bff80;
+}
+/************************ Pagination ***********************/
+.import-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 8px;
+}
+
+.import-pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-decoration: none;  
+    color: #333;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+}
+
+.import-pagination a:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.import-pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    pointer-events: none;
+    border-color: #007bff;
+}
+
+.import-pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
+
+/************************ Import Feature Buttons ***********************/
+/* Import detail button */
+#detailImportBtn {
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px rgb(209, 209, 0);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#detailImportBtn:hover {
+    background-color: rgb(209, 209, 0); 
+}
+#detailImportBtn:active {
+    background-color: rgb(189, 189, 0); 
+}
+
+/* Import add button */
+.import-add-btn {
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px #4CAF50;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+
+.import-add-btn:hover {
+    background-color: #45a049; 
+    color: white;
+}
+
+.import-add-btn:active {
+    background-color: #3e8e41; 
+}
+
+/******************** FORM ********************/
+/*** Add Import Form ***/
+#import-add-header {
+    margin: 5px;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+#import-add-modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+#import-add-modal .import-add-modal-content {
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 2;
+    width: 400px;
+    max-width: 90%;
+    height: auto;
+    margin: 0 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+#import-add-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+#import-add-form div {
+    margin: 10px 0;
+}
+
+.import-add-form-group input,
+.import-add-form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#import-add-btn {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#import-add-btn button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#import-accept-btn {
+    background-color: #00c851;
+}
+
+#import-accept-btn:hover {
+    background-color: #007e33;
+    cursor: pointer;
+}
+
+#import-cancel-btn {
+    background-color: #f44336;
+}
+
+#import-cancel-btn:hover {
+    background-color: #c62828;
+    cursor: pointer;
+}
+
+/* Nền mờ khi mở modal */
+.addBookmodal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Hộp nội dung modal */
+.import-add-book-modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    animation: fadeIn 0.3s ease;
+    position: relative;
+}
+
+/* Nút đóng (X) */
+.import-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.2s ease;
+}
+.import-close-btn:hover {
+    color: #000;
+}
+
+/* Label và input/select styling */
+.import-add-book-modal-content label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#importAddBookQuantity, #importAddBookPrice, #importAddBookSelect {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Nút xác nhận */
+.import-add-book-modal-content button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+.import-add-book-modal-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Hiệu ứng xuất hiện */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/********************* IMPORT DETAIL **************************/
+/*********** Div Form ******************/
+
+#import-detail-form {
+    margin: 0px 20px 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.general-import-info {
+    flex: 1 1 calc(45% - 10px);
+}
+
+.general-import-info-full {
+    flex: 1 1 100%;
+}
+
+.import-create-label {
+    margin: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.import-create-text {
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 1px black;
+}
+
+#importDetailHeader {
+    margin: 0px 30px 10px 30px;
+}
+
+#importDetailTotalValueDiv {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-top: 20px;
+}
+
+#importDetailTotalValue {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+#import-total-value-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#import-total-value-input {
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#closeImportDetailBtn {
+    margin: 0px 20px 10px 20px;
+    background-color: red; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#closeImportDetailBtn:hover {
+    background-color: #b30000; 
+}
+#closeImportDetailBtn:active {
+    background-color: #800000; 
+}
+
+
+/******** Import Detail Form ***********/
+#import-detail-product-order {
+    width: 50px;
+}
+
+#import-detail-product-category {
+    width: 110px;
+}
+
+#import-detail-product-number {
+    width: 100px;
+}
+
+#import-detail-product-iPrice {
+    width: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+    .general-import-info {
+        flex: 1 1 calc(100% - 8px);
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    /*Order Detail Form*/
+    .import-create-label {
+        font-size: 0.9em;
+    }
+
+    .import-create-text {
+        font-size: 0.9em;
+    }
+
+    #import-detail-product-order {
+        display: none;
+    }
+
+    #import-detail-product-name {
+        font-size: 0.9em;
+    }
+
+    #import-detail-product-category {
+        width: 60px;
+        font-size: 0.9em;
+    }
+
+    #import-detail-product-number {
+        width: 60px;
+        font-size: 0.9em;
+    }
+
+    #import-detail-product-iPrice {
+        width: 80px;
+        font-size: 0.9em;
+    }
+
+    #import-total-value-label {
+        font-size: 1em;
+    }
+}

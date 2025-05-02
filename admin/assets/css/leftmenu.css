@@ -1,21 +1,10 @@
+/* Định dạng chung cho menu */
 #left-menu {
     width: 300px;
     background-color: #283339;
     z-index: 1000;
-    /* height: 100%; */
-}
-
-#left-menu div {
-    color: white;
-    height: 60px;
-    padding-left: 35px;
-    line-height: 60px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-#left-menu div:hover {
-    cursor: pointer;
-    background-color: black;
+    display: flex;
+    flex-direction: column; /* Đảm bảo các mục nằm dọc */
 }
 
 #left-menu a {
@@ -24,14 +13,32 @@
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+#left-menu div {
+    color: white;
+    line-height: 60px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* Menu cha */
 .menuitems {
     display: flex;
     align-items: center;
+    min-height: 60px; /* Đảm bảo chiều cao đồng nhất */
+    padding-left: 35px; /* Thụt lề đồng nhất với các mục khác */
 }
 
 .menuitems i {
-    padding-right: 15px;
+    margin-right: 10px; /* Giảm khoảng cách giữa icon và văn bản */
     font-size: 1.2em;
+}
+
+.menuitems-span {
+    flex-grow: 1;
+}
+
+.menuitems:hover {
+    cursor: pointer;
+    background-color: black;
 }
 
 /* Khi menu thu gọn */
@@ -61,14 +68,9 @@
 }
 
 @media only screen and (max-width: 600px) {
-
-    /* #admin-menu-icon {
-        display: none;
-    } */
+    /*...*/
 }
 
 @media only screen and (max-width: 1050px) {
-    /* #admin-menu-icon {
-        display: none;
-    } */
+    /*...*/
 }

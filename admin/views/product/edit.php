@@ -63,8 +63,8 @@
             <input class="new-provider-input" type="text" name="product_provider_address" id="product-provider-address-input" style="display: none;" placeholder="Nhập địa chỉ nhà cung cấp mới">
             <input class="new-provider-input" type="email" name="product_provider_email" id="product-provider-email-input" style="display: none;" placeholder="Nhập email nhà cung cấp mới">
 
-            <label class="product-create-label" for="product-quantity">Số lượng:</label><br>
-            <input class="product-create-numeric" type="number" name="product_quantity" id="product-quantity-input" placeholder="Số lượng" min="0" value="<?= htmlspecialchars($product['SoLgTon']) ?>" required>
+            <!-- <label class="product-create-label" for="product-quantity">Số lượng:</label><br>
+            <input class="product-create-numeric" type="number" name="product_quantity" id="product-quantity-input" placeholder="Số lượng" min="0" value="<?= htmlspecialchars($product['SoLgTon']) ?>" required> -->
 
             <label class="product-create-label" for="product-price">Giá:</label><br>
             <input class="product-create-numeric" type="number" name="product_price" id="product-price-input" placeholder="Giá" min="10000" value="<?= htmlspecialchars($product['GiaBan']) ?>" required>
@@ -108,8 +108,14 @@
                 <div id="product-image-preview" style="margin-top: 5px;"></div>
             </div>
         
-            <button type="submit" class="product-create-Btns" id="acceptEditProductBtn">Áp dụng thay đổi</button>
-            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">Hủy</button>
+            <button type="submit" class="product-create-Btns" id="acceptEditProductBtn">
+                <i class='bx bx-check'></i>
+                Áp dụng thay đổi
+            </button>
+            <button type="button" class="product-create-Btns" id="cancelProductBtn" onclick="location.href='?page=product&action=index&current_page=<?= $currentPage ?>'">
+                <i class='bx bx-x'></i>
+                Hủy
+            </button>
 
         </form>
     </div>

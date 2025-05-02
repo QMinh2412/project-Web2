@@ -122,8 +122,136 @@
             return $stmt->execute();
         }
 
-        public function getOrdersByAccountId($account_id) {
-            $query = "SELECT * FROM HoaDon WHERE MaKH = $account_id";
+        public function getOrdersByAccountId($account_id, $currentPage, $ordersPerPage = 10) {
+            $offset = ($currentPage - 1) * $ordersPerPage;
+
+            // lấy hóa đơn theo tài khoản
+            $query = "SELECT * FROM HoaDon WHERE MaKH = $account_id LIMIT $offset, $ordersPerPage";
+            $result = $this->db->query($query);
+            $orders = [];
+
+            if($result) {
+             while ($row = $result->fetch_assoc()) {
+                    $orders[] = $row;
+                }
+            }
+
+            // lấy phân trang cho tổng hóa đơn của tài khoản đó
+            $query = "SELECT COUNT(*) AS total FROM HoaDon WHERE MaKH = $account_id";
+            $result = $this->db->query($query);
+            $row = $result->fetch_assoc();
+            $totalOrders = $row['total'];
+            $totalPages = ceil($totalOrders / $ordersPerPage);
+
+            return ['orders' => $orders, 'totalPages' => $totalPages, 'currentPage' => $currentPage];
+            
+        }
+        public function changeOrderStatusById($orderId, $newStatus) {
+            $query = "UPDATE HoaDon SET TrangThaiDH = ? WHERE MaHD = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("ii", $newStatus, $orderId);
+            
+            return $stmt->execute();
+        }
+
+        public function getFilteredOrders($currentPage, $ordersPerPage, $orderId = '', $status = '', $fromDate = '', $toDate = '') {
+            $offset = ($currentPage - 1) * $ordersPerPage;
+            $conditions = "WHERE 1=1";
+        
+            // Gắn điều kiện nếu có giá trị
+            if (!empty($orderId)) {
+                $conditions .= " AND MaHD = " . intval($orderId);
+            }
+        
+            if (isset($status) && is_numeric($status)) {
+                $conditions .= " AND TrangThaiDH = " . intval($status);
+            }
+        
+            if (!empty($fromDate)) {
+                $conditions .= " AND NgLap >= '" . $this->db->real_escape_string($fromDate) . "'";
+            }
+        
+            if (!empty($toDate)) {
+                $conditions .= " AND NgLap <= '" . $this->db->real_escape_string($toDate) . "'";
+            }
+        
+            // Câu truy vấn chính
+            $query = "SELECT * FROM HoaDon $conditions ORDER BY NgLap DESC LIMIT $ordersPerPage OFFSET $offset";
+            $result = $this->db->query($query);
+        
+            $orders = [];
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $orders[] = $row;
+                }
+            }
+            
+            return $orders;
+        }
+        
+
+        public function getOrderPaginationFiltered($currentPage, $ordersPerPage, $orderId = '', $status = '', $fromDate = '', $toDate = '') {
+            $conditions = "WHERE 1=1";
+        
+            if (!empty($orderId)) {
+                $conditions .= " AND MaHD = " . intval($orderId);
+            }
+        
+            if (isset($status) && is_numeric($status)) {
+                $conditions .= " AND TrangThaiDH = " . intval($status);
+            }
+        
+            if (!empty($fromDate)) {
+                $conditions .= " AND NgLap >= '" . $this->db->real_escape_string($fromDate) . "'";
+            }
+        
+            if (!empty($toDate)) {
+                $conditions .= " AND NgLap <= '" . $this->db->real_escape_string($toDate) . "'";
+            }
+        
+            $query = "SELECT COUNT(*) as total FROM HoaDon $conditions";
+            $result = $this->db->query($query);
+            $row = $result->fetch_assoc();
+            $totalOrder = $row['total'];
+            $totalPages = ceil((int)$totalOrder / (int)$ordersPerPage);
+        
+            return [
+                'totalOrders' => $totalOrder,
+                'totalPages' => $totalPages,
+                'currentPage' => $currentPage
+            ];
+        }
+
+        public function getFilteredOrdersAndPaginationByAccountId($accountId, $ordersPerPage, $currentPage, $orderId, $orderStatus, $fromDate, $toDate){
+            $offset = ($currentPage - 1) * $ordersPerPage;
+
+            $accountId = intval($accountId);
+            $currentPage = intval($currentPage);
+            // $orderId = intval($orderId);
+            // $orderStatus = intval($orderStatus);
+            // $fromDate = $this->db->real_escape_string($fromDate);
+            // $toDate = $this->db->real_escape_string($toDate);
+
+            $conditions = "WHERE MaKH = $accountId";
+
+            if ($orderId !== '' && is_numeric($orderId)) {
+                $conditions .= " AND MaHD = " . intval($orderId);
+            }
+        
+            if ($orderStatus !== '' && is_numeric($orderStatus)) {
+                $conditions .= " AND TrangThaiDH = " . intval($orderStatus);
+            }
+        
+            if (!empty($fromDate)) {
+                $conditions .= " AND NgLap >= '" . $this->db->real_escape_string($fromDate) . "'";
+            }
+        
+            if (!empty($toDate)) {
+                $conditions .= " AND NgLap <= '" . $this->db->real_escape_string($toDate) . "'";
+            }
+
+            // truy vấn hóa đơn
+            $query = "SELECT * FROM HoaDon $conditions LIMIT $offset, $ordersPerPage";
             $result = $this->db->query($query);
             $orders = [];
 
@@ -132,7 +260,16 @@
                     $orders[] = $row;
                 }
             }
-            return $orders;
+
+            // lấy phân trang cho hóa đơn lọc được của tài khoản đód
+            $query = "SELECT COUNT(*) AS total FROM HoaDon $conditions";
+            $result = $this->db->query($query);
+            $row = $result->fetch_assoc();
+            $totalOrders = $row['total'];
+            $totalPages = ceil($totalOrders / $ordersPerPage);
+
+            return ['orders' => $orders, 'totalPages' => $totalPages, 'currentPage' => $currentPage];
         }
+        
     }
 ?>

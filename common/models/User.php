@@ -46,10 +46,10 @@
             SELECT 
                 NgDung.MaND, NgDung.TenND, NgDung.DcND, NgDung.EmailND, NgDung.GioiTinhND,
                 NgDung.SDT, NgDung.NgSinhND, 
-                TaiKhoan.MaTK, TaiKhoan.TenTK, TaiKhoan.LoaiTK, TaiKhoan.NgLap, TaiKhoan.TinhTrang
+                TaiKhoan.MaTK, TaiKhoan.TenTK, TaiKhoan.LoaiTK, TaiKhoan.NgLap, TaiKhoan.TinhTrang, TaiKhoan.DaXoa
             FROM NgDung
             LEFT JOIN TaiKhoan ON NgDung.MaND = TaiKhoan.MaND
-            WHERE TaiKhoan.LoaiTK != 4
+            WHERE TaiKhoan.LoaiTK != 4 and TaiKhoan.DaXoa = 0
         ";
 
         $result = $this->db->query($query);
@@ -59,9 +59,26 @@
             $users[] = $row;
         }
 
+        $result->close(); 
         return $users;
     }
+
+        public function getFullnameById($id) {
+            $query = "SELECT TenND FROM NgDung WHERE MaND = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $fullname = null;
     
+            if ($result && $row = $result->fetch_assoc()) {
+                $fullname = $row['TenND'];
+            }
+    
+            $stmt->close();
+            return $fullname;
+        }
+
         public function getById($id) {
             $query = "SELECT * FROM NgDung WHERE MaND = ?";
             $stmt = $this->db->prepare($query);
@@ -96,7 +113,8 @@
                     TaiKhoan.MaTK, TaiKhoan.TenTK, TaiKhoan.LoaiTK, TaiKhoan.NgLap, TaiKhoan.TinhTrang
                 FROM NgDung
                 LEFT JOIN TaiKhoan ON NgDung.MaND = TaiKhoan.MaND
-                WHERE TaiKhoan.LoaiTK != 4
+                WHERE TaiKhoan.LoaiTK != 4 
+                  AND TaiKhoan.DaXoa = 0
                 LIMIT $offset, $usersPerPage
             ";
         
@@ -109,13 +127,14 @@
         
             return $users;
         }
-
+        
         public function getPagination($currentPage, $usersPerPage) {
             $query = "
                 SELECT COUNT(*) AS total 
                 FROM NgDung 
                 LEFT JOIN TaiKhoan ON NgDung.MaND = TaiKhoan.MaND
-                WHERE TaiKhoan.LoaiTK != 4
+                WHERE TaiKhoan.LoaiTK != 4 
+                  AND TaiKhoan.DaXoa = 0
             ";
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
@@ -175,5 +194,5 @@
             $stmt->close();
             return $result;
         }
-}
+    }
 ?>

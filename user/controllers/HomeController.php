@@ -7,10 +7,10 @@
     class HomeController {
         public function getAccountData() {
             // session_start();
-            if (isset($_SESSION['account_id'])) {
+            if (isset($_SESSION['user_id'])) {
                 $accountModel = new Account();
-                $name  = $accountModel->getNameById($_SESSION['account_id']);
-                $image = $accountModel->getImage($_SESSION['account_id']);
+                $name  = $accountModel->getNameById($_SESSION['user_id']);
+                $image = $accountModel->getImage($_SESSION['user_id']);
                 return [$name, $image];
             }
             return null;

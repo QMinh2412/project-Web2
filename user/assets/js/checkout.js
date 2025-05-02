@@ -51,9 +51,9 @@ function checkInfoEmpty() {
 function hiddenConfirmForm() {
   confirmContainer.addEventListener("click", (e) => {
     if (e.target === confirmContainer) {
-      e.preventDefault(); // Ngăn sự kiện click truyền xuống
-      confirmContainer.style.display = "none"; // Đóng form khi click vào nền
-      document.body.style.overflow = "auto"; // Khôi phục cuộn
+      e.preventDefault();
+      confirmContainer.style.display = "none";
+      document.body.style.overflow = "auto";
     }
   });
 
@@ -68,7 +68,6 @@ function hiddenConfirmForm() {
 function showConfirmForm() {
   checkoutForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    // console.log("Đã click vào đặt hàng");
 
     if (!checkInfoEmpty()) {
       return;
@@ -92,14 +91,6 @@ function showConfirmForm() {
     ).textContent;
     document.getElementById("fee").innerHTML = feeShip;
     document.getElementById("total_bill").innerHTML = totalBill;
-    // console.log("Dữ liệu:", {
-    //   name,
-    //   phone,
-    //   address,
-    //   note,
-    //   shippingMethod,
-    //   paymentMethod,
-    // });
 
     try {
       document.querySelector(".name_confirm i").textContent = name;
@@ -143,9 +134,6 @@ function handleFeeShipAjax() {
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-          // console.log(`ready: ${xhr.readyState}`);
-          // console.log(`status: ${xhr.status}`);
-          // console.log(xhr.responseText);
           const response = JSON.parse(xhr.responseText);
           console.log(response);
           document.querySelector(".fee_order span:last-child").textContent =
@@ -235,7 +223,6 @@ function handleCheckoutFromTransferPayment() {
     const data = getDataFromForm();
     console.log(`du lieu gui di: ${data}`);
 
-    alert("Giả sử thanh toán");
     sendDataByAjax(data[0]);
   });
 }
@@ -243,13 +230,11 @@ function handleCheckoutFromTransferPayment() {
 function handleConfirmOrderAjax() {
   confirmForm.addEventListener("click", (e) => {
     e.preventDefault();
-    alert("Vừa click vào xác nhận");
 
     const data = getDataFromForm();
     console.log("Dữ liệu gửi đi:", data);
 
     if (data[1] === "1") {
-      alert("Giả sử thanh toán");
       sendDataByAjax(data[0]);
     } else {
       transferForm.style.display = "flex";

@@ -25,12 +25,12 @@ class CheckoutController {
             exit();
         }
 
-        if (!isset($_SESSION['account_id'])) {
+        if (!isset($_SESSION['user_id'])) {
             header('Location: /project-Web2/user/index.php?page=account&action=login');
             exit();
         }
 
-        $account_id = $_SESSION['account_id'];
+        $account_id = $_SESSION['user_id'];
         $id_book = isset($_POST['id_book']) ? (int)$_POST['id_book'] : 0;
         $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
         $fullname = $_POST['fullname'] ?? '';
@@ -67,7 +67,7 @@ class CheckoutController {
         $order_id = isset($_GET['order_id']) ? (int)$_GET['order_id'] : 0;
         $order = $this->orderModel->getById($order_id);
 
-        if (!$order || $order['MaND'] != $_SESSION['account_id']) {
+        if (!$order || $order['MaND'] != $_SESSION['user_id']) {
             echo "Không tìm thấy đơn hàng.";
             echo '<br><a href="/project-Web2/user/index.php">Quay lại trang chủ</a>';
             exit();

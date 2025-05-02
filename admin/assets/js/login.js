@@ -13,12 +13,12 @@ $(document).ready(function () {
             data: { TenTK: TenTK, MKTK: MKTK },
             dataType: 'json',
             success: function (response) {
-                if (response.status === 'success') {
-                    // Đăng nhập thành công, chuyển hướng đến dashboard
-                    window.location.href = '/project-Web2/admin/index.php?page=dashboard&action=index';
+                if (response.status === 'success' && response.redirect) {
+                    // Đăng nhập thành công, chuyển hướng đến URL được trả về
+                    window.location.href = response.redirect;
                 } else {
                     // Hiển thị thông báo lỗi
-                    $('#message').text(response.message);
+                    $('#message').text(response.message || 'Đã xảy ra lỗi, vui lòng thử lại!');
                 }
             },
             error: function () {

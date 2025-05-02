@@ -244,33 +244,34 @@ class Product {
     }
 
     public function createProduct($productData) {
-        $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, SoLgTon, GiaBan, NamXB, SoTrang, KichThuoc, MoTaChiTiet) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO DauSach (TenSach, MaLoai, MaTG, MaNXB, MaNCC, NamXB, SoTrang, KichThuoc, MoTaChiTiet, SoLgTon, GiaBan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("siiiiiiiss", 
+        $stmt->bind_param("siiiiiissii", 
                             $productData['TenSach'], 
                             $productData['MaLoai'], 
                             $productData['MaTG'], 
-                            $productData['MaNXB'], 
-                            $productData['SoLgTon'], 
-                            $productData['GiaBan'], 
+                            $productData['MaNXB'],
+                            $productData['MaNCC'],
                             $productData['NamXB'], 
                             $productData['SoTrang'], 
                             $productData['KichThuoc'], 
-                            $productData['MoTaChiTiet']
+                            $productData['MoTaChiTiet'],
+                            $productData['SoLgTon'],
+                            $productData['GiaBan']
         );
         
         return array($stmt->execute(), $this->db->insert_id);
     }
 
     public function updateProduct($productId, $productData) {
-        $query = "UPDATE DauSach SET TenSach = ?, MaLoai = ?, MaTG = ?, MaNXB = ?, SoLgTon = ?, GiaBan = ?, NamXB = ?, SoTrang = ?, KichThuoc = ?, MoTaChiTiet = ? WHERE MaSach = ?";
+        $query = "UPDATE DauSach SET TenSach = ?, MaLoai = ?, MaTG = ?, MaNXB = ?, MaNCC = ?, GiaBan = ?, NamXB = ?, SoTrang = ?, KichThuoc = ?, MoTaChiTiet = ? WHERE MaSach = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("siiiiiiissi", 
                             $productData['TenSach'], 
                             $productData['MaLoai'], 
                             $productData['MaTG'], 
-                            $productData['MaNXB'], 
-                            $productData['SoLgTon'], 
+                            $productData['MaNXB'],
+                            $productData['MaNCC'], 
                             $productData['GiaBan'], 
                             $productData['NamXB'], 
                             $productData['SoTrang'], 
@@ -283,6 +284,7 @@ class Product {
     }
 
     public function search($search) {
+        $search = $this->db->real_escape_string($search);
         $query = "SELECT * FROM DauSach WHERE TenSach LIKE '%$search%'";
         $result = $this->db->query($query);
         $products = [];
@@ -365,6 +367,37 @@ class Product {
         $result = $stmt->execute();
         $stmt->close();
         return $result;
+    }
+
+    public function getProductsByProvider($provider_id) {
+        $query = "SELECT * FROM DauSach WHERE MaNCC = ?";
+        $stmt = $this->db->prepare($query);
+    
+        if ($stmt) {
+            $stmt->bind_param("i", $provider_id);
+            $stmt->execute();
+            $result = $stmt->get_result(); 
+    
+            $products = [];
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $products[] = $row; 
+                }
+            }
+            $stmt->close();
+            return $products; 
+        }
+    
+        return false; 
+    }
+
+    public function updateProductAfterImport($productId, $newPrice, $newQuantity)
+    {
+        $query = "UPDATE DauSach SET GiaBan = ?, SoLgTon = ? WHERE MaSach = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("dii", $newPrice, $newQuantity, $productId);
+
+        return $stmt->execute();
     }
 }
 ?>
