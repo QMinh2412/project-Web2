@@ -33,9 +33,9 @@
                         </label>
                     </td>
                     <td class="admin-list-body-content-other" id="user-action">
-                        <button class="btn-user btn-detail" onclick="location.href='?page=user&action=view&id=<?= $user['MaND'] ?>'" title="Xem chi tiết"><i class='bx bxs-detail'></i></button>
+                        <button class="btn-user btn-delete" onclick="return confirmDelete(<?= $user['MaND'] ?>)" title="Xóa"><i class='bx bx-trash'></i></button>
+                        <button class="btn-user btn-detail" onclick="location.href='?page=user&action=view&id=<?= $user['MaND'] ?>'" title="Xem chi tiết"><i class='bx bx-info-circle'></i></button>
                         <button class="btn-user btn-edit" onclick="location.href='?page=user&action=edit&id=<?= $user['MaND'] ?>'" title="Chỉnh sửa"><i class='bx bx-edit'></i></button>
-                        <button class="btn-user btn-delete" onclick="return confirmDelete(<?= $user['MaND'] ?>)" title="Xóa"><i class='bx bxs-trash'></i></button>
                     </td>
                 </tr>
             <?php endforeach; ?>

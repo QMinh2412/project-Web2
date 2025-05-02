@@ -76,16 +76,6 @@
     transform: scale(0.98);
 }
 
-/*********** ICON STYLE **************/
-.btn-user .bx {
-    font-size: 16px;
-    /* margin-right: 5px; */
-    vertical-align: middle;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /*********** ADD BUTTON **************/
 #user-header {
     position: relative;

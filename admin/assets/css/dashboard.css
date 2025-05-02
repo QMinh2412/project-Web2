@@ -168,6 +168,51 @@
     background-color: #f9f9f9;
 }
 
+@media only screen and (max-width: 1050px) {
+    .dashboard-statistics {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px; 
+    }
+
+    .statistic-box {
+        width: 100%; 
+        max-width: 90%; 
+        box-sizing: border-box; 
+        text-align: center; 
+    }
+
+    .statistic-content {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .statistic-content img {
+        max-width: 80px; 
+        margin-top: 10px; 
+    }
+
+    .statistic-content p {
+        font-size: 1.2em; 
+    }
+
+    .search-section {
+        width: 100%; 
+        max-width: 90%; 
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        gap: 10px; 
+    }
+
+    .search-section input[type="date"],
+    .search-section button {
+        width: 100%; 
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .dashboard-header {
         display: flex;
