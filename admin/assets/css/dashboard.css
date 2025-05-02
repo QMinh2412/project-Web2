@@ -168,38 +168,7 @@
     background-color: #f9f9f9;
 }
 
-@media only screen and (max-width: 600px) {
-    .dashboard-header {
-        display: flex;
-        flex-direction: column; 
-        align-items: center; 
-        gap: 15px; 
-    }
-
-    .h1-header {
-        font-size: 20px; 
-        text-align: center; 
-    }
-
-    .search-section {
-        width: 100%; 
-        max-width: 90%; 
-        display: flex;
-        flex-direction: column; 
-        align-items: center; 
-        gap: 10px; 
-    }
-
-    .search-section input[type="date"],
-    .search-section button {
-        margin-top: 10px;
-        width: 100%; 
-    }
-
-    .search-section button {
-        margin-left: 5px;
-    }
-
+@media only screen and (max-width: 1050px) {
     .dashboard-statistics {
         display: flex;
         flex-direction: column; 
@@ -208,7 +177,7 @@
     }
 
     .statistic-box {
-        width: 100%;
+        width: 100%; 
         max-width: 90%; 
         box-sizing: border-box; 
         text-align: center; 
@@ -227,5 +196,87 @@
 
     .statistic-content p {
         font-size: 1.2em; 
+    }
+
+    .search-section {
+        width: 100%; 
+        max-width: 90%; 
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        gap: 10px; 
+    }
+
+    .search-section input[type="date"],
+    .search-section button {
+        width: 100%; 
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .dashboard-header {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        gap: 15px; 
+    }
+
+    .h1-header {
+        font-size: 20px;
+        text-align: center; 
+    }
+
+    .search-section {
+        width: 100%; 
+        max-width: 90%; 
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        gap: 10px; 
+    }
+
+    .search-section input[type="date"],
+    .search-section button {
+        width: 100%; 
+        margin-top: 5px;
+    }
+
+    .search-section button {
+        margin-left: 5px;
+    }
+
+
+    .dashboard-statistics {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px;
+    }
+
+    .statistic-box {
+        width: 100%;
+        max-width: 90%; 
+        box-sizing: border-box; 
+        text-align: center; 
+    }
+
+    .statistic-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .statistic-content img {
+        max-width: 80px; 
+        margin-top: 10px; 
+    }
+
+    .statistic-content p {
+        font-size: 1.2em; 
+    }
+
+    .favoritecus-table th:nth-child(3), 
+    .favoritecus-table td:nth-child(3) { 
+        display: none; 
     }
 }
