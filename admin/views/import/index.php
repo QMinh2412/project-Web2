@@ -45,9 +45,9 @@
         </form>
     </div>
 
-    <table class="admin-list-container">
-        <thead class="admin-list-header">
-            <tr class="admin-list-header-content">
+    <table class="admin-list-container" id="import-list-container">
+        <thead class="admin-list-header" id="import-list-header">
+            <tr class="admin-list-header-content" id="import-list-header-content">
                 <th id="import-id">ID</th>
                 <th id="import-provider">Tên nhà cung cấp</th>
                 <th id="import-value">Tổng tiền</th>
@@ -56,17 +56,17 @@
                 <th id="import-features">Chức năng</th>
             </tr>
         </thead>
-        <tbody class="admin-list-body">
+        <tbody class="admin-list-body" id="import-list-body">
             <?php if (!empty($imports)): ?>
                 <?php foreach ($imports as $index => $import): 
                     $provider = $providerMap[$import['MaNCC']] ?? 'N/A';
                 ?>
                     <tr>
-                        <td class="admin-list-body-content-num" id="import-id"><?= htmlspecialchars(number_format($import['MaPhNhap'])) ?></td>
-                        <td class="admin-list-body-content-other" id="import-provider"><?= htmlspecialchars($provider) ?></td>
-                        <td class="admin-list-body-content-num" id="import-value"><?= htmlspecialchars(number_format($import['TongTien'])) ?></td>
-                        <td class="admin-list-body-content-num" id="import-time"><?= date_format(new DateTime($import['NgNhap']), "d/m/Y") ?></td>
-                        <td class="admin-list-body-content-num" id="import-status">
+                        <td class="admin-list-body-content-num" id="import-id" data-label="ID"><?= htmlspecialchars(number_format($import['MaPhNhap'])) ?></td>
+                        <td class="admin-list-body-content-other" id="import-provider" data-label="Tên nhà cung cấp"><?= htmlspecialchars($provider) ?></td>
+                        <td class="admin-list-body-content-num" id="import-value" data-label="Tổng tiền"><?= htmlspecialchars(number_format($import['TongTien'])) ?></td>
+                        <td class="admin-list-body-content-num" id="import-time" data-label="Ngày lập"><?= date_format(new DateTime($import['NgNhap']), "d/m/Y") ?></td>
+                        <td class="admin-list-body-content-num" id="import-status" data-label="Tình trạng">
                             <select 
                                 class="import-status-dropdown" 
                                 onchange="handleStatusChange(this, <?= $import['MaPhNhap'] ?>, <?= $pagination['currentPage'] ?>)"
@@ -96,7 +96,7 @@
                                 ?>
                             </select>
                         </td>
-                        <td class="admin-list-body-content-num" id="import-features">
+                        <td class="admin-list-body-content-num" id="import-features" data-label="Chức năng">
                             <button class="btn btn-primary" id="detailImportBtn" 
                                 onclick="location.href='?page=import&action=detail&id=<?= number_format($import['MaPhNhap']) ?>&current_page=<?= $pagination['currentPage'] ?>'" 
                                 title="Xem chi tiết"

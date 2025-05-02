@@ -385,7 +385,7 @@ input:checked + .slider::before {
         width: 20%;
     }
     #user-action {
-        width: 20%;
+        width: 30%;
     }
 
 
