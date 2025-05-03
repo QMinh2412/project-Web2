@@ -489,7 +489,6 @@
 }
 
 .box_comment .comments .my_comment {
-  /* background-color: greenyellow; */
   padding: 20px;
   margin-left: auto;
   margin-right: 50px;
@@ -524,4 +523,52 @@
 
 textarea:focus {
   outline: none;
+}
+
+@media only screen and (max-width: 1050px) {
+  .container {
+    padding: 0 30px;
+  }
+
+  .box_detail .book_image .main_image {
+    height: 300px;
+  }
+
+  .box_detail .book_image .main_image img {
+    height: auto;
+  }
+
+  .box_detail .main_detail {
+    width: calc(45% - 20px);
+    margin-left: 20px;
+    padding: 20px 10px;
+  }
+
+  .box_detail .main_detail span {
+    color: #c1430c;
+  }
+
+  .orther_books .owl-item {
+    width: calc(25% - 20px);
+  }
+
+  .orther_books .book_item .book_image img {
+    width: auto;
+    max-width: 90%;
+    min-height: 80%;
+    max-height: 100%;
+  }
+
+  .orther_books .book_item .book_title {
+    font-size: 16px;
+  }
+
+  .orther_books .book_item .book_price {
+    font-size: 14px;
+  }
+
+  #prev,
+  #next {
+    padding: 8px;
+  }
 }

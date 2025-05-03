@@ -1,13 +1,7 @@
-/* * {
-  background-color: #f87979;
-} */
 .container_cart_detail_box {
-  /* background-color: greenyellow; */
   padding: 0 50px;
   display: flex;
   justify-content: center;
-  min-height: 500px;
-  /* align-items: center; */
 }
 
 .cart_detail {
@@ -17,7 +11,6 @@
 }
 
 .cart_detail h2 {
-  /* background-color: palegoldenrod; */
   padding: 0 10px 3px 10px;
   border-bottom: 2px solid black;
   margin: 0 0 10px 0;
@@ -29,7 +22,6 @@
 }
 
 .books_in_cart .book_in_cart {
-  /* background-color: peru; */
   width: 100%;
   display: flex;
   border-bottom: 1px solid #ccc;
@@ -39,7 +31,6 @@
   width: 20%;
   height: auto;
   max-height: 250px;
-  /* background-color: paleturquoise; */
 }
 
 .book_in_cart .book_image a {
@@ -60,7 +51,6 @@
 .book_in_cart .name_box {
   width: calc(50% - 40px);
   padding: 20px;
-  /* background-color: palegreen; */
 }
 
 .book_in_cart .name_box .book_name {
@@ -73,7 +63,6 @@
 .book_in_cart .name_box .category_name {
   margin-bottom: 5px;
   display: flex;
-  /* background-color: yellow; */
   align-items: center;
 }
 
@@ -87,7 +76,6 @@
 .book_in_cart .name_box .button_box {
   display: flex;
   align-items: center;
-  /* background-color: yellow; */
 }
 
 .book_in_cart .name_box .button_box span {
@@ -104,7 +92,6 @@
 }
 
 .book_in_cart .book_price {
-  /* background-color: papayawhip; */
   width: calc(15% - 20px);
   padding: 20px 10px;
   text-align: center;
@@ -117,7 +104,6 @@
   justify-content: center;
   width: calc(15% - 20px);
   padding: 20px 10px;
-  /* background-color: yellowgreen; */
 }
 
 .book_in_cart .quantity_box span:nth-child(1) {
@@ -125,7 +111,6 @@
 }
 
 .book_in_cart .quantity_box span {
-  display: inline-block;
   width: 30px;
   height: 30px;
   display: flex;
@@ -134,8 +119,8 @@
   border: 1px solid #c1430c;
 }
 
-#minus_icon:hover,
-#plus_icon:hover {
+.minus_icon:hover,
+.plus_icon:hover {
   background-color: #c1430c;
   color: #fff;
   cursor: pointer;
@@ -143,7 +128,6 @@
 
 .total_box {
   width: calc(20% - 40px);
-  /* background-color: purple; */
   padding: 0 20px;
   text-align: center;
 }
@@ -175,4 +159,101 @@
 .total_box form button:hover {
   background-color: #fff;
   color: #c1430c;
+}
+
+@media only screen and (max-width: 1050px) {
+  .container_cart_detail_box {
+    padding: 0 30px;
+  }
+
+  .book_in_cart .name_box .book_name {
+    font-size: 20px;
+  }
+
+  .book_in_cart .book_price {
+    width: calc(15% - 14px);
+    padding: 20px 7px;
+  }
+
+  .book_in_cart .quantity_box span {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container_cart_detail_box {
+    padding: 0 10px;
+  }
+
+  .cart_detail {
+    width: calc(80% - 20px);
+    background-color: white;
+    padding: 10px;
+  }
+
+  .cart_detail h2 {
+    font-size: 18px;
+  }
+
+  .book_in_cart .book_image {
+    width: 30%;
+    height: auto;
+    max-height: 100%;
+  }
+
+  .book_in_cart .book_image a {
+    align-items: flex-start;
+    padding-top: 10px;
+  }
+
+  .book_in_cart .name_box {
+    padding: 10px;
+    width: calc(50% - 20px);
+  }
+
+  .book_in_cart .name_box .book_name {
+    font-size: 16px;
+  }
+
+  .book_in_cart .name_box .author_name,
+  .book_in_cart .name_box .category_name {
+    display: none;
+  }
+
+  .book_in_cart .name_box .button_box {
+    font-size: 14px;
+  }
+
+  .book_in_cart .book_price {
+    display: none;
+  }
+
+  .book_in_cart .quantity_box {
+    width: calc(20% - 10px);
+    padding: 10px 5px;
+  }
+
+  .book_in_cart .quantity_box span {
+    width: 20px;
+    height: 20px;
+  }
+
+  .total_box {
+    width: calc(20% - 10px);
+    padding: 0 5px;
+  }
+
+  .total_box form {
+    padding: 5px;
+  }
+
+  .total_box form div {
+    font-size: 14px;
+  }
+
+  .total_box form button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
 }

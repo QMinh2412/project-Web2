@@ -262,7 +262,7 @@
                 exit;
             }
             // lấy chi tiết hóa đơn
-            $orderDetails = $orderDetailModel->getOrderDetailByOrderId($order_id);
+            $orderDetails = $orderDetailModel->getOrderDetailsByOrderId($order_id);
             if(!$orderDetails) {
                 echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy chi tiết hóa đơn']);
                 exit;
@@ -302,7 +302,7 @@
 
             // Cập nhật lại số lượng sản phẩm
             $orderDetailModel = new OrderDetail();
-            $orderDetails = $orderDetailModel->getOrderDetailByOrderId($orderId);
+            $orderDetails = $orderDetailModel->getOrderDetailsByOrderId($orderId);
             $productModel = new Product();
             foreach($orderDetails as $book){
                 $productModel->updateStock($book['MaSach'], -$book['SoLg']);

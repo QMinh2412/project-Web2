@@ -10,6 +10,7 @@
 ?> -->
 
 <div class="outer_container">
+    <div class="box_cheatseat"><i class="fa-solid fa-bars"></i></div>
     <div class="box_filter">
         <div class="box_item">
             <div class="main_item">

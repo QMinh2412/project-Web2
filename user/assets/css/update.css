@@ -1,7 +1,6 @@
 .container_update_account {
   display: flex;
   margin: 0px 50px;
-  min-height: 500px;
 }
 
 .menu_links {
@@ -117,4 +116,10 @@ button:hover {
 .message.error {
   background-color: #f8d7da;
   color: #721c24;
+}
+
+@media only screen and (max-width: 1050px) {
+  .container_update_account {
+    margin: 0px 30px;
+  }
 }

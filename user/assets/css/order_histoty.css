@@ -1,14 +1,11 @@
 #container_order_history {
   display: flex;
   margin: 0px 50px;
-  min-height: 500px;
-  /* background-color: pink; */
 }
 
 .menu_links {
   width: 20%;
   margin: 10px 0;
-  /* background-color: palevioletred; */
 }
 
 .menu_links div {
@@ -37,7 +34,6 @@
   margin: 10px 0px;
   margin-left: 20px;
   width: calc(80% - 20px);
-  /* background-color: palegoldenrod; */
 }
 
 h2 {
@@ -51,12 +47,10 @@ h2 {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  /* background-color: palegreen; */
   padding: 0 10px;
 }
 
 .order_filter form > div {
-  /* background-color: paleturquoise; */
   margin-right: 10px;
   padding: 5px 0px;
 }
@@ -90,7 +84,6 @@ h2 {
 #box_btn_order_filter {
   height: 100%;
   display: flex;
-  /* align-items: flex-end; */
   padding-bottom: 7px;
 }
 .order_filter form button {
@@ -114,12 +107,10 @@ h2 {
 }
 
 .order_history {
-  /* background-color: peachpuff; */
   margin-top: 10px;
 }
 
 #order_history_header {
-  /* background-color: plum; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,7 +122,6 @@ h2 {
   height: 28px;
   padding: 5px;
   border: 1px solid black;
-  /* border-radius: 5px; */
   color: #a75026;
   font-weight: bold;
   display: flex;
@@ -150,15 +140,10 @@ h2 {
   height: 30px;
 }
 
-/* #order_history_body {
-  background-color: paleturquoise;
-} */
-
 #order_history_body .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: rgb(157, 187, 157); */
 }
 
 #order_history_body .item span {
@@ -183,7 +168,6 @@ h2 {
   border: none;
   width: calc(100% / 6 - 11px);
   height: 20px;
-  /* padding-left: 10px; */
   justify-content: flex-start;
 }
 
@@ -211,7 +195,6 @@ h2 {
   border: 1px solid #a75026;
 }
 
-/* chi tiết hóa đơn */
 .order_detail_box {
   margin: 10px 0px;
   margin-left: 20px;
@@ -297,7 +280,6 @@ h2 {
 }
 
 #book_list .book span {
-  /* height: 20px; */
   padding: 5px;
 }
 
@@ -311,7 +293,6 @@ h2 {
   width: calc(100% - 480px);
 }
 
-/* pagination_box */
 .pagination_box {
   clear: both;
   display: flex;
@@ -362,4 +343,22 @@ h2 {
   background-color: #a75026;
   color: white;
   border-radius: 10px;
+}
+
+@media only screen and (max-width: 1050px) {
+  #container_order_history {
+    margin: 0px 30px;
+  }
+
+  .order_filter form > div {
+    width: calc(20% - 10px);
+  }
+
+  .order_filter form > div input {
+    width: calc(100% - 12px);
+  }
+
+  .order_filter form > div select {
+    width: 100%;
+  }
 }

@@ -457,6 +457,17 @@ window.displaySearchResults = function (response) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
+function toggleFilterBox() {
+  const filterBox = document.querySelector(".box_filter");
+  const toggleButton = document.querySelector(".box_cheatseat");
+
+  if (toggleButton && filterBox) {
+    toggleButton.addEventListener("click", function () {
+      filterBox.classList.toggle("active");
+    });
+  }
+}
+
 function getParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
@@ -467,6 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   hideShowSubbox();
   changeColorForPageItem();
+  toggleFilterBox();
   attachCategoryEvents();
   attachAuthorEvents();
   attachFilterEvents();

@@ -295,8 +295,8 @@ function effectForOrtherBooks() {
         600: {
           items: 3, // Hiển thị 3 item trên màn hình trung bình
         },
-        1000: {
-          items: 5, // Hiển thị 5 item trên màn hình lớn
+        1050: {
+          items: 4, // Hiển thị 5 item trên màn hình lớn
         },
       },
     });
