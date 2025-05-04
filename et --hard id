@@ -1,0 +1,162 @@
+[33m98918cd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mphuocvinh14[m[33m, [m[1;31morigin/qminh[m[33m)[m hoàn thành thanh toán, lưu hóa đơn (27/4 22:31)
+[33md730ca1[m xong giao diện thanh toán bằng chuyển khoản
+[33m0d8eeed[m update trước khi xử lý nút xác nhận thanh toán
+[33m57432e2[m update csdl
+[33mbe27dc8[m hoàn thành giỏ hàng, chỉnh sửa lại css header ( 19/4 0:15 )
+[33mf41cefe[m gộp nhánh akhang vào qminh thành công ( 16/4 21:25 )
+[33mf4a3bd7[m gộp nhánh akhang vào qminh ( 16/4 20:42 )
+[33mf16aa57[m update lại sau khi lấy code akhang về bị lỗi ( 16/4 20:27 )
+[33m3c3fd13[m update model Product, Order and doing order mangement (not completed yet)
+[33m5b2b495[m temporary push before pulling mr hung
+[33mc795e5e[m css
+[33m0851f36[m merge akhang
+[33mcae8f29[m merge branch phuocvinh14 into qminh
+[33me7d8a1f[m[33m ([m[1;31morigin/phuocvinh14[m[33m)[m thanh toan
+[33me74621c[m gộp phần update thông tin tk vào
+[33m387a336[m gộp code nhánh phuocvinh14 phần update thong tin, thay đổi mật khẩu xong
+[33m3015444[m update responsive and complete product/category for admin
+[33m03a88a0[m Them vao model cart, cartdetail, order, orderdetail, review. Xoa table quanly trong db
+[33m461c0d5[m push admin login
+[33m387707b[m merge database qminh
+[33m61140e4[m update responsive for admin and fix bugs of product management
+[33m1802f9d[m lấy code phuocvinh14 về
+[33m850b527[m cập nhật lại db
+[33m79d8277[m đang làm tìm kiếm, chưa xong
+[33m373b930[m Update
+[33m5407e1f[m đang tìm cách link giữa các trang ( còn lỗi )
+[33m049a2bd[m Merge responive akhang
+[33m8fea07c[m update responsive
+[33mb0dcac7[m update responsive for admin
+[33me86afbf[m lay code phuc hung ve
+[33mc231578[m hoàn thành trang sản phẩm
+[33m4283f06[m merge responsive akhang
+[33m3c079cb[m update (not complete) responsive for admin
+[33m8bbc495[m pull qminh
+[33m894abed[m pull qminh
+[33md9a907a[m merge quhuy
+[33m04d2a43[m push admin login
+[33m425994c[m nút thêm giỏ hàng thành công, thêm cart và cartdetail trong models
+[33m80eee0f[m gộp xong 4 nhánh
+[33m13e12bd[m gộp xong 4 nhánh lại
+[33mf48ff99[m gộp nhánh akhang
+[33m31358fc[m gộp nhanh hưng
+[33m942fb02[m gộp nhánh huy
+[33md302684[m merge branch akhang into qminh
+[33m89ac2cb[m merge branch qhuy into qminh
+[33m8b35c56[m megre branch phung into qminh
+[33m85c1f81[m thêm review trong models
+[33m2be70e9[m update model Product and complete features related to product in admin
+[33m18c9539[m update model Image (IMPORTANT) and fix bugs of admin/product
+[33meb965c7[m test add product
+[33m783457f[m pull akhang
+[33mc68d1aa[m xong login admin
+[33m7f4d10c[m upadate edit, view user
+[33m5a7192d[m update Model Product, Image and complete Product Detail Viewer
+[33mc1fbeec[m Merge branch 'akhang' of https://github.com/QMinh2412/project-Web2 into qminh
+[33m95ecb7e[m xong giao diện trang chi tiết
+[33m0231de8[m update models for Author, Product, Provider, Publisher and related stuffs in admin
+[33m6432491[m đang làm tìm kiếm ( CHƯA XONG )
+[33m7dfa8c2[m tạm thời link qua lại đc giữa trang home và trang sản phẩm
+[33m7a06662[m temporary push
+[33m733c38b[m Merge branch 'phuocvinh14' of https://github.com/QMinh2412/project-Web2 into qminh
+[33m71b12fd[m push tạm trước khi lấy phuocvinh14 về
+[33me6001c4[m home
+[33m3fbf7d4[m chỉnh sửa lại vị trí
+[33m18a26b9[m làm tí dashboard và lấy code khang
+[33m4b425d4[m Merge branch 'akhang' of https://github.com/QMinh2412/project-Web2 into qminh
+[33m1632ed6[m pull cua akhang
+[33m92b9b76[m push truoc pull
+[33ma879f59[m Merge branch 'qminh' of https://github.com/QMinh2412/project-Web2 into akhang
+[33m10fb65c[m update common: provider, publisher, author and fix bugs admin/product and related files
+[33mc801933[m Merge branch 'akhang' of https://github.com/QMinh2412/project-Web2 into qminh
+[33m71d53f5[m xong lọc bằng ajax cho trang sản phẩm
+[33m159c220[m push for huy
+[33mc6390fe[m push user
+[33mb8f27f6[m update admin login
+[33m4239557[m update admin login
+[33md2e8cf7[m update product/category in admin. MODEL CATEGORY.PHP in common
+[33m8af2e1f[m pull mrkhang
+[33mce86263[m test
+[33mc90589c[m update admin product interface
+[33mc197040[m Merge branch 'qminh' of https://github.com/QMinh2412/project-Web2 into akhang
+[33m0bf7667[m update book categories interface
+[33m79993f3[m merge branch qminh into phuocvinh14
+[33m1f9800f[m xong slidebar
+[33mff6a038[m xong view va render ra man hinh, chua xu ly
+[33m75671dc[m Merge branch 'PhuocHung' of https://github.com/QMinh2412/project-Web2 into akhang
+[33m2e04ac7[m update admin category interface
+[33mb5bd9d4[m push admincss
+[33m2049a1c[m merge branch akhang into qminh
+[33m085b50f[m được view trang sản phẩm
+[33m780ef8a[m push user css
+[33m7c950fe[m update
+[33mb990c85[m update
+[33m2ed1a34[m test user
+[33m7cf1ea5[m sua database
+[33mbb3cc56[m thêm view cho ds sản phẩm
+[33m17fba69[m update db: sửa lại đg dẫn ảnh của sách
+[33m878a326[m Lưu thay đổi trước khi chuyển branch
+[33m6f99a0f[m pull ve tu qminh
+[33mc2408e7[m[33m ([m[1;32mqminh[m[33m)[m xong đăng nhập
+[33m21f3d87[m update
+[33mf28c836[m update
+[33m05f6d63[m update
+[33m1adc19b[m update
+[33m688b2bb[m render admin
+[33mc012c24[m pull cua qminh
+[33me821755[m pull qminh
+[33m3c394f9[m Tạm thời xong code đăng nhập. CHƯA CHẠY ĐƯỢC
+[33m52b67dc[m merge nhánh phuocvinh14 vào
+[33m85b6c41[m message
+[33m281356b[m có thể lấy biến từ file này qua file khác in ra
+[33m7d977dc[m xong logout
+[33md20ffa6[m hoàn thành file index.php, route.php được bước đầu.
+[33mb873714[m update
+[33m7144e40[m update admin controller
+[33m865edd2[m Merge branch 'qminh' of https://github.com/QMinh2412/project-Web2 into akhang
+[33m68832b9[m xử lý được đăng ký, chưa viết index và routeruser
+[33m5228ea7[m Thêm kt dữ liệu đăng ký bằng js
+[33m29a8a06[m Sửa lại tí header
+[33mbfd79a8[m Merge branch 'PhuocHung' into qminh
+[33ma126c03[m Thêm php xử lý đăng ký
+[33m476876e[m Merge branch 'PhuocHung' of https://github.com/QMinh2412/project-Web2 into akhang
+[33m04fd0c1[m update admin
+[33m0ea8616[m push admin
+[33mdcbdcc4[m update admin, i'm tired
+[33m0ebe120[m Merge branch 'akhang' of https://github.com/QMinh2412/project-Web2 into PhuocHung
+[33m8e295c3[m pull akhang
+[33m2e4e3c4[m update a bit background color and add more fonts
+[33meb43dc8[m update admin
+[33m82434e6[m Lấy code từ nhánh l hưng
+[33m6b3c441[m update header 8am 25/3
+[33mb6835fc[m Thêm các file đã tồn tại nhưng đc chỉnh sửa
+[33m0d41ed5[m Thêm file router cho user
+[33me88e2d4[m Hoàn thành file cấu hình
+[33m272430c[m Thêm file giao diện chính
+[33m18aaa9d[m Thêm HeaderController xử lý hiện thông tin góc phải
+[33m73e2b27[m Thêm xử lý bấm hiện submenu
+[33m82e3278[m Thêm css cho main_layout
+[33m6f197e6[m Thêm hàm lấy thông tin tk, hàm lấy ảnh
+[33mef3809b[m insert photos
+[33mc23b411[m update photos for books
+[33m5c280ff[m Merge branch 'PhuocHung' of https://github.com/QMinh2412/project-Web2 into akhang
+[33m7353454[m sua mot chut header.php
+[33m5aaa0a7[m Merge branch 'akhang' of https://github.com/QMinh2412/project-Web2 into PhuocHung
+[33m528294f[m cap nhat
+[33me5df68d[m Merge branch 'akhang' of https://github.com/QMinh2412/project-Web2 into PhuocHung
+[33m4d7b615[m update admin
+[33m5066e05[m update database and admin folders
+[33m509d82e[m up to date
+[33me79a9e4[m insert data
+[33mc22a741[m Chỉnh sửa tí footer
+[33m5fda4c5[m update them database cho lol minh
+[33m7548ffc[m Thêm chọn quận theo tp, phường theo quận
+[33mff7f983[m footer.php
+[33m36b69f1[m style.css
+[33mc1caa4d[m hoàn thành giao diện header
+[33mcb2ddd4[m update database
+[33m737366d[m up_database
+[33mcfb8477[m register.php
+[33m278e379[m Add files via upload
+[33m7bb6772[m Form Đăng ký
+[33m2b0433f[m[33m ([m[1;31morigin/qhuy[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/akhang[m[33m, [m[1;31morigin/PhuocHung[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m first commit

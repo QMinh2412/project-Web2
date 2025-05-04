@@ -143,14 +143,24 @@ create table `CTGH` (
 	-- `GiaBan` long not null
 );
 
-create table `HinhAnh` (
-	`MaHA` int primary key not null auto_increment,
-	`DgDanAnh` LONGTEXT,
-    `MaND` int,
-    `MaSach` int,
-    `MaHD` int
-);
+-- create table `HinhAnh` (
+-- 	`MaHA` int primary key not null auto_increment,
+-- 	`DgDanAnh` LONGTEXT,
+--     `MaND` int,
+--     `MaSach` int,
+--     `MaHD` int
+-- );
 
+CREATE TABLE `HinhAnh` (
+    `MaHA` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `DgDanAnh` LONGTEXT,
+    `MaND` INT,
+    `MaSach` INT,
+    `MaHD` INT,
+    FOREIGN KEY (MaND) REFERENCES NgDung(MaND),
+    FOREIGN KEY (MaSach) REFERENCES DauSach(MaSach),
+    FOREIGN KEY (MaHD) REFERENCES HoaDon(MaHD)
+);
 -- KHOAI CHINH --
 alter table `CTPN` add constraint PK_DS_PN PRIMARY KEY(MaSach, MaPhNhap);
 alter table `CTHD` add constraint PK_DS_HD PRIMARY KEY (MaSach, MaHD);

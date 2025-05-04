@@ -25,7 +25,7 @@ function checkInfoEmpty() {
   const note = document.getElementById("txtNote");
 
   if (!name.value) {
-    alert("Vui lòng nhập tên người nhận");
+    alert("Vui lòng nhập tên nhận hàng");
     name.select();
     name.focus();
     return false;
@@ -39,7 +39,7 @@ function checkInfoEmpty() {
   }
 
   if (!address.value) {
-    alert("Vui lòng nhập địa chỉ nhận hàng");
+    alert("Vui lòng nhập tên nhận hàng");
     address.select();
     address.focus();
     return false;
@@ -51,23 +51,24 @@ function checkInfoEmpty() {
 function hiddenConfirmForm() {
   confirmContainer.addEventListener("click", (e) => {
     if (e.target === confirmContainer) {
-      e.preventDefault();
-      confirmContainer.style.display = "none";
-      document.body.style.overflow = "auto";
+      e.preventDefault(); // Ngăn sự kiện click truyền xuống
+      confirmContainer.style.display = "none"; // Đóng form khi click vào nền
+      document.body.style.overflow = "auto"; // Khôi phục cuộn
     }
   });
 
-  closeButton.addEventListener("click", () => {
-    alert("vừa nhấn nút hủy");
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault();
     console.log("Đã nhấn nút Hủy");
     confirmContainer.style.display = "none";
-    document.body.style.overflow = "auto";
+    document.body.style.overflow = "auto"; // Khôi phục cuộn
   });
 }
 
 function showConfirmForm() {
   checkoutForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    // console.log("Đã click vào đặt hàng");
 
     if (!checkInfoEmpty()) {
       return;
@@ -91,6 +92,14 @@ function showConfirmForm() {
     ).textContent;
     document.getElementById("fee").innerHTML = feeShip;
     document.getElementById("total_bill").innerHTML = totalBill;
+    // console.log("Dữ liệu:", {
+    //   name,
+    //   phone,
+    //   address,
+    //   note,
+    //   shippingMethod,
+    //   paymentMethod,
+    // });
 
     try {
       document.querySelector(".name_confirm i").textContent = name;
@@ -98,11 +107,11 @@ function showConfirmForm() {
       document.querySelector(".address_confirm i").textContent = address;
       document.querySelector(".note_confirm i").textContent = note || "";
       document.querySelector(".shipping_method_confirm i").textContent =
-        shippingMethod === "1" ? "Giao hàng tiêu chuẩn" : "Giao hàng hỏa tốc";
+        shippingMethod === "1" ? "Giao hàng thông thường" : "Giao hàng hỏa tốc";
       document.querySelector(".payment_method_confirm i").textContent =
         paymentMethod === "1"
           ? "Thanh toán khi nhận hàng"
-          : "Thanh toán bằng chuyển khoản ngân hàng";
+          : "Thanh toán bằng mã QR";
 
       // console.log("Trước khi hiển thị form xác nhận");
       confirmContainer.style.display = "flex";
@@ -134,6 +143,9 @@ function handleFeeShipAjax() {
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
+          // console.log(`ready: ${xhr.readyState}`);
+          // console.log(`status: ${xhr.status}`);
+          // console.log(xhr.responseText);
           const response = JSON.parse(xhr.responseText);
           console.log(response);
           document.querySelector(".fee_order span:last-child").textContent =
@@ -165,13 +177,9 @@ function getDataFromForm() {
   const paymentMethod = document.querySelector(
     'input[name="payment_method"]:checked'
   ).value;
-  const feeShipText = document.querySelector(
-    ".fee_order span:last-child"
-  ).textContent;
   const totalBillText = document.querySelector(
     ".total_bill span:last-child"
   ).textContent;
-  const feeShip = parseInt(feeShipText.replace(/[^0-9]/g, "")) || 0;
   const total_bill = parseInt(totalBillText.replace(/[^0-9]/g, "")) || 0;
 
   const data = new URLSearchParams({
@@ -182,7 +190,6 @@ function getDataFromForm() {
     shippingMethod: shippingMethod,
     paymentMethod: paymentMethod,
     total_bill: total_bill,
-    feeShip: feeShip,
     source: source,
   }).toString();
 
@@ -206,8 +213,7 @@ function sendDataByAjax(data) {
         console.log(response);
         if (response.status === "success") {
           alert(response.message);
-          window.location.href =
-            "/project-Web2/user/index.php?page=order&action=showOrderHistory";
+          // window.location.href = "/project-Web2/user/index.php?page=home";
         } else {
           alert("Lỗi: " + response.message);
         }
@@ -228,6 +234,7 @@ function handleCheckoutFromTransferPayment() {
     const data = getDataFromForm();
     console.log(`du lieu gui di: ${data}`);
 
+    alert("Giả sử thanh toán");
     sendDataByAjax(data[0]);
   });
 }
@@ -235,11 +242,13 @@ function handleCheckoutFromTransferPayment() {
 function handleConfirmOrderAjax() {
   confirmForm.addEventListener("click", (e) => {
     e.preventDefault();
+    alert("Vừa click vào xác nhận");
 
     const data = getDataFromForm();
     console.log("Dữ liệu gửi đi:", data);
 
     if (data[1] === "1") {
+      alert("Giả sử thanh toán");
       sendDataByAjax(data[0]);
     } else {
       transferForm.style.display = "flex";
@@ -266,3 +275,37 @@ document.addEventListener("DOMContentLoaded", () => {
   handleConfirmOrderAjax();
   closePaymentForm();
 });
+
+document
+  .getElementById("uploadProofForm")
+  .addEventListener("submit", function (e) {
+    e.preventDefault(); // Ngăn chặn gửi form mặc định
+
+    const formData = new FormData(this);
+    const submitButton = document.getElementById("btn_confirm_payment");
+    submitButton.disabled = true; // Vô hiệu hóa nút để tránh gửi nhiều lần
+
+    fetch("/project-Web2/user/upload_proof.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert(data.message); // Hiển thị thông báo thành công
+          // Tùy chọn: Chuyển hướng hoặc reset form
+          document.getElementById("uploadProofForm").reset();
+          document.getElementById("container_transfer_payment").style.display =
+            "none";
+        } else {
+          alert(data.message); // Hiển thị thông báo lỗi
+        }
+      })
+      .catch((error) => {
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi tải lên minh chứng.");
+      })
+      .finally(() => {
+        submitButton.disabled = false; // Kích hoạt lại nút
+      });
+  });

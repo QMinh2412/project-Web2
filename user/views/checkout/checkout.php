@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/project-Web2/user/assets/css/checkout.css">
 <div class="container_checkout_box">
     <?php if (!empty($bookList)): ?>
+        <?php print_r($userInfo); ?>
         <form action="/project-Web2/user/index.php?page=checkout&action=placeOrder" method="POST" id="formInfo">
             <div class="info_method">
                 <div class="info">
@@ -32,13 +33,13 @@
                     <div class="method_box">
                         <div class="shipping_method">
                             <div>Phương thức vận chuyển</div>
-                            <div><input type="radio" name="shipping_method" id="regular" value="1" checked> <label for="regular">Giao hàng tiêu chuẩn</label></div>
+                            <div><input type="radio" name="shipping_method" id="regular" value="1" checked> <label for="regular">Giao hàng thông thường</label></div>
                             <div><input type="radio" name="shipping_method" id="express" value="2"> <label for="express">Giao hàng hỏa tốc</label></div>
                         </div>
                         <div class="payment_method">
                             <div>Phương thức thanh toán</div>
                             <div><input type="radio" name="payment_method" id="cod" value="1" checked> <label for="cod">Thanh toán khi nhận hàng</label></div>
-                            <div><input type="radio" name="payment_method" id="qr" value="2"> <label for="qr">Thanh toán bằng chuyển khoản ngân hàng</label></div>
+                            <div><input type="radio" name="payment_method" id="qr" value="2"> <label for="qr">Thanh toán bằng mã QR</label></div>
                         </div>
                     </div>
                 </div>
@@ -54,23 +55,23 @@
                         <div class="book" data-id=<?php echo $book['MaSach']; ?> >
                             <span class="book_name"><?php echo htmlspecialchars($book['TenSach']); ?></span>
                             <span class="book_qty"><?php echo $book['SoLg']; ?></span>
-                            <span class="book_price"><?php echo number_format($book['GiaBan'], 0, '.', '.'); ?> đ</span>
+                            <span class="book_price"><?php echo number_format($book['GiaBan'], 0, ',', '.'); ?> đ</span>
                         </div>
                     <?php endforeach; ?>
                 </div>
                 <div class="price_fee">
                     <div class="total_price_order">
                         <span>Tiền hàng:</span>
-                        <span class="total_price"><?php echo number_format($totalPrice, 0, '.', '.'); ?> đ</span>
+                        <span class="total_price"><?php echo number_format($totalPrice, 0, ',', ','); ?> đ</span>
                     </div>
                     <div class="fee_order">
                         <span>Phí vận chuyển:</span>
-                        <span class="fee"><?php echo number_format($shippingFee, 0, '.', '.'); ?> đ</span>
+                        <span class="fee"><?php echo number_format($shippingFee, 0, ',', ','); ?> đ</span>
                     </div>
                 </div>
                 <div class="total_bill">
-                    <span>Thành tiền:</span>
-                    <span><?php echo number_format($totalPrice + $shippingFee, 0, '.', '.'); ?> đ</span>
+                    <span>Tiền hàng:</span>
+                    <span><?php echo number_format($totalPrice + $shippingFee, 0, ',', '.'); ?> đ</span>
                 </div>
             </div>
             <div class="btn_box">
@@ -106,26 +107,26 @@
                         <div class="book">
                             <span class="book_name"><?php echo htmlspecialchars($book['TenSach']); ?></span>
                             <span class="book_qty"><?php echo $book['SoLg']; ?></span>
-                            <span class="book_price"><?php echo number_format($book['GiaBan'], 0, '.', '.'); ?> đ</span>
+                            <span class="book_price"><?php echo number_format($book['GiaBan'], 0, ',', '.'); ?> đ</span>
                         </div>
                     <?php endforeach; ?>
                 </div>
                 <div class="price_fee">
                     <div class="total_price_order">
                         <span>Tiền hàng:</span>
-                        <span id="total_price"><?php echo number_format($totalPrice, 0, '.', '.'); ?> đ</span>
+                        <span id="total_price"><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
                     </div>
                     <div class="fee_order">
                         <span>Phí vận chuyển:</span>
-                        <span id="fee"><?php echo number_format($shippingFee, 0, '.', '.'); ?> đ</span>
+                        <span id="fee"><?php echo number_format($shippingFee, 0, ',', '.'); ?> đ</span>
                     </div>
                 </div>
                 <div class="total_bill">
-                    <span>Thành tiền:</span>
-                    <span id="total_bill"><?php echo number_format($totalPrice, 0, '.', '.'); ?> đ</span>
+                    <span>Tiền hàng:</span>
+                    <span id="total_bill"><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
                 </div>
                 <div class="btn_box">
-                    <!-- <button id="close">Hủy</button> -->
+                    <button id="close">Hủy</button>
                     <button type="submit">Xác nhận</button>
                 </div>
             </form>
@@ -137,11 +138,10 @@
             <p>Cảm ơn bạn đã đặt hàng! Vui lòng thực hiện các bước chuyển khoản theo thông tin bên dưới</p>
             <div id="order_info">
                 <h3>Thông tin đơn hàng</h3>
-                <div id="order_id">Mã đơn hàng: <span>Mã đơn hàng</span></div>
-                <div id="total_order">Tổng tiền: <span>Tổng tiền hóa đơn</span></div>
-                <div id="name">Tên khách hàng: <span>Tên khách hàng</span></div>
-                <div id="address">Địa chỉ: <span>Địa chỉ nhận hàng</span></div>
-                <div id="phone">Số điện thoại: <span>số điện đoại</span></div>
+                <div id="name">Tên khách hàng: <span id="order_name"></span></div>
+                <div id="address">Địa chỉ: <span id="order_address"></span></div>
+                <div id="phone">Số điện thoại: <span id="order_phone"></span></div>
+                <div id="total_order">Tổng tiền: <span id="order_total"></span></div>           
             </div>
             <div id="transfer_info">
                 <h3>Thông tin chuyển khoản</h3>
@@ -149,18 +149,23 @@
                 <div id="account_number">Số tài khoản: <span>0123456789</span></div>
                 <div id="account_holder">Chủ tài khoản: <span>BookstoreStudent</span></div>
                 <div id="branch">Chi nhánh: <span>TP Hồ Chí Minh</span></div>
-                <div id="content">Nội dung: <span>Mã đơn hàng - Tên khách hàng</span></div>
+                <div id="content">Nội dung: <span id="transfer_content"></span></div>
                 <div id="attention">Lưu ý: <span>Vui lòng chuyển đúng số tiền và ghi chính xác nội dung chuyển khoản để chúng tôi xác nhận nhanh chóng.</span></div>
             </div>
             <div id="payment_confirm">
                 <h3>Gửi xác nhận thanh toán</h3>
-                <div id="up_proof_of_transfer">Tải mình chứng chuyển khoản: <input type="file" name="" id=""></div>
+                <form id="uploadProofForm" action="/project-Web2/user/upload_proof.php" method="POST" enctype="multipart/form-data">
+                    <div id="up_proof_of_transfer">
+                        Tải minh chứng chuyển khoản: 
+                        <input type="file" name="proof_image" id="proof_image" accept="image/jpeg,image/png,image/gif" required>
+                        <input type="hidden" name="order_id" id="order_id" value="">
+                    </div>
+                    <div class="btn_box">
+                        <button type="button" id="back">Quay lại</button>
+                        <button type="submit" id="btn_confirm_payment">Hoàn tất</button>
+                    </div>
+                </form>
             </div>
-            <div class="btn_box">
-                <button id="back">Quay lại</button>
-                <button id="btn_confirm_payment">Hoàn tất</button>
-            </div>
-
         </div>
     </div>
 </div>
