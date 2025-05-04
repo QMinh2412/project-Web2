@@ -9,6 +9,7 @@
         <div class="order_history_box" >
             <h2>Lịch sử đơn hàng</h2>
             <div class="order_filter">
+                <div class="filter_icon"><i class="fa-solid fa-filter"></i></div>
                 <form>
                     <div id="order_id_box">
                         <label for="order_id">Mã đơn hàng:</label> <br>

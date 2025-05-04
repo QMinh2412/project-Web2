@@ -43,11 +43,31 @@ h2 {
   padding: 0 5px 3px;
 }
 
+.order_filter {
+  display: flex;
+  /* background-color: red;s */
+}
+
+.order_filter .filter_icon {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #a75026;
+  margin-right: 10px;
+  background-color: #fff;
+  color: #a75026;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
 .order_filter form {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  padding: 0 10px;
+  padding: 0;
+  /* width: calc(100% - 37px); */
+  width: 100%;
+  background-color: rebeccapurple;
 }
 
 .order_filter form > div {
@@ -84,6 +104,7 @@ h2 {
 #box_btn_order_filter {
   height: 100%;
   display: flex;
+  align-items: flex-end;
   padding-bottom: 7px;
 }
 .order_filter form button {
@@ -97,13 +118,6 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-#box_btn_order_filter form {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding-bottom: 5px;
 }
 
 .order_history {
@@ -360,5 +374,210 @@ h2 {
 
   .order_filter form > div select {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #container_order_history {
+    margin: 0px 10px;
+  }
+
+  .menu_links div {
+    width: calc(100% - 12px);
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .order_history_box {
+    margin-left: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .order_filter {
+    margin-top: 5px;
+  }
+
+  .order_filter .filter_icon {
+    margin-right: 5px;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .order_filter form {
+    display: block;
+    max-height: 0px;
+    padding: 0 10px;
+    max-width: 0px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: max-width 0.5s ease, max-height 0.5s ease;
+  }
+
+  .order_filter form.active {
+    max-height: 500px;
+    max-width: calc(100% - 32px);
+  }
+
+  .order_filter form > div {
+    padding: 0px;
+    margin: 5px 0px;
+    width: 100%;
+  }
+
+  .order_filter form > div label {
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  .order_filter form > div input {
+    width: calc(100% - 12px);
+    height: 16px;
+  }
+
+  .order_filter form > div select {
+    width: 100%;
+    height: 25px;
+  }
+
+  #box_btn_order_filter {
+    display: block;
+    padding-bottom: 0;
+  }
+  .order_filter form button {
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 3px 7px;
+  }
+
+  #order_history_header span {
+    width: calc(100% / 3 - 8px);
+    height: 20px;
+    padding: 3px;
+  }
+
+  #order_history_header span:nth-child(2),
+  #order_history_header span:nth-child(3),
+  #order_history_header span:nth-child(4) {
+    display: none;
+  }
+
+  #order_history_header span + span {
+    border-left: none;
+    width: calc(100% / 3 - 7px);
+  }
+
+  #order_history_header span:last-child {
+    height: 22px;
+  }
+
+  #order_history_body .item span {
+    width: calc(100% / 3 - 8px);
+    height: 19px;
+    padding: 3px;
+  }
+
+  #order_history_body span:nth-child(2),
+  #order_history_body span:nth-child(3),
+  #order_history_body span:nth-child(4) {
+    display: none;
+  }
+
+  #order_history_body .item span + span {
+    border-left: none;
+    width: calc(100% / 3 - 7px);
+  }
+
+  #order_history_body .item span:last-child {
+    width: calc(100% / 3 - 7px);
+  }
+
+  #order_history_body button {
+    padding: 3px 10px;
+    font-size: 12px;
+  }
+
+  .order_detail_box {
+    margin-left: 10px;
+  }
+
+  #order_detail_form {
+    padding: 10px;
+  }
+
+  #order_detail_form .row {
+    display: block;
+    margin-bottom: 0px;
+  }
+
+  #order_detail_form .row .col {
+    width: 100%;
+  }
+
+  #order_detail_form .row .col label {
+    padding-left: 10px;
+    font-size: 14px;
+  }
+
+  #order_detail_form .row .col input {
+    width: calc(100% - 22px);
+    height: 16px;
+    padding: 3px 10px;
+    margin-bottom: 5px;
+  }
+
+  #order_detail_book_list_header span {
+    height: 16px;
+    padding: 3px 5px;
+    font-size: 14px;
+  }
+
+  #order_detail_book_list_header span:first-child,
+  #order_detail_book_list_header span:last-child,
+  #order_detail_book_list_header span:nth-child(3) {
+    width: calc(80px - 10px);
+  }
+
+  #order_detail_book_list_header span:nth-child(2) {
+    width: calc(100% - 240px);
+  }
+
+  #book_list .book span {
+    padding: 3px 5px;
+    font-size: 12px;
+  }
+
+  #book_list .book span:first-child,
+  #book_list .book span:last-child,
+  #book_list .book span:nth-child(3) {
+    width: calc(80px - 10px);
+  }
+
+  #book_list .book span:nth-child(2) {
+    width: calc(100% - 240px);
+  }
+
+  .pagination_box {
+    clear: both;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .pagination_box .page {
+    width: 12px;
+    height: 12px;
+  }
+
+  .pagination_box span + span {
+    margin-left: 3px;
   }
 }

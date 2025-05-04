@@ -397,9 +397,21 @@ function getParam(param) {
   return urlParams.get(param);
 }
 
+function toggleFilterBox() {
+  const filterBox = document.querySelector(".order_filter form");
+  const toggleButton = document.querySelector(".filter_icon");
+
+  if (toggleButton && filterBox) {
+    toggleButton.addEventListener("click", function () {
+      filterBox.classList.toggle("active");
+    });
+  }
+}
+
 // Khi trang tải xong
 document.addEventListener("DOMContentLoaded", function () {
   searchOrder();
+  toggleFilterBox();
 
   const currentPage = parseInt(getParam("current_page")) || 1;
   const action = getParam("action");

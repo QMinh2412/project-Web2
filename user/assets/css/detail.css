@@ -572,3 +572,210 @@ textarea:focus {
     padding: 8px;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 0px 10px;
+  }
+
+  .container .box_detail {
+    flex-direction: column;
+    width: calc(100% - 20px);
+    padding: 10px;
+  }
+
+  .box_detail .book_image {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box_detail .book_image .main_image {
+    height: 250px;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .box_detail .book_image .main_image img {
+    max-height: 100%;
+    max-width: 80%;
+  }
+
+  .book_image .detail_image {
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .book_image .detail_image div {
+    width: 50px;
+    height: 100%;
+    margin-right: 5px;
+  }
+
+  .book_image .detail_image div img {
+    width: 45px;
+    height: 55px;
+  }
+
+  .box_detail .main_detail {
+    width: calc(100% - 20px);
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .box_detail .more_detail {
+    width: calc(100% - 20px);
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .main_detail .book_title {
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  .main_detail .book_author,
+  .main_detail .book_category,
+  .main_detail .book_price,
+  .main_detail .book_status {
+    font-size: 13px;
+  }
+
+  .main_detail .book_quantity span {
+    width: 25px;
+    height: 25px;
+  }
+
+  .main_detail .box_btn button {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .box_intro {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .box_intro .title {
+    font-size: 16px;
+  }
+
+  .box_intro .desc {
+    font-size: 14px;
+  }
+
+  .box_orther_book {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .box_orther_book .title {
+    font-size: 16px;
+  }
+
+  .orther_books .owl-item {
+    width: calc(50% - 20px);
+    min-height: 0;
+  }
+
+  .orther_books .owl-item a {
+    min-height: 220px;
+    max-height: 220px;
+  }
+
+  .orther_books .book_item {
+    width: 100%;
+    height: 100%;
+  }
+
+  .orther_books .book_item .book_image {
+    height: 120px;
+  }
+
+  .orther_books .book_item .book_image img {
+    max-height: 100%;
+    max-width: 90%;
+  }
+
+  .orther_books .book_item .book_title {
+    font-size: 13px;
+    height: 16px;
+    line-height: 16px;
+    margin: 3px 0;
+  }
+
+  .orther_books .book_item .book_price {
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    margin-bottom: 3px;
+  }
+
+  #prev,
+  #next {
+    padding: 6px;
+    top: 50%;
+  }
+
+  .box_comment {
+    width: calc(100% - 20px);
+    padding: 10px;
+  }
+
+  .box_comment .title {
+    font-size: 16px;
+  }
+
+  .box_comment .comments {
+    flex-direction: column;
+  }
+
+  .box_comment .comments .old_comments {
+    width: 100%;
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .box_comment .comments .my_comment {
+    width: calc(100% - 20px);
+    margin-left: 0;
+    margin-right: 0;
+    padding: 10px;
+  }
+
+  .box_comment .comments .my_comment textarea {
+    width: calc(100% - 20px);
+    cols: 30;
+  }
+
+  .old_comments .account_image {
+    width: 30px;
+    height: 30px;
+  }
+
+  .old_comments .account_name,
+  .old_comments .date_comment {
+    font-size: 13px;
+  }
+
+  .old_comments .comment .content {
+    margin: 5px 10px;
+    font-size: 14px;
+  }
+
+  .old_comments .comment .text_reply {
+    margin-left: 10px;
+    font-size: 13px;
+  }
+
+  .old_comments .comment .write_reply {
+    margin-left: 20px;
+  }
+
+  .old_comments .comment .write_reply button {
+    margin-left: 0;
+  }
+}
