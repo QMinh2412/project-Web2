@@ -9,7 +9,13 @@
 <link rel="stylesheet" href="/project-Web2/user/assets/css/cartDetail.css">
 <div class="container_cart_detail_box">
     <div class="cart_detail">
-        <h2>Giỏ hàng</h2>
+        <div class="cart_detail_header">
+            <h2>Giỏ hàng</h2>
+            <div class="select_all">
+                <input type="checkbox" name="selectAll" id="selectAll">
+                <label for="selectAll">Chọn tất cả</label>
+            </div>
+        </div>
         <div class="books_in_cart">
             <?php if(!empty($bookInMyCart)): ?>
                 <?php foreach ($bookInMyCart as $book): ?>

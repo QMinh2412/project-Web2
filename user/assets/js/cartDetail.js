@@ -85,6 +85,11 @@ function handleCheckboxChange(checkbox) {
   );
 }
 
+// xử lý việc chọn tất cả
+// function handleSelectAll(){
+//   const
+// }
+
 // Xử lý sự kiện nút xóa sản phẩm
 function handleDeleteClick(button) {
   const bookItem = button.closest(".book_in_cart");
