@@ -63,21 +63,23 @@
             return true;
         }
 
-        public function getOrderDetailByOrderId($orderId){
-            $query = "SELECT * FROM CTHD WHERE MaHD = $orderId";
+        public function getBestSellingBooks(){
+            $query = "SELECT MaSach, SUM(SoLg) AS TongSoLg
+                        FROM CTHD
+                        GROUP BY MaSach
+                        ORDER BY TongSoLg DESC
+                        LIMIT 6";
             $result = $this->db->query($query);
-            $orderDetails = [];
-            $productModel = new Product();
-
+            $bookId = [];
             if($result){
                 while($row = $result->fetch_assoc()){
-                    $productInfo = $productModel->getProductById($row['MaSach']);
-                    $row['TenSach'] = $productInfo['TenSach'];
-                    $orderDetails[] = $row;
+                    $bookId[] = $row;
                 }
+            } else {
+                $bookId[] = 'khong co gi';
             }
-
-            return $orderDetails;
+            return $bookId;
         }
+
     }
 ?>

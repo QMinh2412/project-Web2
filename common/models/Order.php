@@ -11,9 +11,9 @@
             $this->db = Database::getInstance();
         }
 
-        public function createOrder($staff_id, $user_id, $createDate, $status, $note, $address, $phone, $paymentMethod, $shippingMethod, $total_bill) {
-            $query = "INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, SDT, PhThucTT, PhThucVC, TongTien) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        public function createOrder($staff_id, $user_id, $createDate, $status, $note, $address, $phone, $paymentMethod, $shippingMethod, $total_bill, $feeShip) {
+            $query = "INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, SDT, PhThucTT, PhThucVC, TongTien, PhiVC) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             $stmt = $this->db->prepare($query);
             if (!$stmt) {
@@ -22,7 +22,7 @@
             }
 
             $stmt->bind_param(
-            "iisisssiii",
+            "iisisssiiii",
             $staff_id,
             $user_id,
             $createDate,
@@ -32,7 +32,8 @@
             $phone,
             $paymentMethod,
             $shippingMethod,
-            $total_bill
+            $total_bill,
+            $feeShip
             );
 
             if (!$stmt->execute()) {

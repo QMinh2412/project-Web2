@@ -87,10 +87,11 @@
             $shippingMethod = $_POST['shippingMethod'] ?? null;
             $paymentMethod = $_POST['paymentMethod'] ?? null;
             $total_bill = $_POST['total_bill'] ?? null;
+            $feeShip = $_POST['feeShip'] ?? null;
             $source = $_POST['source'] ?? null;
 
             // Kiểm tra dữ liệu đầu vào
-            if (!$account_id || !$name || !$phone || !$address || !$shippingMethod || !$paymentMethod || !$total_bill) {
+            if (!$account_id || !$name || !$phone || !$address || !$shippingMethod || !$paymentMethod || !$total_bill || !$feeShip) {
                 echo json_encode(['status' => 'error', 'message' => 'Thiếu thông tin bắt buộc']);
                 exit;
             }
@@ -119,7 +120,7 @@
                 }
 
                 // Create order
-                $newOrderId = $orderModel->createOrder(2, $account_id, $createDate, 1, $note, $address, $phone, $paymentMethod, $shippingMethod, $total_bill);
+                $newOrderId = $orderModel->createOrder(2, $account_id, $createDate, 1, $note, $address, $phone, $paymentMethod, $shippingMethod, $total_bill, $feeShip);
                 if (!$newOrderId) {
                     echo json_encode(['status' => 'error', 'message' => 'Không thể tạo hóa đơn trong giỏ hàng']);
                     exit;
@@ -151,7 +152,7 @@
                     }
                 }
 
-                echo json_encode(['status' => 'success', 'order_id' => $newOrderId, 'message' => 'Đặt hàng thành công trong giỏ hàng']);                            
+                echo json_encode(['status' => 'success', 'order_id' => $newOrderId, 'message' => 'Đặt hàng thành công']);                            
 
             } else {
                 $cartModel = new Cart();
@@ -165,7 +166,7 @@
                 }
 
                 // Create order
-                $newOrderId = $orderModel->createOrder(2, $account_id, $createDate, 1, $note, $address, $phone, $paymentMethod, $shippingMethod, $total_bill);
+                $newOrderId = $orderModel->createOrder(2, $account_id, $createDate, 1, $note, $address, $phone, $paymentMethod, $shippingMethod, $total_bill, $feeShip);
                 if (!$newOrderId) {
                     echo json_encode(['status' => 'error', 'message' => 'Không thể tạo hóa đơn']);
                     exit;
@@ -189,7 +190,7 @@
                     }
                 }
 
-                echo json_encode(['status' => 'success', 'order_id' => $newOrderId, 'message' => 'Đặt hàng thành công trong sản phẩm']);
+                echo json_encode(['status' => 'success', 'order_id' => $newOrderId, 'message' => 'Đặt hàng thành công']);
             }
         }
 
@@ -261,7 +262,7 @@
                 exit;
             }
             // lấy chi tiết hóa đơn
-            $orderDetails = $orderDetailModel->getOrderDetailByOrderId($order_id);
+            $orderDetails = $orderDetailModel->getOrderDetailsByOrderId($order_id);
             if(!$orderDetails) {
                 echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy chi tiết hóa đơn']);
                 exit;
@@ -301,7 +302,7 @@
 
             // Cập nhật lại số lượng sản phẩm
             $orderDetailModel = new OrderDetail();
-            $orderDetails = $orderDetailModel->getOrderDetailByOrderId($orderId);
+            $orderDetails = $orderDetailModel->getOrderDetailsByOrderId($orderId);
             $productModel = new Product();
             foreach($orderDetails as $book){
                 $productModel->updateStock($book['MaSach'], -$book['SoLg']);

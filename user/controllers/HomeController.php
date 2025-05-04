@@ -3,6 +3,8 @@
     require_once __DIR__ . '/../../common/models/Account.php';
     require_once __DIR__ . '/../../common/models/Category.php';
     require_once __DIR__ . '/../../common/models/Product.php';
+    require_once __DIR__ . '/../../common/models/OrderDetail.php';
+    require_once __DIR__ . '/../../common/models/ImportDetail.php';
 
     class HomeController {
         public function getAccountData() {
@@ -20,14 +22,25 @@
             // Định nghĩa biến $content
             $content = 'hello world'; 
 
+            $productModel = new Product();
+            $orderDetailModel = new OrderDetail();
+            $importDetailModel = new ImportDetail();
+
+            $bestSellingBookIds = $orderDetailModel->getBestSellingBooks();
+            $bestSellingBooks = [];
+            foreach($bestSellingBookIds as $book){
+                $bestSellingBooks[] = $productModel->getProductById($book['MaSach']);
+            }
+
+            $newImportedBookIds = $importDetailModel->getNewImportBook();
+            $newImportedBooks = [];
+            foreach($newImportedBookIds as $book){
+                $newImportedBooks[] = $productModel->getProductById($book['MaSach']);
+            }
+
+
             $categoryModel = new Category();
             $categories = $categoryModel->getCategoryLimit(); // Lấy tất cả thể loại
-
-            $productModel = new Product();
-            $products1 = $productModel->getProductByCategory(1, 1, 6); // Lấy tất cả sản phẩm
-            $category1 = $categoryModel->getCategoryById(1); // Lấy thể loại 1
-            $products2 = $productModel->getProductByCategory(4, 1, 6);
-            $category2 = $categoryModel->getCategoryById(4);
         
             // Bắt đầu buffering để lấy nội dung từ index.php
             ob_start();

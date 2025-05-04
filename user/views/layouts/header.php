@@ -84,3 +84,6 @@
     </div>
 </header>
 <script src="/project-Web2/user/assets/js/header.js"></script>
+<?php if (isset($_GET['page']) && $_GET['page'] === 'product'): ?>
+    <script src="/project-Web2/user/assets/js/product.js"></script>
+<?php endif; ?>

@@ -9,6 +9,7 @@
         <div class="order_history_box" >
             <h2>Lịch sử đơn hàng</h2>
             <div class="order_filter">
+                <div class="filter_icon"><i class="fa-solid fa-filter"></i></div>
                 <form>
                     <div id="order_id_box">
                         <label for="order_id">Mã đơn hàng:</label> <br>
@@ -49,7 +50,7 @@
                         <?php foreach ($result['orders'] as $order): ?>
                             <div class="item" data-id="<?php echo htmlspecialchars($order['MaHD']); ?>">
                                 <span><?php echo htmlspecialchars($order['MaHD']); ?></span>
-                                <span><?php echo htmlspecialchars($order['TongTien']); ?> đ</span>
+                                <span><?php echo number_format(htmlspecialchars($order['TongTien']), 0, '.', '.'); ?> đ</span>
                                 <span><?php echo (htmlspecialchars($order['PhThucTT']) == 1 ? 'COD' : 'Chuyển khoản'); ?></span>
                                 <span><?php echo (htmlspecialchars($order['PhThucVC']) == 1 ? 'Thông thường' : 'Hỏa tốc'); ?></span>
                                 <span>
@@ -98,14 +99,14 @@
                         <input type="text" id="order_detail_id" name="order_detail_id" readonly>
                     </div>
                     <div class="col">
-                        <label for="order_detail_user_id">Mã Khách hàng</label> <br>
-                        <input type="text" name="order_detail_user_id" id="order_detail_user_id" readonly>
+                        <label for="order_detail_user_name">Tên khách hàng</label> <br>
+                        <input type="text" id="order_detail_user_name" name="order_detail_user_name" readonly>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label for="order_detail_user_name">Tên khách hàng</label> <br>
-                        <input type="text" id="order_detail_user_name" name="order_detail_user_name" readonly>
+                        <label for="order_detail_phone">Số điện thoại</label> <br>
+                        <input type="text" id="order_detail_phone" name="order_detail_phone" readonly>
                     </div>
                     <div class="col">
                         <label for="order_detail_date">Ngày mua</label> <br>
@@ -118,8 +119,8 @@
                         <input type="text" id="order_detail_total" name="order_detail_total" readonly>
                     </div>
                     <div class="col">
-                        <label for="order_detail_phone">Số điện thoại</label> <br>
-                        <input type="text" id="order_detail_phone" name="order_detail_phone" readonly>
+                        <label for="order_detail_feeShip">Phí vận chuyển</label> <br>
+                        <input type="text" id="order_detail_feeShip" name="order_detail_feeShip" readonly>
                     </div>
                 </div>
                 <div class="row">

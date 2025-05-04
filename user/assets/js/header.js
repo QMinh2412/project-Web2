@@ -71,44 +71,122 @@ function hiddenShowBoxAccount() {
 
 // Hàm xử lý tìm kiếm AJAX
 function searchAjax() {
-  document.getElementById("basic_search").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const keySearch = document.getElementById("search_box").value.trim();
-    console.log(`từ khóa vừa tìm: ${keySearch}`);
+  const basicSearchForm = document.getElementById("basic_search");
+  const advancedSearchForm = document.getElementById("advanced_search");
 
-    const xhr = new XMLHttpRequest();
-    xhr.open(
-      "GET",
-      `/project-Web2/user/index.php?page=product&action=search&key=${keySearch}`,
-      true
-    );
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        try {
-          const response = JSON.parse(xhr.responseText);
-          // Gọi hàm trong product.js để hiển thị kết quả
-          window.displaySearchResults(response);
-          // Cập nhật URL và lịch sử trình duyệt
-          const state = {
-            type: "search",
-            searchTerm: searchTerm,
-            bookName: bookName,
-            authorName: authorName,
-            categoryName: categoryName,
-            priceRange: priceRange,
-            page: 1,
-          };
-          const newUrl = `/project-Web2/user/index.php?page=product&key=${encodeURIComponent(
-            keySearch
-          )}`;
-          history.pushState(state, "", newUrl);
-        } catch (e) {
-          console.error(`Lỗi phân tích json: ${e}`);
-        }
+  // Tìm kiếm cơ bản
+  if (basicSearchForm) {
+    basicSearchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const keySearch = document.getElementById("search_box").value.trim();
+
+      if (!keySearch) {
+        alert("Vui lòng nhập từ khóa tìm kiếm!");
+        document.getElementById("search_box").focus();
+        return;
       }
-    };
-    xhr.send();
-  });
+
+      const isProductPage = window.location.href.includes("page=product");
+
+      if (isProductPage && typeof window.displaySearchResults === "function") {
+        // Thực hiện AJAX nếu ở trang sản phẩm
+        const xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          `/project-Web2/user/index.php?page=product&action=search&search=${encodeURIComponent(
+            keySearch
+          )}`,
+          true
+        );
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            try {
+              const response = JSON.parse(xhr.responseText);
+              window.displaySearchResults(response);
+              const state = {
+                type: "search",
+                searchTerm: keySearch,
+                page: 1,
+              };
+              const newUrl = `/project-Web2/user/index.php?page=product&search=${encodeURIComponent(
+                keySearch
+              )}`;
+              history.pushState(state, "", newUrl);
+            } catch (e) {
+              console.error(`Lỗi phân tích JSON: ${e}`);
+            }
+          }
+        };
+        xhr.send();
+      } else {
+        // Chuyển hướng đến trang sản phẩm nếu không ở trang sản phẩm
+        window.location.href = `/project-Web2/user/index.php?page=product&search=${encodeURIComponent(
+          keySearch
+        )}`;
+      }
+    });
+  }
+
+  // Tìm kiếm nâng cao
+  if (advancedSearchForm) {
+    advancedSearchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const bookName = document.getElementById("book_name").value.trim();
+      const authorName = document.getElementById("author_name").value.trim();
+      const categoryName = document
+        .getElementById("category_name")
+        .value.trim();
+      const priceRange = document.getElementById("price_range").value;
+
+      if (!bookName && !authorName && !categoryName && !priceRange) {
+        alert("Vui lòng nhập ít nhất một tiêu chí tìm kiếm!");
+        return;
+      }
+
+      const isProductPage = window.location.href.includes("page=product");
+
+      const queryParams = new URLSearchParams();
+      if (bookName) queryParams.set("search", bookName);
+      if (authorName) queryParams.set("author_name", authorName);
+      if (categoryName) queryParams.set("category_name", categoryName);
+      if (priceRange) queryParams.set("price_range", priceRange);
+
+      if (isProductPage && typeof window.displaySearchResults === "function") {
+        // Thực hiện AJAX nếu ở trang sản phẩm
+        const xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          `/project-Web2/user/index.php?page=product&action=search&${queryParams.toString()}`,
+          true
+        );
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            try {
+              const response = JSON.parse(xhr.responseText);
+              window.displaySearchResults(response);
+              const state = {
+                type: "search",
+                searchTerm: bookName,
+                bookName,
+                authorName,
+                categoryName,
+                priceRange,
+                page: 1,
+              };
+              const newUrl = `/project-Web2/user/index.php?page=product&${queryParams.toString()}`;
+              history.pushState(state, "", newUrl);
+            } catch (e) {
+              console.error(`Lỗi phân tích JSON: ${e}`);
+            }
+          }
+        };
+        xhr.send();
+      } else {
+        // Chuyển hướng đến trang sản phẩm nếu không ở trang sản phẩm
+        window.location.href = `/project-Web2/user/index.php?page=product&${queryParams.toString()}`;
+      }
+    });
+  }
 }
 
 // Gọi các hàm khi trang được tải

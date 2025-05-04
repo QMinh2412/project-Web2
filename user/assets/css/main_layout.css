@@ -3,12 +3,10 @@
 }
 header {
   margin-bottom: 10px;
-  /* border: 1px solid blue; */
 }
 
 footer {
   margin-top: 10px;
-  /* border: 1px solid red; */
 }
 
 /* Nút cuộn lên */
@@ -30,7 +28,7 @@ footer {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .scroll-to-top.show {

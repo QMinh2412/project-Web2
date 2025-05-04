@@ -283,30 +283,132 @@ class Product {
         return $stmt->execute();
     }
 
-    public function search($search) {
-        $search = $this->db->real_escape_string($search);
-        $query = "SELECT * FROM DauSach WHERE TenSach LIKE '%$search%'";
-        $result = $this->db->query($query);
+    public function search($search, $currentpage = 1, $bookperpage = 10, $authorName = '', $categoryName = '', $priceRange = 0) {
+        $offset = ($currentpage - 1) * $bookperpage;
+        $conditions = [];
+        $params = [];
+        $types = '';
+    
+        // Xử lý tìm kiếm theo tên sách
+        if ($search) {
+            $search = $this->db->real_escape_string($search);
+            $conditions[] = "TenSach LIKE ?";
+            $params[] = "%$search%";
+            $types .= 's';
+        }
+    
+        // Xử lý tìm kiếm theo tên tác giả
+        if ($authorName) {
+            $authorName = $this->db->real_escape_string($authorName);
+            $conditions[] = "MaTG IN (SELECT MaTG FROM TacGia WHERE TenTG LIKE ?)";
+            $params[] = "%$authorName%";
+            $types .= 's';
+        }
+    
+        // Xử lý tìm kiếm theo thể loại
+        if ($categoryName) {
+            $categoryName = $this->db->real_escape_string($categoryName);
+            $conditions[] = "MaLoai IN (SELECT MaLoai FROM TheLoai WHERE TenLoai LIKE ?)";
+            $params[] = "%$categoryName%";
+            $types .= 's';
+        }
+    
+        // Xử lý tìm kiếm theo khoảng giá
+        if ($priceRange > 0) {
+            $conditions[] = "GiaBan <= ?";
+            $params[] = $priceRange;
+            $types .= 'i';
+        }
+    
+        // Xây dựng truy vấn
+        $query = "SELECT * FROM DauSach";
+        if (!empty($conditions)) {
+            $query .= " WHERE " . implode(" AND ", $conditions);
+        }
+        $query .= " LIMIT ?, ?";
+        $params[] = $offset;
+        $params[] = $bookperpage;
+        $types .= 'ii';
+    
+        $stmt = $this->db->prepare($query);
+        if (!$stmt) {
+            die("Prepare failed: " . $this->db->error);
+        }
+    
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
         $products = [];
-
+    
         if ($result) {
             while ($row = $result->fetch_assoc()) {
                 $image = new Image();
-                $row['DgDanAnh'] = $image->getImgProduct($row['MaSach'])[0];
+                $imgs = $image->getImgProduct($row['MaSach']);
+                $row['DgDanAnh'] = !empty($imgs) ? $imgs[0] : null;
                 $products[] = $row;
             }
         }
-
+    
+        $stmt->close();
         return $products;
     }
-
-    public function getPaginationBySearch($search, $currentpage = 1, $bookperpage = 5) {
-        $query = "SELECT COUNT(*) AS total FROM DauSach WHERE TenSach LIKE '%$search%'";
-        $result = $this->db->query($query);
+    
+    public function getPaginationBySearch($search, $currentpage = 1, $bookperpage = 10, $authorName = '', $categoryName = '', $priceRange = 0) {
+        $conditions = [];
+        $params = [];
+        $types = '';
+    
+        if ($search) {
+            $search = $this->db->real_escape_string($search);
+            $conditions[] = "TenSach LIKE ?";
+            $params[] = "%$search%";
+            $types .= 's';
+        }
+    
+        if ($authorName) {
+            $authorName = $this->db->real_escape_string($authorName);
+            $conditions[] = "MaTG IN (SELECT MaTG FROM TacGia WHERE TenTG LIKE ?)";
+            $params[] = "%$authorName%";
+            $types .= 's';
+        }
+    
+        if ($categoryName) {
+            $categoryName = $this->db->real_escape_string($categoryName);
+            $conditions[] = "MaLoai IN (SELECT MaLoai FROM TheLoai WHERE TenLoai LIKE ?)";
+            $params[] = "%$categoryName%";
+            $types .= 's';
+        }
+    
+        if ($priceRange > 0) {
+            $conditions[] = "GiaBan <= ?";
+            $params[] = $priceRange;
+            $types .= 'i';
+        }
+    
+        $query = "SELECT COUNT(*) AS total FROM DauSach";
+        if (!empty($conditions)) {
+            $query .= " WHERE " . implode(" AND ", $conditions);
+        }
+    
+        $stmt = $this->db->prepare($query);
+        if (!$stmt) {
+            die("Prepare failed: " . $this->db->error);
+        }
+    
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
         $row = $result->fetch_assoc();
         $totalBook = $row['total'];
         $totalPages = ceil($totalBook / $bookperpage);
-
+    
+        $stmt->close();
         return [
             'totalPages' => $totalPages,
             'currentPage' => $currentpage

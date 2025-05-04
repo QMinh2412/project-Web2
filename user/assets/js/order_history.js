@@ -1,3 +1,13 @@
+function formatCurrency(amount) {
+  const formatter = new Intl.NumberFormat("vi-VN", {
+    style: "decimal", // Dùng decimal để kiểm soát ký hiệu
+    minimumFractionDigits: 0, // Hiển thị 3 chữ số thập phân
+    maximumFractionDigits: 0, // Hiển thị 3 chữ số thập phân
+    useGrouping: true, // Sử dụng dấu phân cách hàng nghìn
+  });
+  return formatter.format(amount) + " đ"; // Thêm ký hiệu ₫ với dấu cách
+}
+
 // Hàm xử lý dữ liệu lấy được chuyển thành html
 function handleData(data) {
   let html = "";
@@ -5,7 +15,7 @@ function handleData(data) {
     html += `
       <div class="item" data-id="${data[i]["MaHD"]}">
         <span>${data[i]["MaHD"]}</span>
-        <span>${data[i]["TongTien"]} đ</span>
+        <span>${formatCurrency(data[i]["TongTien"])}</span>
         <span>${data[i]["PhThucTT"] == 1 ? "COD" : "Chuyển khoản"}</span>
         <span>${data[i]["PhThucVC"] == 1 ? "Thông thường" : "Hỏa tốc"}</span>
         <span>
@@ -251,14 +261,15 @@ function showOrderDetail() {
           //   hiện thị chi tiết hóa đơn ra màn hình
           document.getElementById("order_detail_id").value =
             response["orderInfo"]["MaHD"];
-          document.getElementById("order_detail_user_id").value =
-            response["orderInfo"]["MaKH"];
+          document.getElementById("order_detail_feeShip").value =
+            formatCurrency(response["orderInfo"]["PhiVC"]);
           document.getElementById("order_detail_user_name").value =
             response["userInfo"]["TenND"];
           document.getElementById("order_detail_date").value =
             response["orderInfo"]["NgLap"];
-          document.getElementById("order_detail_total").value =
-            response["orderInfo"]["TongTien"];
+          document.getElementById("order_detail_total").value = formatCurrency(
+            response["orderInfo"]["TongTien"]
+          );
           document.getElementById("order_detail_phone").value =
             response["orderInfo"]["SDT"];
           document.getElementById("order_detail_status").value =
@@ -273,12 +284,12 @@ function showOrderDetail() {
             response["orderInfo"]["DiaChiGiaoHang"];
           document.getElementById("order_detail_ship_method").value =
             response["orderInfo"]["PhThucVC"] == 1
-              ? "Giao hàng thông thường"
+              ? "Giao hàng tiêu chuẩn"
               : "Giao hàng hỏa tốc";
           document.getElementById("order_detail_payment_method").value =
             response["orderInfo"]["PhThucTT"] == 1
-              ? "COD"
-              : "Chuyển khoản qua ngân hàng";
+              ? "Thanh toán khi nhận hàng"
+              : "Thanh toán bằng chuyển khoản ngân hàng";
 
           let data = "";
           for (let i = 1; i <= response["orderDetails"].length; i++) {
@@ -288,9 +299,9 @@ function showOrderDetail() {
                           <span>${
                             response["orderDetails"][i - 1]["TenSach"]
                           }</span>
-                          <span>${
+                          <span>${formatCurrency(
                             response["orderDetails"][i - 1]["DonGia"]
-                          }</span>
+                          )}</span>
                           <span>${
                             response["orderDetails"][i - 1]["SoLg"]
                           }</span>
@@ -386,9 +397,21 @@ function getParam(param) {
   return urlParams.get(param);
 }
 
+function toggleFilterBox() {
+  const filterBox = document.querySelector(".order_filter form");
+  const toggleButton = document.querySelector(".filter_icon");
+
+  if (toggleButton && filterBox) {
+    toggleButton.addEventListener("click", function () {
+      filterBox.classList.toggle("active");
+    });
+  }
+}
+
 // Khi trang tải xong
 document.addEventListener("DOMContentLoaded", function () {
   searchOrder();
+  toggleFilterBox();
 
   const currentPage = parseInt(getParam("current_page")) || 1;
   const action = getParam("action");

@@ -80,12 +80,47 @@
             ]);
         }
 
-        public function search(){
-            $search = $_GET['key'] ?? '';
+        public function search() {
+            $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+            $bookName = isset($_GET['book_name']) ? trim($_GET['book_name']) : '';
+            $authorName = isset($_GET['author_name']) ? trim($_GET['author_name']) : '';
+            $categoryName = isset($_GET['category_name']) ? trim($_GET['category_name']) : '';
+            $priceRange = isset($_GET['price_range']) ? (int)$_GET['price_range'] : 0;
+            $current_page = isset($_GET['current_page']) ? (int)$_GET['current_page'] : 1;
+        
+            // Ưu tiên $search, nếu không có thì dùng $bookName
+            $searchTerm = $search ?: $bookName;
+        
             $productModel = new Product();
-            $productsAfterSearch = $productModel->search($search);
-            $totalPageAfterSearch = $productModel->getPaginationBySearch($search);
-            
+            $productsAfterSearch = $productModel->search(
+                $searchTerm,
+                $current_page,
+                $this->bookperpage,
+                $authorName,
+                $categoryName,
+                $priceRange
+            );
+            $totalPageAfterSearch = $productModel->getPaginationBySearch(
+                $searchTerm,
+                $current_page,
+                $this->bookperpage,
+                $authorName,
+                $categoryName,
+                $priceRange
+            );
+        
+            header('Content-Type: application/json');
+            echo json_encode([
+                'products' => $productsAfterSearch,
+                'totalPage' => $totalPageAfterSearch['totalPages'],
+                'currentPage' => $totalPageAfterSearch['currentPage'],
+                'searchTerm' => $searchTerm,
+                'bookName' => $bookName,
+                'authorName' => $authorName,
+                'categoryName' => $categoryName,
+                'priceRange' => $priceRange
+            ]);
+            exit;
         }
 
         public function showDetail(){
@@ -177,6 +212,14 @@
         public function buyNow(){
             $current_account = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
 
+            if(!$current_account){
+                echo json_encode([
+                    'status' => false,
+                    'message' => 'Vui lòng đăng nhập để mua hàng'
+                ]);
+                exit;
+            }
+
             $accountModel = new Account();
             $userModel = new User();
             $accountInfo = $accountModel->getById($current_account);
@@ -221,11 +264,6 @@
                 
                 exit();
             }
-
-            echo json_encode([
-                'status' => false,
-                'message' => 'vui long dang nhap de mua hang'
-            ]);
         }
 
         public function checkout(){
@@ -239,7 +277,7 @@
             if($selected_books){
                 echo json_encode([
                     'status' => true,
-                    'message' => 'dang chuyen sang tran thanh toan'
+                    'message' => 'đang chuyển sang thanh toán'
                 ]);
             } else {
                 echo json_encode([
