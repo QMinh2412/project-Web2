@@ -107,3 +107,35 @@ select {
   color: rgba(0, 0, 0, 0.5);
   font-style: italic;
 }
+
+@media only screen and (max-width: 600px) {
+  .register-container {
+    padding: 15px;
+    width: 450px;
+  }
+
+  .register-container h2 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  .form-group .err {
+    height: 10px;
+    font-size: 10px;
+    padding-left: 3px 5px;
+  }
+
+  .form-group .err:empty {
+    height: 10px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 5px;
+  }
+
+  .register-container button {
+    padding: 7px 10px;
+    font-size: 14px;
+  }
+}

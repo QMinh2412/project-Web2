@@ -10,33 +10,10 @@
   padding: 10px;
 }
 
-.cart_detail_header {
+.cart_detail h2 {
   padding: 0 10px 3px 10px;
   border-bottom: 2px solid black;
   margin: 0 0 10px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cart_detail_header .select_all {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cart_detail_header .select_all input {
-  width: max-content;
-  margin-right: 10px;
-}
-
-.cart_detail_header .select_all label {
-  transition: color 0.3s;
-}
-
-.cart_detail_header .select_all label:hover {
-  text-decoration: underline;
-  color: #c1430c;
 }
 
 .cart_detail .books_in_cart a {
@@ -215,17 +192,8 @@
     padding: 10px;
   }
 
-  .cart_detail_header h2 {
-    font-size: 16px;
-  }
-
-  .cart_detail_header .select_all input {
-    width: 12px;
-    margin-right: 5px;
-  }
-
-  .cart_detail_header .select_all label {
-    font-size: 14px;
+  .cart_detail h2 {
+    font-size: 18px;
   }
 
   .book_in_cart .book_image {

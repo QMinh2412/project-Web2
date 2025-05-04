@@ -242,6 +242,15 @@ function handleConfirmOrderAjax() {
     if (data[1] === "1") {
       sendDataByAjax(data[0]);
     } else {
+      document.querySelector("#name span").innerHTML =
+        document.getElementById("txtName").value;
+      document.querySelector("#phone span").innerHTML =
+        document.getElementById("txtPhone").value;
+      document.querySelector("#address span").innerHTML =
+        document.getElementById("txtAddress").value;
+      document.querySelector("#total_order span").innerHTML =
+        document.querySelector(".total_bill span:last-child").textContent;
+
       transferForm.style.display = "flex";
       document.body.style.overflow = "hidden";
 
