@@ -85,8 +85,10 @@
                                             $allow = true;
                                         }
 
-                                        if (($value > $currentStatus && $value != 0 && $currentStatus <= 3) || ($value === 0 && $currentStatus < 2)) {
-                                            $allow = true;
+                                        if ($currentStatus !== 0) {
+                                            if (($value > $currentStatus && $value != 0 && $currentStatus <= 3) || ($value === 0 && $currentStatus < 2)) {
+                                                $allow = true;
+                                            }
                                         }   
 
                                         if ($allow) {

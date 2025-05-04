@@ -59,32 +59,12 @@
     display: inline-flex;
 }
 
-.btn-review {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    gap: 5px;
-    text-decoration: none;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 14px;
-    color: #333;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
+#detailReviewBtn:hover {
+    background-color: rgb(209, 209, 0);
 }
 
-.btn-review:hover {
-    background-color: #e0e0e0;
-    color: #000;
-    border-color: #bbb;
-    cursor: pointer;
-}
-
-.btn-review:active {
-    background-color: #d0d0d0;
-    color: #000;
-    border-color: #aaa;
+#detailReviewBtn:active {
+    background-color: rgb(209, 209, 0);
 }
 
 .review-pagination {
