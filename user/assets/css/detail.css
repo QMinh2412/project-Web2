@@ -655,7 +655,7 @@ textarea:focus {
   }
 
   .box_intro {
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 10px;
   }
 
