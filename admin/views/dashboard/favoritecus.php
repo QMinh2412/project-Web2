@@ -1,6 +1,6 @@
 <div class="dashboard-section">
     <div class="dashboard-header">
-        <h1 class="h1-header">Khách hàng thân thiết</h1>
+        <h1 class="admin-header">Khách hàng thân thiết</h1>
         <!-- <div class="search-section">
             <form method="GET" action="">
                 <label for="customer-from-date">Từ:</label>

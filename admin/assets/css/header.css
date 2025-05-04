@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
 }
+
 #logo-header h4 {
     color: white;
 }
@@ -21,7 +22,7 @@
 }
 
 #mobile-menu-toggle {
-    display: none; /* Ẩn mặc định trên desktop */
+    display: none; /*mặc định ẩn trên desktop*/
     background: none;
     border: none;
     font-size: 24px;
@@ -38,7 +39,7 @@
     display: flex;
     align-items: center;
     position: absolute;
-    right: 100px; 
+    right: 100px;
     height: 50px;
     line-height: 50px;
 }
@@ -53,18 +54,17 @@
     display: none;
     position: absolute;
     width: 15%;
-    top: 50px; 
+    top: 50px;
     right: 65px;
     line-height: 50px;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     z-index: 1000;
 }
 
-
 #menu-down.active {
-    display: flex; 
+    display: flex;
 }
 
 #menu-down button {
@@ -86,29 +86,75 @@
     transform: scale(1.05);
 }
 
-#menu-down ul, li{
+#menu-down ul, li {
     list-style-type: none;
     margin-right: 10px;
 }
-@media only screen and (max-width: 600px) {
-    #logo_header {
-        left: 5px;
+
+@media only screen and (max-width: 1050px) {
+    .header {
+        height: 60px;
+        justify-content: space-between;
+        padding: 0 20px;
     }
+
+    #logo-header {
+        position: relative;
+        left: 300px;
+    }
+
     #admin-logo {
-        right: 15px;
+        right: 90px;
     }
+
+    #admin-name-container {
+        right: 40px;
+    }
+
+    #menu-down {
+        width: 20%;
+        right: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .header {
+        height: 70px;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+
+    #logo-header {
+        left: 200px;
+    }
+
+    #admin-logo {
+        right: 60px;
+        height: 50px;
+    }
+
     #mobile-menu-toggle {
         display: block;
         position: absolute;
-        left: 26px;
+        left: 10px;
+        top: 20px;
         z-index: 1000;
         cursor: pointer;
     }
-    #logo_header {
-        left: 40px;
-        height: 75px;
+
+    #menu-down {
+        width: 80%;
+        top: 70px;
+        left: 200px;
     }
-    #mobile-menu-toggle.active i {
-        color: white;
+
+    #menu-down button {
+        width: 90%;
+        margin: 5px auto;
+    }
+
+    #admin-name-container {
+        display: none;
     }
 }

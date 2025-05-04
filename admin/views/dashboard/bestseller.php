@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../../assets/css/dashboard.css">
 <div class="dashboard-section">
-    <div class="dashboard-header">
-        <h1 class="h1-header">Sách bán chạy</h1>
+    <div class="admin-header">
+        <h1>Sách bán chạy</h1>
     </div>
     <table class="bestseller-table">
         <thead>
