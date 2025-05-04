@@ -18,7 +18,7 @@ function updateAccountAjax() {
       document.getElementById("email").focus();
       return;
     }
-    if (phone && !regPhone.test(phone)) {
+    if (!regPhone.test(phone)) {
       alert("Số điện thoại không đúng định dạng");
       document.getElementById("phone").select();
       document.getElementById("phone").focus();

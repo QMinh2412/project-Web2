@@ -141,7 +141,8 @@ class Account {
         return $exists;
     }
     public function createAccount($username, $role, $created_at, $status, $password, $user_id) {
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $hashedPassword = hash('sha256', $password);
         $sql = "INSERT INTO TaiKhoan (TenTK, LoaiTK, NgLap, TinhTrang, MKTK, MaND) 
                 VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
@@ -181,7 +182,7 @@ class Account {
         if ($row = $result->fetch_assoc()) {
             $hashedPassword = $row['MKTK'];
             $stmt->close();
-            return password_verify($password, $hashedPassword);
+            return hash('sha256', $password) === $hashedPassword;
         }
         $stmt->close();
         return false;
@@ -203,7 +204,7 @@ class Account {
     }
 
     public function updatePassword($account_id, $new_password) {
-        $hashedPassword = password_hash($new_password, PASSWORD_BCRYPT);
+        $hashedPassword = hash('sha256', $new_password);
         $sql = "UPDATE TaiKhoan SET MKTK = ? WHERE MaND = ?";
         $stmt = $this->db->prepare($sql);
         if (!$stmt) return false;

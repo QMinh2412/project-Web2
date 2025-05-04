@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="/project-Web2/user/assets/css/change_password.css">
 <div class="container_change_password">
     <div class="menu_links">
-        <div><a href="#">Cập nhật tài khoản</a></div>
-        <div class="active"><a href="#">Thay đổi mật khẩu</a></div>
-        <div><a href="#">Lịch sử đơn hàng</a></div>
+        <div><a href="/project-Web2/user/index.php?page=account&action=updateAccount">Cập nhật tài khoản</a></div>
+        <div class="active"><a href="/project-Web2/user/index.php?page=account&action=changePassword">Thay đổi mật khẩu</a></div>
+        <div><a href="/project-Web2/user/index.php?page=order&action=showOrderHistory&current_page=1">Lịch sử đơn hàng</a></div>
     </div>
     <div class="change_password_box">
         <h2>Thay đổi mật khẩu</h2>

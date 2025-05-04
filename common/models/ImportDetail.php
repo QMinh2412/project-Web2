@@ -28,6 +28,26 @@
             return $details;
         }
 
+        public function getNewImportBook() {
+            $query = "SELECT DISTINCT MaSach
+                        FROM CTPN
+                        WHERE MaPhNhap >= (
+                            SELECT MAX(MaPhNhap) - 10
+                            FROM CTPN
+                        )
+                        ORDER BY MaPhNhap DESC
+                        LIMIT 6";
         
+            $result = $this->db->query($query);
+            
+            $bookId = [];
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $bookId[] = $row;
+                }
+            }
+        
+            return $bookId;
+        }
     }
 ?>

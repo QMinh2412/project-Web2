@@ -13,9 +13,9 @@
 <body>
     <div class="container_update_account">
         <div class="menu_links">
-            <div class="active"><a href="#">Cập nhật tài khoản</a></div>
-            <div><a href="#">Thay đổi mật khẩu</a></div>
-            <div><a href="#">Lịch sử đơn hàng</a></div>
+            <div class="active"><a href="/project-Web2/user/index.php?page=account&action=updateAccount">Cập nhật tài khoản</a></div>
+            <div><a href="/project-Web2/user/index.php?page=account&action=changePassword">Thay đổi mật khẩu</a></div>
+            <div><a href="/project-Web2/user/index.php?page=order&action=showOrderHistory&current_page=1">Lịch sử đơn hàng</a></div>
         </div>
         <div class="info_box">
             <h2>Cập nhật tài khoản</h2>
@@ -50,7 +50,7 @@
 
                 <div>
                     <label for="address">Địa chỉ</label>
-                    <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($userInfo['DcND'] != 'undefined' ?? ''); ?>">
+                    <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($userInfo['DcND'] != 'undefined' ? $userInfo['DcND'] : ''); ?>">
                 </div>
 
                 <div>

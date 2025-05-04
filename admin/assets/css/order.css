@@ -36,7 +36,6 @@
     padding: 6px 12px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    font-size: 14px;
     background-color: #f8f9fa;
     color: #333;
     transition: all 0.2s ease-in-out;
@@ -397,6 +396,10 @@
 
     #order-value {
         width: 70px;
+    }
+
+    .order-status-dropdown {
+        font-size: 0.9em;
     }
 
 

@@ -99,7 +99,8 @@ create table `HoaDon` (
     `SDT` varchar(255) not null,
 	`PhThucTT` int default 0,
     `PhThucVC` int default 0,
-    `TongTien` long
+    `TongTien` long,
+    `PhiVC` long
 );
 -- PhThucTT: 1-COD, 2-QR
 -- PhThucVC: 1-gia hàng thông thường, 2-giao hàng hỏa tốc
@@ -146,7 +147,8 @@ create table `HinhAnh` (
 	`MaHA` int primary key not null auto_increment,
 	`DgDanAnh` LONGTEXT,
     `MaND` int,
-    `MaSach` int
+    `MaSach` int,
+    `MaHD` int
 );
 
 -- KHOAI CHINH --
@@ -165,6 +167,7 @@ alter table `CTPN` add constraint FK_CTPN_DS FOREIGN KEY (MaSach) REFERENCES Dau
 alter table `CTPN` add constraint FK_CTPN_PN FOREIGN KEY (MaPhNhap) REFERENCES PhNhap(MaPhNhap);
 alter table `HinhAnh` add constraint FK_HA_DS FOREIGN KEY (MaSach) REFERENCES DauSach(MaSach);
 alter table `HinhAnh` add constraint FK_HA_ND FOREIGN KEY (MaND) REFERENCES NgDung(MaND);
+alter table `HinhAnh` add constraint FK_HA_HD FOREIGN KEY (MaHD)  REFERENCES HoaDon(MaHD);
 alter table `HoaDon` add constraint FK_HD_TK FOREIGN KEY (MaNV) REFERENCES TaiKhoan(MaTK);
 alter table `HoaDon` add constraint FK_HD_TK_2 FOREIGN KEY (MaKH) REFERENCES TaiKhoan(MaTK);
 alter table `CTHD` add constraint FK_CTHD_DS FOREIGN KEY (MaSach) REFERENCES DauSach(MaSach);
@@ -538,17 +541,17 @@ INSERT INTO CTPN (SoLgNhap, GiaNhap, MaSach, MaPhNhap) VALUES
 (138, 53900, 31, 7),
 (35, 150500, 32, 8);
 
-INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, PhThucTT, PhThucVC, SDT, TongTien) VALUES
-(2, 1, '2025-03-21', 1, 'Giao hàng nhanh', '123 Nguyễn Văn Cừ, Quận 5, TP.HCM', 1, 1, 0123456789, 240000),   
-(5, 3, '2025-03-21', 2, NULL, '45 Lê Lợi, Quận 1, TP.HCM', 1, 1, 0123456789, 248400),   
-(2, 6, '2025-03-21', 1, 'Kiểm tra hàng trước khi nhận', '98 Đinh Tiên Hoàng, Q.Bình Thạnh', 2, 1, 0123456789, 390000),   
-(5, 7, '2025-03-21', 3, 'Giao buổi chiều', '789 Trần Phú, Quận 7', 2, 1, 0123456789, 176000),   
-(10, 8, '2025-03-21', 1, NULL, '159 Pasteur, Quận 3', 1, 1, 0123456789, 466400),   
-(10, 1, '2025-03-21', 2, 'Ưu tiên giao sáng', '88 Lý Tự Trọng, Quận 1', 2, 1, 0123456789, 224000),  
-(2, 3, '2025-03-21', 3, NULL, '67 Bạch Đằng, Quận Tân Bình', 1, 1, 0123456789, 126000),  
-(5, 6, '2025-03-21', 1, 'Chuyển khoản trước', '23 Võ Văn Tần, Quận 10', 1, 1, 0123456789, 340000),   
-(5, 7, '2025-03-21', 1, 'Giao trong tuần', '56 Nguyễn Trãi, Quận 5', 2, 1, 0123456789, 660000),   
-(10, 8, '2025-03-21', 2, NULL, '12 An Dương Vương, Quận 6', 1, 1, 0123456789, 168000);
+INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, PhThucTT, PhThucVC, SDT, TongTien, PhiVC) VALUES
+(2, 1, '2025-03-21', 1, 'Giao hàng nhanh', '123 Nguyễn Văn Cừ, Quận 5, TP.HCM', 1, 1, 0123456789, 240000, 12000),   
+(5, 3, '2025-03-21', 2, NULL, '45 Lê Lợi, Quận 1, TP.HCM', 1, 1, 0123456789, 248400, 14220),   
+(2, 6, '2025-03-21', 1, 'Kiểm tra hàng trước khi nhận', '98 Đinh Tiên Hoàng, Q.Bình Thạnh', 2, 1, 0123456789, 390000, 19500),   
+(5, 7, '2025-03-21', 3, 'Giao buổi chiều', '789 Trần Phú, Quận 7', 2, 1, 0123456789, 176000, 8800),   
+(10, 8, '2025-03-21', 1, NULL, '159 Pasteur, Quận 3', 1, 1, 0123456789, 466400, 20320),   
+(10, 1, '2025-03-21', 2, 'Ưu tiên giao sáng', '88 Lý Tự Trọng, Quận 1', 2, 1, 0123456789, 224000, 11200),  
+(2, 3, '2025-03-21', 3, NULL, '67 Bạch Đằng, Quận Tân Bình', 1, 1, 0123456789, 126000, 6300),  
+(5, 6, '2025-03-21', 1, 'Chuyển khoản trước', '23 Võ Văn Tần, Quận 10', 1, 1, 0123456789, 340000, 17000),   
+(5, 7, '2025-03-21', 1, 'Giao trong tuần', '56 Nguyễn Trãi, Quận 5', 2, 1, 0123456789, 660000, 33000),   
+(10, 8, '2025-03-21', 2, NULL, '12 An Dương Vương, Quận 6', 1, 1, 0123456789, 168000, 8400);
 
 INSERT INTO CTHD (SoLg, MaHD, MaSach, DonGia) VALUES
 ( 2, 1, 5, 120000),

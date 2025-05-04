@@ -1,10 +1,13 @@
 function togglePassword(inputId) {
   const input = document.getElementById(inputId);
   const type = input.getAttribute("type") === "password" ? "text" : "password";
-  //   this.innerHTML == `<i class="fa-regular fa-eye"></i>`
-  //     ? `<i class="fa-regular fa-eye-slash"></i>`
-  //     : `<i class="fa-regular fa-eye"></i>`;
+
   input.setAttribute("type", type);
+
+  const toggleIcon = document.querySelector(`#${inputId} +.toggle-password i`);
+  console.log(toggleIcon);
+  toggleIcon.classList.toggle("fa-eye");
+  toggleIcon.classList.toggle("fa-eye-slash");
 }
 
 function changepasswordAjax() {

@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="/project-Web2/user/assets/css/checkout.css">
 <div class="container_checkout_box">
     <?php if (!empty($bookList)): ?>
-        <?php print_r($userInfo); ?>
         <form action="/project-Web2/user/index.php?page=checkout&action=placeOrder" method="POST" id="formInfo">
             <div class="info_method">
                 <div class="info">
@@ -33,13 +32,13 @@
                     <div class="method_box">
                         <div class="shipping_method">
                             <div>Phương thức vận chuyển</div>
-                            <div><input type="radio" name="shipping_method" id="regular" value="1" checked> <label for="regular">Giao hàng thông thường</label></div>
+                            <div><input type="radio" name="shipping_method" id="regular" value="1" checked> <label for="regular">Giao hàng tiêu chuẩn</label></div>
                             <div><input type="radio" name="shipping_method" id="express" value="2"> <label for="express">Giao hàng hỏa tốc</label></div>
                         </div>
                         <div class="payment_method">
                             <div>Phương thức thanh toán</div>
                             <div><input type="radio" name="payment_method" id="cod" value="1" checked> <label for="cod">Thanh toán khi nhận hàng</label></div>
-                            <div><input type="radio" name="payment_method" id="qr" value="2"> <label for="qr">Thanh toán bằng mã QR</label></div>
+                            <div><input type="radio" name="payment_method" id="qr" value="2"> <label for="qr">Thanh toán bằng chuyển khoản ngân hàng</label></div>
                         </div>
                     </div>
                 </div>
@@ -55,23 +54,23 @@
                         <div class="book" data-id=<?php echo $book['MaSach']; ?> >
                             <span class="book_name"><?php echo htmlspecialchars($book['TenSach']); ?></span>
                             <span class="book_qty"><?php echo $book['SoLg']; ?></span>
-                            <span class="book_price"><?php echo number_format($book['GiaBan'], 0, ',', '.'); ?> đ</span>
+                            <span class="book_price"><?php echo number_format($book['GiaBan'], 0, '.', '.'); ?> đ</span>
                         </div>
                     <?php endforeach; ?>
                 </div>
                 <div class="price_fee">
                     <div class="total_price_order">
                         <span>Tiền hàng:</span>
-                        <span class="total_price"><?php echo number_format($totalPrice, 0, ',', ','); ?> đ</span>
+                        <span class="total_price"><?php echo number_format($totalPrice, 0, '.', '.'); ?> đ</span>
                     </div>
                     <div class="fee_order">
                         <span>Phí vận chuyển:</span>
-                        <span class="fee"><?php echo number_format($shippingFee, 0, ',', ','); ?> đ</span>
+                        <span class="fee"><?php echo number_format($shippingFee, 0, '.', '.'); ?> đ</span>
                     </div>
                 </div>
                 <div class="total_bill">
-                    <span>Tiền hàng:</span>
-                    <span><?php echo number_format($totalPrice + $shippingFee, 0, ',', '.'); ?> đ</span>
+                    <span>Thành tiền:</span>
+                    <span><?php echo number_format($totalPrice + $shippingFee, 0, '.', '.'); ?> đ</span>
                 </div>
             </div>
             <div class="btn_box">
@@ -107,26 +106,26 @@
                         <div class="book">
                             <span class="book_name"><?php echo htmlspecialchars($book['TenSach']); ?></span>
                             <span class="book_qty"><?php echo $book['SoLg']; ?></span>
-                            <span class="book_price"><?php echo number_format($book['GiaBan'], 0, ',', '.'); ?> đ</span>
+                            <span class="book_price"><?php echo number_format($book['GiaBan'], 0, '.', '.'); ?> đ</span>
                         </div>
                     <?php endforeach; ?>
                 </div>
                 <div class="price_fee">
                     <div class="total_price_order">
                         <span>Tiền hàng:</span>
-                        <span id="total_price"><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
+                        <span id="total_price"><?php echo number_format($totalPrice, 0, '.', '.'); ?> đ</span>
                     </div>
                     <div class="fee_order">
                         <span>Phí vận chuyển:</span>
-                        <span id="fee"><?php echo number_format($shippingFee, 0, ',', '.'); ?> đ</span>
+                        <span id="fee"><?php echo number_format($shippingFee, 0, '.', '.'); ?> đ</span>
                     </div>
                 </div>
                 <div class="total_bill">
-                    <span>Tiền hàng:</span>
-                    <span id="total_bill"><?php echo number_format($totalPrice, 0, ',', '.'); ?> đ</span>
+                    <span>Thành tiền:</span>
+                    <span id="total_bill"><?php echo number_format($totalPrice, 0, '.', '.'); ?> đ</span>
                 </div>
                 <div class="btn_box">
-                    <button id="close">Hủy</button>
+                    <!-- <button id="close">Hủy</button> -->
                     <button type="submit">Xác nhận</button>
                 </div>
             </form>

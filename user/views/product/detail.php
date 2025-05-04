@@ -21,7 +21,7 @@
             <div class="book_title"><?php echo $book_data['TenSach']; ?></div>
             <div class="book_author">Tác giả: <span><?php echo $book_data['TenTG']; ?></span></div>
             <div class="book_category">Thể loại: <span><?php echo $book_data['TenLoai']; ?></span></div>
-            <div class="book_price">Giá: <span><?php echo $book_data['GiaBan']; ?> vnđ</span></div>
+            <div class="book_price">Giá: <span><?php echo number_format($book_data['GiaBan'], 0, '.', '.'); ?> vnđ</span></div>
             <div class="book_status">Còn hàng: <span><?php echo $book_data['SoLgTon']; ?></span></div>
             <div class="book_quantity">Số lượng: 
                 <span id="minus_icon"><i class="fa-solid fa-minus"></i></span>
@@ -71,7 +71,7 @@
                             <img src="<?php echo $book['DgDanAnh'][0]['DgDanAnh']; ?>" alt="<?php echo $book['TenSach']; ?>">
                         </div>
                         <div class="book_title"><?php echo $book['TenSach']; ?></div>
-                        <div class="book_price"><?php echo $book['GiaBan']; ?> vnđ</div>
+                        <div class="book_price"><?php echo number_format($book['GiaBan'], 0, '.', '.'); ?> vnđ</div>
                     </div>
                 </a>
             <?php endforeach?>
@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="content reply_content"><?php echo $review['PhanHoi']; ?></div>
                                 </div>
-                            <?php elseif (isset($_SESSION['account_role']) && $_SESSION['account_role'] != 0): ?>
+                            <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] != 0): ?>
                                 <div class="text_reply">Trả lời</div>
                                 <div class="write_reply" style="display: none;">
                                     <textarea name="content_reply" class="content_reply" cols="50" rows="5" placeholder="Viết câu trả lời gửi đến khách hàng"></textarea><br>
@@ -134,19 +134,3 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Thêm Owl Carousel JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<!-- <script>
-    function handleBuyNow() {
-        // Lấy id_book từ URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const id_book = urlParams.get('id_book');
-        
-        // Lấy số lượng từ giao diện
-        const quantity = document.getElementById('quantity').textContent;
-
-        // Chuyển hướng đến trang checkout.php với id_book và quantity
-        window.location.href = `/project-Web2/user/index.php?page=checkout&action=showCheckout&id_book=${id_book}&quantity=${quantity}`;
-    }
-
-    // Gắn sự kiện click cho nút "Mua Ngay"
-    document.getElementById('buyNow').addEventListener('click', handleBuyNow);
-</script> -->

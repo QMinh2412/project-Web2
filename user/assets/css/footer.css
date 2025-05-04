@@ -1,14 +1,9 @@
-/* <!--  footer  --> */
 * {
   margin: 0;
 }
 .footer {
-  /* border: 2px solid #c89bff; */
   padding: 20px 50px;
   background-color: #f1f1f1;
-  /* width: 90%; */
-  /* margin: 20px auto; */
-  /* border-radius: 8px; */
   position: relative;
   font-family: Arial, sans-serif;
 }
@@ -21,13 +16,6 @@
 
 .footer-logo img {
   width: 200px;
-}
-
-.footer-info,
-.footer-contact,
-.footer-support {
-  /* width: 25%; */
-  /* text-align: center; */
 }
 
 .footer h3 {
@@ -43,24 +31,44 @@
   line-height: 1.6;
 }
 
-/* Nút cuộn lên */
-.scroll-to-top {
-  position: absolute;
-  z-index: 1;
-  right: 20px;
-  bottom: 10px;
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border: 2px solid #a75026;
-  border-radius: 50%;
-  font-size: 24px;
-  cursor: pointer;
-  color: #a75026;
-  transition: 0.3s;
+@media only screen and (max-width: 1050px) {
+  .footer {
+    padding: 20px 30px;
+  }
+
+  .footer-logo img {
+    width: 170px;
+  }
 }
 
-.scroll-to-top:hover {
-  background-color: #a75026;
-  color: white;
+@media only screen and (max-width: 600px) {
+  .footer {
+    padding: 10px;
+  }
+
+  .footer-container {
+    display: block;
+  }
+
+  .footer-container h3 {
+    text-align: center;
+  }
+
+  .footer-logo {
+    text-align: center;
+  }
+
+  .footer-support {
+    width: max-content;
+    padding: 0 30px;
+    margin: 0 auto;
+  }
+
+  .footer-info,
+  .footer-contact {
+    width: max-content;
+    padding: 0 30px;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
 }

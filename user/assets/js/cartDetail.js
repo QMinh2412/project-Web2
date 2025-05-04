@@ -1,3 +1,13 @@
+function formatCurrency(amount) {
+  const formatter = new Intl.NumberFormat("vi-VN", {
+    style: "decimal", // Dùng decimal để kiểm soát ký hiệu
+    minimumFractionDigits: 3, // Hiển thị 3 chữ số thập phân
+    maximumFractionDigits: 3, // Hiển thị 3 chữ số thập phân
+    useGrouping: true, // Sử dụng dấu phân cách hàng nghìn
+  });
+  return formatter.format(amount) + " đ"; // Thêm ký hiệu ₫ với dấu cách
+}
+
 // Hàm gửi yêu cầu AJAX chung
 function sendAjaxRequest(method, url, data, callback) {
   const xhr = new XMLHttpRequest();
@@ -45,9 +55,9 @@ function updateTotal() {
   document.querySelector(
     ".total_book"
   ).innerHTML = `${totalBook} <span>sản phẩm</span>`;
-  document.querySelector(".total_price").textContent = `${totalPrice.toFixed(
-    0
-  )} đ`;
+  document.querySelector(".total_price").textContent = `${formatCurrency(
+    totalPrice
+  )}`;
 }
 
 // Xử lý sự kiện checkbox chọn sản phẩm
@@ -139,7 +149,6 @@ function handleQuantityChange(button, isIncrement) {
 function handleCheckoutClick() {
   document.querySelector(".btn_submit").addEventListener("click", (e) => {
     e.preventDefault();
-    alert("dang thuc hien ajax thanh toan trong gio hang");
     const xhr = new XMLHttpRequest();
     xhr.open(
       "POST",

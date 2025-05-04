@@ -27,6 +27,11 @@
                     ]);
                     return;
                 }
+
+                if($accountModel->phoneExist($phone)){
+                    echo json_encode(['status' => 'error', 'field' => 'phone', 'message' => 'Số điện thoại đã được đăng ký']);
+                    return;
+                }
         
                 // Mã hóa mật khẩu
                 // $hashedPassword = password_hash($pass, PASSWORD_BCRYPT);
@@ -39,8 +44,8 @@
         
                 if ($idNewUser) {        
                     // session_start();
-                    $_SESSION['account_id'] = $idNewUser;
-                    $_SESSION['account_type'] = 0;
+                    $_SESSION['user_id'] = $idNewUser;
+                    $_SESSION['role'] = 0;
 
                     echo json_encode([
                         'status' => 'success',
@@ -116,7 +121,7 @@
 
             echo json_encode([
                 'status' => 'success',
-                'message' => 'Đăng nhập thành công'
+                'message' => 'Dang nhap thanh cong'
             ]);
         }
 
@@ -138,7 +143,7 @@
             $old_password = $_POST['old_password'] ?? '';
             $new_password = $_POST['new_password'] ?? '';
             $confirm_password = $_POST['confirm_password'] ?? '';
-            $account_id = $_SESSION['account_id'];
+            $account_id = $_SESSION['user_id'];
 
             // kiểm tra dữ liệu không được trống
             if(empty($old_password)){
@@ -189,7 +194,7 @@
         public function updateAccount() {
             $userModel = new User();
             $accountModel = new Account();
-            $current_account = $_SESSION['account_id'];
+            $current_account = $_SESSION['user_id'];
             $userInfo = $userModel->getById($current_account);
             $accountInfo = $accountModel->getById($current_account);
 
@@ -208,13 +213,13 @@
                 exit();
             }
 
-            if (!isset($_SESSION['account_id'])) {
+            if (!isset($_SESSION['user_id'])) {
                 echo json_encode(['status' => 'error', 'message' => 'Vui lòng đăng nhập để cập nhật tài khoản']);
                 exit();
             }
 
             // lấy thông tin từ form
-            $account_id = $_SESSION['account_id'];
+            $account_id = $_SESSION['user_id'];
             $fullname = $_POST['fullname'] ?? '';
             $username = $_POST['username'] ?? '';
             $email = $_POST['email'] ?? '';
@@ -232,6 +237,11 @@
             $currentEmail = $userModel->getById($account_id)['EmailND'];
             if ($email !== $currentEmail && $accountModel->emailExist($email)) {
                 echo json_encode(['status' => 'error', 'field' => 'email', 'message' => 'Email đã được sử dụng']);
+                exit();
+            }
+            $currentPhone = $userModel->getById($account_id)['SDT'];
+            if($phone !== $currentPhone && $accountModel->phoneExist($phone)){
+                echo json_encode(['status' => 'error', 'field' => 'phone', 'message' => 'Số điện thoại đã được sử dụng']);
                 exit();
             }
 
