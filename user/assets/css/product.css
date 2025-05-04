@@ -83,6 +83,10 @@
   transition: 0.3s;
 }
 
+.box_cheatseat {
+  display: none;
+}
+
 /* booklist */
 .box_product {
   width: 100%;
