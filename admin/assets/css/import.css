@@ -505,6 +505,10 @@
 }
 
 @media only screen and (max-width: 1300px) {
+    .import-status-dropdown {
+        font-size: 0.9em;
+    }
+
     #import-feature {
         width: 60px;
     }

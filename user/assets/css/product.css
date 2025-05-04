@@ -283,6 +283,7 @@
 
   .box_product .book_list {
     padding: 0 20px;
+    width: calc(110% - 40px);
   }
 
   .box_product .book_list .book_item:nth-child(even) {

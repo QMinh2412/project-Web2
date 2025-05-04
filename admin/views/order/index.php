@@ -89,7 +89,7 @@
                                             if (($value > $currentStatus && $value != 0 && $currentStatus <= 3) || ($value === 0 && $currentStatus < 2)) {
                                                 $allow = true;
                                             }
-                                        }   
+                                        }
 
                                         if ($allow) {
                                             echo "<option value='$value'" . ($value === $currentStatus ? ' selected' : '') . " class='order-status-dropdown'>$label</option>";

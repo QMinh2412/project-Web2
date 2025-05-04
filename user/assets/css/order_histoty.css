@@ -67,7 +67,7 @@ h2 {
   padding: 0;
   /* width: calc(100% - 37px); */
   width: 100%;
-  background-color: rebeccapurple;
+  /* background-color: rebeccapurple; */
 }
 
 .order_filter form > div {
