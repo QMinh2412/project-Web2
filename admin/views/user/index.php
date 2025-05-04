@@ -1,4 +1,9 @@
-<table class="admin-list-container">
+<div class="admin-wrapper">
+    <div class="admin-header" id="user-header">
+        <h2>Tài khoản</h2>
+        <button class="btn-user btn-add" onclick="location.href='?page=user&action=create'"><i class='bx bxs-user-plus' ></i>Thêm tài khoản</button>
+    </div>
+    <table class="admin-list-container">
         <thead class="admin-list-header">
             <tr class="admin-list-header-content">
                 <th id="user-stt">STT</th>
@@ -36,3 +41,21 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <div class="user-pagination">
+        <a href="?page=user&current_page=<?= $pagination['currentPage'] - 1 ?>" 
+            class="<?= $pagination['currentPage'] == 1 ? 'disabled' : '' ?>"><i class='bx bx-chevron-left'></i></a>
+        
+        <?php for ($i = 1; $i <= $pagination['totalPages']; $i++): ?>
+            <a href="?page=user&current_page=<?= $i ?>"
+               class="<?= $i == $pagination['currentPage'] ? 'active' : '' ?>">
+               <?= $i ?>
+            </a>
+        <?php endfor; ?>
+
+        <a href="?page=user&current_page=<?= $pagination['currentPage'] + 1 ?>" 
+            class="<?= $pagination['currentPage'] == $pagination['totalPages'] ? 'disabled' : '' ?>"><i class='bx bx-chevron-right' ></i></a>
+    </div>
+</div>
+
+<script src="/project-Web2/admin/assets/js/user.js"></script>

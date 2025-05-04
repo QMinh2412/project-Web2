@@ -233,6 +233,11 @@
 
 
 /******** Order Detail Form ***********/
+#order-detail-wrapper {
+    max-height: calc(100vh - 90px); 
+    overflow-y: auto;   
+}
+
 #order-detail-product-order {
     width: 50px;
 }
@@ -307,11 +312,6 @@
 
 
 @media only screen and (min-width: 651px) and (max-width: 1300px) {
-    #order-detail-wrapper {
-        max-height: calc(100vh - 90px); 
-        overflow-y: auto;   
-    }
-
     .order-search-form {
         flex-wrap: wrap;
         gap: 20px;

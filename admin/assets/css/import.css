@@ -350,6 +350,11 @@
 }
 
 /********************* IMPORT DETAIL **************************/
+
+#import-detail-wrapper {
+    max-height: calc(100vh - 90px); 
+    overflow-y: auto;
+}
 /*********** Div Form ******************/
 
 #import-detail-form {
