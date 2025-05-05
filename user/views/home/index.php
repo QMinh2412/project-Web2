@@ -22,13 +22,13 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="https://bookbuy.vn/Res/Images/Album/d964cd17-e283-4d7f-8b10-562b454bbcb1.jpg?w=880&scale=both&h=320&mode=crop" alt="Slide 1" />
+                    <img src="https://cdn1.fahasa.com/media/magentothem/banner7/CTT5_Resize_840x320.png" alt="Slide 1" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="https://bookbuy.vn/Res/Images/Album/7ef94c08-7976-4957-8561-c53de0c04108.jpg?w=880&scale=both&h=320&mode=crop" alt="Slide 2" />
+                    <img src="https://cdn1.fahasa.com/media/magentothem/banner7/quyen_conduongchangmayaidi_840X320.png" alt="Slide 2" />
                 </div>
                 <div class="swiper-slide">
-                    <img src="https://bookbuy.vn/Res/Images/Album/bc5995b5-64a3-4bc7-8413-718664549f82.jpg?w=880&scale=both&h=320&mode=crop" alt="Slide 3" />
+                    <img src="https://cdn1.fahasa.com/media/magentothem/banner7/NgoaiVanT5_Resize0505_840x320.png" alt="Slide 3" />
                 </div>
             </div>
         </div>
