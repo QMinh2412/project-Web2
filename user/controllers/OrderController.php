@@ -194,17 +194,18 @@
             }
         }
 
-        public function calculateFeeShip(){
+        public function calculateFeeShip() {
             $totalPrice = isset($_GET['totalPrice']) ? $_GET['totalPrice'] : 0;
             $shipMethod = isset($_GET['shipMethod']) ? $_GET['shipMethod'] : 1;
-
-            $totalPrice = floatval($totalPrice);
-
-            if($shipMethod == 1){
-                echo json_encode($totalPrice * 0.05);
-            } else {
-                echo json_encode($totalPrice * 0.1);
-            }
+        
+            // Chuyển đổi totalPrice thành số nguyên
+            $totalPrice = intval($totalPrice);
+        
+            // Tính phí vận chuyển
+            $fee = ($shipMethod == 1) ? $totalPrice * 0.05 : $totalPrice * 0.1;
+        
+            // Trả về phí dạng số nguyên
+            echo json_encode(intval($fee));
         }
 
         public function showOrderHistory(){

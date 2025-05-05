@@ -1,11 +1,11 @@
 function formatCurrency(amount) {
   const formatter = new Intl.NumberFormat("vi-VN", {
     style: "decimal", // Dùng decimal để kiểm soát ký hiệu
-    minimumFractionDigits: 0, // Hiển thị 3 chữ số thập phân
-    maximumFractionDigits: 0, // Hiển thị 3 chữ số thập phân
-    useGrouping: true, // Sử dụng dấu phân cách hàng nghìn
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+    useGrouping: true,
   });
-  return formatter.format(amount) + " đ"; // Thêm ký hiệu ₫ với dấu cách
+  return formatter.format(amount) + " đ";
 }
 
 // Hàm xử lý dữ liệu lấy được chuyển thành html

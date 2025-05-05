@@ -11,11 +11,11 @@ const btnFinal = document.getElementById("btn_confirm_payment");
 function formatCurrency(amount) {
   const formatter = new Intl.NumberFormat("vi-VN", {
     style: "decimal", // Dùng decimal để kiểm soát ký hiệu
-    minimumFractionDigits: 3, // Hiển thị 3 chữ số thập phân
-    maximumFractionDigits: 3, // Hiển thị 3 chữ số thập phân
-    useGrouping: true, // Sử dụng dấu phân cách hàng nghìn
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+    useGrouping: true,
   });
-  return formatter.format(amount) + " đ"; // Thêm ký hiệu ₫ với dấu cách
+  return formatter.format(amount) + " đ";
 }
 
 function checkInfoEmpty() {
@@ -117,32 +117,43 @@ function showConfirmForm() {
 function handleFeeShipAjax() {
   const totalPrice = document.querySelector(".total_price_order .total_price");
   const shipMethod = document.getElementsByName("shipping_method");
-  console.log(shipMethod[0].value);
+
   shipMethod.forEach((inputRadio) => {
     inputRadio.addEventListener("click", function () {
-      console.log("dang chon ph thuc van chuyen");
-      console.log(parseFloat(totalPrice.textContent));
-      console.log(`ph thuc vc: ${inputRadio.value}`);
+      console.log("Đang chọn phương thức vận chuyển");
+      console.log(`Phương thức vận chuyển: ${inputRadio.value}`);
+
+      let priceText = totalPrice.textContent.replace(/[^\d]/g, "");
+      let priceValue = parseInt(priceText);
+
+      console.log(`Tổng giá trị: ${priceValue}`);
+
       const xhr = new XMLHttpRequest();
       xhr.open(
         "GET",
-        `/project-Web2/user/index.php?page=checkout&action=calculateFeeShip&shipMethod=${
-          this.value
-        }&totalPrice=${encodeURIComponent(parseFloat(totalPrice.textContent))}`,
-        "true"
+        `/project-Web2/user/index.php?page=checkout&action=calculateFeeShip&shipMethod=${this.value}&totalPrice=${priceValue}`, // Gửi giá trị dạng nguyên
+        true
       );
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-          const response = JSON.parse(xhr.responseText);
-          console.log(response);
-          document.querySelector(".fee_order span:last-child").textContent =
-            formatCurrency(response);
-          document.querySelector(".total_bill span:last-child").textContent =
-            formatCurrency(parseFloat(totalPrice.textContent) + response);
-          document.querySelector(
-            ".fee_order:last-child span:last-child"
-          ).textContent = formatCurrency(response);
+          try {
+            const response = JSON.parse(xhr.responseText);
+            console.log(response);
+
+            // Cập nhật phí vận chuyển
+            document.querySelector(".fee_order span:last-child").textContent =
+              formatCurrency(response);
+            // Cập nhật tổng hóa đơn
+            document.querySelector(".total_bill span:last-child").textContent =
+              formatCurrency(priceValue + response);
+            // Cập nhật phí vận chuyển ở phần khác (nếu có)
+            document.querySelector(
+              ".fee_order:last-child span:last-child"
+            ).textContent = formatCurrency(response);
+          } catch (e) {
+            console.error(`Lỗi phân tích JSON: ${e}`);
+          }
         }
       };
 

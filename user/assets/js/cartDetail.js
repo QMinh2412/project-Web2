@@ -1,11 +1,11 @@
 function formatCurrency(amount) {
   const formatter = new Intl.NumberFormat("vi-VN", {
-    style: "decimal", // Dùng decimal để kiểm soát ký hiệu
-    minimumFractionDigits: 3, // Hiển thị 3 chữ số thập phân
-    maximumFractionDigits: 3, // Hiển thị 3 chữ số thập phân
-    useGrouping: true, // Sử dụng dấu phân cách hàng nghìn
+    style: "decimal",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+    useGrouping: true,
   });
-  return formatter.format(amount) + " đ"; // Thêm ký hiệu ₫ với dấu cách
+  return formatter.format(amount) + " đ";
 }
 
 // Hàm gửi yêu cầu AJAX chung
@@ -43,7 +43,10 @@ function updateTotal() {
 
   document.querySelectorAll(".book_in_cart").forEach((item) => {
     const quantity = parseInt(item.querySelector(".quantity").textContent);
-    const price = parseFloat(item.querySelector(".book_price").textContent);
+    const price = parseInt(
+      item.querySelector(".book_price").textContent.replace(/[^\d]/g, "")
+    );
+    console.log(`gia ban: ${price}`);
     const isChecked = item.querySelector(".selected").checked;
 
     if (isChecked) {
