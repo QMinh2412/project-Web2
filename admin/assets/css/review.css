@@ -36,39 +36,35 @@
 }
 
 #review-date {
-    text-align: left;
+    text-align: center;
 }
 
 #review-action {
-    align-items: center;
-}
-
-.btn-review {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    text-decoration: none;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 14px;
-    color: #333;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
+    text-align: center;
 }
 
-.btn-review:hover {
-    background-color: #e0e0e0;
-    color: #000;
-    border-color: #bbb;
+#detailReviewBtn {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px rgb(209, 209, 0);
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
 }
 
-.btn-review:active {
-    background-color: #d0d0d0;
-    color: #000;
-    border-color: #aaa;
+#detailReviewBtn:hover {
+    background-color: rgb(209, 209, 0);
+}
+
+#detailReviewBtn:active {
+    background-color: rgb(209, 209, 0);
 }
 
 .review-pagination {
@@ -106,4 +102,67 @@
     pointer-events: none;
     opacity: 0.5;
     cursor: default;
+}
+
+@media only screen and (max-width: 1300px) {
+    #review-list-container {
+        background-color: white;
+    }
+
+    #review-list-container thead {
+        display: none;
+    }
+    
+    #review-list-body tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        background: #fff;
+        align-items: left;
+    }
+    
+    #review-list-body td {
+        display: block;
+        padding: 8px 5px;
+        border: none;
+        /* font-size: 14px; */
+        position: relative;
+        padding-left: 130px; 
+        text-align: left;
+    }
+    
+    #review-list-body td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: bold;
+        color: #333;
+        width: 95px;
+        white-space: nowrap;
+    }
+    
+    #review-list-body td:last-child {
+        border-bottom: none;
+    }
+
+    #review-list-body-status {
+        vertical-align: middle;
+    }
+    #review-order, #review-book, #review-name, #review-content, #review-date, #review-features {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    #review-list-body td {
+        font-size: 14px;
+    }
+
+    #review-order, #review-book, #review-name, #review-content, #review-date, #review-features {
+        width: 50%;
+    }
 }

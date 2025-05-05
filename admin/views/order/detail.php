@@ -30,10 +30,10 @@
     }
 
     switch ($order['PhThucVC']) {
-        case 0:
+        case 1:
             $deliveryMethod = 'Giao hàng tiêu chuẩn';
             break;
-        case 1:
+        case 2:
             $deliveryMethod = 'Giao hàng hỏa tốc';
             break;
         default:
@@ -128,10 +128,21 @@
     </table>
     <div id="orderDetailTotalValueDiv">
         <div id="orderDetailTotalValue">
-            <label for="order-total-value" id="order-total-value-label">Thành tiền:</label>
-            <input type="text" name="order_total_value" id="order-total-value-input" value="<?= htmlspecialchars(number_format($totalValue)) ?>" readonly>
+            <div class="order-value-row">
+                <label for="order-total-price">Tổng tiền hàng:</label>
+                <input type="text" name="price" id="order-total-price" value="<?= htmlspecialchars(number_format($totalValue)) ?>" readonly>
+            </div>
+            <div class="order-value-row">
+                <label for="order-total-shipping">Phí vận chuyển:</label>
+                <input type="text" name="order_total_shipping" id="order-total-shipping" value="<?= htmlspecialchars(number_format($order['PhiVC'])) ?>" readonly>
+            </div>
+            <div class="order-value-row" id="orderDetailTotalValueRow">
+                <label for="order-total-value">Thành tiền:</label>
+                <input type="text" name="order_total_value" id="order-total-value" value="<?= htmlspecialchars(number_format($order['TongTien'])) ?>" readonly>
+            </div>
         </div>
     </div>
+
     <div>
         <button type="button" class="order-detail-close-Btns" id="closeOrderDetailBtn" onclick="location.href='?page=order&action=index&current_page=<?= $currentPage ?>'">
             <i class='bx bx-check'></i>

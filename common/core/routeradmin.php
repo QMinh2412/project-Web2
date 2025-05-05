@@ -15,12 +15,19 @@ class RouteAdmin {
         $current_page = isset($_GET['current_page']) ? (int)$_GET['current_page'] : 1;
         $id = isset($_GET['id']) ? $_GET['id'] : null;
 
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /project-Web2/admin/views/layouts/login.php");
+            exit;
+        }
+
+        error_log("User ID: " . $_SESSION['user_id']);
+        error_log("Role: " . $_SESSION['role']);
+
         // Lấy loại tài khoản từ session
         $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
         
-        // Định nghĩa quyền truy cập cho từng loại tài khoản
         $permissions = [
-            'dashboard' => [2, 4], 
+            'dashboard' => [1, 2, 3, 4], 
             'category' => [1, 4],
             'product' => [1, 4], 
             'user' => [3, 4], 

@@ -1,20 +1,3 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Ngăn trình duyệt lưu cache
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-
-// Nếu session không tồn tại, chuyển hướng về trang login
-if (!isset($_SESSION['user_id'])) {
-    header("Location: /project-Web2/admin/views/layouts/login.php");
-    exit;
-}
-?>
-
 <script src="./assets/js/header.js"></script>
 <script src="./assets/js/login.js"></script>
 

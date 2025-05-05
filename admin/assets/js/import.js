@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("createProductImportBtn").addEventListener("click", function () {
         document.getElementById("addBookModal").style.display = "block";
     });
-
 });
 
 function handleStatusChange(select, importId, currentPage) {
@@ -100,6 +99,7 @@ let selectedBooks = [];
 let bookCount = 0;
 
 function addBookToTable() {
+    bookCount ++;
     const select = document.getElementById("importAddBookSelect");
     const bookId = select.value;
     const name = select.options[select.selectedIndex].dataset.name;

@@ -5,7 +5,7 @@
 
 /************************ Index table **********************/
 #import-id {
-    width: 40px;
+    width: 30px;
 }
 
 #import-value {
@@ -13,15 +13,15 @@
 }
 
 #import-time {
-    width: 100px;
+    width: 80px;
 }
 
 #import-status {
-    width: 200px;
+    width: 160px;
 }
 
 #import-features {
-    width: 100px;
+    width: 75px;
 }
 
 .import-status-dropdown {
@@ -189,10 +189,56 @@
     box-sizing: border-box;
 }
 
+.import-container {
+    margin: 0 20px 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.import-form-group {
+    flex: 1 1 48%;
+    display: flex;
+    flex-direction: column;
+}
+
+.import-form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+#import-create-provider,
+#import-create-profit {
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+#createProductImportBtn {
+    padding: 12px;
+    border-radius: 5px;
+    margin: 0px 0px 10px 20px;
+    background-color: #00ff66;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#createProductImportBtn:hover {
+    background-color: #01d355;
+}
+
+#createProductImportBtn:hover {
+    background-color: #03b349;
+}
+
 #import-add-btn {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 #import-add-btn button {
@@ -304,6 +350,11 @@
 }
 
 /********************* IMPORT DETAIL **************************/
+
+#import-detail-wrapper {
+    max-height: calc(100vh - 90px); 
+    overflow-y: auto;
+}
 /*********** Div Form ******************/
 
 #import-detail-form {
@@ -404,13 +455,68 @@
     width: 200px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 780px) {
     .general-import-info {
         flex: 1 1 calc(100% - 8px);
     }
+
+    #import-list-container {
+        background-color: white;
+    }
+
+    #import-list-container thead {
+        display: none;
+    }
+
+    #import-list-body tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        background: #fff;
+        align-items: left;
+    }
+    
+    #import-list-body td {
+        display: block;
+        padding: 8px 5px;
+        border: none;
+        font-size: 14px;
+        position: relative;
+        padding-left: 130px; 
+        text-align: left;
+    }
+    
+    #import-list-body td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: bold;
+        color: #333;
+        width: 95px;
+        white-space: nowrap;
+    }
+    
+    #import-list-body td:last-child {
+        border-bottom: none;
+    }
+
+    #import-list-body-status {
+        vertical-align: middle;
+    }
 }
 
-@media only screen and (max-width: 1050px) {
+@media only screen and (max-width: 1300px) {
+    .import-status-dropdown {
+        font-size: 0.9em;
+    }
+
+    #import-feature {
+        width: 60px;
+    }
     /*Order Detail Form*/
     .import-create-label {
         font-size: 0.9em;
