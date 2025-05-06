@@ -45,7 +45,7 @@
                             <button class="btn btn-primary" id="deleteProductBtn" 
                                     onclick="<?= $canDelete ? "confirmDeleteProduct('$productName', '$deleteUrl')" : 'return false;' ?>"
                                     <?= $canDelete ? '' : 'disabled' ?>
-                                    title="<?= $canDelete ? 'Xóa sản phẩm' : 'Không thể xóa sản phẩm đã mở bán hoặc đã có lượt bán' ?>"
+                                    title="<?= $canDelete ? 'Xóa sản phẩm' : 'Không thể xóa sản phẩm đang được mở bán' ?>"
                             >
                                 <i class='bx bx-trash'></i>
                             </button>

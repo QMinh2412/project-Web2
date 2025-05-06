@@ -5,7 +5,7 @@
     require_once __DIR__ . '/../../common/models/Author.php'; 
     require_once __DIR__ . '/../../common/models/Review.php'; 
     class productController {
-        protected $bookperpage = 4;
+        protected $bookperpage = 10;
 
         public function index() {
             $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : "";
@@ -258,7 +258,7 @@
                     $_SESSION['user_info'] = $userInfo;
                     echo json_encode([
                         'status' => true,
-                        'message' => 'dang chuyen qua trang thanh toan'
+                        'message' => 'Đang chuyển qua trang thanh toán'
                     ]);
                 }
                 
@@ -273,16 +273,27 @@
             $cart_id = $my_cart['MaGH'];
             $cartDetailModel = new CartDetail();
             $selected_books = $cartDetailModel->getSelectedBookInCart($cart_id);
+            $productModel = new Product();
+            foreach($selected_books as $book){
+                $book_data = $productModel->getProductById($book['MaSach']);
+                if($book_data['SoLgTon'] < $book['SoLg']){
+                    echo json_encode([
+                        'status' => false,
+                        'message' => 'Sách ' .$book_data['TenSach'] . ' trong kho không đủ'
+                    ]);
+                    exit;
+                }
+            }
 
             if($selected_books){
                 echo json_encode([
                     'status' => true,
-                    'message' => 'đang chuyển sang thanh toán'
+                    'message' => 'Đang chuyển sang thanh toán'
                 ]);
             } else {
                 echo json_encode([
                     'status' => false,
-                    'message' => 'vui long chon san pham truoc khi thanh toan'
+                    'message' => 'Vui lòng chọn sản phẩm trước khi thanh toán'
                 ]);
             }
             exit();

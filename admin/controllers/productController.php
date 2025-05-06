@@ -394,6 +394,7 @@
             $currentPage = $_GET['current_page'] ?? 1;
 
             $productModel = new Product();
+            $cartDetailModel = new CartDetail();
             $productId = $_GET['id'] ?? null;
 
             if ($productId) {
@@ -406,6 +407,7 @@
                 elseif ($product['TinhTrang'] == 1) {
 
                     $isUpdated = $productModel->updateProductStatus($productId, 0);
+                    $cartDetailModel->deleteProductInCart($productId);
 
                     if ($isUpdated) {
                         echo "<script>
