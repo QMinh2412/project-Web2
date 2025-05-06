@@ -33,6 +33,7 @@ create table `DauSach` (
 	`SoLgTon` long,
     `SoLgDaBan` long default 0,
 	`TinhTrang` int default 1,	-- 0: chưa mở bán, 1: đang bán
+    `DaXoa` int default 0,
 	`KichThuoc` varchar(50),
     `MaLoai` int not null,
     `MaTG` int not null,
@@ -541,6 +542,7 @@ INSERT INTO CTPN (SoLgNhap, GiaNhap, MaSach, MaPhNhap) VALUES
 (138, 53900, 31, 7),
 (35, 150500, 32, 8);
 
+/*
 INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, PhThucTT, PhThucVC, SDT, TongTien, PhiVC) VALUES
 (2, 1, '2025-03-21', 1, 'Giao hàng nhanh', '123 Nguyễn Văn Cừ, Quận 5, TP.HCM', 1, 1, 0123456789, 240000, 12000),   
 (5, 3, '2025-03-21', 2, NULL, '45 Lê Lợi, Quận 1, TP.HCM', 1, 1, 0123456789, 248400, 14220),   
@@ -552,7 +554,9 @@ INSERT INTO HoaDon (MaNV, MaKH, NgLap, TrangThaiDH, GhiChu, DiaChiGiaoHang, PhTh
 (5, 6, '2025-03-21', 1, 'Chuyển khoản trước', '23 Võ Văn Tần, Quận 10', 1, 1, 0123456789, 340000, 17000),   
 (5, 7, '2025-03-21', 1, 'Giao trong tuần', '56 Nguyễn Trãi, Quận 5', 2, 1, 0123456789, 660000, 33000),   
 (10, 8, '2025-03-21', 2, NULL, '12 An Dương Vương, Quận 6', 1, 1, 0123456789, 168000, 8400);
+*/
 
+/*
 INSERT INTO CTHD (SoLg, MaHD, MaSach, DonGia) VALUES
 ( 2, 1, 5, 120000),
 ( 1, 2, 8, 248400),
@@ -564,6 +568,7 @@ INSERT INTO CTHD (SoLg, MaHD, MaSach, DonGia) VALUES
 ( 5, 8, 22, 68000),
 ( 2, 9, 26, 330000),
 ( 3, 10, 30, 56000);
+*/
 
 INSERT INTO ctgh (MaSach, MaGH, SoLg) VALUES
 (1, 1, 2),  
@@ -576,6 +581,7 @@ INSERT INTO ctgh (MaSach, MaGH, SoLg) VALUES
 (20, 8, 2),  
 (25, 9, 1), 
 (30, 10, 2);
+
 
 insert into HinhAnh (DgDanAnh, MaND, MaSach)
 values ('/project-Web2/common/images/Tiểu thuyết/Thiên Sứ Nhà Bên - Tập 1/1.jpg', NULL, 1),
