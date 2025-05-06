@@ -19,7 +19,7 @@
             $authors = $authorModel->getAllAuthors();
             
             if(empty($category_id)){
-                $products = $productModel->getAllProducts(1);
+                $products = $productModel->getAllProductsWithStatus(1);
                 $totalPage = $productModel->getPagination(1);
             } else {
                 $products = $productModel->getProductByCategory($category_id, $current_page, $this->bookperpage);
@@ -36,8 +36,8 @@
         public function pagingHandleAjax(){
             $current_page = $_GET['current_page'];
             $productModel = new Product();
-            $products = $productModel->getAllProducts($current_page, $this->bookperpage);
-            $totalPage = $productModel->getPagination($current_page, $this->bookperpage);
+            $products = $productModel->getAllProductsWithStatus($current_page, $this->bookperpage);
+            $totalPage = $productModel->getPaginationWithStatus($current_page, $this->bookperpage);
             echo json_encode([
                 'products' => $products,
                 'totalPage' => $totalPage['totalPages']

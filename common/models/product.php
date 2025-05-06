@@ -62,10 +62,38 @@ class Product {
         return $products;
     }
 
+    public function getAllProductsWithStatus($currentpage, $bookperpage = 10) {
+        $offset = ($currentpage - 1) * $bookperpage;
+        $limit = $bookperpage;
+        
+        // Gán giá trị trực tiếp vào truy vấn (vì LIMIT không dùng bind_param)
+        $query = "SELECT * FROM DauSach WHERE TinhTrang = 1 AND DaXoa = 0 LIMIT $offset, $limit";
+        
+        $stmt = $this->db->prepare($query);
+        if (!$stmt) {
+            die("Prepare failed: " . $this->db->error);
+        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $products = [];
+    
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $image = new Image();
+                $imgs = $image->getImgProduct($row['MaSach']);
+                $row['DgDanAnh'] = !empty($imgs) ? $imgs[0] : null;
+                $products[] = $row;
+            }
+        }
+    
+        return $products;
+    }
+
     public function getProductByCategory($category_id, $currentpage = 1, $bookperpage = 10) {
         $offset = ($currentpage - 1) * $bookperpage;
 
-        $query = "SELECT * FROM DauSach WHERE MaLoai = $category_id LIMIT $offset, $bookperpage";
+        $query = "SELECT * FROM DauSach WHERE MaLoai = $category_id AND TinhTrang = 1 AND DaXoa = 0 LIMIT $offset, $bookperpage";
         $result = $this->db->query($query);
         $products = [];
 
@@ -83,7 +111,7 @@ class Product {
     public function getProductByAuthor($author_id, $currentpage = 1, $bookperpage = 10) {
         $offset = ($currentpage - 1) * $bookperpage;
 
-        $query = "SELECT * FROM DauSach WHERE MaTG = $author_id LIMIT $offset, $bookperpage";
+        $query = "SELECT * FROM DauSach WHERE MaTG = $author_id AND TinhTrang = 1 AND DaXoa = 0 LIMIT $offset, $bookperpage";
         $result = $this->db->query($query);
         $products = [];
 
@@ -111,8 +139,21 @@ class Product {
         ];
     }
 
+    public function getPaginationWithStatus($currentpage, $bookperpage = 10) {
+        $query = "SELECT COUNT(*) AS total FROM DauSach WHERE TinhTrang = 1 AND DaXoa = 0";
+        $result = $this->db->query($query);
+        $row = $result->fetch_assoc();
+        $totalBook = $row['total'];
+        $totalPages = ceil($totalBook / $bookperpage);
+        
+        return [
+            'totalPages' => $totalPages,
+            'currentPage' => $currentpage
+        ];
+    }
+
     public function getPaginationByCategory($category_id, $currentpage = 1, $bookperpage = 10) {
-        $query = "SELECT COUNT(*) AS total FROM DauSach WHERE MaLoai = $category_id";
+        $query = "SELECT COUNT(*) AS total FROM DauSach WHERE MaLoai = $category_id AND TinhTrang = 1 AND DaXoa = 0";
         $result = $this->db->query($query);
         $row = $result->fetch_assoc();
         $totalBook = $row['total'];
@@ -125,7 +166,7 @@ class Product {
     }
 
     public function getPaginationByAuthor($author_id, $currentpage = 1, $bookperpage = 10) {
-        $query = "SELECT COUNT(*) AS total FROM DauSach WHERE MaTG = $author_id";
+        $query = "SELECT COUNT(*) AS total FROM DauSach WHERE MaTG = $author_id AND TinhTrang = 1 AND DaXoa = 0";
         $result = $this->db->query($query);
         $row = $result->fetch_assoc();
         $totalBook = $row['total'];
@@ -140,7 +181,7 @@ class Product {
     public function filterPriceRange($price_ranges = [], $currentpage = 1, $bookperpage = 10) {
         $offset = ($currentpage - 1) * $bookperpage;
         if (empty($price_ranges)) {
-            $query = "SELECT * FROM DauSach LIMIT $offset, $bookperpage";
+            $query = "SELECT * FROM DauSach WHERE TinhTrang = 1 AND DaXoa = 0 LIMIT $offset, $bookperpage";
         } else {
             $condition = [];
             foreach ($price_ranges as $range) {
@@ -158,7 +199,7 @@ class Product {
                 $condition[] = "(GiaBan >= $min AND GiaBan <= $max)";
             }
             $where_claude = implode(' OR ', $condition); 
-            $query = "SELECT * FROM DauSach WHERE $where_claude LIMIT $offset, $bookperpage";
+            $query = "SELECT * FROM DauSach WHERE $where_claude AND TinhTrang = 1 AND DaXoa = 0 LIMIT $offset, $bookperpage";
         }
         $result = $this->db->query($query);
         $products = [];
@@ -176,7 +217,7 @@ class Product {
 
     public function getPaginationByPriceRange($price_ranges = [], $currentpage = 1, $bookperpage = 10) {
         if (empty($price_ranges)) {
-            $query = "SELECT COUNT(*) AS total FROM DauSach";
+            $query = "SELECT COUNT(*) AS total FROM DauSach WHERE TinhTrang = 1 AND DaXoa = 0";
         } else {
             $condition = [];
             foreach ($price_ranges as $range) {
@@ -194,7 +235,7 @@ class Product {
                 $condition[] = "(GiaBan >= $min AND GiaBan <= $max)";
             }
             $where_claude = implode(' OR ', $condition); 
-            $query = "SELECT COUNT(*) AS total FROM DauSach WHERE $where_claude";
+            $query = "SELECT COUNT(*) AS total FROM DauSach WHERE $where_claude AND TinhTrang = 1 AND DaXoa = 0";
         }
         $result = $this->db->query($query);
         $row = $result->fetch_assoc();
