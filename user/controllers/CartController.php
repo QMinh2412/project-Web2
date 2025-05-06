@@ -14,6 +14,7 @@
             $myCart = $cartModel->getCartById($current_account);
             $myCartId = isset($myCart['MaGH']) ? $myCart['MaGH'] : '';
             $bookInMyCart = $cartDetailModel->getBookInCartByCartId($myCartId);
+            $booksInCart = $cartDetailModel->getSelectedBookInCart($myCartId);
 
             ob_start();
             include __DIR__ . '/../../user/views/cart/cartDetail.php';

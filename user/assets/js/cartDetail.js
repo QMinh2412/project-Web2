@@ -81,6 +81,9 @@ function handleCheckboxChange(checkbox) {
       }
       if (response.status) {
         updateTotal();
+        document
+          .querySelector(".total_box .btn_submit")
+          .classList.toggle("disabled");
       } else {
         alert(response.message || "Lỗi không xác định từ server");
       }
@@ -111,6 +114,9 @@ function handleDeleteClick(button) {
                       <div style="color: red; font-size: 24px; font-weight: bold; padding: 20px;">
                           Giỏ hàng của bạn đang trống
                       </div>`;
+          document
+            .querySelector(".total_box .btn_submit")
+            .classList.toggle("disabled");
         }
       } else {
         alert(response.message);
