@@ -5,7 +5,7 @@
     require_once __DIR__ . '/../../common/models/Author.php'; 
     require_once __DIR__ . '/../../common/models/Review.php'; 
     class productController {
-        protected $bookperpage = 10;
+        protected $bookperpage = 4;
 
         public function index() {
             $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : "";

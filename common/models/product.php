@@ -39,7 +39,7 @@ class Product {
         $limit = $bookperpage;
         
         // Gán giá trị trực tiếp vào truy vấn (vì LIMIT không dùng bind_param)
-        $query = "SELECT * FROM DauSach LIMIT $offset, $limit";
+        $query = "SELECT * FROM DauSach WHERE DaXoa = 0 LIMIT $offset, $limit";
         
         $stmt = $this->db->prepare($query);
         if (!$stmt) {
@@ -487,7 +487,7 @@ class Product {
     }
 
     public function deleteProduct($productId) {
-        $query = "DELETE FROM DauSach WHERE MaSach = ?";
+        $query = "UPDATE DauSach SET DaXoa = 1 AND TinhTrang = 0 WHERE MaSach = ?";
         $stmt = $this->db->prepare($query);
 
         if ($stmt) {

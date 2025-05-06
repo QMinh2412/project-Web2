@@ -413,6 +413,7 @@ function loadSearchResults(
     if (xhr.readyState === 4 && xhr.status === 200) {
       try {
         const response = JSON.parse(xhr.responseText);
+        console.log(response);
         window.displaySearchResults(response);
         const state = {
           type: "search",
