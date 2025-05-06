@@ -36,28 +36,26 @@
 </div>
 
 <div class="books-container">
-    <div class="category-section">
-        <div class="category-header">
-            <span>Sách bán chạy</span>
-        </div>
-        <div class="books-list-wrapper">
-            <div class="books-list" id="best-selling-carousel">
-                <?php if (empty($bestSellingBooks)): ?>
-                    <p>Chưa có sách bán chạy.</p>
-                <?php else: ?>
-                    <?php foreach ($bestSellingBooks as $product): ?>
-                        <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo htmlspecialchars($product['MaSach']); ?>">
-                            <div class="book-item">
-                                <img src="<?php echo htmlspecialchars($product['DgDanAnh'][0]['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
-                                <div class="book-title"><?php echo htmlspecialchars($product['TenSach']); ?></div>
-                                <div class="book-price"><?php echo number_format($product['GiaBan'], 0, '.', '.') . 'đ'; ?></div>
-                            </div>
-                        </a>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+    <?php if (!empty($bestSellingBooks)): ?>    
+        <div class="category-section">
+            <div class="category-header">
+                <span>Sách bán chạy</span>
+            </div>
+            <div class="books-list-wrapper">
+                <div class="books-list" id="best-selling-carousel">
+                        <?php foreach ($bestSellingBooks as $product): ?>
+                            <a href="/project-Web2/user/index.php?page=detail&action=show_detail&id_book=<?php echo htmlspecialchars($product['MaSach']); ?>">
+                                <div class="book-item">
+                                    <img src="<?php echo htmlspecialchars($product['DgDanAnh'][0]['DgDanAnh']); ?>" alt="<?php echo htmlspecialchars($product['TenSach']); ?>" />
+                                    <div class="book-title"><?php echo htmlspecialchars($product['TenSach']); ?></div>
+                                    <div class="book-price"><?php echo number_format($product['GiaBan'], 0, '.', '.') . 'đ'; ?></div>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif ?>
 
     <div class="category-section">
         <div class="category-header">
