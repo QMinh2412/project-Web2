@@ -6,7 +6,8 @@ create table `NCC` (
 	`MaNCC` int primary key not null auto_increment,
     `TenNCC` varchar(255) not null,
     `DcNCC` varchar(255),
-    `EmailNCC` varchar(255)
+    `EmailNCC` varchar(255),
+    `DaXoa` int default 0
 );
 
 create table `NXB` (
@@ -202,18 +203,18 @@ END $$
 DELIMITER ;
 
 -- INSERT --
-insert into NCC (TenNCC, DcNCC, EmailNCC)
-values ('Nhã Nam', '59 Đỗ Quang, Cầu Giấy, Hà Nội', 'bookstore@nhanam.vn'),
-	   ('Phanbook', 'A1-06.04, Tầng 6 Khu Thương Mại Dịch Vụ, Tòa nhà Gold View, 346 Bến Vân Đồn, Phường 1, Quận 4, TP.HCM', 'info@phanbook.vn'),
-       ('Nhà Xuất Bản Kim Đồng', 'Số 55 Quang Trung, Nguyễn Du, Hai Bà Trưng, Hà Nội', 'cskh_online@nxbkimdong.com.vn'),
-       ('IPM', 'Số 110 Nguyễn Ngọc Nại, Khương Mai, Thanh Xuân, Hà Nội', 'online.ipmvn@gmail.com'),
-       ('1980 Books', 'Nhà 20H2, Ngõ 6, Trần Kim Xuyến, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội', 'info.1980books@gmail.com'),
-       ('AZ Việt Nam', 'Số 50 đường 5, TTF361 An Dương, P. Yên Phụ, Q. Tây Hồ, Tp. Hà Nội', 'bophanbanle@azbooks.vn'),
-       ('NXB Trẻ', '161B Lý Chính Thắng, Phường Võ Thị Sáu, Quận 3 , TP. Hồ Chí Minh', 'hopthubandoc@nxbtre.com.vn'),
-       ('Đinh Tỵ', 'NV22 khu 12 ngõ 13 đường Lĩnh Nam, phường Mai Động, quận Hoàng Mai, Thành Phố Hà Nội', 'contacts@dinhtibooks.vn'),
-       ('Kinokuniya Book Stores', 'Shinjuku, Tokyo, Japan', null),
-       ('Nhà Sách Minh Thắng', '808 Đường Láng, Láng Thượng, Đống Đa, TP.Hà Nội', 'nhasachminhthang@yahoo.com.vn'),
-       ('Walts comic shop', 'Wilhelm-von-Siemens-Straße 12, 12277 Berlin', 'info@waltscomicshop.com');
+insert into NCC (TenNCC, DcNCC, EmailNCC, DaXoa)
+values ('Nhã Nam', '59 Đỗ Quang, Cầu Giấy, Hà Nội', 'bookstore@nhanam.vn', 0),
+	   ('Phanbook', 'A1-06.04, Tầng 6 Khu Thương Mại Dịch Vụ, Tòa nhà Gold View, 346 Bến Vân Đồn, Phường 1, Quận 4, TP.HCM', 'info@phanbook.vn', 0),
+       ('Nhà Xuất Bản Kim Đồng', 'Số 55 Quang Trung, Nguyễn Du, Hai Bà Trưng, Hà Nội', 'cskh_online@nxbkimdong.com.vn', 0),
+       ('IPM', 'Số 110 Nguyễn Ngọc Nại, Khương Mai, Thanh Xuân, Hà Nội', 'online.ipmvn@gmail.com', 0),
+       ('1980 Books', 'Nhà 20H2, Ngõ 6, Trần Kim Xuyến, Phường Yên Hòa, Quận Cầu Giấy, Hà Nội', 'info.1980books@gmail.com', 0),
+       ('AZ Việt Nam', 'Số 50 đường 5, TTF361 An Dương, P. Yên Phụ, Q. Tây Hồ, Tp. Hà Nội', 'bophanbanle@azbooks.vn', 0),
+       ('NXB Trẻ', '161B Lý Chính Thắng, Phường Võ Thị Sáu, Quận 3 , TP. Hồ Chí Minh', 'hopthubandoc@nxbtre.com.vn', 0),
+       ('Đinh Tỵ', 'NV22 khu 12 ngõ 13 đường Lĩnh Nam, phường Mai Động, quận Hoàng Mai, Thành Phố Hà Nội', 'contacts@dinhtibooks.vn', 0),
+       ('Kinokuniya Book Stores', 'Shinjuku, Tokyo, Japan', null, 0),
+       ('Nhà Sách Minh Thắng', '808 Đường Láng, Láng Thượng, Đống Đa, TP.Hà Nội', 'nhasachminhthang@yahoo.com.vn', 0),
+       ('Walts comic shop', 'Wilhelm-von-Siemens-Straße 12, 12277 Berlin', 'info@waltscomicshop.com', 0);
        
        
 insert into NXB (TenNXB, DcNXB, EmailNXB)

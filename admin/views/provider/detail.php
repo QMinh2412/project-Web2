@@ -8,11 +8,11 @@
             <label class="provider-create-label" for="provider-name">Tên nhà cung cấp:</label><br>
             <input class="provider-create-text" type="text" name="product_name" id="provider-name-input" value="<?= htmlspecialchars($provider['TenNCC']) ?>" readonly>
 
-            <label class="provider-create-label" for="provider-address">Địa chỉ nhà cung cấp:</label><br>
-            <input class="provider-create-text" type="text" name="product_address" id="provider-address-input" value="<?= htmlspecialchars($provider['DcNCC']) ?>" readonly>
+            <label class="provider-create-label" for="provider-address">Địa chỉ:</label><br>
+            <input class="provider-create-text" type="text" name="product_address" id="provider-address-input" value="<?= htmlspecialchars($provider['DcNCC'] ?: 'N/A') ?>" readonly>
 
-            <label class="provider-create-label" for="provider-email">Email nhà cung cấp:</label><br>
-            <input class="provider-create-text" type="text" name="product_email" id="provider-email-input" value="<?= htmlspecialchars($provider['EmailNCC']) ?>" readonly>
+            <label class="provider-create-label" for="provider-email">Email:</label><br>
+            <input class="provider-create-text" type="text" name="product_email" id="provider-email-input" value="<?= htmlspecialchars($provider['EmailNCC']) ?: 'N/A' ?>" readonly>
 
             <button type="button" class="provider-create-Btns" id="closeProviderBtn" onclick="location.href='?page=provider&action=index&current_page=<?= $currentPage ?>'">
                 <i class='bx bx-check'></i>
