@@ -364,7 +364,7 @@ class Product {
         // Xây dựng truy vấn
         $query = "SELECT * FROM DauSach";
         if (!empty($conditions)) {
-            $query .= " WHERE " . implode(" AND ", $conditions);
+            $query .= " WHERE " . implode(" AND ", $conditions) . " AND TinhTrang = 1 AND DaXoa = 0";
         }
         $query .= " LIMIT ?, ?";
         $params[] = $offset;
@@ -431,7 +431,7 @@ class Product {
     
         $query = "SELECT COUNT(*) AS total FROM DauSach";
         if (!empty($conditions)) {
-            $query .= " WHERE " . implode(" AND ", $conditions);
+            $query .= " WHERE " . implode(" AND ", $conditions) . " AND TinhTrang = 1 AND DaXoa = 0";
         }
     
         $stmt = $this->db->prepare($query);

@@ -156,11 +156,6 @@
   transition: color 0.3s;
 }
 
-.total_box form button.disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
 .total_box form button:hover {
   background-color: #fff;
   color: #c1430c;

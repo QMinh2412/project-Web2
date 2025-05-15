@@ -46,7 +46,7 @@
         <form>
             <div class="total_book">0 <span>sản phẩm</span></div>
             <div class="total_price">0 đ</div>
-            <button class="btn_submit <?php if(empty($booksInCart)) echo 'disabled';?>">Thanh toán</button>
+            <button class="btn_submit">Thanh toán</button>
         </form>
     </div>
 </div>
