@@ -285,6 +285,18 @@
                 }
             }
 
+            $productModel = new Product();
+            foreach($selected_books as $book){
+                $book_data = $productModel->getProductById($book['MaSach']);
+                if($book_data['SoLgTon'] < $book['SoLg']){
+                    echo json_encode([
+                        'status' => false,
+                        'message' => 'Mã sách ' .$book['MaSach'] . ' trong kho không đủ'
+                    ]);
+                    exit;
+                }
+            }
+
             if($selected_books){
                 echo json_encode([
                     'status' => true,

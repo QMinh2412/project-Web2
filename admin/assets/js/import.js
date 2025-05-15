@@ -4,12 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (searchForm) {
         searchForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            
-            const importId = document.getElementById("import-search-import-id")?.value || "";
+
+            const importId = document.getElementById("import-search-import-id")?.value.trim() || "";
+            const importProduct = document.getElementById("import-search-import-product")?.value.trim() || "";
+            const importProvider = document.getElementById("import-search-import-provider")?.value.trim() || "";
             const importStatus = document.getElementById("import-search-import-status")?.value || "";
             const importFromDate = document.getElementById("import-search-from-date")?.value || "";
             const importToDate = document.getElementById("import-search-to-date")?.value || "";
 
+            // Validate dates
             if ((!importFromDate && importToDate) || (importFromDate && !importToDate)) {
                 alert("Bạn cần phải nhập cả ngày bắt đầu và ngày kết thúc!");
                 return;
@@ -32,20 +35,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
+            // Build search params including Product & Provider
             const searchParams = {
                 import_id: importId,
+                import_product: importProduct,
+                import_provider: importProvider,
                 import_status: importStatus,
                 import_from_date: importFromDate,
                 import_to_date: importToDate
             };
 
-            // Construct query string
+            // Build query string
             const queryString = Object.entries(searchParams)
                 .filter(([_, value]) => value) // Remove empty values
                 .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
                 .join("&");
 
-            // Redirect with query parameters
+            // Redirect with search query
             window.location.href = `?page=import&action=index&${queryString}`;
         });
     }
