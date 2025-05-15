@@ -1,0 +1,229 @@
+/*******************INDEX****************/
+#provider-order {
+    width: 40px;
+}
+
+#provider-features {
+    width: 120px;
+    text-align: center;
+}
+
+/* Add provider button */
+#provider-header {
+    position: relative;
+}
+
+#provider-header-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px;
+}
+
+#addProviderBtn {
+    position: absolute;
+    background-color: white; 
+    padding: 15px;
+    border: solid 1px #4CAF50;
+    border-radius: 10px;
+    right: 20px;
+    top: 10px;
+    color: black;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out; 
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+#addProviderBtn:hover {
+    color: white;
+    background-color: #45a049; 
+}
+
+#addProviderBtn:active {
+    color: white;
+    background-color: #3e8e41; 
+}
+#addProviderBtn i {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Provider detail button */
+#detailProviderBtn {
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px rgb(209, 209, 0);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#detailProviderBtn:hover {
+    background-color: rgb(209, 209, 0); 
+}
+#detailProviderBtn:active {
+    background-color: rgb(189, 189, 0); 
+}
+
+/*Edit Button*/
+#editProviderBtn {
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px #3ea2e1;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#editProviderBtn:hover {
+    color: white;
+    background-color: #2f8bb0; 
+}
+#editProviderBtn:active {
+    color: white;
+    background-color: #2a7a9b;
+}
+
+/* Pagination */
+.provider-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 8px;
+}
+
+.provider-pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-decoration: none;  
+    color: #333;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+}
+
+.provider-pagination a:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+.provider-pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    pointer-events: none;
+    border-color: #007bff;
+}
+
+.provider-pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Provider detail */
+#provider-header {
+    position: relative;
+}
+#closeProviderBtn {
+    margin: 10px 0px 0px 10px;
+    background-color: red; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+
+#closeProviderBtn:hover {
+    background-color: #b30000; 
+}
+#closeProviderBtn:active {
+    background-color: #800000; 
+}
+
+/*Create new provider form*/
+#create-provider-form {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.provider-create-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.provider-create-text {
+    width: calc(100% - 50px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out; 
+}
+.provider-create-text:focus {
+    outline: none;
+    border-color: #3ea2e1; 
+}
+.provider-create-text::placeholder {
+    color: #ccc;
+}
+
+.provider-create-Btns {
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#createProviderBtn {
+    margin: 10px;
+    background-color: #3ea2e1; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#createProviderBtn:hover {
+    background-color: #2f8bb0; 
+}
+#createProviderBtn:active {
+    background-color: #2a7a9b; 
+}
+
+#cancelProviderBtn {
+    background-color: red; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#cancelProviderBtn:hover {
+    background-color: #b30000; 
+}
+#cancelProviderBtn:active {
+    background-color: #800000; 
+}
+
+/* Edit */
+#acceptEditProviderBtn {
+    background-color: #3ea2e1; 
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#acceptEditProviderBtn:hover {
+    background-color: #2f8bb0; 
+}
+#acceptEditProviderBtn:active {
+    background-color: #2a7a9b;
+}
