@@ -12,6 +12,7 @@
     }
 ?>
 
+<script src="/project-Web2/admin/assets/js/import.js"></script>
 <div class="admin-wrapper" id="import-detail-wrapper">
     <div class="admin-header" id="import-header">
         <h2>Chi tiết phiếu nhập</h2>
@@ -90,6 +91,10 @@
         <button type="button" class="import-detail-close-Btns" id="closeImportDetailBtn" onclick="location.href='?page=import&action=index&current_page=<?= $currentPage ?>'">
             <i class='bx bx-check'></i>
             Xong
+        </button>
+        <button type="button" class="import-detail-export-Btns" id="exportDetailBtn" onclick="exportDetail()">
+            <i class='bx bx-download'></i>
+            In
         </button>
     </div>
 </div>
