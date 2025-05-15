@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../admin/controllers/orderController.php';
 require_once __DIR__ . '/../../admin/controllers/productController.php';
 require_once __DIR__ . '/../../admin/controllers/userController.php';
 require_once __DIR__ . '/../../admin/controllers/reviewController.php';
+require_once __DIR__ . '/../../admin/controllers/providerController.php';
 
 class RouteAdmin {
     public function router($url) {
@@ -101,6 +102,27 @@ class RouteAdmin {
                         // Nếu không tìm thấy action, có thể chuyển hướng về trang 404 hoặc trang mặc định
                         header('HTTP/1.0 404 Not Found');
                         exit('Action not found');   
+                }
+                break;
+
+            case 'provider':
+                $controller = new ProviderController();
+                switch($action) {
+                    case 'index':
+                        $controller->index();
+                        break;
+                    case 'create':
+                        $controller->create();
+                        break;
+                    case 'edit':
+                        $controller->edit();
+                        break;
+                    case 'detail':
+                        $controller->detail();
+                        break;
+                    default:
+                        header('HTTP/1.0 404 Not Found');
+                        exit('Action not found');  
                 }
                 break;
 

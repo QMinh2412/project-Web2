@@ -25,6 +25,15 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
         </div>
     </a>
     <?php endif; ?>
+
+    <?php if ($role == 1 || $role == 4): ?>
+    <a href="?page=provider&action=index&current_page=1">
+        <div class="menuitems">
+            <i class='bx bx-department-store'></i> 
+            <span class="menuitems-span">Nhà cung cấp</span>
+        </div>
+    </a>
+    <?php endif; ?>
     
     <?php if ($role == 1 || $role == 4): ?>
     <a href="?page=product&action=index&current_page=1">
