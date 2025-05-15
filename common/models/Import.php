@@ -164,6 +164,18 @@
             return $ok;
         }
 
-        
+        public function checkProviderExistsInImport($providerId) {
+            $query = "SELECT 1 FROM PhNhap WHERE MaNCC = ? LIMIT 1";
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) {
+                return 0;
+            }
+            $stmt->bind_param("i", $providerId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $exists = ($result && $result->num_rows > 0) ? 1 : 0;
+            $stmt->close();
+            return $exists;
+        }
     }
 ?>

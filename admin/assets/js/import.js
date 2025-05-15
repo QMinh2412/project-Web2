@@ -187,3 +187,46 @@ function renderBookTable() {
         });
     });
 }
+
+function exportDetail() {
+    // Lấy nội dung cần in
+    const wrapper = document.getElementById('import-detail-wrapper');
+    const content = wrapper.innerHTML;
+
+    // Tạo bản sao nội dung để chỉnh sửa
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+
+    // Xóa các nút "Xong" và "In"
+    const buttons = tempDiv.querySelectorAll('#closeImportDetailBtn, #exportDetailBtn');
+    buttons.forEach(button => button.remove());
+
+    // Tạo cửa sổ in
+    const printWindow = window.open('', '_blank');
+    printWindow.document.open();
+    printWindow.document.write(`
+        <html>
+            <head>
+                <title>Chi Tiết Phiếu Nhập</title>
+                <style>
+                    body { font-family: Arial, sans-serif; line-height: 1.6; }
+                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                    table, th, td { border: 1px solid black; }
+                    th, td { padding: 8px; text-align: left; }
+                    th { background-color: #f2f2f2; }
+                    #importDetailTotalValueDiv { margin-top: 20px; }
+                </style>
+            </head>
+            <body>
+                ${tempDiv.innerHTML}
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
+
+    // Thực hiện in
+    printWindow.print();
+
+    // Đóng cửa sổ in sau khi in xong
+    printWindow.onafterprint = () => printWindow.close();
+}

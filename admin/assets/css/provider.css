@@ -86,6 +86,31 @@
     background-color: #2a7a9b;
 }
 
+/* Delete product button */
+#deleteProviderBtn {
+    background-color: white; 
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px rgb(255, 0, 0);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+}
+#deleteProviderBtn:hover {
+    color: white;
+    background-color: rgb(230, 0, 0);
+}
+#deleteProviderBtn:active {
+    color: white;
+    background-color: rgb(72, 0, 0);
+}
+#deleteProviderBtn:disabled {
+    background-color: white;
+    cursor: not-allowed;
+    color: black;
+    opacity: 0.3;
+}
+
 /* Pagination */
 .provider-pagination {
     display: flex;

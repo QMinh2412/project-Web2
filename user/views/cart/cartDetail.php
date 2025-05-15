@@ -32,7 +32,7 @@
                         <div class="book_price"><?php echo number_format($book_data['GiaBan'], 0, '.', '.'); ?> đ</div>
                         <div class="quantity_box">
                             <span class="minus_icon"><i class="fa-solid fa-minus"></i></span>
-                            <span class="quantity"><?php echo $book['SoLg']; ?></span>
+                            <input type="text" name="quantity" id="quantity" value="<?php echo $book['SoLg']; ?>">
                             <span class="plus_icon"><i class="fa-solid fa-plus"></i></span>
                         </div>
                     </div>

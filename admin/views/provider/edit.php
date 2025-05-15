@@ -2,8 +2,8 @@
     <div class="admin-header" id="provider-header">
         <h2 id="provider-header-title">Sửa nhà cung cấp</h2>
         <form id="create-provider-form" method="POST" action="?page=provider&action=edit&id=<?= htmlspecialchars($provider['MaNCC']) ?>">
-            <label class="provider-create-label" for="provider-name">Tên:</label><br>
-            <input class="provider-create-text" type="text" name="provider_name" id="provider-name-input" placeholder="Tên" value="<?= htmlspecialchars($provider['TenNCC']) ?>" required>
+            <label class="provider-create-label" for="provider-name">Tên nhà cung cấp:</label><br>
+            <input class="provider-create-text" type="text" name="provider_name" id="provider-name-input" placeholder="Tên nhà cung cấp" value="<?= htmlspecialchars($provider['TenNCC']) ?>" required>
             <label class="provider-create-label" for="provider-address">Địa chỉ:</label><br>
             <input class="provider-create-text" type="text" name="provider_address" id="provider-address-input" placeholder="Địa chỉ" value="<?= htmlspecialchars($provider['DcNCC']) ?>">
             <label class="provider-create-label" for="provider-email">Email:</label><br>

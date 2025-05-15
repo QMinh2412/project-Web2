@@ -156,5 +156,38 @@
                 ]);
             }
         }
+
+        public function delete() {
+            $currentPage = $_GET['current_page'] ?? 1;
+            $providerModel = new Provider();
+            $providerId = $_GET['id'] ?? null;
+
+            $importModel = new Import();
+
+            if ($providerId) {
+                $existsProviderInImport = $importModel->checkProviderExistsInImport($providerId);
+
+                if (!$existsProviderInImport) {
+                    $isDeleted = $providerModel->deleteProviderFromDatabase($providerId);
+                }
+                else {
+                    $isDeleted = $providerModel->deleteProvider($providerId);
+                }
+
+
+                if ($isDeleted) {
+                    echo "<script>
+                        alert('Nhà cung cấp đã được xóa thành công!');
+                        window.location.href = '?page=provider&action=index&current_page=$currentPage'
+                    </script>";
+                }
+                else {
+                    echo "<script>alert('Không thể xóa nhà cung cấp, vui lòng thử lại!');</script>";
+                }
+            }
+            else {
+                echo "<script>alert('ID nhà cung cấp không hợp lệ!')</script>";
+            }
+        }
     }
 ?>

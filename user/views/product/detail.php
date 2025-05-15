@@ -25,7 +25,8 @@
             <div class="book_status">Còn hàng: <span><?php echo $book_data['SoLgTon']; ?></span></div>
             <div class="book_quantity">Số lượng: 
                 <span id="minus_icon"><i class="fa-solid fa-minus"></i></span>
-                <span id="quantity">1</span>
+                <!-- <span id="quantity">1</span> -->
+                 <input type="text" name="quantity" id="quantity" value="1">
                 <span id="plus_icon"><i class="fa-solid fa-plus"></i></span>
             </div>
             <div class="box_btn">

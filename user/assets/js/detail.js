@@ -2,9 +2,9 @@ function plusItem() {
   const plusIcon = document.getElementById("plus_icon");
   plusIcon.addEventListener("click", () => {
     const quantity = document.getElementById("quantity");
-    let number = parseInt(quantity.innerText);
+    let number = parseInt(quantity.value);
     number++;
-    quantity.innerHTML = number;
+    quantity.value = number;
   });
 }
 
@@ -12,9 +12,9 @@ function minusItem() {
   const minusIcon = document.getElementById("minus_icon");
   minusIcon.addEventListener("click", () => {
     const quantity = document.getElementById("quantity");
-    let number = parseInt(quantity.innerText);
+    let number = parseInt(quantity.value);
     if (number > 1) number--;
-    quantity.innerHTML = number;
+    quantity.value = number;
   });
 }
 
@@ -163,7 +163,7 @@ function addToCart() {
 
     const url = new URLSearchParams(window.location.search);
     const id_book = url.get("id_book");
-    const qty = parseInt(document.getElementById("quantity").innerText);
+    const qty = parseInt(document.getElementById("quantity").value);
     console.log(`ma sach: ${id_book}`);
     console.log(`so lg: ${qty}`);
 
@@ -316,7 +316,7 @@ function buyNow() {
   document.getElementById("buyNow").addEventListener("click", () => {
     const urlParam = new URLSearchParams(window.location.search);
     const bookId = urlParam.get("id_book");
-    const qty = document.getElementById("quantity").textContent;
+    const qty = parseInt(document.getElementById("quantity").value);
 
     const xhr = new XMLHttpRequest();
     xhr.open(
