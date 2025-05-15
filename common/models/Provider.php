@@ -22,6 +22,43 @@
             return $providers;
         }
 
+        public function getAllProvidersWithPagination($currentpage, $providerperpage = 10) {
+            $offset = ($currentpage - 1) * $providerperpage;
+            $limit = $providerperpage;
+
+            $query = "SELECT * FROM NCC LIMIT $offset, $limit";
+
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) {
+                die("Prepare failed: " . $this->db->error);
+            }
+        
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $providers = [];
+
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $providers[] = $row;
+                }
+            }
+
+            return $providers;
+        }
+
+        public function getPagination($currentpage, $providerperpage = 10) {
+            $query = "SELECT COUNT(*) AS total FROM NCC";
+            $result = $this->db->query($query);
+            $row = $result->fetch_assoc();
+            $totalProvider = $row['total'];
+            $totalPages = ceil($totalProvider / $providerperpage);
+            
+            return [
+                'totalPages' => $totalPages,
+                'currentPage' => $currentpage
+            ];
+        }
+
         public function getProviderByName($providerName) {
             $query = "SELECT * FROM NCC WHERE TenNCC = ?";
             $stmt = $this->db->prepare($query);
@@ -72,6 +109,18 @@
             }
         
             return null;
+        }
+
+        public function updateProvider($providerId, $providerData) {
+            $query = "UPDATE NCC SET TenNCC = ?, DcNCC = ?, EmailNCC = ? WHERE MaNCC = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("sssi", 
+                $providerData['TenNCC'],
+                $providerData['DcNCC'],
+                $providerData['EmailNCC'],
+                $providerId
+            );
+            return $stmt->execute();
         }
     }
         

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./assets/css/order.css">
     <link rel="stylesheet" href="./assets/css/review.css">
     <link rel="stylesheet" href="./assets/css/import.css">
+    <link rel="stylesheet" href="./assets/css/provider.css">
 </head>
 <?php
 if (!isset($_SESSION['user_id'])) {

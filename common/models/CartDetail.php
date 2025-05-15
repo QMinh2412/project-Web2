@@ -127,5 +127,13 @@
 
             return $books;
         }
+
+        public function deleteProductInCart($book_id){
+            $book_id = intval($book_id);
+            $query = "DELETE FROM ctgh WHERE MaSach = $book_id";
+            $result = $this->db->query($query);
+        
+            return $result && $this->db->affected_rows > 0;
+        }
     }
 ?>

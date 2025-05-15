@@ -165,7 +165,7 @@ function handleCheckoutClick() {
         console.log(response);
 
         if (response.status) {
-          alert(response.message);
+          // alert(response.message);
           window.location.href =
             "/project-Web2/user/index.php?page=checkout&action=showCheckout&source=cart";
         } else {

@@ -22,8 +22,7 @@
                 <?php foreach ($products as $idx => $product): 
                     $category = $categoryMap[$product['MaLoai']] ?? 'N/A';
                     $status = $product['TinhTrang'] == 1 ? 'Đang bán' : 'Ngừng bán';
-                    $isDelete = $product['SoLgDaBan'];
-                    $canDelete = ($isDelete == 0 && $product['TinhTrang'] == 0);
+                    $canDelete = $product['TinhTrang'] == 0;
                     $productName = htmlspecialchars($product['TenSach'], ENT_QUOTES);
                     $deleteUrl = "?page=product&action=delete&id=" . $product['MaSach'] . "&current_page=" . $pagination['currentPage'];
                 ?>

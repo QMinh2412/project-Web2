@@ -123,13 +123,14 @@ body {
 .books-list {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   overflow: hidden;
   transition: transform 0.5s ease-in-out;
 }
 
 .books-list a {
   min-width: calc(20% - 20px);
+  max-width: calc(20% - 20px);
   background-color: white;
   border-radius: 5px;
   margin: 0 10px;
