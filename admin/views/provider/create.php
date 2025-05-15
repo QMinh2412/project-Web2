@@ -12,7 +12,7 @@
                 <i class='bx bx-check'></i>
                 Áp dụng thay đổi
             </button>
-            <button type="button" class="provider-create-Btns" id="cancelProviderBtn" onclick="location.href='?page=provider&action=index&current_page=<?= $currentPage ?>'">
+            <button type="button" class="provider-create-Btns" id="cancelProviderBtn" onclick="location.href='?page=provider&action=index'">
                 <i class='bx bx-x'></i> 
                 Hủy
             </button>
