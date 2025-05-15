@@ -96,12 +96,84 @@ function exportOrderDetail() {
             <head>
                 <title>Chi Tiết Đơn Hàng</title>
                 <style>
-                    body { font-family: Arial, sans-serif; line-height: 1.6; }
-                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                    table, th, td { border: 1px solid black; }
-                    th, td { padding: 8px; text-align: left; }
-                    th { background-color: #f2f2f2; }
-                    #orderDetailTotalValueDiv { margin-top: 20px; }
+                    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+                    
+                    #order-detail-form {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 16px;
+                        margin-bottom: 20px;
+                    }
+                    .general-order-info {
+                        flex: 1 1 calc(45% - 10px);
+                    }
+                    .general-order-info-full {
+                        flex: 1 1 100%;
+                    }
+                    .order-create-label {
+                        font-weight: bold;
+                        font-size: 1em;
+                        margin: 6px 0 4px 0;
+                    }
+                    .order-create-text {
+                        border-radius: 5px;
+                        padding: 8px;
+                        font-size: 14px;
+                        width: 100%;
+                        box-sizing: border-box;
+                        border: solid 1px black;
+                    }
+
+                    #order-note-input {
+                        height: 100px;
+                        resize: vertical;
+                    }
+
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+
+                    table, th, td {
+                        border: 1px solid black;
+                    }
+
+                    th, td {
+                        padding: 8px;
+                        text-align: left;
+                    }
+
+                    th {
+                        background-color: #f2f2f2;
+                    }
+
+                    #orderDetailTotalValueDiv {
+                        display: flex;
+                        justify-content: flex-end;
+                        margin-top: 30px;
+                    }
+
+                    .order-value-row {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 350px;
+                        margin-bottom: 10px;
+                    }
+
+                    .order-value-row label {
+                        font-weight: bold;
+                    }
+
+                    .order-value-row input {
+                        width: 150px;
+                        text-align: right;
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        background-color: #f9f9f9;
+                        border-radius: 5px;
+                    }
                 </style>
             </head>
             <body>

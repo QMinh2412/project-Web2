@@ -203,12 +203,94 @@ function exportDetail() {
             <head>
                 <title>Chi Tiết Phiếu Nhập</title>
                 <style>
-                    body { font-family: Arial, sans-serif; line-height: 1.6; }
-                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                    table, th, td { border: 1px solid black; }
-                    th, td { padding: 8px; text-align: left; }
-                    th { background-color: #f2f2f2; }
-                    #importDetailTotalValueDiv { margin-top: 20px; }
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        padding: 20px;
+                        color: #333;
+                    }
+                    h1 {
+                        text-align: center;
+                        font-size: 24px;
+                        margin-bottom: 20px;
+                        color: #0056b3;
+                    }
+                    #import-detail-form {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 16px;
+                        margin-bottom: 20px;
+                    }
+                    .general-import-info {
+                        flex: 1 1 calc(45% - 10px);
+                    }
+                    .general-import-info-full {
+                        flex: 1 1 100%;
+                    }
+                    .import-create-label {
+                        font-weight: bold;
+                        font-size: 1em;
+                        margin: 6px 0 4px 0;
+                    }
+                    .import-create-text {
+                        border-radius: 5px;
+                        padding: 8px;
+                        font-size: 14px;
+                        width: 100%;
+                        box-sizing: border-box;
+                        border: solid 1px black;
+                    }
+
+                    #import-note-input {
+                        height: 100px;
+                        resize: vertical;
+                    }
+
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+
+                    table, th, td {
+                        border: 1px solid black;
+                    }
+
+                    th, td {
+                        padding: 8px;
+                        text-align: left;
+                    }
+
+                    th {
+                        background-color: #f2f2f2;
+                    }
+
+                    #importDetailTotalValueDiv {
+                        display: flex;
+                        justify-content: flex-end;
+                        margin-top: 30px;
+                    }
+
+                    .import-value-row {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 350px;
+                        margin-bottom: 10px;
+                    }
+
+                    .import-value-row label {
+                        font-weight: bold;
+                    }
+
+                    .import-value-row input {
+                        width: 150px;
+                        text-align: right;
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        background-color: #f9f9f9;
+                        border-radius: 5px;
+                    }
                 </style>
             </head>
             <body>
