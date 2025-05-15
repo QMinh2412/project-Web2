@@ -26,7 +26,7 @@
             $offset = ($currentpage - 1) * $providerperpage;
             $limit = $providerperpage;
 
-            $query = "SELECT * FROM NCC LIMIT $offset, $limit";
+            $query = "SELECT * FROM NCC WHERE DaXoa = 0 LIMIT $offset, $limit";
 
             $stmt = $this->db->prepare($query);
             if (!$stmt) {
@@ -121,6 +121,34 @@
                 $providerId
             );
             return $stmt->execute();
+        }
+
+        public function deleteProvider($providerId) {
+            $query = "UPDATE NCC SET DaXoa = 1 WHERE MaNCC = ?";
+            $stmt = $this->db->prepare($query);
+
+            if ($stmt) {
+                $stmt->bind_param("i", $providerId);
+                $result = $stmt->execute();
+                $stmt->close();
+                return $result;
+            }
+
+            return false;
+        }
+
+        public function deleteProviderFromDatabase($providerId) {
+            $query = "DELETE FROM NCC WHERE MaNCC = ?";
+            $stmt = $this->db->prepare($query);
+
+            if ($stmt) {
+                $stmt->bind_param("i", $providerId);
+                $result = $stmt->execute();
+                $stmt->close();
+                return $result;
+            }
+
+            return false;
         }
     }
         

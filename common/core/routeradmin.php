@@ -120,6 +120,9 @@ class RouteAdmin {
                     case 'detail':
                         $controller->detail();
                         break;
+                    case 'delete':
+                        $controller->delete();
+                        break;  
                     default:
                         header('HTTP/1.0 404 Not Found');
                         exit('Action not found');  
