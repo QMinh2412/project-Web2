@@ -451,6 +451,26 @@
     font-size: 16px;
 }
 
+#import-add-confirm-btn {
+    margin: 0px 20px 10px 20px;
+    background-color: #28a745; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#import-add-confirm-btn:hover {
+    background-color: #218838; 
+}
+
+#import-add-confirm-btn:active {
+    background-color: #1e7e34; 
+}
+
 #exportDetailBtn:hover {
     background-color: #060287; 
 }

@@ -176,7 +176,7 @@
 #orderDetailTotalValue {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* space between each row */
+    gap: 10px; 
 }
 
 .order-value-row {
