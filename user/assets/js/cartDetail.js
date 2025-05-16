@@ -154,7 +154,7 @@ function handleChangeInput(input) {
   const bookItem = input.closest(".book_in_cart");
   const bookId = bookItem.dataset.id;
   const quantity = parseInt(input.value);
-  const originalValue = input.dataset.originalValue || 1; // Lưu giá trị gốc để khôi phục nếu lỗi
+  const originalValue = parseInt(input.dataset.originalValue) || 1; // Giá trị gốc
 
   // Kiểm tra giá trị hợp lệ
   if (isNaN(quantity) || quantity < 1) {
@@ -164,6 +164,13 @@ function handleChangeInput(input) {
     return;
   }
 
+  // Kiểm tra xem số lượng có thay đổi không
+  if (quantity === originalValue) {
+    updateTotal(); // Cập nhật tổng (nếu cần)
+    return; // Không gửi yêu cầu AJAX nếu không thay đổi
+  }
+
+  // Gửi yêu cầu AJAX để cập nhật số lượng
   sendAjaxRequest(
     "POST",
     "/project-Web2/user/index.php?page=cart&action=updateQuantity",

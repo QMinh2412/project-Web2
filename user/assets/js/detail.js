@@ -2,6 +2,12 @@ function plusItem() {
   const plusIcon = document.getElementById("plus_icon");
   plusIcon.addEventListener("click", () => {
     const quantity = document.getElementById("quantity");
+
+    if (isNaN(quantity.value) || quantity.value === "") {
+      alert("Số lượng không hợp lệ");
+      return;
+    }
+
     let number = parseInt(quantity.value);
     number++;
     quantity.value = number;
@@ -12,6 +18,12 @@ function minusItem() {
   const minusIcon = document.getElementById("minus_icon");
   minusIcon.addEventListener("click", () => {
     const quantity = document.getElementById("quantity");
+
+    if (isNaN(quantity.value) || quantity.value === "") {
+      alert("Số lượng không hợp lệ");
+      return;
+    }
+
     let number = parseInt(quantity.value);
     if (number > 1) number--;
     quantity.value = number;

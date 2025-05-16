@@ -234,6 +234,11 @@
             $bookId = isset($_POST['id_book']) ? $_POST['id_book'] : '';
             $qty = isset($_POST['quantity']) ? $_POST['quantity'] : '';
 
+            if(empty($qty) || $qty < 0 || !is_numeric($qty)){
+                echo json_encode(['status' => false, 'message' => "Số lượng không hợp lệ"]);
+                exit;
+            }
+
             if($current_account){
                 $productModel = new Product();
                 $book = $productModel->getProductById($bookId);

@@ -11,7 +11,7 @@
 
 
     class OrderController{
-        protected $ordersPerPage = 5;
+        protected $ordersPerPage = 10;
 
         public function index(){
 

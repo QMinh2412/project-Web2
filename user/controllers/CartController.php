@@ -45,7 +45,12 @@
             }
     
             $id_book = isset($_POST['id_book']) ? $_POST['id_book'] : "";
-            $qty = isset($_POST['quantity']) ? $_POST['quantity'] : 1;
+            $qty = isset($_POST['quantity']) ? $_POST['quantity'] : "";
+
+            if(empty($qty) || $qty < 0 || !is_numeric($qty)){
+                echo json_encode(['status' => false, 'message' => "Số lượng không hợp lệ"]);
+                exit;
+            }
     
             $cartDetailModel = new CartDetail();
             $cartDetail = $cartDetailModel->addToCart($current_account, $id_book, $qty);
