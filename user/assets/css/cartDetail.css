@@ -190,6 +190,12 @@
     width: 25px;
     height: 25px;
   }
+
+  .book_in_cart .quantity_box input {
+    width: 30px;
+    height: 23px;
+    text-align: center;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -248,6 +254,13 @@
   .book_in_cart .quantity_box span {
     width: 20px;
     height: 20px;
+    font-size: 10px;
+  }
+
+  .book_in_cart .quantity_box input {
+    width: 25px;
+    height: 18px;
+    font-size: 10px;
   }
 
   .total_box {

@@ -660,6 +660,12 @@ textarea:focus {
     height: 25px;
   }
 
+  .main_detail .book_quantity input {
+    width: 40px;
+    height: 23px;
+    /* text-align: center; */
+  }
+
   .main_detail .box_btn button {
     padding: 8px 10px;
     font-size: 14px;
