@@ -1,481 +1,474 @@
 /* Container chính */
 .order-container {
-    margin: 0px auto 20px auto;
-    width: calc(100% - 40px);
+  margin: 0px auto 20px auto;
+  width: calc(100% - 40px);
 }
 
 .order-header {
-    position: relative;
+  position: relative;
 }
 
 /* Form tìm kiếm */
 
-
 /************************ Index table **********************/
 #order-order {
-    width: 40px;
+  width: 40px;
 }
 
 #order-id {
-    width: 40px;
+  width: 40px;
 }
 
 #order-value {
-    width: 120px;
+  width: 120px;
 }
 
 #order-time {
-    width: 90px;
+  width: 90px;
 }
 
 #order-status {
-    width: 120px;
+  width: 120px;
 }
 
 .order-status-dropdown {
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background-color: #f8f9fa;
-    color: #333;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    width: 115px;
-    text-align: center;
-    text-align-last: center;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  color: #333;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  width: 115px;
+  text-align: center;
+  text-align-last: center;
 }
 
 .order-status-dropdown option {
-    text-align: left;
-    background-color: white;
-    color: black;
+  text-align: left;
+  background-color: white;
+  color: black;
 }
 
 .order-status-dropdown:hover {
-    border-color: #007bff;
-    background-color: #e9f2ff;
+  border-color: #007bff;
+  background-color: #e9f2ff;
 }
 
 .order-status-dropdown:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 3px #007bff80;
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 3px #007bff80;
 }
-
 
 #order-features {
-    width: 80px;
+  width: 80px;
 }
-
 
 /************************ Pagination ***********************/
 .order-pagination {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-    gap: 8px;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  gap: 8px;
 }
 
 .order-pagination a {
-    display: inline-block;
-    padding: 8px 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    text-decoration: none;  
-    color: #333;
-    background-color: #f9f9f9;
-    transition: all 0.2s ease-in-out;
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease-in-out;
 }
 
 .order-pagination a:hover {
-    background-color: #e0e0e0;
-    color: #000;
+  background-color: #e0e0e0;
+  color: #000;
 }
 
 .order-pagination a.active {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: bold;
-    pointer-events: none;
-    border-color: #007bff;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  pointer-events: none;
+  border-color: #007bff;
 }
 
 .order-pagination a.disabled {
-    pointer-events: none;
-    opacity: 0.5;
-    cursor: default;
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
 }
 
 /************************ Order Feature Buttons ***********************/
 /* Order detail button */
 #detailOrderBtn {
-    background-color: white; 
-    color: black;
-    padding: 10px;
-    border-radius: 5px;
-    border: solid 1px rgb(209, 209, 0);
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out; 
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid 1px rgb(209, 209, 0);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 #detailOrderBtn:hover {
-    background-color: rgb(209, 209, 0); 
+  background-color: rgb(209, 209, 0);
 }
 #detailOrderBtn:active {
-    background-color: rgb(189, 189, 0); 
+  background-color: rgb(189, 189, 0);
 }
 
 /********************* ORDER DETAIL **************************/
 /*********** Div Form ******************/
 
 #orderDetailHeader {
-    margin: 0px 30px 10px 30px;
+  margin: 0px 30px 10px 30px;
 }
 
 #order-detail-form {
-    margin: 0px 20px 20px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+  margin: 0px 20px 20px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .general-order-info {
-    flex: 1 1 calc(45% - 10px);
+  flex: 1 1 calc(45% - 10px);
 }
 
 .general-order-info-full {
-    flex: 1 1 100%;
+  flex: 1 1 100%;
 }
 
 .order-create-label {
-    margin: 10px;
-    font-weight: bold;
-    font-size: 1.2em;
+  margin: 10px;
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
 .order-create-text {
-    border-radius: 5px;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-    border: solid 1px black;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border: solid 1px black;
 }
 
 #order-note-input {
-    resize: vertical;
-    height: 100px;
+  resize: vertical;
+  height: 100px;
 }
 
 #orderDetailTotalValueDiv {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
 }
 
 #orderDetailTotalValue {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .order-value-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
 }
 
 .order-value-row label {
-    font-size: 16px;
-    font-weight: bold;
-    white-space: nowrap;
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 .order-value-row input {
-    padding: 8px 12px;
-    margin-right: 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 150px;
-    font-size: 13px;
-    text-align: right;
-    background-color: #f9f9f9;
+  padding: 8px 12px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 150px;
+  font-size: 13px;
+  text-align: right;
+  background-color: #f9f9f9;
 }
 
 #orderDetailTotalValueRow label {
-    color: red;
+  color: red;
 }
 
 .order-value-row input:focus {
-    outline: none;
+  outline: none;
 }
 
-
 #closeOrderDetailBtn {
-    margin: 0px 20px 10px 20px;
-    background-color: red; 
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out; 
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
+  margin: 0px 20px 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 #closeOrderDetailBtn:hover {
-    background-color: #b30000; 
+  background-color: #b30000;
 }
 #closeOrderDetailBtn:active {
-    background-color: #800000; 
+  background-color: #800000;
 }
 
 #exportOrderDetailBtn {
-    width: 80px;
-    margin: 0px 20px 10px 20px;
-    background-color: blue; 
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out; 
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
+  width: 80px;
+  margin: 0px 20px 10px 20px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 #exportOrderDetailBtn:hover {
-    background-color: #060287; 
+  background-color: #060287;
 }
 
 #exportOrderDetailBtn:active {
-    background-color: #040165; 
+  background-color: #040165;
 }
-
 
 /******** Order Detail Form ***********/
 #order-detail-wrapper {
-    max-height: calc(100vh - 90px); 
-    overflow-y: auto;   
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
 }
 
 #order-detail-product-order {
-    width: 50px;
+  width: 50px;
 }
 
 #order-detail-product-category {
-    width: 110px;
+  width: 110px;
 }
 
 #order-detail-product-number {
-    width: 100px;
+  width: 100px;
 }
 
 #order-detail-product-price {
-    width: 200px;
+  width: 200px;
 }
 
 /* ORDER-SEARCH-GROUP */
 .order-search-form {
-    display: flex;
-    align-items: flex-end;
-    gap: 15px;
-  }
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
 
 .order-form-group {
-    display: flex;
-    flex-direction: column;
-    min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
 }
-  
+
 .order-form-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
-  
+
 .order-form-group #order-id {
-    padding: 8px;
-    width: auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
+  padding: 8px;
+  width: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
 }
 
 .order-form-group input,
 .order-form-group select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
 }
-  
+
 .order-search-btn {
-    padding: 10px 20px;
-    background-color: #00c851;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
+  padding: 10px 20px;
+  background-color: #00c851;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
-  
+
 .order-search-btn:hover {
-    background-color: #007e33;
-    transform: scale(1.03);
-    cursor: pointer;
+  background-color: #007e33;
+  transform: scale(1.03);
+  cursor: pointer;
 }
 
 .order-search-btn:active {
-    transform: scale(0.98);
+  transform: scale(0.98);
 }
 
-
 @media only screen and (min-width: 651px) and (max-width: 1300px) {
-    .order-search-form {
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-    
-    .order-form-group {
-        flex: 1 1 calc(50% - 15px);
-        min-width: 200px;
-    }
-    
-    .order-form-group:last-child {
-        flex-basis: 100%; 
-    }
+  .order-search-form {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 
-    #order-value {
-        display: none;
-    }
+  .order-form-group {
+    flex: 1 1 calc(50% - 15px);
+    min-width: 200px;
+  }
+
+  .order-form-group:last-child {
+    flex-basis: 100%;
+  }
+
+  #order-value {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 650px) {
-    .order-search-form {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-    }
-    
-    .order-form-group {
-        width: 100%;
-    }
-    
-    .order-search-btn {
-        width: 100%;
-        text-align: center;
-    }
+  .order-search-form {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
 
-    .general-order-info {
-        flex: 1 1 calc(100% - 8px);
-    }
+  .order-form-group {
+    width: 100%;
+  }
 
-    #order-list-container {
-        background-color: white;
-    }
+  .order-search-btn {
+    width: 100%;
+    text-align: center;
+  }
 
-    #order-list-container thead {
-        display: none;
-    }
-    
-    #order-list-body tr {
-        display: block;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 10px;
-        background: #fff;
-        align-items: left;
-    }
-    
-    #order-list-body td {
-        display: block;
-        padding: 8px 5px;
-        border: none;
-        font-size: 14px;
-        position: relative;
-        padding-left: 110px; 
-        text-align: left;
-    }
-    
-    #order-list-body td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-weight: bold;
-        color: #333;
-        width: 95px;
-        white-space: nowrap;
-    }
-    
-    #order-list-body td:last-child {
-        border-bottom: none;
-    }
+  .general-order-info {
+    flex: 1 1 calc(100% - 8px);
+  }
 
-    #order-list-body-status {
-        vertical-align: middle;
-    }
+  #order-list-container {
+    background-color: white;
+  }
 
-    #order-order {
-        display: none;
-    }
+  #order-list-container thead {
+    display: none;
+  }
+
+  #order-list-body tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff;
+    align-items: left;
+  }
+
+  #order-list-body td {
+    display: block;
+    padding: 8px 5px;
+    border: none;
+    font-size: 14px;
+    position: relative;
+    padding-left: 110px;
+    text-align: left;
+  }
+
+  #order-list-body td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: #333;
+    width: 95px;
+    white-space: nowrap;
+  }
+
+  #order-list-body td:last-child {
+    border-bottom: none;
+  }
+
+  #order-list-body-status {
+    vertical-align: middle;
+  }
+
+  #order-order {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 1300px) {
-    #order-order {
-        display: none;
-    }
+  #order-order {
+    display: none;
+  }
 
-    #order-id {
-        width: 20px;
-    }
+  #order-id {
+    width: 20px;
+  }
 
-    #order-value {
-        width: 70px;
-    }
+  #order-value {
+    width: 70px;
+  }
 
-    .order-status-dropdown {
-        font-size: 0.9em;
-    }
+  .order-status-dropdown {
+    font-size: 0.9em;
+  }
 
+  /*Order Detail Form*/
+  .order-create-label {
+    font-size: 0.9em;
+  }
 
-    /*Order Detail Form*/
-    .order-create-label {
-        font-size: 0.9em;
-    }
+  .order-create-text {
+    font-size: 0.9em;
+  }
 
-    .order-create-text {
-        font-size: 0.9em;
-    }
+  #order-detail-product-order {
+    display: none;
+  }
 
-    #order-detail-product-order {
-        display: none;
-    }
+  #order-detail-product-name {
+    font-size: 0.9em;
+  }
 
-    #order-detail-product-name {
-        font-size: 0.9em;
-    }
+  #order-detail-product-category {
+    width: 60px;
+    font-size: 0.9em;
+  }
 
-    #order-detail-product-category {
-        width: 60px;
-        font-size: 0.9em;
-    }
+  #order-detail-product-number {
+    width: 60px;
+    font-size: 0.9em;
+  }
 
-    #order-detail-product-number {
-        width: 60px;
-        font-size: 0.9em;
-    }
+  #order-detail-product-price {
+    width: 80px;
+    font-size: 0.9em;
+  }
 
-    #order-detail-product-price {
-        width: 80px;
-        font-size: 0.9em;
-    }
-
-    #order-total-value-label {
-        font-size: 1em;
-    }
+  #order-total-value-label {
+    font-size: 1em;
+  }
 }
