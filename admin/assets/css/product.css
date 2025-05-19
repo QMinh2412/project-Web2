@@ -37,7 +37,7 @@ PRODUCT-SEARCH-GROUP
     display: flex;
     align-items: flex-end;
     gap: 15px;
-    margin: 20px;
+    margin: 0px 20px 20px 20px;
 }
 
 .product-form-group {

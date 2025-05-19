@@ -595,3 +595,25 @@
         font-size: 1em;
     }
 }
+
+@media only screen and (min-width: 1301px) and (max-width: 1750px) {
+    .order-search-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 20px;
+    }
+    .order-form-group {
+        flex: 1 1 30%;
+        min-width: 220px;
+        max-width: 32%;
+        display: flex;
+        flex-direction: column;
+    }
+    .order-search-btn,
+    .import-add-btn {
+        flex: 1 1 calc(45% - 10px);
+    }
+}
