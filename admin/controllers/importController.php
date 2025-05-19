@@ -17,9 +17,13 @@
             $status = $_GET['import_status'] ?? '';
             $fromDate = $_GET['import_from_date'] ?? '';
             $toDate = $_GET['import_to_date'] ?? '';
+            $importProduct = $_GET['import_product'] ?? '';
+            $importProvider = $_GET['import_provider'] ?? '';
+            
+            $imports = $importModel->getFilteredImport($currentPage, $importsPerPage, $importId, $status, $fromDate, $toDate, $importProduct, $importProvider);
 
-            $imports = $importModel->getFilteredImport($currentPage, $importsPerPage, $importId, $status, $fromDate, $toDate);
-            $pagination = $importModel->getImportPaginationFiltered($currentPage, $importsPerPage, $importId, $status, $fromDate, $toDate);
+            $pagination = $importModel->getImportPaginationFiltered($currentPage, $importsPerPage, $importId, $status, $fromDate, $toDate, $importProduct, $importProvider);
+
             
             $providerMap = [];
             foreach ($providers as $prov) {

@@ -29,7 +29,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
     <?php if ($role == 1 || $role == 4): ?>
     <a href="?page=provider&action=index&current_page=1">
         <div class="menuitems">
-            <i class='bx bx-department-store'></i> 
+            <i class="fa-solid fa-truck"></i>
             <span class="menuitems-span">Nhà cung cấp</span>
         </div>
     </a>

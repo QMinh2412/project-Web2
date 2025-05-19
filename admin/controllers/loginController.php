@@ -37,9 +37,6 @@
                             // xác định URL mặc định cho từng loại tài khoản
                             $redirectUrl = '/project-Web2/admin/views/layouts/login.php'; 
                             switch ($user['LoaiTK']) {
-                                case 0: // Khách hàng
-                                    $redirectUrl = '/project-Web2/admin/index.php?page=dashboard&action=index';
-                                    break;
                                 case 1: // Quản lý
                                     $redirectUrl = '/project-Web2/admin/index.php?page=import&action=index';
                                     break;

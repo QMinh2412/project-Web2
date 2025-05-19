@@ -15,6 +15,22 @@
                 >
             </div>
             <div class="order-form-group">
+                <label for="import-search-import-product">Tên sản phẩm</label>
+                <input type="text" id="import-search-import-product" 
+                    name="import_product" 
+                    placeholder="Nhập tên sản phẩm" 
+                    value="<?= htmlspecialchars($_GET['import_product'] ?? '') ?>"
+                >
+            </div>
+            <div class="order-form-group">
+                <label for="import-search-import-provider">Tên nhà cung cấp</label>
+                <input type="text" id="import-search-import-provider" 
+                    name="provider" 
+                    placeholder="Nhập tên nhà cung cấp" 
+                    value="<?= htmlspecialchars($_GET['import_provider'] ?? '') ?>"
+                >
+            </div>
+            <div class="order-form-group">
                 <label for="import-search-import-status">Trạng thái</label>
                 <select id="import-search-import-status" name="import_status">
                     <option value="" <?= empty($_GET['import_status']) ? 'selected' : '' ?>>Tất cả</option>

@@ -74,3 +74,118 @@ function handleStatusChange(select, orderId, currentPage) {
     const newStatus = select.value;
     window.location.href = `?page=order&action=changeStatus&id=${orderId}&status=${newStatus}&current_page=${currentPage}`;
 }
+
+function exportOrderDetail() {
+    // Lấy nội dung cần in
+    const wrapper = document.getElementById('order-detail-wrapper');
+    const content = wrapper.innerHTML;
+
+    // Tạo bản sao nội dung để chỉnh sửa
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+
+    // Xóa các nút "Xong" và "In"
+    const buttons = tempDiv.querySelectorAll('#closeOrderDetailBtn, #exportOrderDetailBtn');
+    buttons.forEach(button => button.remove());
+
+    // Tạo cửa sổ in
+    const printWindow = window.open('', '_blank');
+    printWindow.document.open();
+    printWindow.document.write(`
+        <html>
+            <head>
+                <title>Chi Tiết Đơn Hàng</title>
+                <style>
+                    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+                    
+                    #order-detail-form {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 16px;
+                        margin-bottom: 20px;
+                    }
+                    .general-order-info {
+                        flex: 1 1 calc(45% - 10px);
+                    }
+                    .general-order-info-full {
+                        flex: 1 1 100%;
+                    }
+                    .order-create-label {
+                        font-weight: bold;
+                        font-size: 1em;
+                        margin: 6px 0 4px 0;
+                    }
+                    .order-create-text {
+                        border-radius: 5px;
+                        padding: 8px;
+                        font-size: 14px;
+                        width: 100%;
+                        box-sizing: border-box;
+                        border: solid 1px black;
+                    }
+
+                    #order-note-input {
+                        height: 100px;
+                        resize: vertical;
+                    }
+
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+
+                    table, th, td {
+                        border: 1px solid black;
+                    }
+
+                    th, td {
+                        padding: 8px;
+                        text-align: left;
+                    }
+
+                    th {
+                        background-color: #f2f2f2;
+                    }
+
+                    #orderDetailTotalValueDiv {
+                        display: flex;
+                        justify-content: flex-end;
+                        margin-top: 30px;
+                    }
+
+                    .order-value-row {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 350px;
+                        margin-bottom: 10px;
+                    }
+
+                    .order-value-row label {
+                        font-weight: bold;
+                    }
+
+                    .order-value-row input {
+                        width: 150px;
+                        text-align: right;
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        background-color: #f9f9f9;
+                        border-radius: 5px;
+                    }
+                </style>
+            </head>
+            <body>
+                ${tempDiv.innerHTML}
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
+
+    // Thực hiện in
+    printWindow.print();
+
+    // Đóng cửa sổ in sau khi in xong
+    printWindow.onafterprint = () => printWindow.close();
+}

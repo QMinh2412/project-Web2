@@ -2,6 +2,10 @@
     width: 40px;
 }
 
+#product-product {
+    width: 40px;
+}
+
 #product-category {
     width: 90px;
 }
@@ -21,6 +25,68 @@
 #product-features {
     width: 120px;
     text-align: center;
+}
+
+PRODUCT-SEARCH-GROUP
+.product-search-container {
+    margin: 0px auto 20px auto;
+    width: calc(100% - 40px);
+}
+
+.product-search-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    margin: 0px 20px 20px 20px;
+}
+
+.product-form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+}
+  
+.product-form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+  
+.product-form-group #product-id {
+    padding: 8px;
+    width: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.product-form-group input,
+.product-form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+  
+.product-search-btn {
+    padding: 10px 20px;
+    background-color: #00c851;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+  
+.product-search-btn:hover {
+    background-color: #007e33;
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.product-search-btn:active {
+    transform: scale(0.98);
 }
 
 /*Add product button*/
@@ -537,7 +603,7 @@ input:checked + .slider::before {
 }
 
 @media only screen and (max-width: 600px) {
-    #product-order {
+    #product-product {
         width: 32px;
         font-size: 0.8em;
     }
@@ -612,7 +678,7 @@ input:checked + .slider::before {
 }
 
 @media only screen and (max-width: 1050px) {
-    #product-order {
+    #product-product {
         width: 32px;
         font-size: 0.9em;
     }

@@ -42,6 +42,7 @@
     }
 ?>
 
+<script src="/project-Web2/admin/assets/js/order.js"></script>
 <div class="admin-wrapper" id="order-detail-wrapper">
     <div class="admin-header" id="order-header">
         <h2>Chi tiết đơn hàng</h2>
@@ -148,5 +149,10 @@
             <i class='bx bx-check'></i>
             Xong
         </button>
+
+        <button type="button" class="order-detail-export-Btns" id="exportOrderDetailBtn" onclick="exportOrderDetail()">
+        <i class='bx bx-download'></i>
+        In
+    </button>
     </div>
 </div>

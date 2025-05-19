@@ -8,71 +8,106 @@
             $this->db = Database::getInstance();
         }
 
-        public function getFilteredImport($currentPage, $importsPerPage, $importId = '', $status = '', $fromDate = '', $toDate = '') {
+        public function getFilteredImport($currentPage, $importsPerPage, $importId = '', $status = '', $fromDate = '', $toDate = '', $importProduct = '', $importProvider = '') {
             $offset = ($currentPage - 1) * $importsPerPage;
             $conditions = "WHERE 1=1";
 
             if (!empty($importId)) {
-                $conditions .= " AND MaPhNhap = " . intval($importId);
+                $conditions .= " AND pn.MaPhNhap = " . intval($importId);
             }
 
-            if (isset($status) && is_numeric($status)) {
-                $conditions .= " AND TinhTrang = " . intval($status);
+            if ($status !== '' && is_numeric($status)) {
+                $conditions .= " AND pn.TinhTrang = " . intval($status);
             }
 
             if (!empty($fromDate)) {
-                $conditions .= " AND NgNhap >= '" . $this->db->real_escape_string($fromDate) . "'";
-            }
-        
-            if (!empty($toDate)) {
-                $conditions .= " AND NgNhap <= '" . $this->db->real_escape_string($toDate) . "'";
+                $conditions .= " AND pn.NgNhap >= '" . $this->db->real_escape_string($fromDate) . "'";
             }
 
-            // Câu truy vấn chính
-            $query = "SELECT * FROM PhNhap $conditions ORDER BY NgNhap DESC LIMIT $importsPerPage OFFSET $offset";
+            if (!empty($toDate)) {
+                $conditions .= " AND pn.NgNhap <= '" . $this->db->real_escape_string($toDate) . "'";
+            }
+
+            if (!empty($importProvider)) {
+                $conditions .= " AND ncc.TenNCC LIKE '%" . $this->db->real_escape_string($importProvider) . "%'";
+            }
+
+            if (!empty($importProduct)) {
+                $conditions .= " AND s.TenSach LIKE '%" . $this->db->real_escape_string($importProduct) . "%'";
+            }
+
+            $query = "
+                SELECT DISTINCT pn.*
+                FROM PhNhap pn
+                JOIN NCC ncc ON pn.MaNCC = ncc.MaNCC
+                LEFT JOIN CTPN ctpn ON pn.MaPhNhap = ctpn.MaPhNhap
+                LEFT JOIN DauSach s ON ctpn.MaSach = s.MaSach
+                $conditions
+                ORDER BY pn.NgNhap DESC
+                LIMIT $importsPerPage OFFSET $offset
+            ";
+
             $result = $this->db->query($query);
-        
+
             $imports = [];
             if ($result) {
                 while ($row = $result->fetch_assoc()) {
                     $imports[] = $row;
                 }
             }
-            
+
             return $imports;
         }
 
-        public function getImportPaginationFiltered($currentPage, $importsPerPage, $importId = '', $status = '', $fromDate = '', $toDate = '') {
+
+        public function getImportPaginationFiltered($currentPage, $importsPerPage, $importId = '', $status = '', $fromDate = '', $toDate = '', $importProduct = '', $importProvider = '') {
             $conditions = "WHERE 1=1";
 
             if (!empty($importId)) {
-                $conditions .= " AND MaPhNhap = " . intval($importId);
+                $conditions .= " AND pn.MaPhNhap = " . intval($importId);
             }
 
-            if (isset($status) && is_numeric($status)) {
-                $conditions .= " AND TinhTrang = " . intval($status);
+            if ($status !== '' && is_numeric($status)) {
+                $conditions .= " AND pn.TinhTrang = " . intval($status);
             }
 
             if (!empty($fromDate)) {
-                $conditions .= " AND NgNhap >= '" . $this->db->real_escape_string($fromDate) . "'";
-            }
-        
-            if (!empty($toDate)) {
-                $conditions .= " AND NgNhap <= '" . $this->db->real_escape_string($toDate) . "'";
+                $conditions .= " AND pn.NgNhap >= '" . $this->db->real_escape_string($fromDate) . "'";
             }
 
-            $query = "SELECT COUNT(*) as total FROM PhNhap $conditions";
+            if (!empty($toDate)) {
+                $conditions .= " AND pn.NgNhap <= '" . $this->db->real_escape_string($toDate) . "'";
+            }
+
+            if (!empty($importProvider)) {
+                $conditions .= " AND ncc.TenNCC LIKE '%" . $this->db->real_escape_string($importProvider) . "%'";
+            }
+
+            if (!empty($importProduct)) {
+                $conditions .= " AND s.TenSach LIKE '%" . $this->db->real_escape_string($importProduct) . "%'";
+            }
+
+            $query = "
+                SELECT COUNT(DISTINCT pn.MaPhNhap) as total
+                FROM PhNhap pn
+                JOIN NCC ncc ON pn.MaNCC = ncc.MaNCC
+                LEFT JOIN CTPN ctpn ON pn.MaPhNhap = ctpn.MaPhNhap
+                LEFT JOIN DauSach s ON ctpn.MaSach = s.MaSach
+                $conditions
+            ";
+
             $result = $this->db->query($query);
             $row = $result->fetch_assoc();
             $totalImport = $row['total'];
             $totalPages = ceil((int)$totalImport / (int)$importsPerPage);
-        
+
             return [
                 'totalOrders' => $totalImport,
                 'totalPages' => $totalPages,
                 'currentPage' => $currentPage
             ];
         }
+
 
         public function getImportById($id) {
             $query = "SELECT * FROM PhNhap WHERE MaPhNhap = '$id'";

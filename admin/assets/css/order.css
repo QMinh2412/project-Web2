@@ -231,6 +231,27 @@
     background-color: #800000; 
 }
 
+#exportOrderDetailBtn {
+    width: 80px;
+    margin: 0px 20px 10px 20px;
+    background-color: blue; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; 
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#exportOrderDetailBtn:hover {
+    background-color: #060287; 
+}
+
+#exportOrderDetailBtn:active {
+    background-color: #040165; 
+}
+
 
 /******** Order Detail Form ***********/
 #order-detail-wrapper {
