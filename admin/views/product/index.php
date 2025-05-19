@@ -79,7 +79,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="7">Không có đơn hàng nào</td>
+                    <td colspan="7">Không có sản phẩm nào</td>
             <?php endif; ?>
         </tbody>
     </table>
