@@ -10,14 +10,10 @@
     class ProductController extends BaseController {
 
         public function index($currentPage) {
-            $productModel  = new Product();
+            $productModel = new Product();
             $categoryModel = new Category();
 
             $booksPerPage = 10;
-
-            $products   = $productModel->getAllProducts($currentPage, $booksPerPage);
-            $pagination = $productModel->getPagination($currentPage, $booksPerPage);
-
             $categories = $categoryModel->getAllCategories();
   
             $categoryMap = [];
@@ -25,14 +21,18 @@
                 $categoryMap[$cat['MaLoai']] = $cat['TenLoai'];
             }
 
-            // Render view, truyền cả products, categoryMap và pagination
+            $productName = $_GET['product_name'] ?? '';
+
+            $products = $productModel->getAllProducts($currentPage, 10, $productName);
+
+            $pagination = $productModel->getPagination($currentPage, 10, $productName);
+
             $this->render('product/index', [
-                'products'    => $products,
+                'products' => $products,
                 'categoryMap' => $categoryMap,
-                'pagination'  => $pagination
+                'pagination' => $pagination,
             ]);
         }
-
 
         public function create() {
             $productModel = new Product();
@@ -394,6 +394,7 @@
             $currentPage = $_GET['current_page'] ?? 1;
 
             $productModel = new Product();
+            $cartDetailModel = new CartDetail();
             $productId = $_GET['id'] ?? null;
 
             if ($productId) {
@@ -406,6 +407,7 @@
                 elseif ($product['TinhTrang'] == 1) {
 
                     $isUpdated = $productModel->updateProductStatus($productId, 0);
+                    $cartDetailModel->deleteProductInCart($productId);
 
                     if ($isUpdated) {
                         echo "<script>
