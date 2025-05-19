@@ -64,6 +64,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    const productSearchForm = document.querySelector(".product-search-form");
+    if (productSearchForm) {
+        productSearchForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const productName = document.getElementById("product-search-product-name")?.value.trim() || "";
+
+            const searchParams = {
+                page: "product",
+                action: "index",
+                current_page: 1,
+                product_name: productName
+            };
+
+            const queryString = Object.entries(searchParams)
+                .filter(([_, value]) => value !== "") // Keep empty product_name if needed
+                .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+                .join("&");
+
+            window.location.href = `?${queryString}`;
+        });
+    }
+
+
     /*********** Image Zoom **********/
     // 1. Common Modal Function for All
     const modal     = document.getElementById('universalImageModal');

@@ -34,22 +34,33 @@ class Product {
         return $products;
     }
 
-    public function getAllProducts($currentpage, $bookperpage = 10) {
+    public function getAllProducts($currentpage, $bookperpage = 10, $productName = '') {
         $offset = ($currentpage - 1) * $bookperpage;
-        $limit = $bookperpage;
         
-        // Gán giá trị trực tiếp vào truy vấn (vì LIMIT không dùng bind_param)
-        $query = "SELECT * FROM DauSach WHERE DaXoa = 0 LIMIT $offset, $limit";
+        $query = "SELECT * FROM DauSach WHERE DaXoa = 0";
         
+        if (!empty($productName)) {
+            $query .= " AND TenSach COLLATE utf8mb4_general_ci LIKE ?";
+        }
+
+        $query .= " LIMIT ?, ?";
+
         $stmt = $this->db->prepare($query);
         if (!$stmt) {
             die("Prepare failed: " . $this->db->error);
         }
-    
+
+        if (!empty($productName)) {
+            $searchParam = '%' . $productName . '%';
+            $stmt->bind_param('sii', $searchParam, $offset, $bookperpage);
+        } else {
+            $stmt->bind_param('ii', $offset, $bookperpage);
+        }
+
         $stmt->execute();
         $result = $stmt->get_result();
         $products = [];
-    
+
         if ($result) {
             while ($row = $result->fetch_assoc()) {
                 $image = new Image();
@@ -58,9 +69,10 @@ class Product {
                 $products[] = $row;
             }
         }
-    
+
         return $products;
     }
+
 
     public function getAllProductsWithStatus($currentpage, $bookperpage = 10) {
         $offset = ($currentpage - 1) * $bookperpage;
@@ -126,10 +138,27 @@ class Product {
         return $products;
     }
 
-    public function getPagination($currentpage, $bookperpage = 10) {
-        $query = "SELECT COUNT(*) AS total FROM DauSach";
-        $result = $this->db->query($query);
+    public function getPagination($currentpage, $bookperpage = 10, $productName = '') {
+        $query = "SELECT COUNT(*) AS total FROM DauSach WHERE DaXoa = 0";
+        
+        if (!empty($productName)) {
+            $query .= " AND TenSach COLLATE utf8mb4_general_ci LIKE ?";
+        }
+
+        $stmt = $this->db->prepare($query);
+        if (!$stmt) {
+            die("Prepare failed: " . $this->db->error);
+        }
+
+        if (!empty($productName)) {
+            $searchParam = '%' . $productName . '%';
+            $stmt->bind_param('s', $searchParam);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
         $row = $result->fetch_assoc();
+
         $totalBook = $row['total'];
         $totalPages = ceil($totalBook / $bookperpage);
         
@@ -138,6 +167,7 @@ class Product {
             'currentPage' => $currentpage
         ];
     }
+
 
     public function getPaginationWithStatus($currentpage, $bookperpage = 10) {
         $query = "SELECT COUNT(*) AS total FROM DauSach WHERE TinhTrang = 1 AND DaXoa = 0";

@@ -5,16 +5,24 @@
         <h2>Sản phẩm</h2>
         <button onclick="location.href='?page=product&action=create'" href="?page=product&action=create" class="btn btn-primary" id="addProductBtn"><i class='bx bxs-book-add'></i>Thêm sách</button>
     </div>
-    <form class="order-search-form" method="GET" action="">
-            <div class="order-form-group">
-                <label for="product-search-product-id">Mã phiếu nhập</label>
-                <input type="number" id="import-search-import-id" 
-                    name="import_id" 
-                    placeholder="Nhập mã phiếu nhập" 
-                    value="<?= htmlspecialchars($_GET['import_id'] ?? '') ?>"
-                >
-            </div>
-    </form>
+    <div class="product-search-container">
+        <form class="product-search-form" method="GET" action="">
+                <div class="product-form-group">
+                    <label for="product-search-product-id">Tên sản phẩm</label>
+                    <input type="text" id="product-search-product-name" 
+                        name="product_name" 
+                        placeholder="Nhập tên sản phẩm" 
+                        value="<?= htmlspecialchars($_GET['product_name'] ?? '') ?>"
+                    >
+                </div>
+                <div class="order-form-group">
+                    <button type="submit" class="order-search-btn" id="import-search-btn">
+                        <i class='bx bx-search'></i>
+                        Tìm kiếm
+                    </button>
+                </div>
+        </form>
+    </div>
     <table class="admin-list-container">
         <thead class="admin-list-header">
             <tr class="admin-list-header-content">
